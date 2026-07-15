@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bfktd0atyeykk"]
+
+[ext_resource type="Script" uid="uid://dkyk4jf6oye0a" path="res://addons/gdf-godot/GDF/Input/GdfInputContext.cs" id="1_jdkr4"]
+[ext_resource type="Script" uid="uid://b4rkfhtu1tgga" path="res://addons/gdf-godot/GDF/Input/GdfInputActionInstance.cs" id="2_7brk7"]
+[ext_resource type="Resource" uid="uid://20hjbwrgl572" path="res://resources/input_actions/move.tres" id="3_j0v5n"]
+[ext_resource type="Script" uid="uid://4lm3jxgrfs5c" path="res://addons/gdf-godot/GDF/Input/GdfInputTriggerMixer.cs" id="4_hkgbp"]
+[ext_resource type="Script" uid="uid://cdfy1mpsmrtuu" path="res://addons/gdf-godot/GDF/Input/GdfInputTriggerInput.cs" id="5_bq1sy"]
+[ext_resource type="Resource" uid="uid://lcriijicejdl" path="res://resources/input_actions/jump.tres" id="6_7brk7"]
+
+[node name="Character Keyboard Context" type="Node" unique_id=1445705826]
+script = ExtResource("1_jdkr4")
+Tags = Array[String](["character", "keyboard"])
+
+[node name="Navigate" type="Node" parent="." unique_id=307263713]
+script = ExtResource("2_7brk7")
+Action = ExtResource("3_j0v5n")
+
+[node name="Mixer" type="Node" parent="Navigate" unique_id=46086048]
+script = ExtResource("4_hkgbp")
+
+[node name="Up" type="Node" parent="Navigate/Mixer" unique_id=1053635848]
+script = ExtResource("5_bq1sy")
+Type = 1
+Key = 87
+UseCustomVector = true
+UnitVector = Vector3(0, 0, -1)
+
+[node name="Left" type="Node" parent="Navigate/Mixer" unique_id=646201087]
+script = ExtResource("5_bq1sy")
+Type = 1
+Key = 65
+UseCustomVector = true
+UnitVector = Vector3(-1, 0, 0)
+
+[node name="Down" type="Node" parent="Navigate/Mixer" unique_id=1280101431]
+script = ExtResource("5_bq1sy")
+Type = 1
+Key = 83
+UseCustomVector = true
+UnitVector = Vector3(0, 0, 1)
+
+[node name="Right" type="Node" parent="Navigate/Mixer" unique_id=906018314]
+script = ExtResource("5_bq1sy")
+Type = 1
+Key = 68
+UseCustomVector = true
+
+[node name="Jump" type="Node" parent="." unique_id=83668345]
+script = ExtResource("2_7brk7")
+Action = ExtResource("6_7brk7")
+
+[node name="Key" type="Node" parent="Jump" unique_id=1384598293]
+script = ExtResource("5_bq1sy")
+Type = 1
+Key = 32
+UseCustomVector = true
+UnitVector = Vector3(0, 1, 0)

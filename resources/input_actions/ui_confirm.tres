@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GdfInputAction" format=3 uid="uid://cfp18enrjxj36"]
+
+[ext_resource type="Script" uid="uid://b6um35a1dk7tb" path="res://addons/gdf-godot/GDF/Input/GdfInputAction.cs" id="1_us7v7"]
+
+[resource]
+script = ExtResource("1_us7v7")
+Name = "ui_confirm"
+DisplayName = "Confirm"
+SendEventOnPress = true
+EventBufferTime = 50

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GdfInputAction" format=3 uid="uid://m57c325gweiq"]
+
+[ext_resource type="Script" uid="uid://b6um35a1dk7tb" path="res://addons/gdf-godot/GDF/Input/GdfInputAction.cs" id="1_s0tbs"]
+
+[resource]
+script = ExtResource("1_s0tbs")
+Name = "ui_navigate"
+DisplayName = "Navigate"

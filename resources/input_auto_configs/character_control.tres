@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PlayerInputConfig" format=3 uid="uid://cubdq0rio3s24"]
+
+[ext_resource type="PackedScene" uid="uid://bfktd0atyeykk" path="res://scenes/objects/input_contexts/character_contexts/character_keyboard_context.tscn" id="1_q37es"]
+[ext_resource type="Script" uid="uid://csch7c7rbhnb0" path="res://scripts/Game/Input/PlayerInputConfig.cs" id="2_dd65i"]
+
+[resource]
+script = ExtResource("2_dd65i")
+Mode = 2
+KeyboardInputContexts = [ExtResource("1_q37es")]
+metadata/_custom_type_script = "uid://bgk65h36fwqb5"

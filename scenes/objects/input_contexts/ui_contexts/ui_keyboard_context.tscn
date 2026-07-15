@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://drn1e41g12wjb"]
+
+[ext_resource type="Script" uid="uid://dkyk4jf6oye0a" path="res://addons/gdf-godot/GDF/Input/GdfInputContext.cs" id="1_fprwf"]
+[ext_resource type="Script" uid="uid://b4rkfhtu1tgga" path="res://addons/gdf-godot/GDF/Input/GdfInputActionInstance.cs" id="2_offuc"]
+[ext_resource type="Resource" uid="uid://m57c325gweiq" path="res://resources/input_actions/ui_navigate.tres" id="3_4vuh4"]
+[ext_resource type="Script" uid="uid://4lm3jxgrfs5c" path="res://addons/gdf-godot/GDF/Input/GdfInputTriggerMixer.cs" id="4_7hwyg"]
+[ext_resource type="Script" uid="uid://cdfy1mpsmrtuu" path="res://addons/gdf-godot/GDF/Input/GdfInputTriggerInput.cs" id="5_r68vf"]
+[ext_resource type="Resource" uid="uid://cfp18enrjxj36" path="res://resources/input_actions/ui_confirm.tres" id="6_7hwyg"]
+[ext_resource type="Resource" uid="uid://b55woujpabosc" path="res://resources/input_actions/ui_cancel.tres" id="7_r68vf"]
+
+[node name="UI Keyboard Context" type="Node" unique_id=1544584542]
+script = ExtResource("1_fprwf")
+Tags = Array[String](["ui", "keyboard"])
+
+[node name="Navigate" type="Node" parent="." unique_id=763834303]
+script = ExtResource("2_offuc")
+Action = ExtResource("3_4vuh4")
+
+[node name="Mixer" type="Node" parent="Navigate" unique_id=22996375]
+script = ExtResource("4_7hwyg")
+
+[node name="Up" type="Node" parent="Navigate/Mixer" unique_id=1857735972]
+script = ExtResource("5_r68vf")
+Type = 1
+Key = 87
+UseCustomVector = true
+UnitVector = Vector3(0, 1, 0)
+
+[node name="Left" type="Node" parent="Navigate/Mixer" unique_id=2085527162]
+script = ExtResource("5_r68vf")
+Type = 1
+Key = 65
+UseCustomVector = true
+UnitVector = Vector3(-1, 0, 0)
+
+[node name="Down" type="Node" parent="Navigate/Mixer" unique_id=724908285]
+script = ExtResource("5_r68vf")
+Type = 1
+Key = 83
+UseCustomVector = true
+UnitVector = Vector3(0, -1, 0)
+
+[node name="Right" type="Node" parent="Navigate/Mixer" unique_id=89567903]
+script = ExtResource("5_r68vf")
+Type = 1
+Key = 68
+UseCustomVector = true
+
+[node name="Confirm" type="Node" parent="." unique_id=196320712]
+script = ExtResource("2_offuc")
+Action = ExtResource("6_7hwyg")
+
+[node name="Key" type="Node" parent="Confirm" unique_id=1488052398]
+script = ExtResource("5_r68vf")
+Type = 1
+Key = 32
+UseCustomVector = true
+UnitVector = Vector3(0, 1, 0)
+
+[node name="Cancel" type="Node" parent="." unique_id=1096273275]
+script = ExtResource("2_offuc")
+Action = ExtResource("7_r68vf")
+
+[node name="Key" type="Node" parent="Cancel" unique_id=842810641]
+script = ExtResource("5_r68vf")
+Type = 1
+Key = 4194305
+UseCustomVector = true
+UnitVector = Vector3(0, 1, 0)
