@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://djic4httambpn"]
+
+[ext_resource type="Script" uid="uid://crj48tyk0nmvf" path="res://addons/gdf-godot/GDF/Input/GdfInputSystem.cs" id="1_opebo"]
+[ext_resource type="Script" uid="uid://cqtokr6spdybx" path="res://addons/gdf-godot/GDF/Debug/DebugCommandSystem.cs" id="2_m3l3d"]
+[ext_resource type="Script" uid="uid://5krjgh5qqo37" path="res://addons/gdf-godot/GDF/PropertyStacks/GlobalPropertyStack.cs" id="2_mmyj5"]
+[ext_resource type="Script" uid="uid://dchytqeoyxkj" path="res://addons/gdf-godot/GDF/UI/ScreenStack.cs" id="3_nelfd"]
+[ext_resource type="Resource" uid="uid://d161k2ge6g0g4" path="res://addons/gdf-godot/resources/property_registries/input_group_properties.tres" id="3_unqd7"]
+[ext_resource type="Script" uid="uid://cjjjip5vkuwkj" path="res://addons/gdf-godot/GDF/PropertyStacks/Definitions/Specialized/MouseModeProperty.cs" id="4_bv183"]
+[ext_resource type="Script" uid="uid://c0catxx0gwuor" path="res://addons/gdf-godot/GDF/PropertyStacks/PropertyRegistry.cs" id="4_x8cda"]
+[ext_resource type="Script" uid="uid://t37ys1o2wvx4" path="res://addons/gdf-godot/GDF/PropertyStacks/Definitions/BoolProperty.cs" id="5_5rvs8"]
+[ext_resource type="Script" uid="uid://b4vyis3udrf41" path="res://addons/gdf-godot/GDF/Audio/GlobalAudioPlayerPool.cs" id="5_bv183"]
+[ext_resource type="Script" uid="uid://dtiavjx30ng7w" path="res://addons/gdf-godot/GDF/PropertyStacks/Definitions/FloatProperty.cs" id="6_bv183"]
+[ext_resource type="Script" uid="uid://bituwxio8sdy4" path="res://addons/gdf-godot/GDF/PropertyStacks/PropertyStackWatcher.cs" id="8_5rvs8"]
+[ext_resource type="Script" uid="uid://ditn16b880feq" path="res://addons/gdf-godot/GDF/Physics/PhysicsQuerySystem.cs" id="10_wokaa"]
+[ext_resource type="Script" uid="uid://dumwi1hftoo2" path="res://addons/gdf-godot/GDF/UI/GdfViewportResizer.cs" id="11_2se67"]
+[ext_resource type="Script" uid="uid://bue2dh8nq45gq" path="res://addons/gdf-godot/GDF/Debug/DebugCommandMacro.cs" id="14_7upwp"]
+
+[sub_resource type="Resource" id="Resource_wokaa"]
+resource_name = "mouse_mode [MouseModeProperty]"
+script = ExtResource("4_bv183")
+PropertyId = "mouse_mode"
+metadata/_custom_type_script = "uid://cjjjip5vkuwkj"
+
+[sub_resource type="Resource" id="Resource_2se67"]
+resource_name = "paused [BoolProperty]"
+script = ExtResource("5_5rvs8")
+DefaultOperator = 4
+PropertyId = "paused"
+metadata/_custom_type_script = "uid://t37ys1o2wvx4"
+
+[sub_resource type="Resource" id="Resource_7upwp"]
+resource_name = "time_scale [FloatProperty]"
+script = ExtResource("6_bv183")
+DefaultValue = 1.0
+DefaultOperator = 2
+PropertyId = "time_scale"
+metadata/_custom_type_script = "uid://dtiavjx30ng7w"
+
+[sub_resource type="Resource" id="Resource_5rvs8"]
+script = ExtResource("4_x8cda")
+Definitions = Array[Object]([SubResource("Resource_wokaa"), SubResource("Resource_2se67"), SubResource("Resource_7upwp")])
+OtherRegistries = null
+metadata/_custom_type_script = "uid://c0catxx0gwuor"
+
+[sub_resource type="Resource" id="Resource_tqw2u"]
+script = ExtResource("4_x8cda")
+Definitions = null
+OtherRegistries = Array[Object]([ExtResource("3_unqd7"), SubResource("Resource_5rvs8")])
+metadata/_custom_type_script = "uid://c0catxx0gwuor"
+
+[sub_resource type="InputEventKey" id="InputEventKey_e7lx3"]
+device = -1
+keycode = 47
+unicode = 47
+
+[sub_resource type="Resource" id="Resource_0wfyh"]
+script = ExtResource("14_7upwp")
+Shortcut = SubResource("InputEventKey_e7lx3")
+Command = "gdf:console"
+metadata/_custom_type_script = "uid://bue2dh8nq45gq"
+
+[node name="Global" type="Node" unique_id=894814629]
+
+[node name="Resource Libraries" type="Node" parent="." unique_id=2016105280]
+
+[node name="GdfInputSystem" type="Node" parent="." unique_id=1985833570]
+script = ExtResource("1_opebo")
+metadata/_custom_type_script = "uid://crj48tyk0nmvf"
+
+[node name="GlobalPropertyStack" type="Node" parent="." unique_id=1024276917]
+script = ExtResource("2_mmyj5")
+PropertyRegistry = SubResource("Resource_tqw2u")
+metadata/_custom_type_script = "uid://5krjgh5qqo37"
+
+[node name="PropertyStackWatcher [Idle]" type="Node" parent="." unique_id=547863332 node_paths=PackedStringArray("Stack")]
+script = ExtResource("8_5rvs8")
+Stack = NodePath("../GlobalPropertyStack")
+MouseModePropertyId = "mouse_mode"
+metadata/_custom_type_script = "uid://bituwxio8sdy4"
+
+[node name="PropertyStackWatcher [Physics]" type="Node" parent="." unique_id=901048031 node_paths=PackedStringArray("Stack")]
+script = ExtResource("8_5rvs8")
+Stack = NodePath("../GlobalPropertyStack")
+UpdateMode = 1
+TimeScalePropertyId = "time_scale"
+PausedPropertyId = "paused"
+metadata/_custom_type_script = "uid://bituwxio8sdy4"
+
+[node name="GlobalAudioPlayerPool" type="Node" parent="." unique_id=419953179]
+script = ExtResource("5_bv183")
+metadata/_custom_type_script = "uid://b4vyis3udrf41"
+
+[node name="PhysicsQuerySystem" type="Node" parent="." unique_id=523354461]
+script = ExtResource("10_wokaa")
+metadata/_custom_type_script = "uid://ditn16b880feq"
+
+[node name="GdfViewportResizer" type="Node" parent="." unique_id=1250189549]
+script = ExtResource("11_2se67")
+ScalingStepSize = 0.5
+MinScale = 0.75
+metadata/_custom_type_script = "uid://dumwi1hftoo2"
+
+[node name="ScreenStack" type="Control" parent="." unique_id=859940093]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_nelfd")
+metadata/_custom_type_script = "uid://dchytqeoyxkj"
+
+[node name="DebugCommandSystem" type="Node" parent="." unique_id=1765515996]
+script = ExtResource("2_m3l3d")
+Macros = Array[ExtResource("14_7upwp")]([SubResource("Resource_0wfyh")])
+metadata/_custom_type_script = "uid://cqtokr6spdybx"
