@@ -48,6 +48,18 @@ Definitions = null
 OtherRegistries = Array[Object]([ExtResource("3_unqd7"), SubResource("Resource_5rvs8")])
 metadata/_custom_type_script = "uid://c0catxx0gwuor"
 
+[sub_resource type="InputEventKey" id="InputEventKey_7upwp"]
+device = -1
+keycode = 4194342
+
+[sub_resource type="InputEventKey" id="InputEventKey_3q7h5"]
+device = -1
+alt_pressed = true
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_7upwp"]
+events = [SubResource("InputEventKey_7upwp"), SubResource("InputEventKey_3q7h5")]
+
 [sub_resource type="InputEventKey" id="InputEventKey_e7lx3"]
 device = -1
 keycode = 47
@@ -100,6 +112,13 @@ ScalingStepSize = 0.5
 MinScale = 0.75
 metadata/_custom_type_script = "uid://dumwi1hftoo2"
 
+[node name="Fullscreen Shortcuts" type="Button" parent="GdfViewportResizer" unique_id=323954463]
+offset_right = 8.0
+offset_bottom = 8.0
+scale = Vector2(1e-05, 1e-05)
+mouse_filter = 2
+shortcut = SubResource("Shortcut_7upwp")
+
 [node name="ScreenStack" type="Control" parent="." unique_id=859940093]
 layout_mode = 3
 anchors_preset = 15
@@ -115,3 +134,5 @@ metadata/_custom_type_script = "uid://dchytqeoyxkj"
 script = ExtResource("2_m3l3d")
 Macros = Array[ExtResource("14_7upwp")]([SubResource("Resource_0wfyh")])
 metadata/_custom_type_script = "uid://cqtokr6spdybx"
+
+[connection signal="pressed" from="GdfViewportResizer/Fullscreen Shortcuts" to="GdfViewportResizer" method="ToggleFullscreen"]
