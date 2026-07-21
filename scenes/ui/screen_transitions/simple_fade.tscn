@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://bodpfkb0pyi2g"]
+
+[ext_resource type="Script" uid="uid://c6bkkgp2xacd2" path="res://addons/gdf-godot/GDF/Scenes/Transitions/ScreenTransition.cs" id="1_qrxah"]
+
+[sub_resource type="Animation" id="Animation_qrxah"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_alvpc"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p3qdb"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"Finish"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_u40gp"]
+resource_name = "stay"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u40gp"]
+_data = {
+&"RESET": SubResource("Animation_qrxah"),
+&"fade_in": SubResource("Animation_alvpc"),
+&"fade_out": SubResource("Animation_p3qdb"),
+&"stay": SubResource("Animation_u40gp")
+}
+
+[node name="SimpleFade" type="Control" unique_id=1370449267 node_paths=PackedStringArray("AnimationPlayer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_qrxah")
+FadeInTime = 0.25
+StayTime = 0.25
+FadeOutTime = 0.25
+AnimationPlayer = NodePath("AnimationPlayer")
+ScaleStayAnimationSpeed = true
+Order = 99
+Mode = 1
+metadata/_custom_type_script = "uid://c6bkkgp2xacd2"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=829189515]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=243358453]
+libraries/ = SubResource("AnimationLibrary_u40gp")

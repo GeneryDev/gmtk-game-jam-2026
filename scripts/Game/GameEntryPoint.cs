@@ -1,3 +1,5 @@
+using GDF.IO;
+using GDF.Scenes;
 using GDF.Util;
 using Godot;
 
@@ -12,7 +14,15 @@ public partial class GameEntryPoint : Node
         var instantiated = MainScene?.GdfInstantiate();
         if (instantiated != null)
         {
-            GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToNode, instantiated);
+            CallDeferred(MethodName.ToMainScene);
         }
+    }
+
+    public void ToMainScene()
+    {
+        SceneManager.ChangeScene(new SceneChangeRequest()
+        {
+            SceneReference = new ResourceReference(MainScene.ResourcePath)
+        });
     }
 }
