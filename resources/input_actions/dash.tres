@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="GdfInputAction" format=3 uid="uid://cp5h337kot3xw"]
+
+[ext_resource type="Script" uid="uid://b6um35a1dk7tb" path="res://addons/gdf-godot/GDF/Input/GdfInputAction.cs" id="1_uykfg"]
+
+[resource]
+script = ExtResource("1_uykfg")
+Name = "dash"
+DisplayName = "Dash"
+metadata/_custom_type_script = "uid://b6um35a1dk7tb"

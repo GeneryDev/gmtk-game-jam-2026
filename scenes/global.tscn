@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://d0psl1ul17p4q" path="res://addons/gdf-godot/GDF/Scenes/Transitions/ScreenTransitionReference.cs" id="2_b18l6"]
 [ext_resource type="Script" uid="uid://cqtokr6spdybx" path="res://addons/gdf-godot/GDF/Debug/DebugCommandSystem.cs" id="2_m3l3d"]
 [ext_resource type="Script" uid="uid://5krjgh5qqo37" path="res://addons/gdf-godot/GDF/PropertyStacks/GlobalPropertyStack.cs" id="2_mmyj5"]
+[ext_resource type="Script" uid="uid://dfjun343ur75s" path="res://scripts/Game/Player/SinglePlayerRoom.cs" id="3_dxqtg"]
 [ext_resource type="Script" uid="uid://dchytqeoyxkj" path="res://addons/gdf-godot/GDF/UI/ScreenStack.cs" id="3_nelfd"]
 [ext_resource type="Resource" uid="uid://d161k2ge6g0g4" path="res://addons/gdf-godot/resources/property_registries/input_group_properties.tres" id="3_unqd7"]
 [ext_resource type="Script" uid="uid://cjjjip5vkuwkj" path="res://addons/gdf-godot/GDF/PropertyStacks/Definitions/Specialized/MouseModeProperty.cs" id="4_bv183"]
@@ -15,6 +16,7 @@
 [ext_resource type="Script" uid="uid://bituwxio8sdy4" path="res://addons/gdf-godot/GDF/PropertyStacks/PropertyStackWatcher.cs" id="8_5rvs8"]
 [ext_resource type="Script" uid="uid://ditn16b880feq" path="res://addons/gdf-godot/GDF/Physics/PhysicsQuerySystem.cs" id="10_wokaa"]
 [ext_resource type="Script" uid="uid://dumwi1hftoo2" path="res://addons/gdf-godot/GDF/UI/GdfViewportResizer.cs" id="11_2se67"]
+[ext_resource type="Script" uid="uid://ognnfgeqv83q" path="res://addons/gdf-godot/GDF/Multiplayer/PerPlayerPropertyStacks.cs" id="11_korfd"]
 [ext_resource type="Script" uid="uid://cxsnc7i1qox8m" path="res://addons/gdf-godot/GDF/Scenes/Transitions/ScreenTransitionSystem.cs" id="13_e7lx3"]
 [ext_resource type="Script" uid="uid://bue2dh8nq45gq" path="res://addons/gdf-godot/GDF/Debug/DebugCommandMacro.cs" id="14_7upwp"]
 
@@ -79,28 +81,6 @@ Shortcut = SubResource("InputEventKey_e7lx3")
 Command = "gdf:console"
 metadata/_custom_type_script = "uid://bue2dh8nq45gq"
 
-[sub_resource type="InputEventKey" id="InputEventKey_b18l6"]
-device = -1
-keycode = 91
-unicode = 91
-
-[sub_resource type="Resource" id="Resource_rxr7p"]
-script = ExtResource("14_7upwp")
-Shortcut = SubResource("InputEventKey_b18l6")
-Command = "gdf:scene res://scenes/levels/level_a.tscn"
-metadata/_custom_type_script = "uid://bue2dh8nq45gq"
-
-[sub_resource type="InputEventKey" id="InputEventKey_korfd"]
-device = -1
-keycode = 93
-unicode = 93
-
-[sub_resource type="Resource" id="Resource_4ljd3"]
-script = ExtResource("14_7upwp")
-Shortcut = SubResource("InputEventKey_korfd")
-Command = "gdf:scene res://scenes/levels/level_b.tscn"
-metadata/_custom_type_script = "uid://bue2dh8nq45gq"
-
 [node name="Global" type="Node" unique_id=894814629]
 
 [node name="Resource Libraries" type="Node" parent="." unique_id=2016105280]
@@ -109,6 +89,10 @@ metadata/_custom_type_script = "uid://bue2dh8nq45gq"
 script = ExtResource("1_3q7h5")
 DefaultScreenTransition = SubResource("Resource_b18l6")
 metadata/_custom_type_script = "uid://cpatqk3sjqqap"
+
+[node name="SinglePlayerRoom" type="Node" parent="." unique_id=1562395269]
+script = ExtResource("3_dxqtg")
+metadata/_custom_type_script = "uid://dfjun343ur75s"
 
 [node name="GdfInputSystem" type="Node" parent="." unique_id=1985833570]
 script = ExtResource("1_opebo")
@@ -132,6 +116,11 @@ UpdateMode = 1
 TimeScalePropertyId = "time_scale"
 PausedPropertyId = "paused"
 metadata/_custom_type_script = "uid://bituwxio8sdy4"
+
+[node name="PerPlayerPropertyStacks" type="Node" parent="." unique_id=48962167]
+script = ExtResource("11_korfd")
+PerPlayerProperties = ExtResource("3_unqd7")
+metadata/_custom_type_script = "uid://ognnfgeqv83q"
 
 [node name="GlobalAudioPlayerPool" type="Node" parent="." unique_id=419953179]
 script = ExtResource("5_bv183")
@@ -171,7 +160,7 @@ metadata/_custom_type_script = "uid://cxsnc7i1qox8m"
 
 [node name="DebugCommandSystem" type="Node" parent="." unique_id=1765515996]
 script = ExtResource("2_m3l3d")
-Macros = Array[ExtResource("14_7upwp")]([SubResource("Resource_0wfyh"), SubResource("Resource_rxr7p"), SubResource("Resource_4ljd3")])
+Macros = Array[ExtResource("14_7upwp")]([SubResource("Resource_0wfyh")])
 metadata/_custom_type_script = "uid://cqtokr6spdybx"
 
 [connection signal="pressed" from="GdfViewportResizer/Fullscreen Shortcuts" to="GdfViewportResizer" method="ToggleFullscreen"]

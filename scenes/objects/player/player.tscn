@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://l7vx1ppodn0d"]
+
+[ext_resource type="Script" uid="uid://56fvy6sd714g" path="res://addons/gdf-godot/GDF/Composition/ComponentIndex.cs" id="1_1bf4k"]
+[ext_resource type="Script" uid="uid://ck26gmefod55p" path="res://addons/gdf-godot/GDF/Input/GdfPlayerInput.cs" id="2_0a575"]
+[ext_resource type="Resource" uid="uid://cubdq0rio3s24" path="res://resources/input_auto_configs/character_control.tres" id="3_nkbs0"]
+[ext_resource type="Script" uid="uid://cr6edqb2hjfrb" path="res://scripts/Game/Player/PlayerController.cs" id="4_wim6f"]
+[ext_resource type="Resource" uid="uid://20hjbwrgl572" path="res://resources/input_actions/move.tres" id="5_gmdvr"]
+[ext_resource type="Resource" uid="uid://lcriijicejdl" path="res://resources/input_actions/attack.tres" id="6_gmdvr"]
+[ext_resource type="Resource" uid="uid://cp5h337kot3xw" path="res://resources/input_actions/dash.tres" id="6_io36v"]
+[ext_resource type="Script" uid="uid://bfx0gcgwji8m0" path="res://scripts/Game/Entities/MotionComponent.cs" id="8_bdcal"]
+[ext_resource type="Script" uid="uid://ds1xannxtoxqn" path="res://scripts/Game/Entities/EntityDrag.cs" id="9_ponut"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_7nx1l"]
+size = Vector2(40, 40)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tqw2u"]
+radius = 20.0
+
+[node name="Player" type="CharacterBody2D" unique_id=63413937]
+
+[node name="ComponentIndex" type="Node" parent="." unique_id=1468369688 node_paths=PackedStringArray("ComponentOwner")]
+script = ExtResource("1_1bf4k")
+ComponentOwner = NodePath("..")
+metadata/_custom_type_script = "uid://56fvy6sd714g"
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1784942333]
+mesh = SubResource("QuadMesh_7nx1l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=508152118]
+shape = SubResource("CircleShape2D_tqw2u")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=262534271]
+
+[node name="GdfPlayerInput" type="Node" parent="." unique_id=1688983007]
+script = ExtResource("2_0a575")
+InputAutoConfig = ExtResource("3_nkbs0")
+metadata/_custom_type_script = "uid://ck26gmefod55p"
+
+[node name="Player Controller" type="Node" parent="." unique_id=845618567]
+script = ExtResource("4_wim6f")
+MoveAction = ExtResource("5_gmdvr")
+DashAction = ExtResource("6_io36v")
+AttackAction = ExtResource("6_gmdvr")
+MovementSpeed = 150.0
+
+[node name="Motion Component" type="Node" parent="." unique_id=851220878 node_paths=PackedStringArray("Body")]
+script = ExtResource("8_bdcal")
+Body = NodePath("..")
+
+[node name="Drag" type="Node" parent="." unique_id=1030416559]
+script = ExtResource("9_ponut")
+Drag = 5.0

@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://mrce2q126702"]
+
+[ext_resource type="Script" uid="uid://bko61fppga1kx" path="res://addons/gdf-godot/GDF/UI/Screen.cs" id="1_wybn8"]
+[ext_resource type="Script" uid="uid://ds35ysiau7nks" path="res://addons/gdf-godot-input-icons/GDF/Input/Icons/GdfInputIconAction.cs" id="2_whwsy"]
+[ext_resource type="Resource" uid="uid://20hjbwrgl572" path="res://resources/input_actions/move.tres" id="3_yed0n"]
+[ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="4_5pfmv"]
+[ext_resource type="Script" uid="uid://otkyb0o8ega" path="res://scripts/Game/GameTimer.cs" id="5_whwsy"]
+[ext_resource type="Resource" uid="uid://lcriijicejdl" path="res://resources/input_actions/attack.tres" id="6_yed0n"]
+
+[node name="HUD" type="Control" unique_id=1168699841]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_wybn8")
+Order = 1
+metadata/_custom_type_script = "uid://bko61fppga1kx"
+
+[node name="Control" type="Control" parent="." unique_id=1855706355]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GameTimer" type="Node" parent="Control" unique_id=1002594499]
+script = ExtResource("5_whwsy")
+RemainingTime = 600.0
+metadata/_custom_type_script = "uid://otkyb0o8ega"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=1355116031]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/HBoxContainer" unique_id=1072388980]
+layout_mode = 2
+
+[node name="GdfInputIconAction" type="Control" parent="Control/HBoxContainer/HBoxContainer" unique_id=2139079060]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+script = ExtResource("2_whwsy")
+Action = ExtResource("3_yed0n")
+metadata/_custom_type_script = "uid://ds35ysiau7nks"
+
+[node name="FormattedLabel" type="RichTextLabel" parent="Control/HBoxContainer/HBoxContainer" unique_id=1335825598]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+script = ExtResource("4_5pfmv")
+TextFormat = "Move"
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/HBoxContainer" unique_id=1907974828]
+layout_mode = 2
+
+[node name="GdfInputIconAction" type="Control" parent="Control/HBoxContainer/HBoxContainer2" unique_id=1847854260]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+script = ExtResource("2_whwsy")
+Action = ExtResource("6_yed0n")
+metadata/_custom_type_script = "uid://ds35ysiau7nks"
+
+[node name="FormattedLabel" type="RichTextLabel" parent="Control/HBoxContainer/HBoxContainer2" unique_id=1297002208]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+script = ExtResource("4_5pfmv")
+TextFormat = "Attack"
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="Timer Label" type="RichTextLabel" parent="Control" unique_id=1458761309 node_paths=PackedStringArray("DataContext")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -154.0
+offset_top = 49.5
+offset_right = 154.0
+offset_bottom = 94.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_5pfmv")
+TextFormat = "{time}"
+DataContext = NodePath("../GameTimer")
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
