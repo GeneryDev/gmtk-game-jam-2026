@@ -18,6 +18,16 @@ public partial class PlayerInputConfig : GdfInputAutoConfiguration
     
     public override void Configure(GdfPlayerInput input)
     {
+        if (!Room.InstanceExists)
+        {
+            Configure(input, new Room.PlayerInfo()
+            {
+                IndexInClient = 0,
+                PeerId = 1,
+                PlayerId = 0
+            });
+            return;
+        }
         if (Room.Instance.TryGetPlayerInfo(input.PlayerId, out var playerInfo)) // Connected player
             Configure(input, playerInfo);
         else if (input.PlayerId != -1) // Disconnected player

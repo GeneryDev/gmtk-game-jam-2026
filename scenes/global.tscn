@@ -79,6 +79,28 @@ Shortcut = SubResource("InputEventKey_e7lx3")
 Command = "gdf:console"
 metadata/_custom_type_script = "uid://bue2dh8nq45gq"
 
+[sub_resource type="InputEventKey" id="InputEventKey_b18l6"]
+device = -1
+keycode = 91
+unicode = 91
+
+[sub_resource type="Resource" id="Resource_rxr7p"]
+script = ExtResource("14_7upwp")
+Shortcut = SubResource("InputEventKey_b18l6")
+Command = "gdf:scene res://scenes/levels/level_a.tscn"
+metadata/_custom_type_script = "uid://bue2dh8nq45gq"
+
+[sub_resource type="InputEventKey" id="InputEventKey_korfd"]
+device = -1
+keycode = 93
+unicode = 93
+
+[sub_resource type="Resource" id="Resource_4ljd3"]
+script = ExtResource("14_7upwp")
+Shortcut = SubResource("InputEventKey_korfd")
+Command = "gdf:scene res://scenes/levels/level_b.tscn"
+metadata/_custom_type_script = "uid://bue2dh8nq45gq"
+
 [node name="Global" type="Node" unique_id=894814629]
 
 [node name="Resource Libraries" type="Node" parent="." unique_id=2016105280]
@@ -149,7 +171,7 @@ metadata/_custom_type_script = "uid://cxsnc7i1qox8m"
 
 [node name="DebugCommandSystem" type="Node" parent="." unique_id=1765515996]
 script = ExtResource("2_m3l3d")
-Macros = Array[ExtResource("14_7upwp")]([SubResource("Resource_0wfyh")])
+Macros = Array[ExtResource("14_7upwp")]([SubResource("Resource_0wfyh"), SubResource("Resource_rxr7p"), SubResource("Resource_4ljd3")])
 metadata/_custom_type_script = "uid://cqtokr6spdybx"
 
 [connection signal="pressed" from="GdfViewportResizer/Fullscreen Shortcuts" to="GdfViewportResizer" method="ToggleFullscreen"]

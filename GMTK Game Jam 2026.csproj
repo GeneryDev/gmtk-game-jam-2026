@@ -5,4 +5,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace></RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="addons\gdf-godot-input-icons\icons\" />
+  </ItemGroup>
 </Project>
