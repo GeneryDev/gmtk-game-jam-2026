@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cpatqk3sjqqap" path="res://addons/gdf-godot/GDF/Scenes/SceneManager.cs" id="1_3q7h5"]
 [ext_resource type="Script" uid="uid://crj48tyk0nmvf" path="res://addons/gdf-godot/GDF/Input/GdfInputSystem.cs" id="1_opebo"]
+[ext_resource type="Script" uid="uid://beoy8jsb08yh" path="res://scripts/Game/Player/PlayerAttacks.cs" id="1_wafyw"]
 [ext_resource type="Script" uid="uid://d0psl1ul17p4q" path="res://addons/gdf-godot/GDF/Scenes/Transitions/ScreenTransitionReference.cs" id="2_b18l6"]
 [ext_resource type="Script" uid="uid://cqtokr6spdybx" path="res://addons/gdf-godot/GDF/Debug/DebugCommandSystem.cs" id="2_m3l3d"]
 [ext_resource type="Script" uid="uid://5krjgh5qqo37" path="res://addons/gdf-godot/GDF/PropertyStacks/GlobalPropertyStack.cs" id="2_mmyj5"]
@@ -81,9 +82,45 @@ Shortcut = SubResource("InputEventKey_e7lx3")
 Command = "gdf:console"
 metadata/_custom_type_script = "uid://bue2dh8nq45gq"
 
+[sub_resource type="InputEventKey" id="InputEventKey_wafyw"]
+device = -1
+keycode = 49
+unicode = 49
+
+[sub_resource type="Resource" id="Resource_vwou5"]
+script = ExtResource("14_7upwp")
+Shortcut = SubResource("InputEventKey_wafyw")
+Command = "attack bullet_attack"
+metadata/_custom_type_script = "uid://bue2dh8nq45gq"
+
+[sub_resource type="InputEventKey" id="InputEventKey_apua7"]
+device = -1
+keycode = 50
+unicode = 50
+
+[sub_resource type="Resource" id="Resource_fq2qc"]
+script = ExtResource("14_7upwp")
+Shortcut = SubResource("InputEventKey_apua7")
+Command = "attack hitscan_attack"
+metadata/_custom_type_script = "uid://bue2dh8nq45gq"
+
+[sub_resource type="InputEventKey" id="InputEventKey_ntttm"]
+device = -1
+keycode = 51
+unicode = 51
+
+[sub_resource type="Resource" id="Resource_itjjb"]
+script = ExtResource("14_7upwp")
+Shortcut = SubResource("InputEventKey_ntttm")
+Command = "attack beam_attack"
+metadata/_custom_type_script = "uid://bue2dh8nq45gq"
+
 [node name="Global" type="Node" unique_id=894814629]
 
 [node name="Resource Libraries" type="Node" parent="." unique_id=2016105280]
+
+[node name="Node" type="Node" parent="Resource Libraries" unique_id=1721214743]
+script = ExtResource("1_wafyw")
 
 [node name="SceneManager" type="Node" parent="." unique_id=385432321]
 script = ExtResource("1_3q7h5")
@@ -160,7 +197,7 @@ metadata/_custom_type_script = "uid://cxsnc7i1qox8m"
 
 [node name="DebugCommandSystem" type="Node" parent="." unique_id=1765515996]
 script = ExtResource("2_m3l3d")
-Macros = Array[ExtResource("14_7upwp")]([SubResource("Resource_0wfyh")])
+Macros = Array[ExtResource("14_7upwp")]([SubResource("Resource_0wfyh"), SubResource("Resource_vwou5"), SubResource("Resource_fq2qc"), SubResource("Resource_itjjb")])
 metadata/_custom_type_script = "uid://cqtokr6spdybx"
 
 [connection signal="pressed" from="GdfViewportResizer/Fullscreen Shortcuts" to="GdfViewportResizer" method="ToggleFullscreen"]

@@ -1,0 +1,277 @@
+[gd_scene format=3 uid="uid://bmaxqgjfg46ic"]
+
+[ext_resource type="Script" uid="uid://dvhbt8l5vjyou" path="res://scripts/Game/Player/PlayerAttack.cs" id="1_6q2tu"]
+[ext_resource type="Script" uid="uid://k8suh3w0dagg" path="res://addons/gdf-godot/GDF/Data/InjectedDataContext.cs" id="1_085lg"]
+[ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="2_dbhkx"]
+[ext_resource type="Resource" uid="uid://b0qonbc7kxf6d" path="res://scenes/objects/attacks/hitscan_attack.tscn.summary.tres" id="2_xgg5w"]
+[ext_resource type="Script" uid="uid://cd3ua188ba80t" path="res://scripts/Game/Player/AttackFunctions.cs" id="3_2gmta"]
+[ext_resource type="Script" uid="uid://dg1gf1wnlvq8n" path="res://scripts/Game/Util/RayCast2DExtension.cs" id="3_dbhkx"]
+[ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="5_2gmta"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_tqw2u"]
+size = Vector2(1, 4)
+center_offset = Vector3(0.5, 0, 0)
+
+[sub_resource type="Animation" id="Animation_3h4tt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Origin/Line Visual:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Origin/Line Visual:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_byabo"]
+resource_name = "fire"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Origin/Line Visual:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.032655507, 0.23),
+"transitions": PackedFloat32Array(1, 0.4999999, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 2), Vector2(1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Origin/Line Visual:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.23),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.26666668),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Origin/RayCast2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.016666668),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"set_enabled"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3h4tt"]
+_data = {
+&"RESET": SubResource("Animation_3h4tt"),
+&"fire": SubResource("Animation_byabo")
+}
+
+[sub_resource type="QuadMesh" id="QuadMesh_7nx1l"]
+size = Vector2(20, 20)
+
+[sub_resource type="Animation" id="Animation_dbhkx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_2gmta"]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.053519815, 0.5147347),
+"transitions": PackedFloat32Array(1, 0.57434905, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0519457, 0.5163088),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(0.5, 0.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.53519815),
+"transitions": PackedFloat32Array(0.2871746, 1),
+"update": 0,
+"values": [1.0471975511965976, 3.141592653589793]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6q2tu"]
+_data = {
+&"RESET": SubResource("Animation_dbhkx"),
+&"hit": SubResource("Animation_2gmta")
+}
+
+[node name="Hitscan Attack" type="Node" unique_id=499090057]
+script = ExtResource("1_6q2tu")
+Summary = ExtResource("2_xgg5w")
+metadata/_custom_type_script = "uid://dvhbt8l5vjyou"
+
+[node name="Attack Instance Context" type="Node" parent="." unique_id=410965913]
+script = ExtResource("1_085lg")
+DefaultVariableValues = {}
+DefaultCollections = {}
+EditorPreviewVariables = {}
+metadata/_custom_type_script = "uid://k8suh3w0dagg"
+
+[node name="Origin" type="Node2D" parent="." unique_id=1891411651]
+
+[node name="Position Binding" type="Node" parent="Origin" unique_id=520740356 node_paths=PackedStringArray("DataContext", "TargetNode")]
+script = ExtResource("2_dbhkx")
+DataContext = NodePath("../../Attack Instance Context")
+Query = "{origin_position}"
+TargetNode = NodePath("..")
+TargetPropertyName = "position"
+ThrottleUpdate = false
+metadata/_custom_type_script = "uid://wbquqef0rnl5"
+
+[node name="Rotation Binding" type="Node" parent="Origin" unique_id=2030388206 node_paths=PackedStringArray("DataContext", "TargetNode")]
+script = ExtResource("2_dbhkx")
+DataContext = NodePath("../../Attack Instance Context")
+Query = "{rotation}"
+TargetNode = NodePath("..")
+TargetPropertyName = "rotation"
+ThrottleUpdate = false
+metadata/_custom_type_script = "uid://wbquqef0rnl5"
+
+[node name="Line Visual" type="Node2D" parent="Origin" unique_id=1459039918]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Origin/Line Visual" unique_id=1909379833]
+scale = Vector2(800, 1)
+mesh = SubResource("QuadMesh_tqw2u")
+
+[node name="Scale Binding" type="Node" parent="Origin/Line Visual/MeshInstance2D" unique_id=726213884 node_paths=PackedStringArray("DataContext", "TargetNode")]
+script = ExtResource("2_dbhkx")
+DataContext = NodePath("../../../RayCast2D")
+Query = "Vector2({distance}, 1)"
+TargetNode = NodePath("..")
+TargetPropertyName = "scale"
+metadata/_custom_type_script = "uid://wbquqef0rnl5"
+
+[node name="RayCast2D" type="RayCast2D" parent="Origin" unique_id=507151751]
+enabled = false
+target_position = Vector2(800, 0)
+collision_mask = 9
+script = ExtResource("3_dbhkx")
+
+[node name="AttackFunctions" type="Node" parent="Origin/RayCast2D" unique_id=207897347]
+script = ExtResource("3_2gmta")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Origin" unique_id=326168278]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_3h4tt")
+autoplay = &"fire"
+
+[node name="Hit Effect" type="Node2D" parent="Origin" unique_id=873905326]
+modulate = Color(1, 1, 1, 0)
+top_level = true
+
+[node name="Position Binding" type="Node" parent="Origin/Hit Effect" unique_id=2066337965 node_paths=PackedStringArray("DataContext", "TargetNode")]
+script = ExtResource("2_dbhkx")
+DataContext = NodePath("../../RayCast2D")
+Query = "{collision_pos}"
+TargetNode = NodePath("..")
+TargetPropertyName = "position"
+FireOnlyOnNonNullValues = true
+metadata/_custom_type_script = "uid://wbquqef0rnl5"
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Origin/Hit Effect" unique_id=2074019593]
+mesh = SubResource("QuadMesh_7nx1l")
+
+[node name="Hit Animation" type="AnimationPlayer" parent="Origin/Hit Effect" unique_id=1370350361]
+libraries/ = SubResource("AnimationLibrary_6q2tu")
+
+[node name="Play hit" type="Node" parent="Origin/Hit Effect/Hit Animation" unique_id=1729887469]
+script = ExtResource("5_2gmta")
+AnimationName = &"hit"
+FromAnimationList = []
+metadata/_custom_type_script = "uid://dukfxpmahaflv"
+
+[connection signal="Collided" from="Origin/RayCast2D" to="Origin/RayCast2D/AttackFunctions" method="Hurt"]
+[connection signal="HurtSuccess" from="Origin/RayCast2D/AttackFunctions" to="Origin/Hit Effect/Hit Animation/Play hit" method="Trigger"]
+[connection signal="HurtSuccess" from="Origin/RayCast2D/AttackFunctions" to="Origin/RayCast2D" method="set_enabled" binds= [false]]

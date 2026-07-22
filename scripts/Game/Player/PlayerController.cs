@@ -11,7 +11,6 @@ public partial class PlayerController : Node
 {
     [Export] public GdfInputAction MoveAction;
     [Export] public GdfInputAction DashAction;
-    [Export] public GdfInputAction AttackAction;
 
     [Export] public float MovementSpeed = 100;
     [Export] public float DashSpeedMultiplier = 1.5f;

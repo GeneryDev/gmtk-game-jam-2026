@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cy0jt8nc5kr3b" path="res://scripts/Game/Entities/MobRandomStroll.cs" id="4_m83p8"]
 [ext_resource type="Script" uid="uid://co3d12m3ihdwj" path="res://scripts/Game/Entities/MobController.cs" id="5_mwr2p"]
 [ext_resource type="Script" uid="uid://bfx0gcgwji8m0" path="res://scripts/Game/Entities/MotionComponent.cs" id="8_b0d2d"]
+[ext_resource type="Script" uid="uid://du06k8gwkwajk" path="res://scripts/Game/Entities/DamageableComponent.cs" id="8_qb8sv"]
 [ext_resource type="Script" uid="uid://ds1xannxtoxqn" path="res://scripts/Game/Entities/EntityDrag.cs" id="9_us2v4"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_7nx1l"]
@@ -15,8 +16,8 @@ size = Vector2(40, 40)
 radius = 20.0
 
 [node name="Mob" type="CharacterBody2D" unique_id=63413937]
-collision_layer = 2
-collision_mask = 7
+collision_layer = 10
+collision_mask = 3
 
 [node name="ComponentIndex" type="Node" parent="." unique_id=1468369688 node_paths=PackedStringArray("ComponentOwner")]
 script = ExtResource("1_uvjr4")
@@ -48,3 +49,6 @@ Drag = 5.0
 [node name="Motion Component" type="Node" parent="." unique_id=851220878 node_paths=PackedStringArray("Body")]
 script = ExtResource("8_b0d2d")
 Body = NodePath("..")
+
+[node name="Damageable" type="Node" parent="." unique_id=893346049]
+script = ExtResource("8_qb8sv")

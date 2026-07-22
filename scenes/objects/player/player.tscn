@@ -7,8 +7,10 @@
 [ext_resource type="Resource" uid="uid://20hjbwrgl572" path="res://resources/input_actions/move.tres" id="5_gmdvr"]
 [ext_resource type="Resource" uid="uid://lcriijicejdl" path="res://resources/input_actions/attack.tres" id="6_gmdvr"]
 [ext_resource type="Resource" uid="uid://cp5h337kot3xw" path="res://resources/input_actions/dash.tres" id="6_io36v"]
+[ext_resource type="Script" uid="uid://mssyr2qclkx8" path="res://scripts/Game/Player/PlayerAttackController.cs" id="7_ponut"]
 [ext_resource type="Script" uid="uid://bfx0gcgwji8m0" path="res://scripts/Game/Entities/MotionComponent.cs" id="8_bdcal"]
 [ext_resource type="Script" uid="uid://ds1xannxtoxqn" path="res://scripts/Game/Entities/EntityDrag.cs" id="9_ponut"]
+[ext_resource type="PackedScene" uid="uid://bmaxqgjfg46ic" path="res://scenes/objects/attacks/hitscan_attack.tscn" id="9_vwou5"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_7nx1l"]
 size = Vector2(40, 40)
@@ -16,7 +18,7 @@ size = Vector2(40, 40)
 [sub_resource type="CircleShape2D" id="CircleShape2D_tqw2u"]
 radius = 20.0
 
-[node name="Player" type="CharacterBody2D" unique_id=63413937]
+[node name="Player" type="CharacterBody2D" unique_id=63413937 groups=["player_character"]]
 collision_layer = 6
 
 [node name="ComponentIndex" type="Node" parent="." unique_id=1468369688 node_paths=PackedStringArray("ComponentOwner")]
@@ -41,8 +43,12 @@ metadata/_custom_type_script = "uid://ck26gmefod55p"
 script = ExtResource("4_wim6f")
 MoveAction = ExtResource("5_gmdvr")
 DashAction = ExtResource("6_io36v")
-AttackAction = ExtResource("6_gmdvr")
 MovementSpeed = 150.0
+
+[node name="Player Attacks" type="Node" parent="." unique_id=447543846]
+script = ExtResource("7_ponut")
+AttackAction = ExtResource("6_gmdvr")
+AttackScene = ExtResource("9_vwou5")
 
 [node name="Drag" type="Node" parent="." unique_id=1030416559]
 script = ExtResource("9_ponut")
