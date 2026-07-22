@@ -52,10 +52,8 @@ Action = ExtResource("6_7brk7")
 
 [node name="Key" type="Node" parent="Attack" unique_id=1384598293]
 script = ExtResource("5_bq1sy")
-Type = 1
-Key = 32
-UseCustomVector = true
-UnitVector = Vector3(0, 1, 0)
+Type = 2
+MouseButton = 1
 
 [node name="Dash" type="Node" parent="." unique_id=1931966852]
 script = ExtResource("2_7brk7")

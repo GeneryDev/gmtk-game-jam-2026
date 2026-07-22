@@ -22,12 +22,6 @@ public partial class PlayerController : Node
     private int PlayerId => 0;
     private ComponentCache<GdfPlayerInput> _playerInput;
     private ComponentCache<MotionComponent> _motionComponent;
-    
-    public PlayerController()
-    {
-        _playerInput = new(this);
-        _motionComponent = new(this);
-    }
 
     public bool HasControl()
     {

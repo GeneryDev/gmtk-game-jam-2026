@@ -17,6 +17,7 @@ size = Vector2(40, 40)
 radius = 20.0
 
 [node name="Player" type="CharacterBody2D" unique_id=63413937]
+collision_layer = 6
 
 [node name="ComponentIndex" type="Node" parent="." unique_id=1468369688 node_paths=PackedStringArray("ComponentOwner")]
 script = ExtResource("1_1bf4k")
@@ -43,10 +44,10 @@ DashAction = ExtResource("6_io36v")
 AttackAction = ExtResource("6_gmdvr")
 MovementSpeed = 150.0
 
-[node name="Motion Component" type="Node" parent="." unique_id=851220878 node_paths=PackedStringArray("Body")]
-script = ExtResource("8_bdcal")
-Body = NodePath("..")
-
 [node name="Drag" type="Node" parent="." unique_id=1030416559]
 script = ExtResource("9_ponut")
 Drag = 5.0
+
+[node name="Motion Component" type="Node" parent="." unique_id=851220878 node_paths=PackedStringArray("Body")]
+script = ExtResource("8_bdcal")
+Body = NodePath("..")
