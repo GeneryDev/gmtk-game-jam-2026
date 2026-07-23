@@ -32,9 +32,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="GameTimer" type="Node" parent="Control" unique_id=1002594499]
+[node name="GameTimer" type="Node" parent="Control" unique_id=1002594499 node_paths=PackedStringArray("RateBar")]
 script = ExtResource("5_whwsy")
 RemainingTime = 600
+RateSampleAmount = 200
+RateBar = NodePath("../RateBar/ProgressBar")
 metadata/_custom_type_script = "uid://otkyb0o8ega"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=1355116031]
@@ -117,6 +119,25 @@ TextFormat = "{time}"
 DataContext = NodePath("../GameTimer")
 metadata/_custom_type_script = "uid://dxkaapm2dks2e"
 
+[node name="Rate Label" type="RichTextLabel" parent="Control" unique_id=846854326 node_paths=PackedStringArray("DataContext")]
+editor_description = "DEBUG"
+visible = false
+layout_mode = 0
+offset_left = 16.0
+offset_top = 15.0
+offset_right = 187.0
+offset_bottom = 55.0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 29
+fit_content = true
+horizontal_alignment = 1
+script = ExtResource("4_5pfmv")
+TextFormat = "{rate}"
+DataContext = NodePath("../GameTimer")
+UsePostProcessing = true
+PostProcessors = []
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
 [node name="Timer Effect Log" type="MarginContainer" parent="Control" unique_id=329507321]
 layout_mode = 1
 anchors_preset = -1
@@ -148,3 +169,16 @@ script = ExtResource("8_ne7ms")
 TemplateScene = ExtResource("9_wkpi1")
 PreviewCount = 8
 metadata/_custom_type_script = "uid://cipgbcqmkinta"
+
+[node name="RateBar" type="Node" parent="Control" unique_id=1033167703]
+
+[node name="ProgressBar" type="ProgressBar" parent="Control/RateBar" unique_id=1361221416]
+offset_left = 531.0
+offset_top = 97.0
+offset_right = 618.0
+offset_bottom = 111.0
+theme_override_colors/font_color = Color(0.86290663, 0.2546042, 0.2451796, 1)
+rounded = true
+allow_greater = true
+allow_lesser = true
+show_percentage = false
