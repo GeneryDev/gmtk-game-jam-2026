@@ -400,6 +400,9 @@ metadata/_custom_type_script = "uid://wbquqef0rnl5"
 script = ExtResource("19_c5kph")
 Template = ExtResource("20_1238s")
 Context = NodePath("../../Timer Effect Host")
+DataContextsBySlot = Dictionary[StringName, NodePath]({
+&"damageable": NodePath("../../Damageable")
+})
 RelativeMode = 1
 metadata/_custom_type_script = "uid://b6sb42qs0fsp1"
 

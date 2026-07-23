@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Game.Entities;
 using Game.Timers;
 using GDF.Composition;
 using GDF.Data;
@@ -46,6 +47,18 @@ public partial class MobSpawner : Node
             if (!effect.IsEmpty)
             {
                 timerEffectHost.InstallEffect(effect);
+            }
+
+            if (instance.GetComponent<DamageableComponent>() is { } damageable)
+            {
+                if (effect.Reference.SpriteId == "trivial")
+                {
+                    damageable.MaxHitPoints = 1;
+                }
+                else
+                {
+                    damageable.MaxHitPoints = 4;
+                }
             }
         }
         task.Insert();

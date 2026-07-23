@@ -42,7 +42,7 @@ public partial class TimerEffectHost : Node, IDataContext
         if (_activeEffect == null) return;
         var colorRandom = new RandomNumberGenerator()
         {
-            Seed = _activeEffect.Descriptor.Id.ToString().Hash()
+            // Seed = _activeEffect.Descriptor.Id.ToString().Hash()
         };
         var color = new Color(colorRandom.RandfRange(0.5f, 1), colorRandom.RandfRange(0.5f, 1),
             colorRandom.RandfRange(0.5f, 1));
