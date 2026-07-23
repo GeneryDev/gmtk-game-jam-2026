@@ -143,6 +143,7 @@ PostProcessors = []
 metadata/_custom_type_script = "uid://dxkaapm2dks2e"
 
 [node name="Timer Effect Log" type="MarginContainer" parent="Control" unique_id=329507321]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5

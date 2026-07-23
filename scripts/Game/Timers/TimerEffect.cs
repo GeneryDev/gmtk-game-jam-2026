@@ -24,7 +24,7 @@ public partial class TimerEffect : SummarizableScene, IDataContext, ITagged<stri
     public void Trigger()
     {
         EmitSignalTriggered();
-        TimerEffectLog.Instance?.Log(Descriptor.Reference.LogMessage);
+        TimerEffectLog.Instance?.Log(LogMessage, this);
     }
     
     public bool HasTag(string tag)
@@ -39,6 +39,11 @@ public partial class TimerEffect : SummarizableScene, IDataContext, ITagged<stri
             case "has_tag":
             {
                 output = HasTag(input);
+                return true;
+            }
+            case "first_tag_index":
+            {
+                output = this.FirstTagIndex(input.Split(','));
                 return true;
             }
         }

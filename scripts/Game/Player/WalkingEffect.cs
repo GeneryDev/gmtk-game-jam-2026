@@ -17,7 +17,7 @@ public partial class WalkingEffect : Node
 	public override void _Process(double delta)
 	{
 		double velocityMagnitude = body.Velocity.Length();
-		GD.Print(velocityMagnitude);
+		// GD.Print(velocityMagnitude);
 		
 		//if (velocityMagnitude < 0.005f)
 		//{

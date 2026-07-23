@@ -12,5 +12,5 @@ RootNodeProperties = {
 &"LogMessage": "Time ×2",
 &"ParticleMessage": "Time ×2",
 &"SpawnWeight": 4.0,
-&"Tags": Array[String](["multiplier", "negative"])
+&"Tags": Array[String](["multiplier", "negative", "log_warning"])
 }

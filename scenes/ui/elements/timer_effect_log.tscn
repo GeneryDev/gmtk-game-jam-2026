@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bjcxjov0cydvs"]
+
+[ext_resource type="Script" uid="uid://dsd7tvanlvfu0" path="res://addons/gdf-godot/GDF/Data/Static/StaticDataContextNode.cs" id="1_tfpbo"]
+[ext_resource type="Script" uid="uid://l7wbvi5jgr0h" path="res://addons/gdf-godot/GDF/Data/NodeFactory.cs" id="2_pmq0p"]
+[ext_resource type="Script" uid="uid://cipgbcqmkinta" path="res://addons/gdf-godot/GDF/Data/NodeTemplate.cs" id="3_nveem"]
+[ext_resource type="PackedScene" uid="uid://bqwwg5kpnorp5" path="res://scenes/ui/elements/timer_effect_log_item.tscn" id="4_0tf4n"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tqw2u"]
+
+[node name="Control" type="MarginContainer" unique_id=2016401888]
+custom_minimum_size = Vector2(200, 300)
+offset_right = 200.0
+offset_bottom = 300.0
+
+[node name="ColorRect" type="TextureRect" parent="." unique_id=1916938502]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_tqw2u")
+
+[node name="Timer Effect Log" type="MarginContainer" parent="." unique_id=1387346667]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Log Context" type="Node" parent="Timer Effect Log" unique_id=401240701]
+script = ExtResource("1_tfpbo")
+TypeId = "timer_effect_log_context"
+metadata/_custom_type_script = "uid://dsd7tvanlvfu0"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Timer Effect Log" unique_id=300058976]
+layout_mode = 2
+alignment = 2
+
+[node name="NodeFactory" type="Node" parent="Timer Effect Log/VBoxContainer" unique_id=90918360 node_paths=PackedStringArray("DataContext", "DefaultTemplate")]
+script = ExtResource("2_pmq0p")
+DataContext = NodePath("../../Log Context")
+CollectionQuery = "{messages}"
+DefaultTemplate = NodePath("../NodeTemplate")
+InjectFactoryItemContext = true
+metadata/_custom_type_script = "uid://l7wbvi5jgr0h"
+
+[node name="NodeTemplate" type="Node" parent="Timer Effect Log/VBoxContainer" unique_id=1900098267]
+script = ExtResource("3_nveem")
+TemplateScene = ExtResource("4_0tf4n")
+PreviewCount = 8
+metadata/_custom_type_script = "uid://cipgbcqmkinta"

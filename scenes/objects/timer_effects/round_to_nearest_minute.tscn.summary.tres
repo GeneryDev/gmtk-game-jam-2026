@@ -12,5 +12,5 @@ RootNodeProperties = {
 &"LogMessage": "Rounded to the nearest minute",
 &"ParticleMessage": "Rounded",
 &"SpawnWeight": 4.0,
-&"Tags": Array[String](["rounding", "neutral"])
+&"Tags": Array[String](["rounding", "neutral", "log_warning"])
 }

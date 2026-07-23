@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://l7vx1ppodn0d" path="res://scenes/objects/player/player.tscn" id="2_0wfyh"]
 [ext_resource type="Script" uid="uid://byv3tqb16h6mr" path="res://scripts/Game/Timers/TimerEffectLog.cs" id="2_tbgi4"]
 [ext_resource type="Script" uid="uid://dux7ids7mjj4q" path="res://scripts/Game/MobSpawner.cs" id="4_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://bgink1y3to7s4" path="res://scenes/objects/level/timer_effect_log_on_wall.tscn" id="6_tefeu"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tqw2u"]
 
@@ -57,3 +58,7 @@ mesh = SubResource("QuadMesh_tqw2u")
 
 [node name="Mob Spawner" type="Node" parent="Node2D" unique_id=1037427461]
 script = ExtResource("4_tbgi4")
+
+[node name="Timer Effect Log" parent="Node2D" unique_id=358342731 instance=ExtResource("6_tefeu")]
+position = Vector2(-387, -185)
+skew = -0.3926991

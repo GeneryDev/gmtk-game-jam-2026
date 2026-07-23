@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bgink1y3to7s4"]
+
+[ext_resource type="PackedScene" uid="uid://bjcxjov0cydvs" path="res://scenes/ui/elements/timer_effect_log.tscn" id="1_qau1t"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_choun"]
+blend_mode = 4
+
+[sub_resource type="QuadMesh" id="QuadMesh_7nx1l"]
+size = Vector2(200, -300)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pmofs"]
+viewport_path = NodePath("MeshInstance2D/SubViewport")
+
+[node name="Timer Effect Log" type="Node2D" unique_id=358342731]
+rotation = -1.5707964
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=2017521524]
+material = SubResource("CanvasItemMaterial_choun")
+rotation = 1.5707964
+mesh = SubResource("QuadMesh_7nx1l")
+texture = SubResource("ViewportTexture_pmofs")
+
+[node name="SubViewport" type="SubViewport" parent="MeshInstance2D" unique_id=1107521260]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(200, 300)
+size_2d_override = Vector2i(200, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="MeshInstance2D/SubViewport" unique_id=2097140539]
+
+[node name="Control" parent="MeshInstance2D/SubViewport/CanvasLayer" unique_id=2016401888 instance=ExtResource("1_qau1t")]

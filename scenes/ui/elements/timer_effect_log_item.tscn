@@ -70,6 +70,74 @@ _data = {
 &"appear": SubResource("Animation_eq2me")
 }
 
+[sub_resource type="Animation" id="Animation_k5e5j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Row/FormattedLabel:theme_override_colors/default_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_222a1"]
+resource_name = "error"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Row/FormattedLabel:theme_override_colors/default_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.38206947, 0.36667833, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_r3mjx"]
+resource_name = "info"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Row/FormattedLabel:theme_override_colors/default_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.85, 0.85, 0.85, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sdn7k"]
+resource_name = "warning"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Row/FormattedLabel:theme_override_colors/default_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.92149657, 0.6875814, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6gd45"]
+_data = {
+&"RESET": SubResource("Animation_k5e5j"),
+&"error": SubResource("Animation_222a1"),
+&"info": SubResource("Animation_r3mjx"),
+&"warning": SubResource("Animation_sdn7k")
+}
+
 [node name="Item" type="MarginContainer" unique_id=734025421]
 offset_right = 174.0
 offset_bottom = 23.0
@@ -98,6 +166,12 @@ offset_transform_pivot_ratio = Vector2(0, 0.5)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
 fit_content = true
 script = ExtResource("2_k5hel")
 TextFormat = "{message}"
@@ -113,7 +187,30 @@ autoplay = &"appear"
 [node name="a Binding" type="Node" parent="." unique_id=609003890 node_paths=PackedStringArray("DataContext", "TargetNode")]
 script = ExtResource("3_k5hel")
 DataContext = NodePath("../Collection Context")
-Query = "pow(0.5, {factory_context.created_item_count} - {index_in_collection} - 1)"
+Query = "0.5+0.5*pow(0.5, {factory_context.created_item_count} - {index_in_collection} - 1)"
 TargetNode = NodePath("..")
 TargetPropertyName = "modulate:a"
 metadata/_custom_type_script = "uid://wbquqef0rnl5"
+
+[node name="Line Color" type="AnimationPlayer" parent="." unique_id=1089026212]
+libraries/ = SubResource("AnimationLibrary_6gd45")
+
+[node name="Current Animation Binding" type="Node" parent="Line Color" unique_id=1961693852 node_paths=PackedStringArray("DataContext", "TargetNode")]
+script = ExtResource("3_k5hel")
+DataContext = NodePath("../../Message Context")
+Query = "{associated_effect.first_tag_index:log_info,log_warning,log_error}"
+ValueMappingEnabled = true
+ValueMappings = {
+-1: &"info",
+0: &"info",
+1: &"warning",
+2: &"error"
+}
+ValueMappingDefault = &"info"
+TargetNode = NodePath("..")
+TargetPropertyName = "current_animation"
+FireOnlyOnNonNullValues = true
+FireOnlyOnValueChange = true
+metadata/_custom_type_script = "uid://wbquqef0rnl5"
+
+[connection signal="Updated" from="Line Color/Current Animation Binding" to="Line Color" method="advance" binds= [0.0]]

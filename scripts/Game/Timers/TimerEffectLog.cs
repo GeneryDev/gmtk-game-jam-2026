@@ -17,11 +17,26 @@ public partial class TimerEffectLog : SingletonNode<TimerEffectLog>, IDataContex
 
     public void Log(string message)
     {
-        GD.Print(message);
         var item = new Item()
         {
             Message = message
         };
+        InsertLogItem(item);
+    }
+
+    public void Log(string message, TimerEffects.Descriptor associatedEffect)
+    {
+        var item = new Item()
+        {
+            Message = message,
+            AssociatedEffect = associatedEffect
+        };
+        InsertLogItem(item);
+    }
+
+    private void InsertLogItem(Item item)
+    {
+        GD.Print(item.Message);
         if (_items.Count >= MaxItems)
         {
             _items.RemoveAt(0);
@@ -50,6 +65,7 @@ public partial class TimerEffectLog : SingletonNode<TimerEffectLog>, IDataContex
     public class Item : IDataContext
     {
         public string Message = "";
+        public TimerEffects.Descriptor AssociatedEffect;
 
         public bool GetContextString(string key, string input, ref string replacement, IDataQueryOptions options)
         {
@@ -58,6 +74,21 @@ public partial class TimerEffectLog : SingletonNode<TimerEffectLog>, IDataContex
                 case "message":
                 {
                     replacement = Message;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool GetSubContext(string key, string input, ref IDataContext output, IDataQueryOptions options)
+        {
+            switch (key)
+            {
+                case "associated_effect":
+                {
+                    if (AssociatedEffect.IsEmpty) return false;
+                    output = AssociatedEffect.Reference;
                     return true;
                 }
             }
