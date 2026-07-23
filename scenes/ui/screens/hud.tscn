@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://cipgbcqmkinta" path="res://addons/gdf-godot/GDF/Data/NodeTemplate.cs" id="8_ne7ms"]
 [ext_resource type="Script" uid="uid://l7wbvi5jgr0h" path="res://addons/gdf-godot/GDF/Data/NodeFactory.cs" id="8_wkpi1"]
 [ext_resource type="PackedScene" uid="uid://bqwwg5kpnorp5" path="res://scenes/ui/elements/timer_effect_log_item.tscn" id="9_wkpi1"]
-[ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="10_7bpd2"]
 [ext_resource type="Script" uid="uid://dsd7tvanlvfu0" path="res://addons/gdf-godot/GDF/Data/Static/StaticDataContextNode.cs" id="10_wkpi1"]
 
 [node name="HUD" type="Control" unique_id=1168699841]
@@ -122,19 +121,22 @@ TextFormat = "{time}"
 DataContext = NodePath("../../Game Timer Context")
 metadata/_custom_type_script = "uid://dxkaapm2dks2e"
 
-[node name="Rate Label" type="RichTextLabel" parent="Control" unique_id=846854326 node_paths=PackedStringArray("DataContext")]
+[node name="Speed Label" type="RichTextLabel" parent="Control" unique_id=846854326 node_paths=PackedStringArray("DataContext")]
 editor_description = "DEBUG"
-layout_mode = 0
-offset_left = 16.0
-offset_top = 15.0
-offset_right = 187.0
-offset_bottom = 55.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 89.0
+grow_horizontal = 2
 mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 29
+theme_override_colors/default_color = Color(0.556953, 0.556953, 0.556953, 1)
+theme_override_font_sizes/normal_font_size = 16
 fit_content = true
+autowrap_mode = 0
 horizontal_alignment = 1
 script = ExtResource("4_5pfmv")
-TextFormat = "{rate}"
+TextFormat = "{tick_rate}x Speed"
 DataContext = NodePath("../../Game Timer Context")
 UsePostProcessing = true
 PostProcessors = []
@@ -167,32 +169,3 @@ script = ExtResource("8_ne7ms")
 TemplateScene = ExtResource("9_wkpi1")
 PreviewCount = 8
 metadata/_custom_type_script = "uid://cipgbcqmkinta"
-
-[node name="RateBar" type="Node" parent="Control" unique_id=1033167703]
-
-[node name="ProgressBar" type="ProgressBar" parent="Control/RateBar" unique_id=1361221416]
-offset_left = 531.0
-offset_top = 97.0
-offset_right = 618.0
-offset_bottom = 111.0
-theme_override_colors/font_color = Color(0.86290663, 0.2546042, 0.2451796, 1)
-rounded = true
-allow_greater = true
-allow_lesser = true
-show_percentage = false
-
-[node name="Value Binding" type="Node" parent="Control/RateBar/ProgressBar" unique_id=453599056 node_paths=PackedStringArray("DataContext", "TargetNode")]
-script = ExtResource("10_7bpd2")
-DataContext = NodePath("../../../../Game Timer Context")
-Query = "{rate} + 50"
-TargetNode = NodePath("..")
-TargetPropertyName = "value"
-FireOnlyOnValueChange = true
-metadata/_custom_type_script = "uid://wbquqef0rnl5"
-
-[node name="Timer" type="Timer" parent="Control/RateBar/ProgressBar/Value Binding" unique_id=510031057]
-wait_time = 0.1
-autostart = true
-ignore_time_scale = true
-
-[connection signal="timeout" from="Control/RateBar/ProgressBar/Value Binding/Timer" to="Control/RateBar/ProgressBar/Value Binding" method="Update"]

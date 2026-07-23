@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Text;
 using GDF.Data;
 using GDF.Data.Static;
@@ -76,11 +75,9 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 
 	public override void _Process(double delta)
 	{
-		UpdateAverageTimeRate(delta);
 		base._Process(delta);
 
 		_tickTimer.Add((float)(delta * TickRate));
-	
 
 		while (_tickTimer.Consume(1))
 		{
@@ -100,9 +97,9 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 	{
 		switch (key)
 		{
-			case "rate":
+			case "tick_rate":
 			{
-				output = GetAverageRate();
+				output = TickRate;
 				return true;
 			}
 		}
@@ -121,33 +118,6 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 			}
 		}
 		return false;
-	}
-
-	private double _lastRemainingTime = 0;
-	private double GetCurrentTimeRate(double delta)
-	{
-		double rate = (_lastRemainingTime - RemainingTime)/delta;
-		_lastRemainingTime = RemainingTime;
-		return rate;
-	}
-	private double[] rateSamples = {};
-	[Export] int RateSampleAmount = 200; // last N frames of updates
-	
-	public void UpdateAverageTimeRate(double delta)
-	{
-		rateSamples = rateSamples.Append(GetCurrentTimeRate(delta)).ToArray();
-		if (rateSamples.Length > RateSampleAmount)
-		{
-			rateSamples = rateSamples[1..];   
-		}
-	}
-	public double GetAverageRate()
-	{
-		if (rateSamples.Length >= 1)
-		{
-			return rateSamples.Average();
-		}
-		return 0;
 	}
 }
 
