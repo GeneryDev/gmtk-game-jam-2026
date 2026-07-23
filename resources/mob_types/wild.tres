@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MobType" format=3 uid="uid://ce7gewpvre4on"]
+
+[ext_resource type="PackedScene" uid="uid://b2eqbi0oia50j" path="res://scenes/objects/mobs/mob_wild.tscn" id="1_bsaih"]
+[ext_resource type="Script" uid="uid://b2ptdu2sn1kv7" path="res://scripts/Game/Entities/MobType.cs" id="2_dcgpt"]
+
+[resource]
+script = ExtResource("2_dcgpt")
+TemplateScene = ExtResource("1_bsaih")
+ApplicableEffectTags = Array[String](["rounding", "swap"])
+metadata/_custom_type_script = "uid://b2ptdu2sn1kv7"

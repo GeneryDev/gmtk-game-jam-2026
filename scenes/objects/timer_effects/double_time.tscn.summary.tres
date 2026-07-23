@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SceneSummary" format=3 uid="uid://dicrli76ibm2j"]
+
+[ext_resource type="Script" uid="uid://8167tjb1cm0a" path="res://scripts/Game/Timers/TimerEffect.cs" id="1_dr5pj"]
+[ext_resource type="Script" uid="uid://pj67f1pjpit5" path="res://addons/gdf-godot/GDF/Resources/SceneSummary.cs" id="2_3vio5"]
+
+[resource]
+script = ExtResource("2_3vio5")
+RootNodeName = &"DoubleTime"
+RootNodeScript = ExtResource("1_dr5pj")
+RootNodeProperties = {
+&"Description": "Time ×2",
+&"LogMessage": "Time ×2",
+&"ParticleMessage": "Time ×2",
+&"SpawnWeight": 4.0,
+&"Tags": Array[String](["multiplier", "negative"])
+}

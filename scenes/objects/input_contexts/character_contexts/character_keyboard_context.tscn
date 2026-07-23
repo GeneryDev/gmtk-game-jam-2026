@@ -5,7 +5,8 @@
 [ext_resource type="Resource" uid="uid://20hjbwrgl572" path="res://resources/input_actions/move.tres" id="3_j0v5n"]
 [ext_resource type="Script" uid="uid://4lm3jxgrfs5c" path="res://addons/gdf-godot/GDF/Input/GdfInputTriggerMixer.cs" id="4_hkgbp"]
 [ext_resource type="Script" uid="uid://cdfy1mpsmrtuu" path="res://addons/gdf-godot/GDF/Input/GdfInputTriggerInput.cs" id="5_bq1sy"]
-[ext_resource type="Resource" uid="uid://lcriijicejdl" path="res://resources/input_actions/jump.tres" id="6_7brk7"]
+[ext_resource type="Resource" uid="uid://lcriijicejdl" path="res://resources/input_actions/attack.tres" id="6_7brk7"]
+[ext_resource type="Resource" uid="uid://cp5h337kot3xw" path="res://resources/input_actions/dash.tres" id="7_j0v5n"]
 
 [node name="Character Keyboard Context" type="Node" unique_id=1445705826]
 script = ExtResource("1_jdkr4")
@@ -23,7 +24,7 @@ script = ExtResource("5_bq1sy")
 Type = 1
 Key = 87
 UseCustomVector = true
-UnitVector = Vector3(0, 0, -1)
+UnitVector = Vector3(0, -1, 0)
 
 [node name="Left" type="Node" parent="Navigate/Mixer" unique_id=646201087]
 script = ExtResource("5_bq1sy")
@@ -37,7 +38,7 @@ script = ExtResource("5_bq1sy")
 Type = 1
 Key = 83
 UseCustomVector = true
-UnitVector = Vector3(0, 0, 1)
+UnitVector = Vector3(0, 1, 0)
 
 [node name="Right" type="Node" parent="Navigate/Mixer" unique_id=906018314]
 script = ExtResource("5_bq1sy")
@@ -45,13 +46,22 @@ Type = 1
 Key = 68
 UseCustomVector = true
 
-[node name="Jump" type="Node" parent="." unique_id=83668345]
+[node name="Attack" type="Node" parent="." unique_id=83668345]
 script = ExtResource("2_7brk7")
 Action = ExtResource("6_7brk7")
 
-[node name="Key" type="Node" parent="Jump" unique_id=1384598293]
+[node name="Key" type="Node" parent="Attack" unique_id=1384598293]
+script = ExtResource("5_bq1sy")
+Type = 2
+MouseButton = 1
+
+[node name="Dash" type="Node" parent="." unique_id=1931966852]
+script = ExtResource("2_7brk7")
+Action = ExtResource("7_j0v5n")
+
+[node name="Key" type="Node" parent="Dash" unique_id=560668683]
 script = ExtResource("5_bq1sy")
 Type = 1
-Key = 32
+Key = 4194325
 UseCustomVector = true
 UnitVector = Vector3(0, 1, 0)

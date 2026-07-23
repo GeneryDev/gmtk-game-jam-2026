@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SceneSummary" format=3 uid="uid://dc7yabiqa6j4h"]
+
+[ext_resource type="Script" uid="uid://dvhbt8l5vjyou" path="res://scripts/Game/Player/PlayerAttack.cs" id="1_6iepm"]
+[ext_resource type="Script" uid="uid://pj67f1pjpit5" path="res://addons/gdf-godot/GDF/Resources/SceneSummary.cs" id="2_83etw"]
+
+[resource]
+script = ExtResource("2_83etw")
+RootNodeName = &"BulletAttack"
+RootNodeScript = ExtResource("1_6iepm")

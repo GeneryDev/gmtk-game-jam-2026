@@ -28,13 +28,29 @@ window/stretch/aspect="expand"
 
 project/assembly_name="GMTK Game Jam 2026"
 
+[editor]
+
+naming/default_signal_callback_name="Trigger"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/gdf-godot/plugin.cfg")
 
+[global_group]
+
+player_character=""
+
+[layer_names]
+
+2d_physics/layer_1="Level"
+2d_physics/layer_2="Entity"
+2d_physics/layer_3="Player"
+2d_physics/layer_4="Mob"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
+2d/default_gravity=0.0
 
 [rendering]
 

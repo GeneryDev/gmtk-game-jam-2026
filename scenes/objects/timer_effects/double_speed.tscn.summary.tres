@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SceneSummary" format=3 uid="uid://b78wyeih7eehg"]
+
+[ext_resource type="Script" uid="uid://8167tjb1cm0a" path="res://scripts/Game/Timers/TimerEffect.cs" id="1_nplo1"]
+[ext_resource type="Script" uid="uid://pj67f1pjpit5" path="res://addons/gdf-godot/GDF/Resources/SceneSummary.cs" id="2_6yqoy"]
+
+[resource]
+script = ExtResource("2_6yqoy")
+RootNodeName = &"Double Speed"
+RootNodeScript = ExtResource("1_nplo1")
+RootNodeProperties = {
+&"Description": "Speed ×2",
+&"LogMessage": "Speed ×2",
+&"ParticleMessage": "Speed ×2",
+&"SpawnWeight": 2.0,
+&"Tags": Array[String](["speed", "speed_up", "neutral"])
+}

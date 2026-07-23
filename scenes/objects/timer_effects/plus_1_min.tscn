@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://r0y5o56pmebf"]
+
+[ext_resource type="Script" uid="uid://8167tjb1cm0a" path="res://scripts/Game/Timers/TimerEffect.cs" id="1_k5l8t"]
+[ext_resource type="Resource" uid="uid://cbqcje56khwta" path="res://scenes/objects/timer_effects/plus_1_min.tscn.summary.tres" id="2_k5l8t"]
+[ext_resource type="Script" uid="uid://ccy1yqjcbg6iq" path="res://scripts/Game/Timers/TimerFunctions.cs" id="3_6owme"]
+[ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="4_pglpn"]
+
+[node name="Plus1Min" type="Node" unique_id=1558047290]
+script = ExtResource("1_k5l8t")
+Summary = ExtResource("2_k5l8t")
+metadata/_custom_type_script = "uid://8167tjb1cm0a"
+
+[node name="Timer Functions" type="Node" parent="." unique_id=1703951640]
+script = ExtResource("3_6owme")
+
+[node name="Method Call" type="Node" parent="Timer Functions" unique_id=1081125721 node_paths=PackedStringArray("Target")]
+script = ExtResource("4_pglpn")
+Target = NodePath("..")
+Method = &"AddTime"
+Args = [60]
+ArgInputTypes = Array[int]([0])
+ArgReplicate = Array[bool]([false])
+TargetMethodInfo = {
+"args": Array[Dictionary]([{
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "sec",
+"type": 2,
+"usage": 6
+}]),
+"default_args": [],
+"flags": 1,
+"id": 0,
+"name": "AddTime",
+"return": {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 0,
+"usage": 6
+}
+}
+metadata/_custom_type_script = "uid://buqbj5n61xjbu"
+
+[connection signal="Triggered" from="." to="Timer Functions/Method Call" method="Trigger"]

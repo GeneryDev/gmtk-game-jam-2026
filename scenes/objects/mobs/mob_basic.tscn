@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://jj5sqqmdnstv"]
+
+[ext_resource type="PackedScene" uid="uid://birvp7rww3wl2" path="res://scenes/objects/mobs/mob_base.tscn" id="1_h3w86"]
+[ext_resource type="Script" uid="uid://dw511m5bve5pm" path="res://scripts/Game/Entities/MobColor.cs" id="2_0xmp7"]
+[ext_resource type="Script" uid="uid://cy0jt8nc5kr3b" path="res://scripts/Game/Entities/MobRandomStrollGoal.cs" id="2_hxt6h"]
+
+[node name="Mob Basic" unique_id=63413937 instance=ExtResource("1_h3w86")]
+
+[node name="Mob Color" type="Node" parent="." index="4" unique_id=841674054 node_paths=PackedStringArray("Visual")]
+script = ExtResource("2_0xmp7")
+Visual = NodePath("../Visuals/MeshInstance2D")
+Random = true
+
+[node name="Random Stroll" type="Node" parent="Goals" parent_id_path=PackedInt32Array(721629563) index="0" unique_id=1365133068]
+script = ExtResource("2_hxt6h")
+
+[node name="Damageable" parent="." index="9" unique_id=893346049]
+MaxHitPoints = 2

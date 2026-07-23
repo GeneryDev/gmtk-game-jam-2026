@@ -1,0 +1,184 @@
+[gd_scene format=3 uid="uid://c4oxmtqca04k4"]
+
+[ext_resource type="Script" uid="uid://dvhbt8l5vjyou" path="res://scripts/Game/Player/PlayerAttack.cs" id="1_6neqo"]
+[ext_resource type="Script" uid="uid://k8suh3w0dagg" path="res://addons/gdf-godot/GDF/Data/InjectedDataContext.cs" id="1_6w2wd"]
+[ext_resource type="Resource" uid="uid://dc7yabiqa6j4h" path="res://scenes/objects/attacks/bullet_attack.tscn.summary.tres" id="2_3l6kl"]
+[ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="2_oh78d"]
+[ext_resource type="Script" uid="uid://cd3ua188ba80t" path="res://scripts/Game/Player/AttackFunctions.cs" id="3_6neqo"]
+[ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="3_oh78d"]
+
+[sub_resource type="Animation" id="Animation_3h4tt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Origin/RigidBody2D/MeshInstance2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Origin/RigidBody2D:freeze")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_byabo"]
+resource_name = "fire"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Origin/RigidBody2D:freeze")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_6neqo"]
+resource_name = "hit"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.13333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Origin/RigidBody2D/MeshInstance2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Origin/RigidBody2D:freeze")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3h4tt"]
+_data = {
+&"RESET": SubResource("Animation_3h4tt"),
+&"fire": SubResource("Animation_byabo"),
+&"hit": SubResource("Animation_6neqo")
+}
+
+[sub_resource type="QuadMesh" id="QuadMesh_6w2wd"]
+size = Vector2(20, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6w2wd"]
+
+[node name="BulletAttack" type="Node" unique_id=1282109577]
+script = ExtResource("1_6neqo")
+Summary = ExtResource("2_3l6kl")
+metadata/_custom_type_script = "uid://dvhbt8l5vjyou"
+
+[node name="Attack Instance Context" type="Node" parent="." unique_id=410965913]
+script = ExtResource("1_6w2wd")
+DefaultVariableValues = {}
+DefaultCollections = {}
+EditorPreviewVariables = {}
+metadata/_custom_type_script = "uid://k8suh3w0dagg"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=326168278]
+libraries/ = SubResource("AnimationLibrary_3h4tt")
+autoplay = &"fire"
+
+[node name="Play fire" type="Node" parent="AnimationPlayer" unique_id=1855223316]
+script = ExtResource("3_oh78d")
+AnimationName = &"fire"
+FromAnimationList = []
+metadata/_custom_type_script = "uid://dukfxpmahaflv"
+
+[node name="Play hit" type="Node" parent="AnimationPlayer" unique_id=1342438997]
+script = ExtResource("3_oh78d")
+AnimationName = &"hit"
+FromAnimationList = []
+metadata/_custom_type_script = "uid://dukfxpmahaflv"
+
+[node name="Origin" type="Node2D" parent="." unique_id=595114659]
+
+[node name="Position Binding" type="Node" parent="Origin" unique_id=1959677200 node_paths=PackedStringArray("DataContext", "TargetNode")]
+script = ExtResource("2_oh78d")
+DataContext = NodePath("../../Attack Instance Context")
+Query = "{origin_position}"
+TargetNode = NodePath("..")
+TargetPropertyName = "position"
+ThrottleUpdate = false
+metadata/_custom_type_script = "uid://wbquqef0rnl5"
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Origin" unique_id=799625923]
+collision_layer = 0
+collision_mask = 9
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 4
+
+[node name="Linear Velocity Binding" type="Node" parent="Origin/RigidBody2D" unique_id=1340579797 node_paths=PackedStringArray("DataContext", "TargetNode")]
+script = ExtResource("2_oh78d")
+DataContext = NodePath("../../../Attack Instance Context")
+Query = "{target_direction} * 1000"
+TargetNode = NodePath("..")
+TargetPropertyName = "linear_velocity"
+ThrottleUpdate = false
+metadata/_custom_type_script = "uid://wbquqef0rnl5"
+
+[node name="AttackFunctions" type="Node" parent="Origin/RigidBody2D" unique_id=207897347]
+script = ExtResource("3_6neqo")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Origin/RigidBody2D" unique_id=1483194687]
+mesh = SubResource("QuadMesh_6w2wd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Origin/RigidBody2D" unique_id=1293275946]
+shape = SubResource("CircleShape2D_6w2wd")
+
+[connection signal="body_entered" from="Origin/RigidBody2D" to="Origin/RigidBody2D/AttackFunctions" method="Hurt"]
+[connection signal="body_entered" from="Origin/RigidBody2D" to="AnimationPlayer/Play hit" method="Trigger" flags=3 unbinds=1]

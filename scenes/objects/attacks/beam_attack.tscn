@@ -1,0 +1,167 @@
+[gd_scene format=3 uid="uid://h0a0mbcbqp0s"]
+
+[ext_resource type="Script" uid="uid://dvhbt8l5vjyou" path="res://scripts/Game/Player/PlayerAttack.cs" id="1_01oyo"]
+[ext_resource type="Script" uid="uid://k8suh3w0dagg" path="res://addons/gdf-godot/GDF/Data/InjectedDataContext.cs" id="1_byabo"]
+[ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="2_3h4tt"]
+[ext_resource type="Resource" uid="uid://2rcv1ni1pp53" path="res://scenes/objects/attacks/beam_attack.tscn.summary.tres" id="2_yyvjp"]
+[ext_resource type="Script" uid="uid://cd3ua188ba80t" path="res://scripts/Game/Player/AttackFunctions.cs" id="3_3h4tt"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_tqw2u"]
+size = Vector2(800, 10)
+center_offset = Vector3(400, 0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_suoh8"]
+size = Vector2(800, 10)
+
+[sub_resource type="Animation" id="Animation_3h4tt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Origin/MeshInstance2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Origin/MeshInstance2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Origin/Area2D:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_byabo"]
+resource_name = "fire"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Origin/MeshInstance2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.032655507, 0.23),
+"transitions": PackedFloat32Array(1, 0.4999999, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 2), Vector2(1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Origin/MeshInstance2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.23),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.26666668),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Origin/Area2D:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.016666668, 0.12503788),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3h4tt"]
+_data = {
+&"RESET": SubResource("Animation_3h4tt"),
+&"fire": SubResource("Animation_byabo")
+}
+
+[node name="BeamAttack" type="Node" unique_id=854267170]
+script = ExtResource("1_01oyo")
+Summary = ExtResource("2_yyvjp")
+metadata/_custom_type_script = "uid://dvhbt8l5vjyou"
+
+[node name="Attack Instance Context" type="Node" parent="." unique_id=410965913]
+script = ExtResource("1_byabo")
+DefaultVariableValues = {}
+DefaultCollections = {}
+EditorPreviewVariables = {}
+metadata/_custom_type_script = "uid://k8suh3w0dagg"
+
+[node name="Origin" type="Node2D" parent="." unique_id=1851871738]
+
+[node name="Position Binding" type="Node" parent="Origin" unique_id=520740356 node_paths=PackedStringArray("DataContext", "TargetNode")]
+script = ExtResource("2_3h4tt")
+DataContext = NodePath("../../Attack Instance Context")
+Query = "{origin_position}"
+TargetNode = NodePath("..")
+TargetPropertyName = "position"
+ThrottleUpdate = false
+metadata/_custom_type_script = "uid://wbquqef0rnl5"
+
+[node name="Rotation Binding" type="Node" parent="Origin" unique_id=2030388206 node_paths=PackedStringArray("DataContext", "TargetNode")]
+script = ExtResource("2_3h4tt")
+DataContext = NodePath("../../Attack Instance Context")
+Query = "{rotation}"
+TargetNode = NodePath("..")
+TargetPropertyName = "rotation"
+ThrottleUpdate = false
+metadata/_custom_type_script = "uid://wbquqef0rnl5"
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Origin" unique_id=1909379833]
+mesh = SubResource("QuadMesh_tqw2u")
+
+[node name="Area2D" type="Area2D" parent="Origin" unique_id=1595996149]
+collision_layer = 0
+collision_mask = 8
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Origin/Area2D" unique_id=1900399253]
+position = Vector2(400, 0)
+shape = SubResource("RectangleShape2D_suoh8")
+
+[node name="AttackFunctions" type="Node" parent="Origin/Area2D" unique_id=207897347]
+script = ExtResource("3_3h4tt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Origin" unique_id=326168278]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_3h4tt")
+autoplay = &"fire"
+
+[connection signal="body_entered" from="Origin/Area2D" to="Origin/Area2D/AttackFunctions" method="Hurt"]

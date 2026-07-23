@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MobType" format=3 uid="uid://dyhyok5lfcnj8"]
+
+[ext_resource type="PackedScene" uid="uid://lyiunjt0s7rh" path="res://scenes/objects/mobs/mob_speeds.tscn" id="1_ege5e"]
+[ext_resource type="Script" uid="uid://b2ptdu2sn1kv7" path="res://scripts/Game/Entities/MobType.cs" id="2_15dos"]
+
+[resource]
+script = ExtResource("2_15dos")
+TemplateScene = ExtResource("1_ege5e")
+ApplicableEffectTags = Array[String](["speed", "speed_up"])
+metadata/_custom_type_script = "uid://b2ptdu2sn1kv7"

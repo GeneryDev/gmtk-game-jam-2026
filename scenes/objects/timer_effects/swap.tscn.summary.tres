@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SceneSummary" format=3 uid="uid://imxwr0qsocj5"]
+
+[ext_resource type="Script" uid="uid://8167tjb1cm0a" path="res://scripts/Game/Timers/TimerEffect.cs" id="1_bavht"]
+[ext_resource type="Script" uid="uid://pj67f1pjpit5" path="res://addons/gdf-godot/GDF/Resources/SceneSummary.cs" id="2_77kjs"]
+
+[resource]
+script = ExtResource("2_77kjs")
+RootNodeName = &"Swap Minutes and Seconds"
+RootNodeScript = ExtResource("1_bavht")
+RootNodeProperties = {
+&"Description": "Swaps the minutes and seconds",
+&"LogMessage": "Minutes ⇄ Seconds",
+&"ParticleMessage": "m ⇄ s",
+&"SpawnWeight": 2.0,
+&"Tags": Array[String](["swap", "neutral"])
+}

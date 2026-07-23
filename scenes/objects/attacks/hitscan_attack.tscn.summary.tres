@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SceneSummary" format=3 uid="uid://b0qonbc7kxf6d"]
+
+[ext_resource type="Script" uid="uid://dvhbt8l5vjyou" path="res://scripts/Game/Player/PlayerAttack.cs" id="1_pqumn"]
+[ext_resource type="Script" uid="uid://pj67f1pjpit5" path="res://addons/gdf-godot/GDF/Resources/SceneSummary.cs" id="2_wbceh"]
+
+[resource]
+script = ExtResource("2_wbceh")
+RootNodeName = &"Hitscan Attack"
+RootNodeScript = ExtResource("1_pqumn")
