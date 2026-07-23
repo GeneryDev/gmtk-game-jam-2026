@@ -1,16 +1,15 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Game.Timers;
 using GDF.Data;
+using GDF.Data.Static;
 using GDF.Util;
 using Godot;
-using Microsoft.VisualBasic;
 
 namespace Game;
 
 [GlobalClass]
+[SingletonUsage(SingletonUsage.Scene)]
 public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 {
 	[Signal]
@@ -97,6 +96,20 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 
 	public StringName UpdatedSignalName => SignalName.Updated;
 
+	public bool GetContextVariable(string key, string input, ref Variant output, IDataQueryOptions options)
+	{
+		switch (key)
+		{
+			case "rate":
+			{
+				output = GetAverageRate();
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public bool GetContextString(string key, string input, ref string replacement, IDataQueryOptions options)
 	{
 		switch (key)
@@ -106,26 +119,20 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 				replacement = GetFormattedTime();
 				return true;
 			}
-			case "rate":
-			{
-				replacement = GetFormattedRate();
-				return true;
-			}
 		}
 		return false;
 	}
 
-	private double lastRemainingTime = 0;
+	private double _lastRemainingTime = 0;
 	private double GetCurrentTimeRate(double delta)
 	{
-		double rate = (lastRemainingTime - RemainingTime)/delta;
-		lastRemainingTime = RemainingTime;
+		double rate = (_lastRemainingTime - RemainingTime)/delta;
+		_lastRemainingTime = RemainingTime;
 		return rate;
 	}
 	private double[] rateSamples = {};
-	[Export] int RateSampleAmount = 100; // last 100 frames of updates
+	[Export] int RateSampleAmount = 200; // last N frames of updates
 	
-	[Export] ProgressBar RateBar;
 	public void UpdateAverageTimeRate(double delta)
 	{
 		rateSamples = rateSamples.Append(GetCurrentTimeRate(delta)).ToArray();
@@ -142,16 +149,12 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 		}
 		return 0;
 	}
-	public String GetFormattedRate()
-	{   
-		// Update the visual bar at the same time because it is the same information that just updated
-		RateBar.Value = GetRateBarFill();
-		return rateSamples.Average().ToString();
-	}
-	public float GetRateBarFill()
-	{
-		return (float)(rateSamples.Average())+50;
-	}
-   
+}
 
+[StaticDataContext("game_timer_context")]
+public struct GameTimerContext : ISingletonContext<GameTimer>, ICacheableDataContext<GameTimerContext>
+{
+    public bool EqualsContext(GameTimerContext otherCtx) => true;
+
+    public bool CanCache() => true;
 }

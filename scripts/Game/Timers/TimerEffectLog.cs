@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using GDF.Data;
+using GDF.Data.Static;
 using GDF.Util;
 using Godot;
 
 namespace Game.Timers;
 
+[SingletonUsage(SingletonUsage.Scene)]
 public partial class TimerEffectLog : SingletonNode<TimerEffectLog>, IDataContext
 {
     [Signal]
@@ -63,4 +65,12 @@ public partial class TimerEffectLog : SingletonNode<TimerEffectLog>, IDataContex
             return false;
         }
     }
+}
+
+[StaticDataContext("timer_effect_log_context")]
+public struct TimerEffectLogContext : ISingletonContext<TimerEffectLog>, ICacheableDataContext<TimerEffectLogContext>
+{
+    public bool EqualsContext(TimerEffectLogContext otherCtx) => true;
+
+    public bool CanCache() => true;
 }

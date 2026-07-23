@@ -72,7 +72,6 @@ public partial class PlayerAttackController : Node
     public void Attack()
     {
         var body = _motionComponent.Get(this).Body;
-        GD.Print("Attack!");
         if (AttackScene == null) return;
         var attackContext = new AttackInstanceContext(Owner, body.GlobalPosition, _targetPosGlobal);
 
