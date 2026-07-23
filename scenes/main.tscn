@@ -46,15 +46,6 @@ mesh = SubResource("QuadMesh_tqw2u")
 
 [node name="Player" parent="Node2D" unique_id=665418691 instance=ExtResource("2_0wfyh")]
 
-[node name="Mob" parent="Node2D" unique_id=63413937 instance=ExtResource("3_sugp2")]
-position = Vector2(-204, -115)
-
-[node name="Mob2" parent="Node2D" unique_id=418446976 instance=ExtResource("3_sugp2")]
-position = Vector2(251, -85)
-
-[node name="Mob3" parent="Node2D" unique_id=1935566905 instance=ExtResource("3_sugp2")]
-position = Vector2(-110, 154)
-
 [node name="Mob Spawner" type="Node" parent="Node2D" unique_id=1037427461 node_paths=PackedStringArray("Template")]
 script = ExtResource("4_tbgi4")
 Template = NodePath("../Mob Template")

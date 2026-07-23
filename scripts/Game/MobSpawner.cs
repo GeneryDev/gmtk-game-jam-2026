@@ -1,4 +1,7 @@
-﻿using GDF.Data;
+﻿using System.Collections.Generic;
+using Game.Timers;
+using GDF.Composition;
+using GDF.Data;
 using GDF.Util;
 using Godot;
 
@@ -35,12 +38,44 @@ public partial class MobSpawner : Node
     {
         if (Template == null) return;
         var task = Template.New();
-        ((Node2D)task.Instance).Position = NextSpawnPos();
+        var instance = task.Instance;
+        ((Node2D)instance).Position = NextSpawnPos();
+        if (instance.GetComponent<TimerEffectHost>() is { } timerEffectHost)
+        {
+            var effect = NextTimerEffect();
+            if (!effect.IsEmpty)
+            {
+                timerEffectHost.InstallEffect(effect);
+            }
+        }
         task.Insert();
     }
 
     private Vector2 NextSpawnPos()
     {
         return new Vector2(_rng.RandfRange(-1, 1), _rng.RandfRange(-1, 1)) * new Vector2(500, 300);
+    }
+
+    private readonly List<TimerEffects.Descriptor> _tempEffects = new();
+    private float[] _tempWeights;
+    
+    private TimerEffects.Descriptor NextTimerEffect()
+    {
+        _tempEffects.Clear();
+        TimerEffects.CollectAll(_tempEffects);
+        if (_tempEffects.Count <= 0) return default;
+        
+        if (_tempWeights?.Length != _tempEffects.Count)
+            _tempWeights = new float[_tempEffects.Count];
+        for (int i = 0; i < _tempEffects.Count; i++)
+        {
+            var effect = _tempEffects[i];
+            _tempWeights[i] = effect.Reference.SpawnWeight;
+        }
+
+
+        var pickedIndex = (int)_rng.RandWeighted(_tempWeights);
+        var pickedEffect = _tempEffects[pickedIndex];
+        return pickedEffect;
     }
 }

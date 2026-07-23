@@ -2,10 +2,14 @@
 
 [ext_resource type="Script" uid="uid://bko61fppga1kx" path="res://addons/gdf-godot/GDF/UI/Screen.cs" id="1_wybn8"]
 [ext_resource type="Script" uid="uid://ds35ysiau7nks" path="res://addons/gdf-godot-input-icons/GDF/Input/Icons/GdfInputIconAction.cs" id="2_whwsy"]
+[ext_resource type="Script" uid="uid://byv3tqb16h6mr" path="res://scripts/Game/Timers/TimerEffectLog.cs" id="3_5pfmv"]
 [ext_resource type="Resource" uid="uid://20hjbwrgl572" path="res://resources/input_actions/move.tres" id="3_yed0n"]
 [ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="4_5pfmv"]
 [ext_resource type="Script" uid="uid://otkyb0o8ega" path="res://scripts/Game/GameTimer.cs" id="5_whwsy"]
 [ext_resource type="Resource" uid="uid://lcriijicejdl" path="res://resources/input_actions/attack.tres" id="6_yed0n"]
+[ext_resource type="Script" uid="uid://cipgbcqmkinta" path="res://addons/gdf-godot/GDF/Data/NodeTemplate.cs" id="8_ne7ms"]
+[ext_resource type="Script" uid="uid://l7wbvi5jgr0h" path="res://addons/gdf-godot/GDF/Data/NodeFactory.cs" id="8_wkpi1"]
+[ext_resource type="PackedScene" uid="uid://bqwwg5kpnorp5" path="res://scenes/ui/elements/timer_effect_log_item.tscn" id="9_wkpi1"]
 
 [node name="HUD" type="Control" unique_id=1168699841]
 layout_mode = 3
@@ -30,7 +34,7 @@ mouse_filter = 2
 
 [node name="GameTimer" type="Node" parent="Control" unique_id=1002594499]
 script = ExtResource("5_whwsy")
-RemainingTime = 600.0
+RemainingTime = 600
 metadata/_custom_type_script = "uid://otkyb0o8ega"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=1355116031]
@@ -112,3 +116,35 @@ script = ExtResource("4_5pfmv")
 TextFormat = "{time}"
 DataContext = NodePath("../GameTimer")
 metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="Timer Effect Log" type="MarginContainer" parent="Control" unique_id=329507321]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 26.0
+offset_top = -242.0
+offset_right = 200.0
+offset_bottom = -1.0
+
+[node name="Timer Effect Log" type="Node" parent="Control/Timer Effect Log" unique_id=417721782]
+script = ExtResource("3_5pfmv")
+MaxItems = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Timer Effect Log" unique_id=1630983688]
+layout_mode = 2
+alignment = 2
+
+[node name="NodeFactory" type="Node" parent="Control/Timer Effect Log/VBoxContainer" unique_id=992676956 node_paths=PackedStringArray("DataContext", "DefaultTemplate")]
+script = ExtResource("8_wkpi1")
+DataContext = NodePath("../../Timer Effect Log")
+CollectionQuery = "{messages}"
+DefaultTemplate = NodePath("../NodeTemplate")
+InjectFactoryItemContext = true
+metadata/_custom_type_script = "uid://l7wbvi5jgr0h"
+
+[node name="NodeTemplate" type="Node" parent="Control/Timer Effect Log/VBoxContainer" unique_id=317261114]
+script = ExtResource("8_ne7ms")
+TemplateScene = ExtResource("9_wkpi1")
+PreviewCount = 8
+metadata/_custom_type_script = "uid://cipgbcqmkinta"

@@ -1,35 +1,47 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
+using Game.Timers;
 using GDF.Data;
+using GDF.Util;
 using Godot;
 
 namespace Game;
 
 [GlobalClass]
-public partial class GameTimer : Node, IDataContext
+public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 {
     [Signal]
     public delegate void UpdatedEventHandler();
-    
-    [Export(PropertyHint.Range, "0,600,1,suffix:s")] public float RemainingTime = 0;
 
-    private float _lastDisplayedTime = 0;
-    private string _lastDisplayedTimeFormatted = "";
+    [Signal]
+    public delegate void TickedEventHandler();
 
+    [Export(PropertyHint.Range, "0,600,1,suffix:s")]
+    public long RemainingTime
+    {
+        get => _remainingTime;
+        set
+        {
+            if (_remainingTime == value) return;
+            _remainingTime = value;
+            EmitSignalUpdated();
+        }
+    }
     [Export]
-    public float Precision = 1;
+    public float TickRate = 1;
+
+    private Accumulator _tickTimer;
 
     private readonly StringBuilder _sb = new();
+    private long _remainingTime = 0;
     
-    private bool UpdateDisplayedTime()
-    {
-        float displayedTime = Mathf.RoundToInt(RemainingTime / Precision) * Precision;
-        if (Mathf.Abs(displayedTime - _lastDisplayedTime) < Precision)
-        {
-            return false;
-        }
 
-        var time = TimeSpan.FromSeconds(displayedTime);
+    public string GetFormattedTime()
+    {
+        _sb.Clear();
+        if (_remainingTime < 0) _sb.Append('-');
+        var time = TimeSpan.FromSeconds(_remainingTime).Duration();
 
         if (time.TotalHours >= 1)
         {
@@ -39,34 +51,28 @@ public partial class GameTimer : Node, IDataContext
         _sb.Append(time.Minutes.ToString().PadZeros(2));
         _sb.Append(':');
         _sb.Append(time.Seconds.ToString().PadZeros(2));
-        if (Precision < 1)
-        {
-            _sb.Append('.');
-            _sb.Append(time.Milliseconds.ToString().PadZeros(3));
-        }
-        _lastDisplayedTimeFormatted = _sb.ToString();
+        var formatted = _sb.ToString();
         _sb.Clear();
-        _lastDisplayedTime = displayedTime;
-        return true;
+        return formatted;
     }
 
     public override void _Process(double delta)
     {
         base._Process(delta);
 
-        if (RemainingTime > 0)
+        _tickTimer.Add((float)(delta * TickRate));
+
+        while (_tickTimer.Consume(1))
         {
-            RemainingTime -= (float)delta;
-            if (RemainingTime <= 0)
-            {
-                RemainingTime = 0;
-            }
+            Tick();
         }
-        
-        if (UpdateDisplayedTime())
-        {
-            EmitSignalUpdated();
-        }
+    }
+
+    private void Tick()
+    {
+        EmitSignalTicked();
+        TriggerEffects();
+        // EmitSignalUpdated();
     }
 
     public StringName UpdatedSignalName => SignalName.Updated;
@@ -77,7 +83,7 @@ public partial class GameTimer : Node, IDataContext
         {
             case "time":
             {
-                replacement = _lastDisplayedTimeFormatted;
+                replacement = GetFormattedTime();
                 return true;
             }
         }

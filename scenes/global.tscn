@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cpatqk3sjqqap" path="res://addons/gdf-godot/GDF/Scenes/SceneManager.cs" id="1_3q7h5"]
 [ext_resource type="Script" uid="uid://crj48tyk0nmvf" path="res://addons/gdf-godot/GDF/Input/GdfInputSystem.cs" id="1_opebo"]
 [ext_resource type="Script" uid="uid://beoy8jsb08yh" path="res://scripts/Game/Player/PlayerAttacks.cs" id="1_wafyw"]
+[ext_resource type="Script" uid="uid://bitg3x1jr4iw0" path="res://scripts/Game/Timers/TimerEffects.cs" id="2_apua7"]
 [ext_resource type="Script" uid="uid://d0psl1ul17p4q" path="res://addons/gdf-godot/GDF/Scenes/Transitions/ScreenTransitionReference.cs" id="2_b18l6"]
 [ext_resource type="Script" uid="uid://cqtokr6spdybx" path="res://addons/gdf-godot/GDF/Debug/DebugCommandSystem.cs" id="2_m3l3d"]
 [ext_resource type="Script" uid="uid://5krjgh5qqo37" path="res://addons/gdf-godot/GDF/PropertyStacks/GlobalPropertyStack.cs" id="2_mmyj5"]
@@ -119,8 +120,11 @@ metadata/_custom_type_script = "uid://bue2dh8nq45gq"
 
 [node name="Resource Libraries" type="Node" parent="." unique_id=2016105280]
 
-[node name="Node" type="Node" parent="Resource Libraries" unique_id=1721214743]
+[node name="Player Attacks" type="Node" parent="Resource Libraries" unique_id=1721214743]
 script = ExtResource("1_wafyw")
+
+[node name="Timer Effects" type="Node" parent="Resource Libraries" unique_id=18559129]
+script = ExtResource("2_apua7")
 
 [node name="SceneManager" type="Node" parent="." unique_id=385432321]
 script = ExtResource("1_3q7h5")

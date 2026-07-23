@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SceneSummary" format=3 uid="uid://cqwpmyccqoiri"]
+
+[ext_resource type="Script" uid="uid://8167tjb1cm0a" path="res://scripts/Game/Timers/TimerEffect.cs" id="1_68b4k"]
+[ext_resource type="Script" uid="uid://pj67f1pjpit5" path="res://addons/gdf-godot/GDF/Resources/SceneSummary.cs" id="2_ulb3c"]
+
+[resource]
+script = ExtResource("2_ulb3c")
+RootNodeName = &"Plus1Sec"
+RootNodeScript = ExtResource("1_68b4k")
+RootNodeProperties = {
+&"Description": "+1 second",
+&"LogMessage": "+1 second",
+&"ParticleMessage": "+1s",
+&"SpawnWeight": 1.0
+}
