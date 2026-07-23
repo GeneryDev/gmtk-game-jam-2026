@@ -22,14 +22,30 @@ size = Vector2(60, -60)
 [sub_resource type="CircleShape2D" id="CircleShape2D_tqw2u"]
 radius = 20.0
 
-[sub_resource type="Curve" id="Curve_tofx1"]
-_data = [Vector2(0.19491526, 0.18584073), 0.0, -0.19191584, 0, 0, Vector2(0.9237288, 0.88495576), -0.139233, 0.0, 0, 0]
-point_count = 2
-
 [sub_resource type="Gradient" id="Gradient_tofx1"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.34236455, 0.76600987, 1)
 colors = PackedColorArray(0.44445667, 0.44445667, 0.44445664, 1, 0.3261841, 0.32618397, 0.32618392, 1, 0.12941177, 0.12941177, 0.12941177, 0.6784314, 0.015686275, 0.015686275, 0.015686275, 0.34509805)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g65c7"]
+gradient = SubResource("Gradient_tofx1")
+
+[sub_resource type="Curve" id="Curve_tofx1"]
+_data = [Vector2(0.19491526, 0.18584073), 0.0, -0.19191584, 0, 0, Vector2(0.9237288, 0.88495576), -0.139233, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_japq8"]
+curve = SubResource("Curve_tofx1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_absnx"]
+particle_flag_disable_z = true
+angle_min = -131.4
+angle_max = 148.6
+gravity = Vector3(0, -120, 0)
+scale_min = 7.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_japq8")
+color_ramp = SubResource("GradientTexture1D_g65c7")
 
 [node name="Player" type="CharacterBody2D" unique_id=63413937 groups=["player_character"]]
 z_index = 1
@@ -90,23 +106,18 @@ Drag = 5.0
 script = ExtResource("8_bdcal")
 Body = NodePath("..")
 
-[node name="WalkingEffect" type="Node" parent="." unique_id=1508963850 node_paths=PackedStringArray("leftFootParticles", "rightFootParticles", "body")]
+[node name="WalkingEffect" type="Node" parent="." unique_id=1508963850 node_paths=PackedStringArray("Particles", "MotionBody")]
 script = ExtResource("15_g65c7")
-leftFootParticles = NodePath("../WalkParticleLeft")
-rightFootParticles = NodePath("")
-body = NodePath("..")
+Particles = NodePath("../WalkParticle")
+MotionBody = NodePath("../Motion Component")
 
-[node name="WalkParticleLeft" type="CPUParticles2D" parent="." unique_id=1040265920]
+[node name="WalkParticle" type="GPUParticles2D" parent="." unique_id=1898925569]
 visibility_layer = 4
 z_index = -1
 position = Vector2(0, 23)
 amount = 4
 lifetime = 0.4
-draw_order = 1
-gravity = Vector2(0, -40)
-angle_min = -131.4
-angle_max = 148.6
-scale_amount_min = 7.0
-scale_amount_max = 10.0
-scale_amount_curve = SubResource("Curve_tofx1")
-color_ramp = SubResource("Gradient_tofx1")
+explosiveness = 0.02
+randomness = 0.12
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_absnx")
