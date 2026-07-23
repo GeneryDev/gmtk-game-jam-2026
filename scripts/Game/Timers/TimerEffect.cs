@@ -18,7 +18,6 @@ public partial class TimerEffect : SummarizableScene, IDataContext, ITagged<stri
     [Export] [StoreInSummary] public string LogMessage = "";
     [Export] [StoreInSummary] public string ParticleMessage = "";
     [Export] [StoreInSummary] public Array<string> Tags = new();
-    [Export] [StoreInSummary] public string SpriteId = "";
 
     public TimerEffects.Descriptor Descriptor => TimerEffects.From(this);
 
@@ -40,11 +39,6 @@ public partial class TimerEffect : SummarizableScene, IDataContext, ITagged<stri
             case "has_tag":
             {
                 output = HasTag(input);
-                return true;
-            }
-            case "sprite_id":
-            {
-                output = SpriteId;
                 return true;
             }
         }

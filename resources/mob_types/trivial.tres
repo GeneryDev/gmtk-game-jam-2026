@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MobType" format=3 uid="uid://mg5sh0sn6eey"]
+
+[ext_resource type="Script" uid="uid://b2ptdu2sn1kv7" path="res://scripts/Game/Entities/MobType.cs" id="1_0vnsj"]
+[ext_resource type="PackedScene" uid="uid://4sjdoynjuidp" path="res://scenes/objects/player/mobs/mob_trivial.tscn" id="1_5rswt"]
+
+[resource]
+script = ExtResource("1_0vnsj")
+TemplateScene = ExtResource("1_5rswt")
+ApplicableEffectTags = Array[String](["trivial"])
+metadata/_custom_type_script = "uid://b2ptdu2sn1kv7"

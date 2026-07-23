@@ -2,7 +2,8 @@
 
 namespace Game.Entities;
 
-public partial class MobRandomStroll : Node
+[GlobalClass]
+public partial class MobRandomStrollGoal : MobGoal
 {
     private Vector2 _targetPos;
     private float _targetReselectCooldown = 0;
@@ -25,7 +26,7 @@ public partial class MobRandomStroll : Node
         _targetReselectCooldown = _rng.RandfRange(1, 4);
     }
 
-    public Vector2 GetTargetPosition()
+    public override Vector2? GetTargetPosition()
     {
         return _targetPos;
     }

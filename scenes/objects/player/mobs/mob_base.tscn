@@ -1,28 +1,25 @@
-[gd_scene format=3 uid="uid://ba3bue3jlxoy"]
+[gd_scene format=3 uid="uid://birvp7rww3wl2"]
 
-[ext_resource type="Script" uid="uid://56fvy6sd714g" path="res://addons/gdf-godot/GDF/Composition/ComponentIndex.cs" id="1_uvjr4"]
-[ext_resource type="Texture2D" uid="uid://bebj1add3gwnc" path="res://assets/textures/sprites/mob_negative.png" id="2_f0e1h"]
-[ext_resource type="Script" uid="uid://ck26gmefod55p" path="res://addons/gdf-godot/GDF/Input/GdfPlayerInput.cs" id="2_sryjs"]
-[ext_resource type="Resource" uid="uid://cubdq0rio3s24" path="res://resources/input_auto_configs/character_control.tres" id="3_7pevb"]
-[ext_resource type="Script" uid="uid://cy0jt8nc5kr3b" path="res://scripts/Game/Entities/MobRandomStroll.cs" id="4_m83p8"]
-[ext_resource type="Script" uid="uid://co3d12m3ihdwj" path="res://scripts/Game/Entities/MobController.cs" id="5_mwr2p"]
-[ext_resource type="Script" uid="uid://dmhldnch5rsyx" path="res://scripts/Game/Entities/EntityFlags.cs" id="6_us2v4"]
-[ext_resource type="Script" uid="uid://bfx0gcgwji8m0" path="res://scripts/Game/Entities/MotionComponent.cs" id="8_b0d2d"]
-[ext_resource type="Script" uid="uid://du06k8gwkwajk" path="res://scripts/Game/Entities/DamageableComponent.cs" id="8_qb8sv"]
-[ext_resource type="Script" uid="uid://ds1xannxtoxqn" path="res://scripts/Game/Entities/EntityDrag.cs" id="9_us2v4"]
-[ext_resource type="Script" uid="uid://bhfpc3sve7mxh" path="res://scripts/Game/Timers/TimerEffectHost.cs" id="9_uvjr4"]
-[ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="10_sryjs"]
-[ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="11_7pevb"]
-[ext_resource type="Texture2D" uid="uid://cws8njsavymsp" path="res://assets/textures/sprites/mob_positive.png" id="13_ua55p"]
-[ext_resource type="Texture2D" uid="uid://c6a45rsmt8b26" path="res://assets/textures/sprites/mob_neutral.png" id="13_yl412"]
-[ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="15_5w21r"]
-[ext_resource type="Texture2D" uid="uid://br88hwvbf6ddl" path="res://assets/textures/sprites/mob_trivial.png" id="15_b0d2d"]
-[ext_resource type="Script" uid="uid://b6sb42qs0fsp1" path="res://scripts/Game/Util/ScreenSpawner.cs" id="19_c5kph"]
-[ext_resource type="Script" uid="uid://csxjam05y7w8k" path="res://addons/gdf-godot/GDF/UI/ControlStateContext.cs" id="19_ufdc1"]
-[ext_resource type="PackedScene" uid="uid://dkf1riu3oh521" path="res://scenes/ui/screens/mob_tooltip.tscn" id="20_1238s"]
+[ext_resource type="Script" uid="uid://56fvy6sd714g" path="res://addons/gdf-godot/GDF/Composition/ComponentIndex.cs" id="1_dd8dt"]
+[ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="3_kat3x"]
+[ext_resource type="Script" uid="uid://dmhldnch5rsyx" path="res://scripts/Game/Entities/EntityFlags.cs" id="6_lrv26"]
+[ext_resource type="Script" uid="uid://co3d12m3ihdwj" path="res://scripts/Game/Entities/MobController.cs" id="8_dig0y"]
+[ext_resource type="Script" uid="uid://ds1xannxtoxqn" path="res://scripts/Game/Entities/EntityDrag.cs" id="9_tpcys"]
+[ext_resource type="Script" uid="uid://bfx0gcgwji8m0" path="res://scripts/Game/Entities/MotionComponent.cs" id="10_mdkp0"]
+[ext_resource type="Script" uid="uid://du06k8gwkwajk" path="res://scripts/Game/Entities/DamageableComponent.cs" id="11_qf6k4"]
+[ext_resource type="Script" uid="uid://bhfpc3sve7mxh" path="res://scripts/Game/Timers/TimerEffectHost.cs" id="12_6t16v"]
+[ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="13_sycpo"]
+[ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="14_wkk4q"]
+[ext_resource type="Texture2D" uid="uid://br88hwvbf6ddl" path="res://assets/textures/sprites/mob_trivial.png" id="17_1787t"]
+[ext_resource type="Script" uid="uid://csxjam05y7w8k" path="res://addons/gdf-godot/GDF/UI/ControlStateContext.cs" id="18_wcmh3"]
+[ext_resource type="Script" uid="uid://b6sb42qs0fsp1" path="res://scripts/Game/Util/ScreenSpawner.cs" id="19_cv3cl"]
+[ext_resource type="PackedScene" uid="uid://dkf1riu3oh521" path="res://scenes/ui/screens/mob_tooltip.tscn" id="20_qduyt"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_7nx1l"]
 size = Vector2(60, -60)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tqw2u"]
+blend_mode = 4
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tqw2u"]
 radius = 20.0
@@ -32,7 +29,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance2D:scale")
+tracks/0/path = NodePath("Visuals/MeshInstance2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -84,7 +81,7 @@ length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance2D:scale")
+tracks/0/path = NodePath("Visuals/MeshInstance2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -136,105 +133,60 @@ _data = {
 &"trigger": SubResource("Animation_sryjs")
 }
 
-[sub_resource type="Animation" id="Animation_yl412"]
+[sub_resource type="Animation" id="Animation_ydr81"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance2D:texture")
+tracks/0/path = NodePath("Visuals/Hurt Flash:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_f0e1h")]
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_5w21r"]
-resource_name = "negative"
+[sub_resource type="Animation" id="Animation_4fmyd"]
+resource_name = "hurt"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance2D:texture")
+tracks/0/path = NodePath("Visuals/Hurt Flash:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_f0e1h")]
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_us2v4"]
-resource_name = "neutral"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("13_yl412")]
-}
-
-[sub_resource type="Animation" id="Animation_b0d2d"]
-resource_name = "positive"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("13_ua55p")]
-}
-
-[sub_resource type="Animation" id="Animation_raqvg"]
-resource_name = "trivial"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("15_b0d2d")]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_us2v4"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5mw3m"]
 _data = {
-&"RESET": SubResource("Animation_yl412"),
-&"negative": SubResource("Animation_5w21r"),
-&"neutral": SubResource("Animation_us2v4"),
-&"positive": SubResource("Animation_b0d2d"),
-&"trivial": SubResource("Animation_raqvg")
+&"RESET": SubResource("Animation_ydr81"),
+&"hurt": SubResource("Animation_4fmyd")
 }
 
 [node name="Mob" type="CharacterBody2D" unique_id=63413937]
 collision_layer = 10
 collision_mask = 3
 
-[node name="ComponentIndex" type="Node" parent="." unique_id=1468369688 node_paths=PackedStringArray("ComponentOwner")]
-script = ExtResource("1_uvjr4")
+[node name="ComponentIndex" type="Node" parent="." unique_id=1468369688 node_paths=PackedStringArray("ComponentOwner", "OtherComponentContainers")]
+script = ExtResource("1_dd8dt")
 ComponentOwner = NodePath("..")
+OtherComponentContainers = [NodePath("../Goals")]
 metadata/_custom_type_script = "uid://56fvy6sd714g"
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1784942333]
-mesh = SubResource("QuadMesh_7nx1l")
-texture = ExtResource("2_f0e1h")
+[node name="Visuals" type="CanvasGroup" parent="." unique_id=37646152]
 
-[node name="x Binding" type="Node" parent="MeshInstance2D" unique_id=355033470 node_paths=PackedStringArray("DataContext", "TargetNode")]
-script = ExtResource("15_5w21r")
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Visuals" unique_id=1784942333]
+mesh = SubResource("QuadMesh_7nx1l")
+texture = ExtResource("17_1787t")
+
+[node name="x Binding" type="Node" parent="Visuals" unique_id=355033470 node_paths=PackedStringArray("DataContext", "TargetNode")]
+script = ExtResource("3_kat3x")
 DataContext = NodePath("../../Entity Flags")
 Query = "{mirrored}"
 ValueMappingEnabled = true
@@ -247,46 +199,55 @@ TargetNode = NodePath("..")
 TargetPropertyName = "scale:x"
 metadata/_custom_type_script = "uid://wbquqef0rnl5"
 
+[node name="Hurt Flash" type="MeshInstance2D" parent="Visuals" unique_id=1278280188]
+modulate = Color(0.82605994, 0.82606006, 0.8260599, 1)
+self_modulate = Color(0, 0, 0, 0)
+material = SubResource("CanvasItemMaterial_tqw2u")
+mesh = SubResource("QuadMesh_7nx1l")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=508152118]
 shape = SubResource("CircleShape2D_tqw2u")
 
-[node name="GdfPlayerInput" type="Node" parent="." unique_id=1688983007]
-script = ExtResource("2_sryjs")
-InputAutoConfig = ExtResource("3_7pevb")
-metadata/_custom_type_script = "uid://ck26gmefod55p"
-
 [node name="Entity Flags" type="Node" parent="." unique_id=925536659]
-script = ExtResource("6_us2v4")
+script = ExtResource("6_lrv26")
 
-[node name="Random Stroll" type="Node" parent="." unique_id=845618567]
-script = ExtResource("4_m83p8")
+[node name="Goals" type="Node" parent="." unique_id=721629563]
 
 [node name="Mob Controller" type="Node" parent="." unique_id=672885255]
-script = ExtResource("5_mwr2p")
+script = ExtResource("8_dig0y")
 
 [node name="Drag" type="Node" parent="." unique_id=1030416559]
-script = ExtResource("9_us2v4")
+script = ExtResource("9_tpcys")
 Drag = 5.0
 
 [node name="Motion Component" type="Node" parent="." unique_id=851220878 node_paths=PackedStringArray("Body")]
-script = ExtResource("8_b0d2d")
+script = ExtResource("10_mdkp0")
 Body = NodePath("..")
 
 [node name="Damageable" type="Node" parent="." unique_id=893346049]
-script = ExtResource("8_qb8sv")
+script = ExtResource("11_qf6k4")
 
 [node name="Timer Effect Host" type="Node" parent="." unique_id=967788250]
-script = ExtResource("9_uvjr4")
+script = ExtResource("12_6t16v")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1997820663]
+[node name="Action Animations" type="AnimationPlayer" parent="." unique_id=1997820663]
 libraries/ = SubResource("AnimationLibrary_7pevb")
 
-[node name="Play trigger" type="Node" parent="AnimationPlayer" unique_id=646026953]
-script = ExtResource("10_sryjs")
+[node name="Play trigger" type="Node" parent="Action Animations" unique_id=646026953]
+script = ExtResource("13_sycpo")
 AnimationName = &"trigger"
 Restart = true
 Deferred = true
 FromAnimationList = []
+metadata/_custom_type_script = "uid://dukfxpmahaflv"
+
+[node name="Damage Animations" type="AnimationPlayer" parent="." unique_id=898270224]
+libraries/ = SubResource("AnimationLibrary_5mw3m")
+
+[node name="Play hurt" type="Node" parent="Damage Animations" unique_id=434073282]
+script = ExtResource("13_sycpo")
+AnimationName = &"hurt"
+Restart = true
 metadata/_custom_type_script = "uid://dukfxpmahaflv"
 
 [node name="Particle" type="Control" parent="." unique_id=1729297614]
@@ -316,29 +277,10 @@ mouse_filter = 2
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("11_7pevb")
-TextFormat = "{effect.particle_message}"
+script = ExtResource("14_wkk4q")
+TextFormat = "{last_triggered_effect.particle_message}"
 DataContext = NodePath("../../Timer Effect Host")
 metadata/_custom_type_script = "uid://dxkaapm2dks2e"
-
-[node name="Sprite" type="AnimationPlayer" parent="." unique_id=1143497589]
-libraries/ = SubResource("AnimationLibrary_us2v4")
-
-[node name="Current Animation Binding" type="Node" parent="Sprite" unique_id=912270861 node_paths=PackedStringArray("DataContext", "TargetNode")]
-script = ExtResource("15_5w21r")
-DataContext = NodePath("../../Timer Effect Host")
-Query = "{effect.sprite_id}"
-ValueMappingEnabled = true
-ValueMappings = {
-"negative": &"trivial",
-"neutral": &"trivial",
-"positive": &"trivial",
-"trivial": &"trivial"
-}
-ValueMappingDefault = &"neutral"
-TargetNode = NodePath("..")
-TargetPropertyName = "current_animation"
-metadata/_custom_type_script = "uid://wbquqef0rnl5"
 
 [node name="Control" type="Control" parent="." unique_id=1028568971]
 z_index = 2
@@ -363,12 +305,12 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="Hover Context" type="Node" parent="Control/Hover Sensor" unique_id=965090830]
-script = ExtResource("19_ufdc1")
+script = ExtResource("18_wcmh3")
 TrackedStates = 1
 metadata/_custom_type_script = "uid://csxjam05y7w8k"
 
 [node name="On Hover" type="Node" parent="Control/Hover Sensor/Hover Context" unique_id=2094670186 node_paths=PackedStringArray("DataContext")]
-script = ExtResource("15_5w21r")
+script = ExtResource("3_kat3x")
 DataContext = NodePath("..")
 Query = "{is_hovered}"
 SendBooleanEvaluationSignals = true
@@ -380,6 +322,7 @@ metadata/_custom_type_script = "uid://wbquqef0rnl5"
 [node name="Extra Range" type="Control" parent="Control/Hover Sensor" unique_id=641247407]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -389,7 +332,7 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="Visibility Binding" type="Node" parent="Control/Hover Sensor/Extra Range" unique_id=1862352378 node_paths=PackedStringArray("DataContext", "TargetNode")]
-script = ExtResource("15_5w21r")
+script = ExtResource("3_kat3x")
 DataContext = NodePath("../../Hover Context")
 Query = "{is_hovered}"
 TargetNode = NodePath("..")
@@ -397,8 +340,8 @@ TargetPropertyName = "visible"
 metadata/_custom_type_script = "uid://wbquqef0rnl5"
 
 [node name="ScreenSpawner" type="Node" parent="Control" unique_id=654039222 node_paths=PackedStringArray("Context")]
-script = ExtResource("19_c5kph")
-Template = ExtResource("20_1238s")
+script = ExtResource("19_cv3cl")
+Template = ExtResource("20_qduyt")
 Context = NodePath("../../Timer Effect Host")
 DataContextsBySlot = Dictionary[StringName, NodePath]({
 &"damageable": NodePath("../../Damageable")
@@ -406,6 +349,7 @@ DataContextsBySlot = Dictionary[StringName, NodePath]({
 RelativeMode = 1
 metadata/_custom_type_script = "uid://b6sb42qs0fsp1"
 
-[connection signal="Triggered" from="Timer Effect Host" to="AnimationPlayer/Play trigger" method="Trigger"]
+[connection signal="Hurt" from="Damageable" to="Damage Animations/Play hurt" method="Trigger"]
+[connection signal="Triggered" from="Timer Effect Host" to="Action Animations/Play trigger" method="Trigger"]
 [connection signal="EvaluatedFalse" from="Control/Hover Sensor/Hover Context/On Hover" to="Control/ScreenSpawner" method="CloseAll"]
 [connection signal="EvaluatedTrue" from="Control/Hover Sensor/Hover Context/On Hover" to="Control/ScreenSpawner" method="Trigger"]

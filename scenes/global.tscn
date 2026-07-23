@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cqtokr6spdybx" path="res://addons/gdf-godot/GDF/Debug/DebugCommandSystem.cs" id="2_m3l3d"]
 [ext_resource type="Script" uid="uid://5krjgh5qqo37" path="res://addons/gdf-godot/GDF/PropertyStacks/GlobalPropertyStack.cs" id="2_mmyj5"]
 [ext_resource type="Script" uid="uid://dfjun343ur75s" path="res://scripts/Game/Player/SinglePlayerRoom.cs" id="3_dxqtg"]
+[ext_resource type="Script" uid="uid://d0f525ynggjot" path="res://scripts/Game/Entities/MobTypes.cs" id="3_fq2qc"]
 [ext_resource type="Script" uid="uid://dchytqeoyxkj" path="res://addons/gdf-godot/GDF/UI/ScreenStack.cs" id="3_nelfd"]
 [ext_resource type="Resource" uid="uid://d161k2ge6g0g4" path="res://addons/gdf-godot/resources/property_registries/input_group_properties.tres" id="3_unqd7"]
 [ext_resource type="Script" uid="uid://cjjjip5vkuwkj" path="res://addons/gdf-godot/GDF/PropertyStacks/Definitions/Specialized/MouseModeProperty.cs" id="4_bv183"]
@@ -125,6 +126,9 @@ script = ExtResource("1_wafyw")
 
 [node name="Timer Effects" type="Node" parent="Resource Libraries" unique_id=18559129]
 script = ExtResource("2_apua7")
+
+[node name="Mob Types" type="Node" parent="Resource Libraries" unique_id=948853352]
+script = ExtResource("3_fq2qc")
 
 [node name="SceneManager" type="Node" parent="." unique_id=385432321]
 script = ExtResource("1_3q7h5")

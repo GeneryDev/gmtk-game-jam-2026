@@ -1,8 +1,10 @@
-﻿using GDF.Data;
+﻿using GDF;
+using GDF.Data;
 using Godot;
 
 namespace Game.Entities;
 
+[Icon($"{GdfConstants.IconRoot}/data_context.png")]
 public partial class EntityFlags : Node, IDataContext
 {
     [Signal]

@@ -6,7 +6,12 @@
 [ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="3_kcwvt"]
 [ext_resource type="Script" uid="uid://dq8tdw83fjsto" path="res://addons/gdf-godot/GDF/UI/LabelDynamicFitToContent.cs" id="4_5v2c7"]
 [ext_resource type="Script" uid="uid://iir4w637gc2k" path="res://addons/gdf-godot/GDF/UI/LabelAutoFontSize.cs" id="4_kv1k0"]
+[ext_resource type="Script" uid="uid://l7wbvi5jgr0h" path="res://addons/gdf-godot/GDF/Data/NodeFactory.cs" id="4_qxm1j"]
 [ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="5_1uvv5"]
+[ext_resource type="Script" uid="uid://v32ge7gw3qfn" path="res://addons/gdf-godot/GDF/Data/NodeFactoryConditionalTemplate.cs" id="5_18imu"]
+[ext_resource type="Script" uid="uid://cipgbcqmkinta" path="res://addons/gdf-godot/GDF/Data/NodeTemplate.cs" id="5_faans"]
+[ext_resource type="PackedScene" uid="uid://bm5x0rnp8noaq" path="res://scenes/ui/elements/hit_point_filled.tscn" id="6_18imu"]
+[ext_resource type="PackedScene" uid="uid://sx1li1gk74" path="res://scenes/ui/elements/hit_point_empty.tscn" id="7_3f72g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kv1k0"]
 content_margin_left = 2.0
@@ -19,6 +24,13 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 corner_detail = 6
+
+[sub_resource type="Resource" id="Resource_4ttcs"]
+resource_name = "Template Empty: {empty}"
+script = ExtResource("5_18imu")
+TemplatePath = NodePath("../Template Empty")
+Query = "{empty}"
+metadata/_custom_type_script = "uid://v32ge7gw3qfn"
 
 [sub_resource type="Resource" id="Resource_1uvv5"]
 script = ExtResource("4_kv1k0")
@@ -195,6 +207,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="Pivot/Panel/MarginContainer/VBoxContainer/MarginContainer" unique_id=436303151]
+visible = false
 custom_minimum_size = Vector2(80, 10)
 layout_mode = 2
 mouse_filter = 2
@@ -210,6 +223,30 @@ TargetNode = NodePath("..")
 TargetPropertyName = "value"
 metadata/_custom_type_script = "uid://wbquqef0rnl5"
 
+[node name="HBoxContainer" type="HBoxContainer" parent="Pivot/Panel/MarginContainer/VBoxContainer/MarginContainer" unique_id=1999753226]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Hit Points Factory" type="Node" parent="Pivot/Panel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1925935008 node_paths=PackedStringArray("DataContext", "DefaultTemplate")]
+script = ExtResource("4_qxm1j")
+DataContext = NodePath("../../../../../../../Damageable Context")
+CollectionQuery = "{hit_points}"
+DefaultTemplate = NodePath("../Template Filled")
+ConditionalTemplates = Array[ExtResource("5_18imu")]([SubResource("Resource_4ttcs")])
+metadata/_custom_type_script = "uid://l7wbvi5jgr0h"
+
+[node name="Template Filled" type="Node" parent="Pivot/Panel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1099797771]
+script = ExtResource("5_faans")
+TemplateScene = ExtResource("6_18imu")
+PreviewCount = 2
+metadata/_custom_type_script = "uid://cipgbcqmkinta"
+
+[node name="Template Empty" type="Node" parent="Pivot/Panel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=824935590]
+script = ExtResource("5_faans")
+TemplateScene = ExtResource("7_3f72g")
+PreviewCount = 1
+metadata/_custom_type_script = "uid://cipgbcqmkinta"
+
 [node name="FormattedLabel" type="RichTextLabel" parent="Pivot/Panel/MarginContainer/VBoxContainer" unique_id=1874610823 node_paths=PackedStringArray("DataContext")]
 custom_minimum_size = Vector2(83, 17)
 layout_mode = 2
@@ -222,7 +259,7 @@ theme_override_font_sizes/mono_font_size = 12
 fit_content = true
 horizontal_alignment = 1
 script = ExtResource("3_5v2c7")
-TextFormat = "({effect.description})"
+TextFormat = "({first_effect.description})"
 DataContext = NodePath("../../../../../Timer Effect Host Context")
 UsePostProcessing = true
 PostProcessors = [SubResource("Resource_1uvv5"), SubResource("Resource_kgtth")]

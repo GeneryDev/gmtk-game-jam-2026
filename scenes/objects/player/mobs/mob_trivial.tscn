@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://4sjdoynjuidp"]
+
+[ext_resource type="PackedScene" uid="uid://birvp7rww3wl2" path="res://scenes/objects/player/mobs/mob_base.tscn" id="1_0shk6"]
+[ext_resource type="Script" uid="uid://cy0jt8nc5kr3b" path="res://scripts/Game/Entities/MobRandomStrollGoal.cs" id="2_0ii82"]
+
+[node name="Mob Trivial" unique_id=63413937 instance=ExtResource("1_0shk6")]
+
+[node name="Random Stroll" type="Node" parent="Goals" parent_id_path=PackedInt32Array(721629563) index="0" unique_id=1365133068]
+script = ExtResource("2_0ii82")
