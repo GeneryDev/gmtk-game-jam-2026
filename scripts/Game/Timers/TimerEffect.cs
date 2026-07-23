@@ -1,12 +1,14 @@
 ﻿using GDF.Data;
 using GDF.Resources;
+using GDF.Util;
 using Godot;
+using Godot.Collections;
 
 namespace Game.Timers;
 
 [Tool]
 [GlobalClass]
-public partial class TimerEffect : SummarizableScene, IDataContext
+public partial class TimerEffect : SummarizableScene, IDataContext, ITagged<string>
 {
     [Signal]
     public delegate void TriggeredEventHandler();
@@ -15,6 +17,8 @@ public partial class TimerEffect : SummarizableScene, IDataContext
     [Export] [StoreInSummary] public string Description = "";
     [Export] [StoreInSummary] public string LogMessage = "";
     [Export] [StoreInSummary] public string ParticleMessage = "";
+    [Export] [StoreInSummary] public Array<string> Tags = new();
+    [Export] [StoreInSummary] public string SpriteId = "";
 
     public TimerEffects.Descriptor Descriptor => TimerEffects.From(this);
 
@@ -22,6 +26,30 @@ public partial class TimerEffect : SummarizableScene, IDataContext
     {
         EmitSignalTriggered();
         TimerEffectLog.Instance?.Log(Descriptor.Reference.LogMessage);
+    }
+    
+    public bool HasTag(string tag)
+    {
+        return Tags?.Contains(tag) ?? false;
+    }
+
+    public bool GetContextVariable(string key, string input, ref Variant output, IDataQueryOptions options)
+    {
+        switch (key)
+        {
+            case "has_tag":
+            {
+                output = HasTag(input);
+                return true;
+            }
+            case "sprite_id":
+            {
+                output = SpriteId;
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public bool GetContextString(string key, string input, ref string replacement, IDataQueryOptions options)

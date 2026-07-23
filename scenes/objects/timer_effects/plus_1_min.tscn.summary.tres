@@ -8,8 +8,10 @@ script = ExtResource("2_3vqai")
 RootNodeName = &"Plus1Min"
 RootNodeScript = ExtResource("1_nh0rk")
 RootNodeProperties = {
-&"Description": "+1 minute",
-&"LogMessage": "+1 minute",
+&"Description": "+60 seconds",
+&"LogMessage": "+60 seconds",
 &"ParticleMessage": "+60s",
-&"SpawnWeight": 1.0
+&"SpawnWeight": 4.0,
+&"SpriteId": "negative",
+&"Tags": Array[String]([])
 }

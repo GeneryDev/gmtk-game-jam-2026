@@ -11,5 +11,7 @@ RootNodeProperties = {
 &"Description": "Swaps the minutes and seconds",
 &"LogMessage": "Minutes ⇄ Seconds",
 &"ParticleMessage": "m ⇄ s",
-&"SpawnWeight": 0.5
+&"SpawnWeight": 2.0,
+&"SpriteId": "neutral",
+&"Tags": Array[String]([])
 }

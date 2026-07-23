@@ -2,8 +2,11 @@
 
 [ext_resource type="Script" uid="uid://56fvy6sd714g" path="res://addons/gdf-godot/GDF/Composition/ComponentIndex.cs" id="1_1bf4k"]
 [ext_resource type="Script" uid="uid://ck26gmefod55p" path="res://addons/gdf-godot/GDF/Input/GdfPlayerInput.cs" id="2_0a575"]
+[ext_resource type="Texture2D" uid="uid://b1npuhks53dtv" path="res://assets/textures/sprites/player.png" id="2_qfccq"]
 [ext_resource type="Resource" uid="uid://cubdq0rio3s24" path="res://resources/input_auto_configs/character_control.tres" id="3_nkbs0"]
+[ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="3_rp72t"]
 [ext_resource type="Script" uid="uid://cr6edqb2hjfrb" path="res://scripts/Game/Player/PlayerController.cs" id="4_wim6f"]
+[ext_resource type="Script" uid="uid://dmhldnch5rsyx" path="res://scripts/Game/Entities/EntityFlags.cs" id="5_ejlqc"]
 [ext_resource type="Resource" uid="uid://20hjbwrgl572" path="res://resources/input_actions/move.tres" id="5_gmdvr"]
 [ext_resource type="Resource" uid="uid://lcriijicejdl" path="res://resources/input_actions/attack.tres" id="6_gmdvr"]
 [ext_resource type="Resource" uid="uid://cp5h337kot3xw" path="res://resources/input_actions/dash.tres" id="6_io36v"]
@@ -13,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bmaxqgjfg46ic" path="res://scenes/objects/attacks/hitscan_attack.tscn" id="9_vwou5"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_7nx1l"]
-size = Vector2(40, 40)
+size = Vector2(60, -60)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tqw2u"]
 radius = 20.0
@@ -28,6 +31,21 @@ metadata/_custom_type_script = "uid://56fvy6sd714g"
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1784942333]
 mesh = SubResource("QuadMesh_7nx1l")
+texture = ExtResource("2_qfccq")
+
+[node name="x Binding" type="Node" parent="MeshInstance2D" unique_id=792484423 node_paths=PackedStringArray("DataContext", "TargetNode")]
+script = ExtResource("3_rp72t")
+DataContext = NodePath("../../Entity Flags")
+Query = "{mirrored}"
+ValueMappingEnabled = true
+ValueMappings = {
+false: 1.0,
+true: -1.0
+}
+ValueMappingDefault = 1.0
+TargetNode = NodePath("..")
+TargetPropertyName = "scale:x"
+metadata/_custom_type_script = "uid://wbquqef0rnl5"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=508152118]
 shape = SubResource("CircleShape2D_tqw2u")
@@ -38,6 +56,9 @@ shape = SubResource("CircleShape2D_tqw2u")
 script = ExtResource("2_0a575")
 InputAutoConfig = ExtResource("3_nkbs0")
 metadata/_custom_type_script = "uid://ck26gmefod55p"
+
+[node name="Entity Flags" type="Node" parent="." unique_id=1091271910]
+script = ExtResource("5_ejlqc")
 
 [node name="Player Controller" type="Node" parent="." unique_id=845618567]
 script = ExtResource("4_wim6f")

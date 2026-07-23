@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using GDF.Data;
 using GDF.Logical.Signals;
+using GDF.Scenes;
 using GDF.UI;
 using GDF.Util;
 using Godot;
@@ -19,12 +20,17 @@ public partial class ScreenSpawner : Node
 #endif
         ;
     [Export] public SignalStation ConnectSignalStation;
+    [Export]
+    public NodePath RelativeToNode = ".";
+
+    [Export(PropertyHint.Enum, "As Child,As Sibling")]
+    public ISceneToggler.RelativeModeEnum RelativeMode = ISceneToggler.RelativeModeEnum.AsChild;
 
     private readonly List<Screen> _created = new();
 
     public void Trigger()
     {
-        var parent = this;
+        var relativeNode = GetRelativeNode(out var relativeMode);
         
         var screen = Template.GdfInstantiate<Screen>();
         var nodeToEnterTree = screen.ToPlaceholder();
@@ -46,7 +52,15 @@ public partial class ScreenSpawner : Node
         if (!IsInstanceValid(screen) || screen.IsQueuedForDeletion()) return;
         _created.Add(screen);
         
-        parent.AddChild(nodeToEnterTree);
+        switch(RelativeMode)
+        {
+            case ISceneToggler.RelativeModeEnum.AsChild:
+                relativeNode.AddChild(nodeToEnterTree);
+                break;
+            case ISceneToggler.RelativeModeEnum.AsSibling:
+                relativeNode.AddSibling(nodeToEnterTree);
+                break;
+        };
         screen.ShowScreen();
     }
 
@@ -55,9 +69,16 @@ public partial class ScreenSpawner : Node
         if (Context is not IDataContext nodeContext) return null;
         return nodeContext;
     }
+    
+    private Node GetRelativeNode(out ISceneToggler.RelativeModeEnum relativeMode)
+    {
+        relativeMode = RelativeMode;
+        return GetNode(RelativeToNode) ?? this;
+    }
 
     public void CloseAll()
     {
+        if (_created.Count == 0) return;
         foreach (var screen in _created)
         {
             if(IsInstanceValid(screen)) screen.ForceFadeOutScreen();

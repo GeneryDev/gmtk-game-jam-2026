@@ -25,17 +25,33 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
         {
             if (_remainingTime == value) return;
             _remainingTime = value;
+            if (_remainingTime <= 0)
+            {
+                _tickRate = 0;
+            }
             EmitSignalUpdated();
         }
     }
+
     [Export]
-    public float TickRate = 1;
+    public float TickRate
+    {
+        get => _tickRate;
+        set
+        {
+            value = Mathf.Clamp(value, 0.0625f, 64f);
+            if (Math.Abs(value - _tickRate) < 0.0001f) return;
+            _tickRate = value;
+            EmitSignalUpdated();
+        }
+    }
 
     private Accumulator _tickTimer;
 
     private readonly StringBuilder _sb = new();
     private long _remainingTime = 0;
-    
+    private float _tickRate = 1;
+
 
     public string GetFormattedTime()
     {
@@ -72,7 +88,6 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
     {
         EmitSignalTicked();
         TriggerEffects();
-        // EmitSignalUpdated();
     }
 
     public StringName UpdatedSignalName => SignalName.Updated;

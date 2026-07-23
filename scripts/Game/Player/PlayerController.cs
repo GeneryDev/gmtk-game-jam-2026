@@ -21,6 +21,7 @@ public partial class PlayerController : Node
     private int PlayerId => 0;
     private ComponentCache<GdfPlayerInput> _playerInput;
     private ComponentCache<MotionComponent> _motionComponent;
+    private ComponentCache<EntityFlags> _entityFlags;
 
     public bool HasControl()
     {
@@ -38,6 +39,10 @@ public partial class PlayerController : Node
         {
             MoveVector = Vector2.Zero;
             Dashing = false;
+        }
+        if (Mathf.Abs(MoveVector.X) > 0.1f && _entityFlags.Get(this) is { } entityFlags)
+        {
+            entityFlags.Mirrored = MoveVector.X < 0;
         }
         base._Process(delta);
     }

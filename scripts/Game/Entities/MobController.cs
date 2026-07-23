@@ -11,6 +11,7 @@ public partial class MobController : Node
 
     private ComponentCache<MobRandomStroll> _randomStroll;
     private ComponentCache<MotionComponent> _motionComponent;
+    private ComponentCache<EntityFlags> _entityFlags;
 
     public override void _Process(double delta)
     {
@@ -24,6 +25,13 @@ public partial class MobController : Node
         {
             MoveVector = Vector2.Zero;
         }
+
+        if (Mathf.Abs(MoveVector.X) > 0.1f && _entityFlags.Get(this) is { } entityFlags)
+        {
+            entityFlags.Mirrored = MoveVector.X < 0;
+        }
+        
+        
         base._Process(delta);
     }
 

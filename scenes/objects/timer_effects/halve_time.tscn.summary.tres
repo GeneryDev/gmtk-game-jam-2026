@@ -11,5 +11,7 @@ RootNodeProperties = {
 &"Description": "Time ÷ 2",
 &"LogMessage": "Time ÷ 2",
 &"ParticleMessage": "Time ÷ 2",
-&"SpawnWeight": 0.5
+&"SpawnWeight": 2.0,
+&"SpriteId": "positive",
+&"Tags": Array[String]([])
 }

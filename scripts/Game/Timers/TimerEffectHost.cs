@@ -33,7 +33,8 @@ public partial class TimerEffectHost : Node, IDataContext
         _activeEffect = effect.New();
         this.AddChild(_activeEffect);
         _activeEffect.Owner = this.Owner;
-        TestRandomColor();
+        if (_activeEffect.SpriteId != "trivial")
+            TestRandomColor();
     }
 
     private void TestRandomColor()

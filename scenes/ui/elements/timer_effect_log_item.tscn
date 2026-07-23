@@ -2,7 +2,12 @@
 
 [ext_resource type="Script" uid="uid://k8suh3w0dagg" path="res://addons/gdf-godot/GDF/Data/InjectedDataContext.cs" id="1_smqf3"]
 [ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="2_k5hel"]
+[ext_resource type="Script" uid="uid://iir4w637gc2k" path="res://addons/gdf-godot/GDF/UI/LabelAutoFontSize.cs" id="3_k5e5j"]
 [ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="3_k5hel"]
+
+[sub_resource type="Resource" id="Resource_raqvg"]
+script = ExtResource("3_k5e5j")
+metadata/_custom_type_script = "uid://iir4w637gc2k"
 
 [sub_resource type="Animation" id="Animation_ne7ms"]
 length = 0.001
@@ -97,6 +102,8 @@ fit_content = true
 script = ExtResource("2_k5hel")
 TextFormat = "{message}"
 DataContext = NodePath("../../Message Context")
+UsePostProcessing = true
+PostProcessors = [SubResource("Resource_raqvg")]
 metadata/_custom_type_script = "uid://dxkaapm2dks2e"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1490924595]
