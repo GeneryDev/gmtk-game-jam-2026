@@ -32,6 +32,7 @@ public partial class MobSpawner : Node
     public void Spawn()
     {
         var instance = MobBuilder.NewMob();
+        instance.AddToGroup("All Mobs");
         GetParent().AddChild(instance);
     }
 }
