@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="MobType" format=3 uid="uid://bqt1ojoblyxyy"]
 
-[ext_resource type="PackedScene" uid="uid://b1keuhdktxy22" path="res://scenes/objects/player/mobs/mob_medium.tscn" id="1_6ihkj"]
+[ext_resource type="PackedScene" uid="uid://b1keuhdktxy22" path="res://scenes/objects/mobs/mob_medium.tscn" id="1_6ihkj"]
 [ext_resource type="Script" uid="uid://b2ptdu2sn1kv7" path="res://scripts/Game/Entities/MobType.cs" id="2_mn8vo"]
 
 [resource]

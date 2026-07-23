@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b1keuhdktxy22"]
 
-[ext_resource type="PackedScene" uid="uid://birvp7rww3wl2" path="res://scenes/objects/player/mobs/mob_base.tscn" id="1_b86pc"]
+[ext_resource type="PackedScene" uid="uid://birvp7rww3wl2" path="res://scenes/objects/mobs/mob_base.tscn" id="1_b86pc"]
 [ext_resource type="Script" uid="uid://dw511m5bve5pm" path="res://scripts/Game/Entities/MobColor.cs" id="2_yuxun"]
 [ext_resource type="Script" uid="uid://cy0jt8nc5kr3b" path="res://scripts/Game/Entities/MobRandomStrollGoal.cs" id="3_4q8y5"]
 

@@ -1,19 +1,19 @@
 [gd_scene format=3 uid="uid://birvp7rww3wl2"]
 
-[ext_resource type="Script" uid="uid://56fvy6sd714g" path="res://addons/gdf-godot/GDF/Composition/ComponentIndex.cs" id="1_dd8dt"]
-[ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="3_kat3x"]
-[ext_resource type="Script" uid="uid://dmhldnch5rsyx" path="res://scripts/Game/Entities/EntityFlags.cs" id="6_lrv26"]
-[ext_resource type="Script" uid="uid://co3d12m3ihdwj" path="res://scripts/Game/Entities/MobController.cs" id="8_dig0y"]
-[ext_resource type="Script" uid="uid://ds1xannxtoxqn" path="res://scripts/Game/Entities/EntityDrag.cs" id="9_tpcys"]
-[ext_resource type="Script" uid="uid://bfx0gcgwji8m0" path="res://scripts/Game/Entities/MotionComponent.cs" id="10_mdkp0"]
-[ext_resource type="Script" uid="uid://du06k8gwkwajk" path="res://scripts/Game/Entities/DamageableComponent.cs" id="11_qf6k4"]
-[ext_resource type="Script" uid="uid://bhfpc3sve7mxh" path="res://scripts/Game/Timers/TimerEffectHost.cs" id="12_6t16v"]
-[ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="13_sycpo"]
-[ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="14_wkk4q"]
-[ext_resource type="Texture2D" uid="uid://br88hwvbf6ddl" path="res://assets/textures/sprites/mob_trivial.png" id="17_1787t"]
-[ext_resource type="Script" uid="uid://csxjam05y7w8k" path="res://addons/gdf-godot/GDF/UI/ControlStateContext.cs" id="18_wcmh3"]
-[ext_resource type="Script" uid="uid://b6sb42qs0fsp1" path="res://scripts/Game/Util/ScreenSpawner.cs" id="19_cv3cl"]
-[ext_resource type="PackedScene" uid="uid://dkf1riu3oh521" path="res://scenes/ui/screens/mob_tooltip.tscn" id="20_qduyt"]
+[ext_resource type="Script" uid="uid://56fvy6sd714g" path="res://addons/gdf-godot/GDF/Composition/ComponentIndex.cs" id="1_1fa5o"]
+[ext_resource type="Texture2D" uid="uid://br88hwvbf6ddl" path="res://assets/textures/sprites/mob_trivial.png" id="2_y4u25"]
+[ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="3_1an03"]
+[ext_resource type="Script" uid="uid://dmhldnch5rsyx" path="res://scripts/Game/Entities/EntityFlags.cs" id="4_hx6kq"]
+[ext_resource type="Script" uid="uid://co3d12m3ihdwj" path="res://scripts/Game/Entities/MobController.cs" id="5_t5ssb"]
+[ext_resource type="Script" uid="uid://ds1xannxtoxqn" path="res://scripts/Game/Entities/EntityDrag.cs" id="6_r388d"]
+[ext_resource type="Script" uid="uid://bfx0gcgwji8m0" path="res://scripts/Game/Entities/MotionComponent.cs" id="7_c0i0d"]
+[ext_resource type="Script" uid="uid://du06k8gwkwajk" path="res://scripts/Game/Entities/DamageableComponent.cs" id="8_bnim1"]
+[ext_resource type="Script" uid="uid://bhfpc3sve7mxh" path="res://scripts/Game/Timers/TimerEffectHost.cs" id="9_d6eh5"]
+[ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="10_5km6i"]
+[ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="11_sehlk"]
+[ext_resource type="Script" uid="uid://csxjam05y7w8k" path="res://addons/gdf-godot/GDF/UI/ControlStateContext.cs" id="12_fstnm"]
+[ext_resource type="Script" uid="uid://b6sb42qs0fsp1" path="res://scripts/Game/Util/ScreenSpawner.cs" id="13_m0y3u"]
+[ext_resource type="PackedScene" uid="uid://dkf1riu3oh521" path="res://scenes/ui/screens/mob_tooltip.tscn" id="14_0f8rm"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_7nx1l"]
 size = Vector2(60, -60)
@@ -174,7 +174,7 @@ collision_layer = 10
 collision_mask = 3
 
 [node name="ComponentIndex" type="Node" parent="." unique_id=1468369688 node_paths=PackedStringArray("ComponentOwner", "OtherComponentContainers")]
-script = ExtResource("1_dd8dt")
+script = ExtResource("1_1fa5o")
 ComponentOwner = NodePath("..")
 OtherComponentContainers = [NodePath("../Goals")]
 metadata/_custom_type_script = "uid://56fvy6sd714g"
@@ -183,10 +183,10 @@ metadata/_custom_type_script = "uid://56fvy6sd714g"
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Visuals" unique_id=1784942333]
 mesh = SubResource("QuadMesh_7nx1l")
-texture = ExtResource("17_1787t")
+texture = ExtResource("2_y4u25")
 
 [node name="x Binding" type="Node" parent="Visuals" unique_id=355033470 node_paths=PackedStringArray("DataContext", "TargetNode")]
-script = ExtResource("3_kat3x")
+script = ExtResource("3_1an03")
 DataContext = NodePath("../../Entity Flags")
 Query = "{mirrored}"
 ValueMappingEnabled = true
@@ -209,32 +209,32 @@ mesh = SubResource("QuadMesh_7nx1l")
 shape = SubResource("CircleShape2D_tqw2u")
 
 [node name="Entity Flags" type="Node" parent="." unique_id=925536659]
-script = ExtResource("6_lrv26")
+script = ExtResource("4_hx6kq")
 
 [node name="Goals" type="Node" parent="." unique_id=721629563]
 
 [node name="Mob Controller" type="Node" parent="." unique_id=672885255]
-script = ExtResource("8_dig0y")
+script = ExtResource("5_t5ssb")
 
 [node name="Drag" type="Node" parent="." unique_id=1030416559]
-script = ExtResource("9_tpcys")
+script = ExtResource("6_r388d")
 Drag = 5.0
 
 [node name="Motion Component" type="Node" parent="." unique_id=851220878 node_paths=PackedStringArray("Body")]
-script = ExtResource("10_mdkp0")
+script = ExtResource("7_c0i0d")
 Body = NodePath("..")
 
 [node name="Damageable" type="Node" parent="." unique_id=893346049]
-script = ExtResource("11_qf6k4")
+script = ExtResource("8_bnim1")
 
 [node name="Timer Effect Host" type="Node" parent="." unique_id=967788250]
-script = ExtResource("12_6t16v")
+script = ExtResource("9_d6eh5")
 
 [node name="Action Animations" type="AnimationPlayer" parent="." unique_id=1997820663]
 libraries/ = SubResource("AnimationLibrary_7pevb")
 
 [node name="Play trigger" type="Node" parent="Action Animations" unique_id=646026953]
-script = ExtResource("13_sycpo")
+script = ExtResource("10_5km6i")
 AnimationName = &"trigger"
 Restart = true
 Deferred = true
@@ -245,7 +245,7 @@ metadata/_custom_type_script = "uid://dukfxpmahaflv"
 libraries/ = SubResource("AnimationLibrary_5mw3m")
 
 [node name="Play hurt" type="Node" parent="Damage Animations" unique_id=434073282]
-script = ExtResource("13_sycpo")
+script = ExtResource("10_5km6i")
 AnimationName = &"hurt"
 Restart = true
 metadata/_custom_type_script = "uid://dukfxpmahaflv"
@@ -277,7 +277,7 @@ mouse_filter = 2
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("14_wkk4q")
+script = ExtResource("11_sehlk")
 TextFormat = "{last_triggered_effect.particle_message}"
 DataContext = NodePath("../../Timer Effect Host")
 metadata/_custom_type_script = "uid://dxkaapm2dks2e"
@@ -305,12 +305,12 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="Hover Context" type="Node" parent="Control/Hover Sensor" unique_id=965090830]
-script = ExtResource("18_wcmh3")
+script = ExtResource("12_fstnm")
 TrackedStates = 1
 metadata/_custom_type_script = "uid://csxjam05y7w8k"
 
 [node name="On Hover" type="Node" parent="Control/Hover Sensor/Hover Context" unique_id=2094670186 node_paths=PackedStringArray("DataContext")]
-script = ExtResource("3_kat3x")
+script = ExtResource("3_1an03")
 DataContext = NodePath("..")
 Query = "{is_hovered}"
 SendBooleanEvaluationSignals = true
@@ -332,7 +332,7 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="Visibility Binding" type="Node" parent="Control/Hover Sensor/Extra Range" unique_id=1862352378 node_paths=PackedStringArray("DataContext", "TargetNode")]
-script = ExtResource("3_kat3x")
+script = ExtResource("3_1an03")
 DataContext = NodePath("../../Hover Context")
 Query = "{is_hovered}"
 TargetNode = NodePath("..")
@@ -340,8 +340,8 @@ TargetPropertyName = "visible"
 metadata/_custom_type_script = "uid://wbquqef0rnl5"
 
 [node name="ScreenSpawner" type="Node" parent="Control" unique_id=654039222 node_paths=PackedStringArray("Context")]
-script = ExtResource("19_cv3cl")
-Template = ExtResource("20_qduyt")
+script = ExtResource("13_m0y3u")
+Template = ExtResource("14_0f8rm")
 Context = NodePath("../../Timer Effect Host")
 DataContextsBySlot = Dictionary[StringName, NodePath]({
 &"damageable": NodePath("../../Damageable")
