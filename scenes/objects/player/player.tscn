@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://bfx0gcgwji8m0" path="res://scripts/Game/Entities/MotionComponent.cs" id="8_bdcal"]
 [ext_resource type="Script" uid="uid://ds1xannxtoxqn" path="res://scripts/Game/Entities/EntityDrag.cs" id="9_ponut"]
 [ext_resource type="PackedScene" uid="uid://bmaxqgjfg46ic" path="res://scenes/objects/attacks/hitscan_attack.tscn" id="9_vwou5"]
+[ext_resource type="Script" uid="uid://bhc8xj1hoddjw" path="res://scripts/Game/Player/WalkingEffect.cs" id="15_g65c7"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_7nx1l"]
 size = Vector2(60, -60)
@@ -21,7 +22,17 @@ size = Vector2(60, -60)
 [sub_resource type="CircleShape2D" id="CircleShape2D_tqw2u"]
 radius = 20.0
 
+[sub_resource type="Curve" id="Curve_tofx1"]
+_data = [Vector2(0.19491526, 0.18584073), 0.0, -0.19191584, 0, 0, Vector2(0.9237288, 0.88495576), -0.139233, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_tofx1"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.34236455, 0.76600987, 1)
+colors = PackedColorArray(0.44445667, 0.44445667, 0.44445664, 1, 0.3261841, 0.32618397, 0.32618392, 1, 0.12941177, 0.12941177, 0.12941177, 0.6784314, 0.015686275, 0.015686275, 0.015686275, 0.34509805)
+
 [node name="Player" type="CharacterBody2D" unique_id=63413937 groups=["player_character"]]
+z_index = 1
 collision_layer = 6
 
 [node name="ComponentIndex" type="Node" parent="." unique_id=1468369688 node_paths=PackedStringArray("ComponentOwner")]
@@ -78,3 +89,24 @@ Drag = 5.0
 [node name="Motion Component" type="Node" parent="." unique_id=851220878 node_paths=PackedStringArray("Body")]
 script = ExtResource("8_bdcal")
 Body = NodePath("..")
+
+[node name="WalkingEffect" type="Node" parent="." unique_id=1508963850 node_paths=PackedStringArray("leftFootParticles", "rightFootParticles", "body")]
+script = ExtResource("15_g65c7")
+leftFootParticles = NodePath("../WalkParticleLeft")
+rightFootParticles = NodePath("")
+body = NodePath("..")
+
+[node name="WalkParticleLeft" type="CPUParticles2D" parent="." unique_id=1040265920]
+visibility_layer = 4
+z_index = -1
+position = Vector2(0, 23)
+amount = 4
+lifetime = 0.4
+draw_order = 1
+gravity = Vector2(0, -40)
+angle_min = -131.4
+angle_max = 148.6
+scale_amount_min = 7.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_tofx1")
+color_ramp = SubResource("Gradient_tofx1")
