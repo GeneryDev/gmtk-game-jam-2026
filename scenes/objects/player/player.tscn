@@ -36,7 +36,6 @@ offsets = PackedFloat32Array(0, 0.34236455, 0.76600987, 1)
 colors = PackedColorArray(0.44445667, 0.44445667, 0.44445664, 1, 0.3261841, 0.32618397, 0.32618392, 1, 0.12941177, 0.12941177, 0.12941177, 0.6784314, 0.015686275, 0.015686275, 0.015686275, 0.34509805)
 
 [node name="Player" type="CharacterBody2D" unique_id=63413937 groups=["player_character"]]
-z_index = 1
 collision_layer = 6
 collision_mask = 5
 
