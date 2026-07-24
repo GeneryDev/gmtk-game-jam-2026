@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b1npuhks53dtv" path="res://assets/textures/sprites/player.png" id="2_qfccq"]
 [ext_resource type="Resource" uid="uid://cubdq0rio3s24" path="res://resources/input_auto_configs/character_control.tres" id="3_nkbs0"]
 [ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="3_rp72t"]
+[ext_resource type="Script" uid="uid://t054pq8o3tmj" path="res://scripts/Game/Util/YSorted.cs" id="4_jxhie"]
 [ext_resource type="Script" uid="uid://cr6edqb2hjfrb" path="res://scripts/Game/Player/PlayerController.cs" id="4_wim6f"]
 [ext_resource type="Script" uid="uid://dmhldnch5rsyx" path="res://scripts/Game/Entities/EntityFlags.cs" id="5_ejlqc"]
 [ext_resource type="Resource" uid="uid://20hjbwrgl572" path="res://resources/input_actions/move.tres" id="5_gmdvr"]
@@ -23,9 +24,6 @@
 [sub_resource type="QuadMesh" id="QuadMesh_7nx1l"]
 size = Vector2(60, -60)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tqw2u"]
-radius = 20.0
-
 [sub_resource type="Curve" id="Curve_tofx1"]
 _data = [Vector2(0.19491526, 0.18584073), 0.0, -0.19191584, 0, 0, Vector2(0.9237288, 0.88495576), -0.139233, 0.0, 0, 0]
 point_count = 2
@@ -35,8 +33,13 @@ interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.34236455, 0.76600987, 1)
 colors = PackedColorArray(0.44445667, 0.44445667, 0.44445664, 1, 0.3261841, 0.32618397, 0.32618392, 1, 0.12941177, 0.12941177, 0.12941177, 0.6784314, 0.015686275, 0.015686275, 0.015686275, 0.34509805)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tqw2u"]
+size = Vector2(40, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tqw2u"]
+radius = 20.0
+
 [node name="Player" type="CharacterBody2D" unique_id=63413937 groups=["player_character"]]
-z_index = 1
 collision_layer = 6
 collision_mask = 5
 
@@ -45,13 +48,16 @@ script = ExtResource("1_1bf4k")
 ComponentOwner = NodePath("..")
 metadata/_custom_type_script = "uid://56fvy6sd714g"
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1784942333]
+[node name="Visuals" type="CanvasGroup" parent="." unique_id=708970617]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Visuals" unique_id=1784942333]
+position = Vector2(0, -24)
 mesh = SubResource("QuadMesh_7nx1l")
 texture = ExtResource("2_qfccq")
 
-[node name="x Binding" type="Node" parent="MeshInstance2D" unique_id=792484423 node_paths=PackedStringArray("DataContext", "TargetNode")]
+[node name="x Binding" type="Node" parent="Visuals/MeshInstance2D" unique_id=792484423 node_paths=PackedStringArray("DataContext", "TargetNode")]
 script = ExtResource("3_rp72t")
-DataContext = NodePath("../../Entity Flags")
+DataContext = NodePath("../../../Entity Flags")
 Query = "{mirrored}"
 ValueMappingEnabled = true
 ValueMappings = {
@@ -63,11 +69,44 @@ TargetNode = NodePath("..")
 TargetPropertyName = "scale:x"
 metadata/_custom_type_script = "uid://wbquqef0rnl5"
 
+[node name="YSorted" type="Node" parent="Visuals" unique_id=539187292]
+script = ExtResource("4_jxhie")
+metadata/_custom_type_script = "uid://t054pq8o3tmj"
+
+[node name="WalkParticleLeft" type="CPUParticles2D" parent="Visuals" unique_id=1040265920]
+visibility_layer = 4
+z_index = -1
+position = Vector2(0, -1)
+amount = 4
+lifetime = 0.4
+draw_order = 1
+gravity = Vector2(0, -40)
+angle_min = -131.4
+angle_max = 148.6
+scale_amount_min = 7.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_tofx1")
+color_ramp = SubResource("Gradient_tofx1")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=508152118]
-shape = SubResource("CircleShape2D_tqw2u")
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_tqw2u")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=262534271]
+process_priority = 10
+process_physics_priority = 10
+position = Vector2(0, -24)
 zoom = Vector2(0.8, 0.8)
+process_callback = 0
+position_smoothing_enabled = true
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1385734560]
+collision_layer = 96
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=466588297]
+position = Vector2(0, -24)
+shape = SubResource("CircleShape2D_tqw2u")
 
 [node name="GdfPlayerInput" type="Node" parent="." unique_id=1688983007]
 script = ExtResource("2_0a575")
@@ -107,20 +146,5 @@ Body = NodePath("..")
 
 [node name="WalkingEffect" type="Node" parent="." unique_id=1508963850 node_paths=PackedStringArray("leftFootParticles", "body")]
 script = ExtResource("15_g65c7")
-leftFootParticles = NodePath("../WalkParticleLeft")
+leftFootParticles = NodePath("../Visuals/WalkParticleLeft")
 body = NodePath("..")
-
-[node name="WalkParticleLeft" type="CPUParticles2D" parent="." unique_id=1040265920]
-visibility_layer = 4
-z_index = -1
-position = Vector2(0, 23)
-amount = 4
-lifetime = 0.4
-draw_order = 1
-gravity = Vector2(0, -40)
-angle_min = -131.4
-angle_max = 148.6
-scale_amount_min = 7.0
-scale_amount_max = 10.0
-scale_amount_curve = SubResource("Curve_tofx1")
-color_ramp = SubResource("Gradient_tofx1")

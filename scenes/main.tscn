@@ -4,12 +4,15 @@
 [ext_resource type="Script" uid="uid://otkyb0o8ega" path="res://scripts/Game/Timers/GameTimer.cs" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://l7vx1ppodn0d" path="res://scenes/objects/player/player.tscn" id="2_0wfyh"]
 [ext_resource type="Script" uid="uid://byv3tqb16h6mr" path="res://scripts/Game/Timers/TimerEffectLog.cs" id="2_tbgi4"]
+[ext_resource type="Script" uid="uid://c10onshnx3jmp" path="res://scripts/Game/Util/YSortSystem.cs" id="3_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://bs7ti064ojarj" path="res://scenes/ui/screens/pausable.tscn" id="4_85g3d"]
 [ext_resource type="Script" uid="uid://dux7ids7mjj4q" path="res://scripts/Game/MobSpawner.cs" id="4_tbgi4"]
+[ext_resource type="Script" uid="uid://3qnog7e3rmn2" path="res://scripts/Game/Util/CanvasLayerParented.cs" id="5_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://bgink1y3to7s4" path="res://scenes/objects/level/timer_effect_log_on_wall.tscn" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="7_choun"]
 [ext_resource type="PackedScene" uid="uid://iga4ll57v2o0" path="res://scenes/objects/level/timer_display.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://b3hl1vuham125" path="res://scenes/objects/level/speed_display.tscn" id="8_tipki"]
+[ext_resource type="Script" uid="uid://t054pq8o3tmj" path="res://scripts/Game/Util/YSorted.cs" id="13_trceg"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tqw2u"]
 
@@ -77,74 +80,93 @@ metadata/_custom_type_script = "uid://otkyb0o8ega"
 script = ExtResource("2_tbgi4")
 MaxItems = 8
 
+[node name="YSortSystem" type="Node" parent="." unique_id=1806549303]
+script = ExtResource("3_eb6dy")
+
 [node name="HUD" parent="." unique_id=1168699841 instance=ExtResource("1_0wfyh")]
 
 [node name="Pausable" parent="." unique_id=1617093545 instance=ExtResource("4_85g3d")]
 
 [node name="Node2D" type="Node2D" parent="." unique_id=180755502]
 
-[node name="Level Collision" type="StaticBody2D" parent="Node2D" unique_id=205019352]
-z_index = -1
+[node name="Background Layer" type="CanvasLayer" parent="Node2D" unique_id=904160265]
+layer = -10
+follow_viewport_enabled = true
+script = ExtResource("5_ya4ey")
+metadata/_custom_type_script = "uid://3qnog7e3rmn2"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Level Collision" unique_id=846555294]
+[node name="Level Collision" type="StaticBody2D" parent="Node2D/Background Layer" unique_id=205019352]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Background Layer/Level Collision" unique_id=846555294]
 position = Vector2(0, -300)
 rotation = -3.1415927
 shape = SubResource("WorldBoundaryShape2D_tqw2u")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/Level Collision" unique_id=105512497]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/Background Layer/Level Collision" unique_id=105512497]
 position = Vector2(0, 300)
 rotation = -6.2831855
 shape = SubResource("WorldBoundaryShape2D_tqw2u")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D/Level Collision" unique_id=1071272620]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D/Background Layer/Level Collision" unique_id=1071272620]
 position = Vector2(500, 0)
 rotation = -1.5707964
 shape = SubResource("WorldBoundaryShape2D_tqw2u")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Node2D/Level Collision" unique_id=1851544454]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Node2D/Background Layer/Level Collision" unique_id=1851544454]
 position = Vector2(-500, 0)
 rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_tqw2u")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Node2D/Level Collision" unique_id=798400009]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Node2D/Background Layer/Level Collision" unique_id=798400009]
 modulate = Color(0.14767182, 0.14767179, 0.14767179, 1)
 mesh = SubResource("QuadMesh_tqw2u")
 
-[node name="Player" parent="Node2D" unique_id=665418691 instance=ExtResource("2_0wfyh")]
+[node name="Foreground Layer" type="CanvasLayer" parent="Node2D" unique_id=405655397]
+layer = -9
+follow_viewport_enabled = true
+script = ExtResource("5_ya4ey")
+metadata/_custom_type_script = "uid://3qnog7e3rmn2"
 
-[node name="Mob Spawner" type="Node" parent="Node2D" unique_id=1037427461]
+[node name="Player" parent="Node2D/Foreground Layer" unique_id=665418691 instance=ExtResource("2_0wfyh")]
+
+[node name="Mob Spawner" type="Node" parent="Node2D/Foreground Layer" unique_id=1037427461]
 script = ExtResource("4_tbgi4")
 StartAmount = 10
 SpawnInterval = 3.0
 
-[node name="Timer" type="Timer" parent="Node2D/Mob Spawner" unique_id=346712547]
+[node name="Timer" type="Timer" parent="Node2D/Foreground Layer/Mob Spawner" unique_id=346712547]
 process_callback = 0
 wait_time = 20.0
 autostart = true
 
-[node name="Waves" type="AnimationPlayer" parent="Node2D/Mob Spawner" unique_id=1296032785]
+[node name="Waves" type="AnimationPlayer" parent="Node2D/Foreground Layer/Mob Spawner" unique_id=1296032785]
 callback_mode_process = 0
 libraries/ = SubResource("AnimationLibrary_choun")
 
-[node name="Play burst_10" type="Node" parent="Node2D/Mob Spawner/Waves" unique_id=1641880258]
+[node name="Play burst_10" type="Node" parent="Node2D/Foreground Layer/Mob Spawner/Waves" unique_id=1641880258]
 script = ExtResource("7_choun")
 AnimationName = &"burst_10"
 FromAnimationList = []
 metadata/_custom_type_script = "uid://dukfxpmahaflv"
 
-[node name="Timer Effect Log" parent="Node2D" unique_id=358342731 instance=ExtResource("6_tefeu")]
-position = Vector2(-387, -185)
-skew = -0.3926991
+[node name="Timer Effect Log" parent="Node2D/Foreground Layer" unique_id=358342731 instance=ExtResource("6_tefeu")]
+position = Vector2(-387, -75)
+skew = -0.39269924
 
-[node name="Timer Display" parent="Node2D" unique_id=1766795991 instance=ExtResource("7_o6xl0")]
-position = Vector2(0, -361)
+[node name="Timer Display" parent="Node2D/Foreground Layer" unique_id=1766795991 instance=ExtResource("7_o6xl0")]
+position = Vector2(0, -311)
 
-[node name="Node2D" type="Node2D" parent="Node2D" unique_id=2136043049]
-position = Vector2(436, -247)
+[node name="Node2D" type="Node2D" parent="Node2D/Foreground Layer" unique_id=2136043049]
+position = Vector2(435.99997, -223)
 rotation = -1.5707964
 skew = 0.35953784
 
-[node name="Speed Display" parent="Node2D/Node2D" unique_id=73703978 instance=ExtResource("8_tipki")]
+[node name="Speed Display" parent="Node2D/Foreground Layer/Node2D" unique_id=73703978 instance=ExtResource("8_tipki")]
+position = Vector2(29.624125, -1.0683067)
 rotation = 1.5707964
 
-[connection signal="timeout" from="Node2D/Mob Spawner/Timer" to="Node2D/Mob Spawner/Waves/Play burst_10" method="Trigger"]
+[node name="YSorted" type="Node" parent="Node2D/Foreground Layer/Node2D" unique_id=468476220]
+script = ExtResource("13_trceg")
+metadata/_custom_type_script = "uid://t054pq8o3tmj"
+
+[connection signal="timeout" from="Node2D/Foreground Layer/Mob Spawner/Timer" to="Node2D/Foreground Layer/Mob Spawner/Waves/Play burst_10" method="Trigger"]

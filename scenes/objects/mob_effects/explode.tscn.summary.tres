@@ -24,6 +24,6 @@ RootNodeProperties = {
 &"LogMessage": "",
 &"ParticleMessage": "Explode",
 &"SpawnCondition": SubResource("Resource_5u0aj"),
-&"SpawnWeight": 2.0,
-&"Tags": Array[String](["mob", "explosion"])
+&"SpawnWeight": 6.0,
+&"Tags": Array[String](["mob", "predator", "explosion"])
 }

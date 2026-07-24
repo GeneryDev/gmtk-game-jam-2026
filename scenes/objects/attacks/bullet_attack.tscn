@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="2_oh78d"]
 [ext_resource type="Script" uid="uid://cd3ua188ba80t" path="res://scripts/Game/Player/AttackFunctions.cs" id="3_6neqo"]
 [ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="3_oh78d"]
+[ext_resource type="Script" uid="uid://eribg7y4pkkf" path="res://addons/gdf-godot/GDF/Logical/Diode.cs" id="6_44pwh"]
+[ext_resource type="Script" uid="uid://t054pq8o3tmj" path="res://scripts/Game/Util/YSorted.cs" id="8_vqb76"]
 
 [sub_resource type="Animation" id="Animation_3h4tt"]
 length = 0.001
@@ -111,10 +113,10 @@ _data = {
 &"hit": SubResource("Animation_6neqo")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_6w2wd"]
+
 [sub_resource type="QuadMesh" id="QuadMesh_6w2wd"]
 size = Vector2(20, 20)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_6w2wd"]
 
 [node name="BulletAttack" type="Node" unique_id=1282109577]
 script = ExtResource("1_6neqo")
@@ -157,7 +159,6 @@ metadata/_custom_type_script = "uid://wbquqef0rnl5"
 
 [node name="RigidBody2D" type="RigidBody2D" parent="Origin" unique_id=799625923]
 collision_layer = 0
-collision_mask = 9
 gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 4
@@ -171,6 +172,18 @@ TargetPropertyName = "linear_velocity"
 ThrottleUpdate = false
 metadata/_custom_type_script = "uid://wbquqef0rnl5"
 
+[node name="Hit" type="Node" parent="Origin/RigidBody2D" unique_id=307357215]
+script = ExtResource("6_44pwh")
+metadata/_custom_type_script = "uid://eribg7y4pkkf"
+
+[node name="Hurtbox" type="Area2D" parent="Origin/RigidBody2D" unique_id=1907712380]
+collision_layer = 0
+collision_mask = 128
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Origin/RigidBody2D/Hurtbox" unique_id=2107172607]
+shape = SubResource("CircleShape2D_6w2wd")
+
 [node name="AttackFunctions" type="Node" parent="Origin/RigidBody2D" unique_id=207897347]
 script = ExtResource("3_6neqo")
 
@@ -180,5 +193,13 @@ mesh = SubResource("QuadMesh_6w2wd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Origin/RigidBody2D" unique_id=1293275946]
 shape = SubResource("CircleShape2D_6w2wd")
 
-[connection signal="body_entered" from="Origin/RigidBody2D" to="Origin/RigidBody2D/AttackFunctions" method="Hurt"]
-[connection signal="body_entered" from="Origin/RigidBody2D" to="AnimationPlayer/Play hit" method="Trigger" flags=3 unbinds=1]
+[node name="YSorted" type="Node" parent="Origin/RigidBody2D" unique_id=1028569267]
+script = ExtResource("8_vqb76")
+metadata/_custom_type_script = "uid://t054pq8o3tmj"
+
+[connection signal="body_entered" from="Origin/RigidBody2D" to="Origin/RigidBody2D/Hit" method="Trigger" flags=3 unbinds=1]
+[connection signal="Triggered" from="Origin/RigidBody2D/Hit" to="AnimationPlayer/Play hit" method="Trigger" flags=7]
+[connection signal="area_entered" from="Origin/RigidBody2D/Hurtbox" to="Origin/RigidBody2D/AttackFunctions" method="Hurt"]
+[connection signal="area_entered" from="Origin/RigidBody2D/Hurtbox" to="Origin/RigidBody2D/Hit" method="Trigger" unbinds=1]
+[connection signal="body_entered" from="Origin/RigidBody2D/Hurtbox" to="Origin/RigidBody2D/AttackFunctions" method="Hurt"]
+[connection signal="body_entered" from="Origin/RigidBody2D/Hurtbox" to="Origin/RigidBody2D/Hit" method="Trigger" unbinds=1]

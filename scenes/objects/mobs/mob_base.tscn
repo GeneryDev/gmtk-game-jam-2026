@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="3_1an03"]
 [ext_resource type="Script" uid="uid://dvnqkwg5xysf2" path="res://scripts/Game/Entities/EntityContext.cs" id="4_1an03"]
 [ext_resource type="Script" uid="uid://dmhldnch5rsyx" path="res://scripts/Game/Entities/EntityFlags.cs" id="4_hx6kq"]
+[ext_resource type="Script" uid="uid://t054pq8o3tmj" path="res://scripts/Game/Util/YSorted.cs" id="4_r388d"]
 [ext_resource type="Script" uid="uid://co3d12m3ihdwj" path="res://scripts/Game/Entities/MobController.cs" id="5_t5ssb"]
 [ext_resource type="Script" uid="uid://ds1xannxtoxqn" path="res://scripts/Game/Entities/EntityDrag.cs" id="6_r388d"]
 [ext_resource type="Script" uid="uid://bfx0gcgwji8m0" path="res://scripts/Game/Entities/MotionComponent.cs" id="7_c0i0d"]
@@ -16,6 +17,7 @@
 [ext_resource type="Script" uid="uid://oliucmlr4xel" path="res://addons/gdf-godot/GDF/Logical/Signals/SignalPortOutbound.cs" id="13_hx6kq"]
 [ext_resource type="Script" uid="uid://b6sb42qs0fsp1" path="res://scripts/Game/Util/ScreenSpawner.cs" id="13_m0y3u"]
 [ext_resource type="PackedScene" uid="uid://dkf1riu3oh521" path="res://scenes/ui/screens/mob_tooltip.tscn" id="14_0f8rm"]
+[ext_resource type="Script" uid="uid://3qnog7e3rmn2" path="res://scripts/Game/Util/CanvasLayerParented.cs" id="14_t5ssb"]
 [ext_resource type="Script" uid="uid://k88c5byfcni6" path="res://addons/gdf-godot/GDF/Logical/Signals/SignalStation.cs" id="16_hx6kq"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_7nx1l"]
@@ -23,6 +25,9 @@ size = Vector2(60, -60)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tqw2u"]
 blend_mode = 4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r388d"]
+size = Vector2(48, 18)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tqw2u"]
 radius = 20.0
@@ -44,7 +49,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Particle:modulate")
+tracks/1/path = NodePath("CanvasLayer/Particle:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -56,7 +61,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Particle:offset_transform_position")
+tracks/2/path = NodePath("CanvasLayer/Particle:offset_transform_position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -68,7 +73,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Particle:offset_transform_scale")
+tracks/3/path = NodePath("CanvasLayer/Particle:offset_transform_scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -96,7 +101,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Particle:modulate")
+tracks/1/path = NodePath("CanvasLayer/Particle:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -108,7 +113,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Particle:offset_transform_position")
+tracks/2/path = NodePath("CanvasLayer/Particle:offset_transform_position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -120,7 +125,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Particle:offset_transform_scale")
+tracks/3/path = NodePath("CanvasLayer/Particle:offset_transform_scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -185,6 +190,7 @@ metadata/_custom_type_script = "uid://56fvy6sd714g"
 [node name="Visuals" type="CanvasGroup" parent="." unique_id=37646152]
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Visuals" unique_id=1784942333]
+position = Vector2(0, -24)
 mesh = SubResource("QuadMesh_7nx1l")
 texture = ExtResource("2_y4u25")
 
@@ -206,9 +212,23 @@ metadata/_custom_type_script = "uid://wbquqef0rnl5"
 modulate = Color(0.82605994, 0.82606006, 0.8260599, 1)
 self_modulate = Color(0, 0, 0, 0)
 material = SubResource("CanvasItemMaterial_tqw2u")
+position = Vector2(0, -24)
 mesh = SubResource("QuadMesh_7nx1l")
 
+[node name="YSorted" type="Node" parent="Visuals" unique_id=486672796]
+script = ExtResource("4_r388d")
+metadata/_custom_type_script = "uid://t054pq8o3tmj"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=508152118]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_r388d")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=2034485455]
+collision_layer = 160
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=247272684]
+position = Vector2(0, -24)
 shape = SubResource("CircleShape2D_tqw2u")
 
 [node name="Entity Context" type="Node" parent="." unique_id=1667695090]
@@ -265,17 +285,23 @@ metadata/_custom_type_script = "uid://k88c5byfcni6"
 script = ExtResource("13_hx6kq")
 metadata/_custom_type_script = "uid://oliucmlr4xel"
 
-[node name="Particle" type="Control" parent="." unique_id=1729297614]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1854369216]
+layer = 2
+follow_viewport_enabled = true
+script = ExtResource("14_t5ssb")
+metadata/_custom_type_script = "uid://3qnog7e3rmn2"
+
+[node name="Particle" type="Control" parent="CanvasLayer" unique_id=1729297614]
 modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 3
 anchors_preset = 0
-offset_top = -41.0
-offset_bottom = -41.0
+offset_top = -65.0
+offset_bottom = -65.0
 offset_transform_enabled = true
 mouse_filter = 2
 
-[node name="FormattedLabel" type="RichTextLabel" parent="Particle" unique_id=750574623 node_paths=PackedStringArray("DataContext")]
+[node name="FormattedLabel" type="RichTextLabel" parent="CanvasLayer/Particle" unique_id=750574623 node_paths=PackedStringArray("DataContext")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -294,16 +320,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("11_sehlk")
 TextFormat = "{last_triggered_effect.particle_message}"
-DataContext = NodePath("../../Timer Effect Host")
+DataContext = NodePath("../../../Timer Effect Host")
 metadata/_custom_type_script = "uid://dxkaapm2dks2e"
 
-[node name="Control" type="Control" parent="." unique_id=1028568971]
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1028568971]
 z_index = 2
 layout_mode = 3
 anchors_preset = 0
+offset_top = -24.0
+offset_bottom = -24.0
 mouse_filter = 2
 
-[node name="Hover Sensor" type="Control" parent="Control" unique_id=606570361]
+[node name="Hover Sensor" type="Control" parent="CanvasLayer/Control" unique_id=606570361]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 1
 anchors_preset = 8
@@ -319,12 +347,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="Hover Context" type="Node" parent="Control/Hover Sensor" unique_id=965090830]
+[node name="Hover Context" type="Node" parent="CanvasLayer/Control/Hover Sensor" unique_id=965090830]
 script = ExtResource("12_fstnm")
 TrackedStates = 1
 metadata/_custom_type_script = "uid://csxjam05y7w8k"
 
-[node name="On Hover" type="Node" parent="Control/Hover Sensor/Hover Context" unique_id=2094670186 node_paths=PackedStringArray("DataContext")]
+[node name="On Hover" type="Node" parent="CanvasLayer/Control/Hover Sensor/Hover Context" unique_id=2094670186 node_paths=PackedStringArray("DataContext")]
 script = ExtResource("3_1an03")
 DataContext = NodePath("..")
 Query = "{is_hovered}"
@@ -334,7 +362,7 @@ FireOnlyOnNonNullValues = true
 FireOnlyOnValueChange = true
 metadata/_custom_type_script = "uid://wbquqef0rnl5"
 
-[node name="Extra Range" type="Control" parent="Control/Hover Sensor" unique_id=641247407]
+[node name="Extra Range" type="Control" parent="CanvasLayer/Control/Hover Sensor" unique_id=641247407]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 1
 anchors_preset = 8
@@ -346,7 +374,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="Visibility Binding" type="Node" parent="Control/Hover Sensor/Extra Range" unique_id=1862352378 node_paths=PackedStringArray("DataContext", "TargetNode")]
+[node name="Visibility Binding" type="Node" parent="CanvasLayer/Control/Hover Sensor/Extra Range" unique_id=1862352378 node_paths=PackedStringArray("DataContext", "TargetNode")]
 script = ExtResource("3_1an03")
 DataContext = NodePath("../../Hover Context")
 Query = "{is_hovered}"
@@ -354,12 +382,12 @@ TargetNode = NodePath("..")
 TargetPropertyName = "visible"
 metadata/_custom_type_script = "uid://wbquqef0rnl5"
 
-[node name="ScreenSpawner" type="Node" parent="Control" unique_id=654039222 node_paths=PackedStringArray("Context")]
+[node name="ScreenSpawner" type="Node" parent="CanvasLayer/Control" unique_id=654039222 node_paths=PackedStringArray("Context")]
 script = ExtResource("13_m0y3u")
 Template = ExtResource("14_0f8rm")
-Context = NodePath("../../Timer Effect Host")
+Context = NodePath("../../../Timer Effect Host")
 DataContextsBySlot = Dictionary[StringName, NodePath]({
-&"damageable": NodePath("../../Damageable")
+&"damageable": NodePath("../../../Damageable")
 })
 RelativeMode = 1
 metadata/_custom_type_script = "uid://b6sb42qs0fsp1"
@@ -367,5 +395,5 @@ metadata/_custom_type_script = "uid://b6sb42qs0fsp1"
 [connection signal="Hurt" from="Damageable" to="Damage Animations/Play hurt" method="Trigger"]
 [connection signal="Hurt" from="Damageable" to="Mob Signals/Hurt" method="Emit"]
 [connection signal="Triggered" from="Timer Effect Host" to="Action Animations/Play trigger" method="Trigger"]
-[connection signal="EvaluatedFalse" from="Control/Hover Sensor/Hover Context/On Hover" to="Control/ScreenSpawner" method="CloseAll"]
-[connection signal="EvaluatedTrue" from="Control/Hover Sensor/Hover Context/On Hover" to="Control/ScreenSpawner" method="Trigger"]
+[connection signal="EvaluatedFalse" from="CanvasLayer/Control/Hover Sensor/Hover Context/On Hover" to="CanvasLayer/Control/ScreenSpawner" method="CloseAll"]
+[connection signal="EvaluatedTrue" from="CanvasLayer/Control/Hover Sensor/Hover Context/On Hover" to="CanvasLayer/Control/ScreenSpawner" method="Trigger"]
