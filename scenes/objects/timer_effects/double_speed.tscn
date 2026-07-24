@@ -1,12 +1,19 @@
 [gd_scene format=3 uid="uid://c4garyitwauvq"]
 
 [ext_resource type="Script" uid="uid://8167tjb1cm0a" path="res://scripts/Game/Timers/TimerEffect.cs" id="1_n2cbn"]
+[ext_resource type="Resource" uid="uid://hcxu7jl3vxo3" path="res://resources/timer_conditions/speed_effects_spawn_condition.tres" id="2_7um4f"]
 [ext_resource type="Resource" uid="uid://b78wyeih7eehg" path="res://scenes/objects/timer_effects/double_speed.tscn.summary.tres" id="2_n2cbn"]
 [ext_resource type="Script" uid="uid://ccy1yqjcbg6iq" path="res://scripts/Game/Timers/TimerFunctions.cs" id="3_enk1n"]
 [ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="4_xrt6c"]
 
 [node name="Double Speed" type="Node" unique_id=1558047290]
 script = ExtResource("1_n2cbn")
+Description = "Speed ×2"
+LogMessage = "Speed ×2"
+ParticleMessage = "Speed ×2"
+SpawnWeight = 4.0
+SpawnCondition = ExtResource("2_7um4f")
+Tags = Array[String](["speed", "speed_up", "neutral", "log_error"])
 Summary = ExtResource("2_n2cbn")
 metadata/_custom_type_script = "uid://8167tjb1cm0a"
 

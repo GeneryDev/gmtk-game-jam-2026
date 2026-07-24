@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_gqd0n")
 RequireMobCount = true
-RequireMobCountMin = 20
+RequireMobCountMin = 10
 RequireMobCountMax = null
 RequireElapsedRealTime = true
 RequireElapsedRealTimeUnit = 60

@@ -13,6 +13,6 @@ RootNodeProperties = {
 &"LogMessage": "Speed ÷ 2",
 &"ParticleMessage": "Speed ÷ 2",
 &"SpawnCondition": ExtResource("1_a8doa"),
-&"SpawnWeight": 1.0,
+&"SpawnWeight": 2.0,
 &"Tags": Array[String](["speed", "speed_down", "slow_down", "neutral", "log_error"])
 }

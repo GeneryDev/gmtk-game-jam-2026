@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_mon8y")
-RequireMobCountMin = null
+RequireMobCount = true
+RequireMobCountMin = 20
 RequireMobCountMax = null
 RequireElapsedRealTime = true
 RequireElapsedRealTimeUnit = 60

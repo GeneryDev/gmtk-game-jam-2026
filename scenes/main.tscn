@@ -129,6 +129,7 @@ libraries/ = SubResource("AnimationLibrary_choun")
 [node name="Play burst_10" type="Node" parent="Node2D/Mob Spawner/Waves" unique_id=1641880258]
 script = ExtResource("7_choun")
 AnimationName = &"burst_10"
+FromAnimationList = []
 metadata/_custom_type_script = "uid://dukfxpmahaflv"
 
 [node name="Timer Effect Log" parent="Node2D" unique_id=358342731 instance=ExtResource("6_tefeu")]
