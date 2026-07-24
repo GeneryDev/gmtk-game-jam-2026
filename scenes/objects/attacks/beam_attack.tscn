@@ -5,13 +5,19 @@
 [ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="2_3h4tt"]
 [ext_resource type="Resource" uid="uid://2rcv1ni1pp53" path="res://scenes/objects/attacks/beam_attack.tscn.summary.tres" id="2_yyvjp"]
 [ext_resource type="Script" uid="uid://cd3ua188ba80t" path="res://scripts/Game/Player/AttackFunctions.cs" id="3_3h4tt"]
+[ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="6_q3jwq"]
+[ext_resource type="Script" uid="uid://c0yjanqaifkam" path="res://addons/gdf-godot/GDF/Logical/Signals/InboundSignalArgument.cs" id="7_kcgfe"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_tqw2u"]
-size = Vector2(800, 10)
+size = Vector2(800, 30)
 center_offset = Vector3(400, 0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suoh8"]
-size = Vector2(800, 10)
+size = Vector2(800, 56)
+
+[sub_resource type="Resource" id="Resource_tqw2u"]
+script = ExtResource("7_kcgfe")
+metadata/_custom_type_script = "uid://c0yjanqaifkam"
 
 [sub_resource type="Animation" id="Animation_3h4tt"]
 length = 0.001
@@ -148,7 +154,7 @@ mesh = SubResource("QuadMesh_tqw2u")
 
 [node name="Area2D" type="Area2D" parent="Origin" unique_id=1595996149]
 collision_layer = 0
-collision_mask = 8
+collision_mask = 128
 monitoring = false
 monitorable = false
 
@@ -159,9 +165,50 @@ shape = SubResource("RectangleShape2D_suoh8")
 [node name="AttackFunctions" type="Node" parent="Origin/Area2D" unique_id=207897347]
 script = ExtResource("3_3h4tt")
 
+[node name="Hurt" type="Node" parent="Origin/Area2D/AttackFunctions" unique_id=580813207 node_paths=PackedStringArray("Target")]
+script = ExtResource("6_q3jwq")
+Target = NodePath("..")
+Method = &"Hurt"
+FilterByArgumentCount = 2
+Args = [SubResource("Resource_tqw2u"), 2]
+ArgInputTypes = Array[int]([1, 0])
+ArgAbortIfNull = Array[bool]([false, false])
+ArgReplicate = Array[bool]([false, false])
+TargetMethodInfo = {
+"args": Array[Dictionary]([{
+"class_name": &"Node2D",
+"hint": 0,
+"hint_string": "",
+"name": "target",
+"type": 24,
+"usage": 6
+}, {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "hp",
+"type": 2,
+"usage": 6
+}]),
+"default_args": [],
+"flags": 1,
+"id": 0,
+"name": "Hurt",
+"return": {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 0,
+"usage": 6
+}
+}
+metadata/_custom_type_script = "uid://buqbj5n61xjbu"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Origin" unique_id=326168278]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_3h4tt")
 autoplay = &"fire"
 
-[connection signal="body_entered" from="Origin/Area2D" to="Origin/Area2D/AttackFunctions" method="Hurt"]
+[connection signal="area_entered" from="Origin/Area2D" to="Origin/Area2D/AttackFunctions/Hurt" method="Trigger"]
+[connection signal="body_entered" from="Origin/Area2D" to="Origin/Area2D/AttackFunctions/Hurt" method="Trigger"]

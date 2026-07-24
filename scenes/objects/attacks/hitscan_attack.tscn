@@ -236,7 +236,8 @@ metadata/_custom_type_script = "uid://wbquqef0rnl5"
 [node name="RayCast2D" type="RayCast2D" parent="Origin" unique_id=507151751]
 enabled = false
 target_position = Vector2(800, 0)
-collision_mask = 9
+collision_mask = 129
+collide_with_areas = true
 script = ExtResource("3_dbhkx")
 
 [node name="AttackFunctions" type="Node" parent="Origin/RayCast2D" unique_id=207897347]
