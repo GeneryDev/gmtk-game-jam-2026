@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using Game.Timers;
 using Godot;
 using MobEffectHost = Game.Entities.MobEffectHost;
 
-namespace Game;
+namespace Game.Timers;
 
 public partial class GameTimer
 {

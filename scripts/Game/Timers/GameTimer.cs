@@ -5,7 +5,7 @@ using GDF.Data.Static;
 using GDF.Util;
 using Godot;
 
-namespace Game;
+namespace Game.Timers;
 
 [GlobalClass]
 [SingletonUsage(SingletonUsage.Scene)]
