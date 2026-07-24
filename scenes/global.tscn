@@ -117,6 +117,17 @@ Shortcut = SubResource("InputEventKey_ntttm")
 Command = "attack beam_attack"
 metadata/_custom_type_script = "uid://bue2dh8nq45gq"
 
+[sub_resource type="InputEventKey" id="InputEventKey_fq2qc"]
+device = -1
+keycode = 96
+unicode = 96
+
+[sub_resource type="Resource" id="Resource_w2iga"]
+script = ExtResource("14_7upwp")
+Shortcut = SubResource("InputEventKey_fq2qc")
+Command = "gdf:scene res://scenes/main.tscn"
+metadata/_custom_type_script = "uid://bue2dh8nq45gq"
+
 [node name="Global" type="Node" unique_id=894814629]
 
 [node name="Resource Libraries" type="Node" parent="." unique_id=2016105280]
@@ -205,7 +216,7 @@ metadata/_custom_type_script = "uid://cxsnc7i1qox8m"
 
 [node name="DebugCommandSystem" type="Node" parent="." unique_id=1765515996]
 script = ExtResource("2_m3l3d")
-Macros = Array[ExtResource("14_7upwp")]([SubResource("Resource_0wfyh"), SubResource("Resource_vwou5"), SubResource("Resource_fq2qc"), SubResource("Resource_itjjb")])
+Macros = Array[ExtResource("14_7upwp")]([SubResource("Resource_0wfyh"), SubResource("Resource_vwou5"), SubResource("Resource_fq2qc"), SubResource("Resource_itjjb"), SubResource("Resource_w2iga")])
 metadata/_custom_type_script = "uid://cqtokr6spdybx"
 
 [connection signal="pressed" from="GdfViewportResizer/Fullscreen Shortcuts" to="GdfViewportResizer" method="ToggleFullscreen"]

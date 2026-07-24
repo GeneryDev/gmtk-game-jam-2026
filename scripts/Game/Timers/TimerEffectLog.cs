@@ -36,7 +36,6 @@ public partial class TimerEffectLog : SingletonNode<TimerEffectLog>, IDataContex
 
     private void InsertLogItem(Item item)
     {
-        GD.Print(item.Message);
         if (_items.Count >= MaxItems)
         {
             _items.RemoveAt(0);

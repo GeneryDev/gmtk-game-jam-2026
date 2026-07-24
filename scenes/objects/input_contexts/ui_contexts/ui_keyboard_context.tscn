@@ -24,7 +24,7 @@ script = ExtResource("5_r68vf")
 Type = 1
 Key = 87
 UseCustomVector = true
-UnitVector = Vector3(0, 1, 0)
+UnitVector = Vector3(0, -1, 0)
 
 [node name="Left" type="Node" parent="Navigate/Mixer" unique_id=2085527162]
 script = ExtResource("5_r68vf")
@@ -38,7 +38,7 @@ script = ExtResource("5_r68vf")
 Type = 1
 Key = 83
 UseCustomVector = true
-UnitVector = Vector3(0, -1, 0)
+UnitVector = Vector3(0, 1, 0)
 
 [node name="Right" type="Node" parent="Navigate/Mixer" unique_id=89567903]
 script = ExtResource("5_r68vf")

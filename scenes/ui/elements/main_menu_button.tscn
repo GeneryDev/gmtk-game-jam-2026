@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://majwuxropqaj"]
+
+[ext_resource type="Script" uid="uid://cmpms1lahwmsr" path="res://scripts/Game/UI/ButtonExtension.cs" id="1_86h1w"]
+[ext_resource type="Script" uid="uid://bfppi36isqkgt" path="res://addons/gdf-godot/GDF/UI/UserInterfaceComponent.cs" id="2_wgl43"]
+[ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="3_vbru2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86h1w"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7hl0s"]
+content_margin_left = 4.0
+content_margin_top = 6.0
+content_margin_right = 4.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wgl43"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.22, 0.22, 0.22, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="Button" type="Button" unique_id=1929653182 node_paths=PackedStringArray("ButtonContentControl")]
+custom_minimum_size = Vector2(9, 16)
+offset_right = 259.0
+offset_bottom = 40.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_86h1w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7hl0s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wgl43")
+script = ExtResource("1_86h1w")
+ButtonContentControl = NodePath("Content")
+metadata/_custom_type_script = "uid://cmpms1lahwmsr"
+
+[node name="UserInterfaceComponent" type="Node" parent="." unique_id=822518818]
+script = ExtResource("2_wgl43")
+Submittable = true
+NavigableTo = true
+Clickable = true
+ClickMode = 2
+Tappable = true
+EmulateButtonHover = true
+metadata/_custom_type_script = "uid://bfppi36isqkgt"
+
+[node name="Content" type="MarginContainer" parent="." unique_id=75312773]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 255.0
+offset_bottom = 36.0
+mouse_filter = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="FormattedLabel" type="RichTextLabel" parent="Content" unique_id=427085979 node_paths=PackedStringArray("DataContext")]
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 24
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_vbru2")
+TextFormat = "{button_text}"
+DataContext = NodePath("../..")
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[connection signal="PlayerSubmitted" from="UserInterfaceComponent" to="." method="Submit"]
