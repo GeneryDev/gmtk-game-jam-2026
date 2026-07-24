@@ -10,7 +10,8 @@ public partial class PlayerAttacks : SceneResourceLibrary<PlayerAttack>
         return new()
         {
             Roots = new[] { new LibraryConfig.LibraryRoot("res://scenes/objects/attacks") },
-            PreloadAll = true
+            PreloadAll = true,
+            CacheResources = true
         };
     }
 }

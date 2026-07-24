@@ -1,19 +1,12 @@
 [gd_scene format=3 uid="uid://qmsv4xld8fn4"]
 
 [ext_resource type="Script" uid="uid://8167tjb1cm0a" path="res://scripts/Game/Entities/MobEffect.cs" id="1_18r7q"]
-[ext_resource type="Resource" uid="uid://dppfotmufbqkn" path="res://resources/timer_conditions/post_intro_spawn_conditions_positive.tres" id="2_8xk38"]
 [ext_resource type="Resource" uid="uid://bimd0oy1hxq6f" path="res://scenes/objects/mob_effects/timer/halve_time.tscn.summary.tres" id="2_18r7q"]
 [ext_resource type="Script" uid="uid://ccy1yqjcbg6iq" path="res://scripts/Game/Timers/TimerFunctions.cs" id="3_wmo2j"]
 [ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="4_gr3iq"]
 
 [node name="Halve Time" type="Node" unique_id=1558047290]
 script = ExtResource("1_18r7q")
-Description = "Time ÷ 2"
-LogMessage = "Time ÷ 2"
-ParticleMessage = "Time ÷ 2"
-SpawnWeight = 2.0
-SpawnCondition = ExtResource("2_8xk38")
-Tags = Array[String](["timer", "multiplier", "positive", "log_warning"])
 Summary = ExtResource("2_18r7q")
 metadata/_custom_type_script = "uid://8167tjb1cm0a"
 
@@ -26,6 +19,7 @@ Target = NodePath("..")
 Method = &"MultiplyTime"
 Args = [0.5]
 ArgInputTypes = Array[int]([0])
+ArgAbortIfNull = Array[bool]([false])
 ArgReplicate = Array[bool]([false])
 TargetMethodInfo = {
 "args": Array[Dictionary]([{

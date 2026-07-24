@@ -10,7 +10,8 @@ public partial class MobEffects : SceneResourceLibrary<MobEffect>
         return new()
         {
             Roots = new[] { new LibraryConfig.LibraryRoot("res://scenes/objects/mob_effects") },
-            PreloadAll = true
+            PreloadAll = true,
+            CacheResources = true
         };
     }
 }

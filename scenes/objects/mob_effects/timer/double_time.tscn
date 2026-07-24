@@ -19,6 +19,7 @@ Target = NodePath("..")
 Method = &"MultiplyTime"
 Args = [2.0]
 ArgInputTypes = Array[int]([0])
+ArgAbortIfNull = Array[bool]([false])
 ArgReplicate = Array[bool]([false])
 TargetMethodInfo = {
 "args": Array[Dictionary]([{

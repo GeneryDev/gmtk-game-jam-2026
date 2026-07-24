@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://cwmwl7vje8w7b"]
+
+[ext_resource type="Script" uid="uid://8167tjb1cm0a" path="res://scripts/Game/Entities/MobEffect.cs" id="1_oe235"]
+[ext_resource type="Resource" uid="uid://kpgpee7ls2hw" path="res://scenes/objects/mob_effects/copy_player.tscn.summary.tres" id="2_oe235"]
+[ext_resource type="Script" uid="uid://dsd7tvanlvfu0" path="res://addons/gdf-godot/GDF/Data/Static/StaticDataContextNode.cs" id="3_oe235"]
+[ext_resource type="Script" uid="uid://dmxsrwhwawg28" path="res://scripts/Game/Util/ObjectSpawner.cs" id="4_0h4hb"]
+[ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="5_637d0"]
+[ext_resource type="PackedScene" uid="uid://l7vx1ppodn0d" path="res://scenes/objects/player/player.tscn" id="6_3j7fc"]
+[ext_resource type="Script" uid="uid://0mjmm7eo3o6v" path="res://addons/gdf-godot/GDF/Data/DataQuery.cs" id="7_agay8"]
+
+[sub_resource type="Resource" id="Resource_tqw2u"]
+script = ExtResource("7_agay8")
+DataContext = NodePath("../../Player Position Context")
+Query = "{nearby_open_position_for_copy}"
+metadata/_custom_type_script = "uid://0mjmm7eo3o6v"
+
+[node name="Copy Player" type="Node" unique_id=1558047290]
+script = ExtResource("1_oe235")
+Summary = ExtResource("2_oe235")
+metadata/_custom_type_script = "uid://8167tjb1cm0a"
+
+[node name="Player Position Context" type="Node" parent="." unique_id=405896496]
+script = ExtResource("3_oe235")
+TypeId = "player_position_context"
+metadata/_custom_type_script = "uid://dsd7tvanlvfu0"
+
+[node name="ObjectSpawner" type="Node" parent="." unique_id=1555222830]
+script = ExtResource("4_0h4hb")
+metadata/_custom_type_script = "uid://dmxsrwhwawg28"
+
+[node name="Method Call" type="Node" parent="ObjectSpawner" unique_id=1081125721 node_paths=PackedStringArray("Target")]
+script = ExtResource("5_637d0")
+Target = NodePath("..")
+Method = &"Spawn"
+Args = [&"Explosion", ExtResource("6_3j7fc"), SubResource("Resource_tqw2u")]
+ArgInputTypes = Array[int]([0, 0, 1])
+ArgAbortIfNull = Array[bool]([false, false, true])
+ArgReplicate = Array[bool]([false, false, false])
+TargetMethodInfo = {
+"args": Array[Dictionary]([{
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "name",
+"type": 21,
+"usage": 6
+}, {
+"class_name": &"PackedScene",
+"hint": 0,
+"hint_string": "",
+"name": "scene",
+"type": 24,
+"usage": 6
+}, {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "position",
+"type": 5,
+"usage": 6
+}]),
+"default_args": [],
+"flags": 1,
+"id": 0,
+"name": "Spawn",
+"return": {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 0,
+"usage": 6
+}
+}
+metadata/_custom_type_script = "uid://buqbj5n61xjbu"
+
+[connection signal="Triggered" from="." to="ObjectSpawner/Method Call" method="Trigger"]

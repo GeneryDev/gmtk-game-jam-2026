@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using GDF.Composition;
 using GDF.Data;
+using GDF.Logical.Signals;
+using GDF.Util;
 using Godot;
 
 namespace Game.Entities;
@@ -32,6 +35,8 @@ public partial class MobEffectHost : Node, IDataContext
         if (effectDescriptor.IsEmpty) return;
         var effect = effectDescriptor.New();
         _installedEffects.Add(effect);
+        effect.InjectContext("entity_context", this.GetComponent<EntityContext>());
+        effect.ConnectSignalStation(this.GetComponent<SignalStation>());
         this.AddChild(effect);
         effect.Owner = this.Owner;
     }

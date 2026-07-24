@@ -26,9 +26,10 @@ public partial class DamageableComponent : Node, IDataContext
         base._Ready();
     }
 
-    public void Damage()
+    public void Damage(int hp = 1)
     {
-        HitPoints--;
+        HitPoints -= hp;
+        if (HitPoints < 0) HitPoints = 0;
         EmitSignalHurt();
         if (HitPoints <= 0)
         {
@@ -37,8 +38,9 @@ public partial class DamageableComponent : Node, IDataContext
         EmitSignalUpdated();
     }
 
-    private void Kill()
+    public void Kill()
     {
+        HitPoints = 0;
         EmitSignalDied();
         Owner.QueueFree();
     }

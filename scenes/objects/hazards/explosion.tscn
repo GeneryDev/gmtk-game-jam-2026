@@ -1,0 +1,177 @@
+[gd_scene format=3 uid="uid://bn4gdb62llt2w"]
+
+[ext_resource type="Script" uid="uid://cd3ua188ba80t" path="res://scripts/Game/Player/AttackFunctions.cs" id="1_0bh71"]
+[ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="2_fokvk"]
+[ext_resource type="Script" uid="uid://c0yjanqaifkam" path="res://addons/gdf-godot/GDF/Logical/Signals/InboundSignalArgument.cs" id="3_4ft6e"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_jd1vo"]
+radius = 80.0
+height = 160.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fokvk"]
+radius = 160.0
+
+[sub_resource type="Resource" id="Resource_tqw2u"]
+script = ExtResource("3_4ft6e")
+metadata/_custom_type_script = "uid://c0yjanqaifkam"
+
+[sub_resource type="Animation" id="Animation_3h4tt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_byabo"]
+resource_name = "fire"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.032655507, 0.23),
+"transitions": PackedFloat32Array(1, 0.4999999, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2), Vector2(2.2, 2.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.23),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.26666668),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.016666668, 0.12503788),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3h4tt"]
+_data = {
+&"RESET": SubResource("Animation_3h4tt"),
+&"fire": SubResource("Animation_byabo")
+}
+
+[node name="Explosion" type="Node2D" unique_id=446097857]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1909379833]
+mesh = SubResource("SphereMesh_jd1vo")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1595996149]
+collision_layer = 0
+collision_mask = 8
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1900399253]
+shape = SubResource("CircleShape2D_fokvk")
+
+[node name="AttackFunctions" type="Node" parent="Area2D" unique_id=207897347]
+script = ExtResource("1_0bh71")
+
+[node name="Hurt" type="Node" parent="Area2D/AttackFunctions" unique_id=857548918 node_paths=PackedStringArray("Target")]
+script = ExtResource("2_fokvk")
+Target = NodePath("..")
+Method = &"Hurt"
+FilterByArgumentCount = 2
+Args = [SubResource("Resource_tqw2u"), 4]
+ArgInputTypes = Array[int]([1, 0])
+ArgAbortIfNull = Array[bool]([false, false])
+ArgReplicate = Array[bool]([false, false])
+TargetMethodInfo = {
+"args": Array[Dictionary]([{
+"class_name": &"Node2D",
+"hint": 0,
+"hint_string": "",
+"name": "target",
+"type": 24,
+"usage": 6
+}, {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "hp",
+"type": 2,
+"usage": 6
+}]),
+"default_args": [],
+"flags": 1,
+"id": 0,
+"name": "Hurt",
+"return": {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 0,
+"usage": 6
+}
+}
+metadata/_custom_type_script = "uid://buqbj5n61xjbu"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=326168278]
+libraries/ = SubResource("AnimationLibrary_3h4tt")
+autoplay = &"fire"
+
+[connection signal="body_entered" from="Area2D" to="Area2D/AttackFunctions/Hurt" method="Trigger"]

@@ -14,7 +14,8 @@ public partial class MobTypes : ResourceLibrary<MobType, MobType>
         {
             Roots = new[] { new LibraryConfig.LibraryRoot("res://resources/mob_types") },
             PreloadAll = true,
-            FallbackId = "trivial"
+            CacheResources = true,
+            FallbackId = "trivial",
         };
     }
 
