@@ -154,7 +154,7 @@ position = Vector2(-387, -75)
 skew = -0.39269924
 
 [node name="Timer Display" parent="Node2D/Foreground Layer" unique_id=1766795991 instance=ExtResource("7_o6xl0")]
-position = Vector2(0, -361)
+position = Vector2(0, -311)
 
 [node name="Node2D" type="Node2D" parent="Node2D/Foreground Layer" unique_id=2136043049]
 position = Vector2(435.99997, -223)
