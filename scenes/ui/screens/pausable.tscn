@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://bs7ti064ojarj"]
+
+[ext_resource type="Script" uid="uid://bko61fppga1kx" path="res://addons/gdf-godot/GDF/UI/Screen.cs" id="1_hses4"]
+[ext_resource type="Script" uid="uid://c671jqyj6hfvr" path="res://addons/gdf-godot/GDF/UI/UserInterface.cs" id="2_ngjhn"]
+[ext_resource type="Script" uid="uid://bfppi36isqkgt" path="res://addons/gdf-godot/GDF/UI/UserInterfaceComponent.cs" id="4_4o5h5"]
+[ext_resource type="Resource" uid="uid://bfvhgfbx2lh14" path="res://resources/input_auto_configs/ui_control_playerless.tres" id="4_hses4"]
+[ext_resource type="Resource" uid="uid://b55woujpabosc" path="res://resources/input_actions/ui_cancel.tres" id="5_ngjhn"]
+[ext_resource type="Script" uid="uid://b6sb42qs0fsp1" path="res://scripts/Game/Util/ScreenSpawner.cs" id="6_5aove"]
+[ext_resource type="Resource" uid="uid://cfp18enrjxj36" path="res://resources/input_actions/ui_confirm.tres" id="6_k1nib"]
+[ext_resource type="PackedScene" uid="uid://b6ehlqjtt2cy0" path="res://scenes/ui/screens/pause_screen.tscn" id="7_hses4"]
+
+[node name="Pausable" type="Control" unique_id=1168699841 node_paths=PackedStringArray("UserInterface")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_hses4")
+Order = 2
+Mode = 4
+UserInterface = NodePath("UserInterface")
+metadata/_custom_type_script = "uid://bko61fppga1kx"
+
+[node name="UserInterface" type="Node" parent="." unique_id=1004258199]
+script = ExtResource("2_ngjhn")
+AutoFocusFirst = true
+InputAutoConfig = ExtResource("4_hses4")
+SubmitAction = ExtResource("6_k1nib")
+metadata/_custom_type_script = "uid://c671jqyj6hfvr"
+
+[node name="Control" type="Control" parent="." unique_id=1263184472]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="UserInterfaceComponent" type="Node" parent="Control" unique_id=276433465]
+script = ExtResource("4_4o5h5")
+Submittable = true
+ShortcutEnabled = true
+ShortcutAction = ExtResource("5_ngjhn")
+metadata/_custom_type_script = "uid://bfppi36isqkgt"
+
+[node name="ScreenSpawner" type="Node" parent="." unique_id=1661431927]
+script = ExtResource("6_5aove")
+Template = ExtResource("7_hses4")
+metadata/_custom_type_script = "uid://b6sb42qs0fsp1"
+
+[connection signal="Submitted" from="Control/UserInterfaceComponent" to="ScreenSpawner" method="Trigger" flags=3]

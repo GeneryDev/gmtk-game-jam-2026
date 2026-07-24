@@ -1,0 +1,260 @@
+[gd_scene format=3 uid="uid://ba3hpxgoyiytl"]
+
+[ext_resource type="Script" uid="uid://bko61fppga1kx" path="res://addons/gdf-godot/GDF/UI/Screen.cs" id="1_t4ulj"]
+[ext_resource type="PackedScene" uid="uid://dfiex6xxhyw40" path="res://scenes/objects/standard_user_interface.tscn" id="2_3cs86"]
+[ext_resource type="PackedScene" uid="uid://3gj32mdbtodw" path="res://scenes/ui/elements/main_menu_button_hero.tscn" id="7_3cs86"]
+[ext_resource type="Texture2D" uid="uid://dai8nvmlfkuna" path="res://assets/textures/ui/key_art_temp.png" id="7_bd2wy"]
+[ext_resource type="PackedScene" uid="uid://majwuxropqaj" path="res://scenes/ui/elements/main_menu_button.tscn" id="7_pfh6i"]
+[ext_resource type="PackedScene" uid="uid://cevb65mkp8fq5" path="res://scenes/ui/screens/credits_screen.tscn" id="7_pqlu1"]
+[ext_resource type="PackedScene" uid="uid://cxhb2mpwpx1sc" path="res://scenes/ui/screens/options_screen.tscn" id="7_vp6oy"]
+[ext_resource type="Script" uid="uid://cwgjseomfcygb" path="res://scripts/Game/UI/MenuFunctions.cs" id="8_7hl0s"]
+[ext_resource type="Script" uid="uid://b6sb42qs0fsp1" path="res://scripts/Game/Util/ScreenSpawner.cs" id="10_ioxk6"]
+[ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="11_vp6oy"]
+[ext_resource type="Script" uid="uid://ce2cpgowa1bvu" path="res://addons/gdf-godot/GDF/IO/ResourceReference.cs" id="12_ioxk6"]
+[ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="12_vp6oy"]
+
+[sub_resource type="Resource" id="Resource_tqw2u"]
+resource_name = "main.tscn"
+script = ExtResource("12_ioxk6")
+StoredResourceId = "uid://di7lv4icyqso4"
+StoredResourcePath = "res://scenes/main.tscn"
+StoredResourceType = "Godot.PackedScene"
+metadata/_custom_type_script = "uid://ce2cpgowa1bvu"
+
+[sub_resource type="Animation" id="Animation_vp6oy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ioxk6"]
+resource_name = "shadow_end"
+length = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pqlu1"]
+resource_name = "shadow_start"
+length = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vp6oy"]
+_data = {
+&"RESET": SubResource("Animation_vp6oy"),
+&"shadow_end": SubResource("Animation_ioxk6"),
+&"shadow_start": SubResource("Animation_pqlu1")
+}
+
+[node name="Main Menu Screen" type="Control" unique_id=1168699841 node_paths=PackedStringArray("UserInterface")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_t4ulj")
+Order = 10
+Mode = 1
+UserInterface = NodePath("UserInterface")
+HideOnShadowed = false
+metadata/_custom_type_script = "uid://bko61fppga1kx"
+
+[node name="UserInterface" parent="." unique_id=1004258199 instance=ExtResource("2_3cs86")]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2062032474]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=191336155]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 218.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_bd2wy")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Control" type="Control" parent="." unique_id=1855706355]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=305280910]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.045
+anchor_top = 0.637
+anchor_right = 0.045
+anchor_bottom = 0.637
+offset_left = 0.15999603
+offset_top = -131.776
+offset_right = 228.16
+offset_bottom = 131.224
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer" unique_id=1591934372]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Play Button" parent="Control/MarginContainer/VBoxContainer" unique_id=1929653182 instance=ExtResource("7_3cs86")]
+custom_minimum_size = Vector2(9, 51)
+layout_mode = 2
+ButtonText = "Start"
+
+[node name="Separator" type="Control" parent="Control/MarginContainer/VBoxContainer" unique_id=650351621]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Options Button" parent="Control/MarginContainer/VBoxContainer" unique_id=352414320 instance=ExtResource("7_pfh6i")]
+custom_minimum_size = Vector2(9, 40)
+layout_mode = 2
+ButtonText = "Options"
+
+[node name="ScreenSpawner" type="Node" parent="Control/MarginContainer/VBoxContainer/Options Button" unique_id=1948685329]
+script = ExtResource("10_ioxk6")
+Template = ExtResource("7_vp6oy")
+metadata/_custom_type_script = "uid://b6sb42qs0fsp1"
+
+[node name="Credits Button" parent="Control/MarginContainer/VBoxContainer" unique_id=1417904628 instance=ExtResource("7_pfh6i")]
+custom_minimum_size = Vector2(9, 40)
+layout_mode = 2
+ButtonText = "Credits"
+
+[node name="ScreenSpawner" type="Node" parent="Control/MarginContainer/VBoxContainer/Credits Button" unique_id=2121243498]
+script = ExtResource("10_ioxk6")
+Template = ExtResource("7_pqlu1")
+metadata/_custom_type_script = "uid://b6sb42qs0fsp1"
+
+[node name="Quit Button" parent="Control/MarginContainer/VBoxContainer" unique_id=889657936 instance=ExtResource("7_pfh6i")]
+custom_minimum_size = Vector2(9, 40)
+layout_mode = 2
+ButtonText = "Quit"
+
+[node name="Menu Functions" type="Node" parent="Control/MarginContainer/VBoxContainer" unique_id=587615102]
+script = ExtResource("8_7hl0s")
+
+[node name="Play" type="Node" parent="Control/MarginContainer/VBoxContainer/Menu Functions" unique_id=756659649 node_paths=PackedStringArray("Target")]
+script = ExtResource("11_vp6oy")
+Target = NodePath("..")
+Method = &"ChangeScene"
+Args = [SubResource("Resource_tqw2u"), null]
+ArgInputTypes = Array[int]([0, 0])
+ArgReplicate = Array[bool]([false, false])
+TargetMethodInfo = {
+"args": Array[Dictionary]([{
+"class_name": &"Resource",
+"hint": 0,
+"hint_string": "",
+"name": "sceneReference",
+"type": 24,
+"usage": 6
+}, {
+"class_name": &"Resource",
+"hint": 0,
+"hint_string": "",
+"name": "screenTransitionReference",
+"type": 24,
+"usage": 6
+}]),
+"default_args": [],
+"flags": 1,
+"id": 0,
+"name": "ChangeScene",
+"return": {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 0,
+"usage": 6
+}
+}
+metadata/_custom_type_script = "uid://buqbj5n61xjbu"
+
+[node name="Quit" type="Node" parent="Control/MarginContainer/VBoxContainer/Menu Functions" unique_id=996865083 node_paths=PackedStringArray("Target")]
+script = ExtResource("11_vp6oy")
+Target = NodePath("..")
+Method = &"Quit"
+TargetMethodInfo = {
+"args": Array[Dictionary]([]),
+"default_args": [],
+"flags": 1,
+"id": 0,
+"name": "Quit",
+"return": {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 0,
+"usage": 6
+}
+}
+metadata/_custom_type_script = "uid://buqbj5n61xjbu"
+
+[node name="Shadowing" type="AnimationPlayer" parent="." unique_id=577264285]
+libraries/ = SubResource("AnimationLibrary_vp6oy")
+
+[node name="Play shadow_start" type="Node" parent="Shadowing" unique_id=248045898]
+script = ExtResource("12_vp6oy")
+AnimationName = &"shadow_start"
+metadata/_custom_type_script = "uid://dukfxpmahaflv"
+
+[node name="Play shadow_end" type="Node" parent="Shadowing" unique_id=1468520216]
+script = ExtResource("12_vp6oy")
+AnimationName = &"shadow_end"
+FromAnimationList = []
+metadata/_custom_type_script = "uid://dukfxpmahaflv"
+
+[connection signal="ScreenShadowingEnded" from="." to="Shadowing/Play shadow_end" method="Trigger"]
+[connection signal="ScreenShadowingStarted" from="." to="Shadowing/Play shadow_start" method="Trigger"]
+[connection signal="Submitted" from="Control/MarginContainer/VBoxContainer/Play Button" to="Control/MarginContainer/VBoxContainer/Menu Functions/Play" method="Trigger"]
+[connection signal="Submitted" from="Control/MarginContainer/VBoxContainer/Options Button" to="Control/MarginContainer/VBoxContainer/Options Button/ScreenSpawner" method="Trigger" flags=3]
+[connection signal="Submitted" from="Control/MarginContainer/VBoxContainer/Credits Button" to="Control/MarginContainer/VBoxContainer/Credits Button/ScreenSpawner" method="Trigger" flags=3]
+[connection signal="Submitted" from="Control/MarginContainer/VBoxContainer/Quit Button" to="Control/MarginContainer/VBoxContainer/Menu Functions/Quit" method="Trigger" flags=3]

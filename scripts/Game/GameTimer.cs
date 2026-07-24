@@ -40,7 +40,7 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 		get => _tickRate;
 		set
 		{
-			value = Mathf.Clamp(value, 0.0625f, 64f);
+			value = Mathf.Clamp(value, 1/8f, 64f);
 			if (Math.Abs(value - _tickRate) < 0.0001f) return;
 			_tickRate = value;
 			EmitSignalUpdated();

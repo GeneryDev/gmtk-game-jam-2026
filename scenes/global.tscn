@@ -84,37 +84,15 @@ Shortcut = SubResource("InputEventKey_e7lx3")
 Command = "gdf:console"
 metadata/_custom_type_script = "uid://bue2dh8nq45gq"
 
-[sub_resource type="InputEventKey" id="InputEventKey_wafyw"]
+[sub_resource type="InputEventKey" id="InputEventKey_fq2qc"]
 device = -1
-keycode = 49
-unicode = 49
+keycode = 96
+unicode = 96
 
-[sub_resource type="Resource" id="Resource_vwou5"]
+[sub_resource type="Resource" id="Resource_w2iga"]
 script = ExtResource("14_7upwp")
-Shortcut = SubResource("InputEventKey_wafyw")
-Command = "attack bullet_attack"
-metadata/_custom_type_script = "uid://bue2dh8nq45gq"
-
-[sub_resource type="InputEventKey" id="InputEventKey_apua7"]
-device = -1
-keycode = 50
-unicode = 50
-
-[sub_resource type="Resource" id="Resource_fq2qc"]
-script = ExtResource("14_7upwp")
-Shortcut = SubResource("InputEventKey_apua7")
-Command = "attack hitscan_attack"
-metadata/_custom_type_script = "uid://bue2dh8nq45gq"
-
-[sub_resource type="InputEventKey" id="InputEventKey_ntttm"]
-device = -1
-keycode = 51
-unicode = 51
-
-[sub_resource type="Resource" id="Resource_itjjb"]
-script = ExtResource("14_7upwp")
-Shortcut = SubResource("InputEventKey_ntttm")
-Command = "attack beam_attack"
+Shortcut = SubResource("InputEventKey_fq2qc")
+Command = "gdf:scene res://scenes/main.tscn"
 metadata/_custom_type_script = "uid://bue2dh8nq45gq"
 
 [node name="Global" type="Node" unique_id=894814629]
@@ -140,23 +118,25 @@ script = ExtResource("3_dxqtg")
 metadata/_custom_type_script = "uid://dfjun343ur75s"
 
 [node name="GdfInputSystem" type="Node" parent="." unique_id=1985833570]
+process_mode = 3
 script = ExtResource("1_opebo")
 metadata/_custom_type_script = "uid://crj48tyk0nmvf"
 
 [node name="GlobalPropertyStack" type="Node" parent="." unique_id=1024276917]
+process_mode = 3
 script = ExtResource("2_mmyj5")
 PropertyRegistry = SubResource("Resource_tqw2u")
 metadata/_custom_type_script = "uid://5krjgh5qqo37"
 
-[node name="PropertyStackWatcher [Idle]" type="Node" parent="." unique_id=547863332 node_paths=PackedStringArray("Stack")]
+[node name="PropertyStackWatcher [Idle]" type="Node" parent="GlobalPropertyStack" unique_id=547863332 node_paths=PackedStringArray("Stack")]
 script = ExtResource("8_5rvs8")
-Stack = NodePath("../GlobalPropertyStack")
+Stack = NodePath("..")
 MouseModePropertyId = "mouse_mode"
 metadata/_custom_type_script = "uid://bituwxio8sdy4"
 
-[node name="PropertyStackWatcher [Physics]" type="Node" parent="." unique_id=901048031 node_paths=PackedStringArray("Stack")]
+[node name="PropertyStackWatcher [Physics]" type="Node" parent="GlobalPropertyStack" unique_id=901048031 node_paths=PackedStringArray("Stack")]
 script = ExtResource("8_5rvs8")
-Stack = NodePath("../GlobalPropertyStack")
+Stack = NodePath("..")
 UpdateMode = 1
 TimeScalePropertyId = "time_scale"
 PausedPropertyId = "paused"
@@ -205,7 +185,7 @@ metadata/_custom_type_script = "uid://cxsnc7i1qox8m"
 
 [node name="DebugCommandSystem" type="Node" parent="." unique_id=1765515996]
 script = ExtResource("2_m3l3d")
-Macros = Array[ExtResource("14_7upwp")]([SubResource("Resource_0wfyh"), SubResource("Resource_vwou5"), SubResource("Resource_fq2qc"), SubResource("Resource_itjjb")])
+Macros = Array[ExtResource("14_7upwp")]([SubResource("Resource_0wfyh"), SubResource("Resource_w2iga")])
 metadata/_custom_type_script = "uid://cqtokr6spdybx"
 
 [connection signal="pressed" from="GdfViewportResizer/Fullscreen Shortcuts" to="GdfViewportResizer" method="ToggleFullscreen"]

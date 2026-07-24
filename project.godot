@@ -40,6 +40,10 @@ enabled=PackedStringArray("res://addons/gdf-godot/plugin.cfg")
 
 player_character=""
 
+[gui]
+
+theme/custom="uid://dt3m1dsdrf3fl"
+
 [layer_names]
 
 2d_physics/layer_1="Level"

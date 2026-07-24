@@ -24,7 +24,7 @@ script = ExtResource("5_r68vf")
 Type = 1
 Key = 87
 UseCustomVector = true
-UnitVector = Vector3(0, 1, 0)
+UnitVector = Vector3(0, -1, 0)
 
 [node name="Left" type="Node" parent="Navigate/Mixer" unique_id=2085527162]
 script = ExtResource("5_r68vf")
@@ -38,7 +38,7 @@ script = ExtResource("5_r68vf")
 Type = 1
 Key = 83
 UseCustomVector = true
-UnitVector = Vector3(0, -1, 0)
+UnitVector = Vector3(0, 1, 0)
 
 [node name="Right" type="Node" parent="Navigate/Mixer" unique_id=89567903]
 script = ExtResource("5_r68vf")
@@ -46,14 +46,51 @@ Type = 1
 Key = 68
 UseCustomVector = true
 
+[node name="Mixer2" type="Node" parent="Navigate" unique_id=1598777948]
+script = ExtResource("4_7hwyg")
+
+[node name="Up" type="Node" parent="Navigate/Mixer2" unique_id=858287057]
+script = ExtResource("5_r68vf")
+Type = 1
+Key = 4194320
+UseCustomVector = true
+UnitVector = Vector3(0, -1, 0)
+
+[node name="Left" type="Node" parent="Navigate/Mixer2" unique_id=131046737]
+script = ExtResource("5_r68vf")
+Type = 1
+Key = 4194319
+UseCustomVector = true
+UnitVector = Vector3(-1, 0, 0)
+
+[node name="Down" type="Node" parent="Navigate/Mixer2" unique_id=1775684711]
+script = ExtResource("5_r68vf")
+Type = 1
+Key = 4194322
+UseCustomVector = true
+UnitVector = Vector3(0, 1, 0)
+
+[node name="Right" type="Node" parent="Navigate/Mixer2" unique_id=369122275]
+script = ExtResource("5_r68vf")
+Type = 1
+Key = 4194321
+UseCustomVector = true
+
 [node name="Confirm" type="Node" parent="." unique_id=196320712]
 script = ExtResource("2_offuc")
 Action = ExtResource("6_7hwyg")
 
-[node name="Key" type="Node" parent="Confirm" unique_id=1488052398]
+[node name="Key1" type="Node" parent="Confirm" unique_id=1488052398]
 script = ExtResource("5_r68vf")
 Type = 1
 Key = 32
+UseCustomVector = true
+UnitVector = Vector3(0, 1, 0)
+
+[node name="Key2" type="Node" parent="Confirm" unique_id=781104188]
+script = ExtResource("5_r68vf")
+Type = 1
+Key = 4194309
 UseCustomVector = true
 UnitVector = Vector3(0, 1, 0)
 

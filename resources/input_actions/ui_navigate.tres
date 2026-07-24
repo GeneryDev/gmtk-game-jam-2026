@@ -6,3 +6,5 @@
 script = ExtResource("1_s0tbs")
 Name = "ui_navigate"
 DisplayName = "Navigate"
+SendEventOnPress = true
+EventBufferTime = 50

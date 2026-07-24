@@ -1,0 +1,317 @@
+[gd_scene format=3 uid="uid://cxhb2mpwpx1sc"]
+
+[ext_resource type="Script" uid="uid://bko61fppga1kx" path="res://addons/gdf-godot/GDF/UI/Screen.cs" id="1_o2ejh"]
+[ext_resource type="PackedScene" uid="uid://dfiex6xxhyw40" path="res://scenes/objects/standard_user_interface.tscn" id="2_lt2jd"]
+[ext_resource type="Script" uid="uid://bfppi36isqkgt" path="res://addons/gdf-godot/GDF/UI/UserInterfaceComponent.cs" id="3_bdoul"]
+[ext_resource type="Resource" uid="uid://b55woujpabosc" path="res://resources/input_actions/ui_cancel.tres" id="4_b1jnu"]
+[ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="5_isaqb"]
+[ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="6_cafdd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_empfr"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.007843138, 0.039215688, 0.007843138, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.49803922, 1, 0.43137255, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Animation" id="Animation_empfr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Popup:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Popup:offset_transform_position_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Popup:offset_transform_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tr12m"]
+resource_name = "fade_in"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Popup:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.03333333, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Popup:offset_transform_position_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.03333333, 0.15833333),
+"transitions": PackedFloat32Array(0.34151033, 1),
+"update": 0,
+"values": [Vector2(0, 0.1), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Popup:offset_transform_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.03333333, 0.15837464, 0.2),
+"transitions": PackedFloat32Array(0.25000027, 1.8025014, 1),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(1.05, 1.05), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_60w8f"]
+resource_name = "fade_out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Popup:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Popup:offset_transform_position_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Popup:offset_transform_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.06666666),
+"transitions": PackedFloat32Array(0.5358866, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.06666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"HideAndFreeScreen"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_empfr"]
+_data = {
+&"RESET": SubResource("Animation_empfr"),
+&"fade_in": SubResource("Animation_tr12m"),
+&"fade_out": SubResource("Animation_60w8f")
+}
+
+[node name="OptionsScreen" type="Control" unique_id=666529771 node_paths=PackedStringArray("UserInterface")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_o2ejh")
+Order = 20
+Mode = 1
+UserInterface = NodePath("UserInterface")
+ShadowLowerOrderInterfaces = true
+metadata/_custom_type_script = "uid://bko61fppga1kx"
+
+[node name="UserInterface" parent="." unique_id=1004258199 instance=ExtResource("2_lt2jd")]
+
+[node name="Background" type="ColorRect" parent="." unique_id=1635419465]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.44705883)
+
+[node name="UserInterfaceComponent" type="Node" parent="Background" unique_id=1210299034]
+script = ExtResource("3_bdoul")
+Submittable = true
+Clickable = true
+ShortcutEnabled = true
+ShortcutAction = ExtResource("4_b1jnu")
+metadata/_custom_type_script = "uid://bfppi36isqkgt"
+
+[node name="Popup" type="PanelContainer" parent="." unique_id=187744927]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_empfr")
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup" unique_id=425295735]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup/MarginContainer" unique_id=1602037565]
+layout_mode = 2
+
+[node name="FormattedLabel" type="RichTextLabel" parent="Popup/MarginContainer/VBoxContainer" unique_id=1844216741]
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+script = ExtResource("5_isaqb")
+TextFormat = "Options"
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="HSeparator" type="HSeparator" parent="Popup/MarginContainer/VBoxContainer" unique_id=1558201267]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Popup/MarginContainer/VBoxContainer" unique_id=1687779084]
+custom_minimum_size = Vector2(360, 300)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup/MarginContainer/VBoxContainer/ScrollContainer" unique_id=308154716]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="FormattedLabel" type="RichTextLabel" parent="Popup/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer" unique_id=995801930]
+layout_mode = 2
+mouse_filter = 2
+horizontal_alignment = 1
+script = ExtResource("5_isaqb")
+TextFormat = "TODO"
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=145073308]
+libraries/ = SubResource("AnimationLibrary_empfr")
+autoplay = &"fade_in"
+
+[node name="Play fade_in" type="Node" parent="AnimationPlayer" unique_id=1907597076]
+script = ExtResource("6_cafdd")
+AnimationName = &"fade_in"
+FromAnimationList = []
+metadata/_custom_type_script = "uid://dukfxpmahaflv"
+
+[node name="Play fade_out" type="Node" parent="AnimationPlayer" unique_id=2060155919]
+script = ExtResource("6_cafdd")
+AnimationName = &"fade_out"
+FromAnimationList = []
+metadata/_custom_type_script = "uid://dukfxpmahaflv"
+
+[connection signal="ScreenFadingOut" from="." to="AnimationPlayer/Play fade_out" method="Trigger"]
+[connection signal="ScreenShown" from="." to="AnimationPlayer/Play fade_in" method="Trigger"]
+[connection signal="Submitted" from="Background/UserInterfaceComponent" to="." method="FadeOutScreen" flags=3]

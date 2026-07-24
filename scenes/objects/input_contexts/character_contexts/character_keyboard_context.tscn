@@ -6,7 +6,10 @@
 [ext_resource type="Script" uid="uid://4lm3jxgrfs5c" path="res://addons/gdf-godot/GDF/Input/GdfInputTriggerMixer.cs" id="4_hkgbp"]
 [ext_resource type="Script" uid="uid://cdfy1mpsmrtuu" path="res://addons/gdf-godot/GDF/Input/GdfInputTriggerInput.cs" id="5_bq1sy"]
 [ext_resource type="Resource" uid="uid://lcriijicejdl" path="res://resources/input_actions/attack.tres" id="6_7brk7"]
+[ext_resource type="Resource" uid="uid://c8dafi8es4u25" path="res://resources/input_actions/equip_1.tres" id="7_hkgbp"]
 [ext_resource type="Resource" uid="uid://cp5h337kot3xw" path="res://resources/input_actions/dash.tres" id="7_j0v5n"]
+[ext_resource type="Resource" uid="uid://bwtrqyb8xswe3" path="res://resources/input_actions/equip_2.tres" id="8_bq1sy"]
+[ext_resource type="Resource" uid="uid://quegfyyuigyq" path="res://resources/input_actions/equip_3.tres" id="9_0euk7"]
 
 [node name="Character Keyboard Context" type="Node" unique_id=1445705826]
 script = ExtResource("1_jdkr4")
@@ -54,6 +57,33 @@ Action = ExtResource("6_7brk7")
 script = ExtResource("5_bq1sy")
 Type = 2
 MouseButton = 1
+
+[node name="Equip 1" type="Node" parent="." unique_id=1492976246]
+script = ExtResource("2_7brk7")
+Action = ExtResource("7_hkgbp")
+
+[node name="Key" type="Node" parent="Equip 1" unique_id=1934371139]
+script = ExtResource("5_bq1sy")
+Type = 1
+Key = 49
+
+[node name="Equip 2" type="Node" parent="." unique_id=1092070755]
+script = ExtResource("2_7brk7")
+Action = ExtResource("8_bq1sy")
+
+[node name="Key" type="Node" parent="Equip 2" unique_id=1042158463]
+script = ExtResource("5_bq1sy")
+Type = 1
+Key = 50
+
+[node name="Equip 3" type="Node" parent="." unique_id=1011345958]
+script = ExtResource("2_7brk7")
+Action = ExtResource("9_0euk7")
+
+[node name="Key" type="Node" parent="Equip 3" unique_id=1420290343]
+script = ExtResource("5_bq1sy")
+Type = 1
+Key = 51
 
 [node name="Dash" type="Node" parent="." unique_id=1931966852]
 script = ExtResource("2_7brk7")

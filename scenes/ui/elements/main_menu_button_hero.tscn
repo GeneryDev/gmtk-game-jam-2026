@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://3gj32mdbtodw"]
+
+[ext_resource type="PackedScene" uid="uid://majwuxropqaj" path="res://scenes/ui/elements/main_menu_button.tscn" id="1_svv0g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svv0g"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.13758689, 0.15535554, 0.1156755, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pmsx8"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.22, 0.22, 0.22, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="Button" unique_id=1929653182 instance=ExtResource("1_svv0g")]
+custom_minimum_size = Vector2(9, 24)
+theme_override_styles/normal = SubResource("StyleBoxFlat_svv0g")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pmsx8")
+
+[node name="Content" parent="." index="1" unique_id=75312773]
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="FormattedLabel" parent="Content" index="0" unique_id=427085979]
+theme_override_font_sizes/normal_font_size = 28

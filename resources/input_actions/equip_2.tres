@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GdfInputAction" format=3 uid="uid://bwtrqyb8xswe3"]
+
+[ext_resource type="Script" uid="uid://b6um35a1dk7tb" path="res://addons/gdf-godot/GDF/Input/GdfInputAction.cs" id="1_i2tod"]
+
+[resource]
+script = ExtResource("1_i2tod")
+Name = "equip_2"
+DisplayName = "Equip 2"
+SendEventOnPress = true
+metadata/_custom_type_script = "uid://b6um35a1dk7tb"

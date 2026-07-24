@@ -1,0 +1,7 @@
+[gd_resource type="FontVariation" format=3 uid="uid://ceguiljjd010f"]
+
+[ext_resource type="FontFile" uid="uid://cpagf22vh1v00" path="res://assets/fonts/Aldrich-Regular.ttf" id="1_2bv6b"]
+
+[resource]
+base_font = ExtResource("1_2bv6b")
+baseline_offset = 0.1

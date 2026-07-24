@@ -8,9 +8,8 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tqw2u"]
 
 [node name="Control" type="MarginContainer" unique_id=2016401888]
-custom_minimum_size = Vector2(200, 300)
-offset_right = 200.0
-offset_bottom = 300.0
+custom_minimum_size = Vector2(200, 200)
+anchors_preset = -1
 
 [node name="ColorRect" type="TextureRect" parent="." unique_id=1916938502]
 modulate = Color(0, 0, 0, 1)
@@ -18,7 +17,7 @@ layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_tqw2u")
 
 [node name="Timer Effect Log" type="MarginContainer" parent="." unique_id=1387346667]
-custom_minimum_size = Vector2(200, 300)
+custom_minimum_size = Vector2(200, 220)
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16

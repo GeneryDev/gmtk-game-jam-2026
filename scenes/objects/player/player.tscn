@@ -13,8 +13,12 @@
 [ext_resource type="Script" uid="uid://mssyr2qclkx8" path="res://scripts/Game/Player/PlayerAttackController.cs" id="7_ponut"]
 [ext_resource type="Script" uid="uid://bfx0gcgwji8m0" path="res://scripts/Game/Entities/MotionComponent.cs" id="8_bdcal"]
 [ext_resource type="Script" uid="uid://ds1xannxtoxqn" path="res://scripts/Game/Entities/EntityDrag.cs" id="9_ponut"]
-[ext_resource type="PackedScene" uid="uid://bmaxqgjfg46ic" path="res://scenes/objects/attacks/hitscan_attack.tscn" id="9_vwou5"]
+[ext_resource type="Script" uid="uid://b0mjdoh2ma2w3" path="res://scripts/Game/Player/PlayerAttackSwitcher.cs" id="10_nqkks"]
+[ext_resource type="Resource" uid="uid://c8dafi8es4u25" path="res://resources/input_actions/equip_1.tres" id="11_jxhie"]
+[ext_resource type="Resource" uid="uid://bwtrqyb8xswe3" path="res://resources/input_actions/equip_2.tres" id="12_8bans"]
+[ext_resource type="Resource" uid="uid://quegfyyuigyq" path="res://resources/input_actions/equip_3.tres" id="13_vx2qb"]
 [ext_resource type="Script" uid="uid://bhc8xj1hoddjw" path="res://scripts/Game/Player/WalkingEffect.cs" id="15_g65c7"]
+[ext_resource type="PackedScene" uid="uid://c4oxmtqca04k4" path="res://scenes/objects/attacks/bullet_attack.tscn" id="16_nqkks"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_7nx1l"]
 size = Vector2(60, -60)
@@ -62,6 +66,7 @@ metadata/_custom_type_script = "uid://wbquqef0rnl5"
 shape = SubResource("CircleShape2D_tqw2u")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=262534271]
+zoom = Vector2(0.8, 0.8)
 
 [node name="GdfPlayerInput" type="Node" parent="." unique_id=1688983007]
 script = ExtResource("2_0a575")
@@ -75,12 +80,21 @@ script = ExtResource("5_ejlqc")
 script = ExtResource("4_wim6f")
 MoveAction = ExtResource("5_gmdvr")
 DashAction = ExtResource("6_io36v")
-MovementSpeed = 150.0
+MovementSpeed = 200.0
+DashSpeedMultiplier = 1.0
+
+[node name="Attack Switcher" type="Node" parent="." unique_id=2088346059]
+script = ExtResource("10_nqkks")
+AttackOptions = Dictionary[Object, StringName]({
+ExtResource("11_jxhie"): &"bullet_attack",
+ExtResource("12_8bans"): &"hitscan_attack",
+ExtResource("13_vx2qb"): &"beam_attack"
+})
 
 [node name="Player Attacks" type="Node" parent="." unique_id=447543846]
 script = ExtResource("7_ponut")
 AttackAction = ExtResource("6_gmdvr")
-AttackScene = ExtResource("9_vwou5")
+AttackScene = ExtResource("16_nqkks")
 
 [node name="Drag" type="Node" parent="." unique_id=1030416559]
 script = ExtResource("9_ponut")
@@ -90,10 +104,9 @@ Drag = 5.0
 script = ExtResource("8_bdcal")
 Body = NodePath("..")
 
-[node name="WalkingEffect" type="Node" parent="." unique_id=1508963850 node_paths=PackedStringArray("leftFootParticles", "rightFootParticles", "body")]
+[node name="WalkingEffect" type="Node" parent="." unique_id=1508963850 node_paths=PackedStringArray("leftFootParticles", "body")]
 script = ExtResource("15_g65c7")
 leftFootParticles = NodePath("../WalkParticleLeft")
-rightFootParticles = NodePath("")
 body = NodePath("..")
 
 [node name="WalkParticleLeft" type="CPUParticles2D" parent="." unique_id=1040265920]
