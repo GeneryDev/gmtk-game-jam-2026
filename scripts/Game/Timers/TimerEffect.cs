@@ -13,10 +13,16 @@ public partial class TimerEffect : SummarizableScene, IDataContext, ITagged<stri
     [Signal]
     public delegate void TriggeredEventHandler();
 
-    [Export] [StoreInSummary] public float SpawnWeight = 1;
+    [ExportGroup("Texts")]
     [Export] [StoreInSummary] public string Description = "";
     [Export] [StoreInSummary] public string LogMessage = "";
     [Export] [StoreInSummary] public string ParticleMessage = "";
+
+    [ExportGroup("Spawning")]
+    [Export] [StoreInSummary] public float SpawnWeight = 1;
+    [Export] [StoreInSummary] public TimerCondition SpawnCondition;
+
+    [ExportGroup("Metadata")]
     [Export] [StoreInSummary] public Array<string> Tags = new();
 
     public TimerEffects.Descriptor Descriptor => TimerEffects.From(this);

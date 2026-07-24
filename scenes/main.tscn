@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bs7ti064ojarj" path="res://scenes/ui/screens/pausable.tscn" id="4_85g3d"]
 [ext_resource type="Script" uid="uid://dux7ids7mjj4q" path="res://scripts/Game/MobSpawner.cs" id="4_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://bgink1y3to7s4" path="res://scenes/objects/level/timer_effect_log_on_wall.tscn" id="6_tefeu"]
+[ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="7_choun"]
 [ext_resource type="PackedScene" uid="uid://iga4ll57v2o0" path="res://scenes/objects/level/timer_display.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://b3hl1vuham125" path="res://scenes/objects/level/speed_display.tscn" id="8_tipki"]
 
@@ -14,6 +15,56 @@
 
 [sub_resource type="QuadMesh" id="QuadMesh_tqw2u"]
 size = Vector2(1000, 600)
+
+[sub_resource type="Animation" id="Animation_85g3d"]
+resource_name = "burst_10"
+length = 1.7
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16826837, 0.36808705, 0.5889393, 0.7642188, 0.925476, 1.0902388, 1.2666667, 1.482865, 1.6336054),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"Spawn"
+}, {
+"args": [],
+"method": &"Spawn"
+}, {
+"args": [],
+"method": &"Spawn"
+}, {
+"args": [],
+"method": &"Spawn"
+}, {
+"args": [],
+"method": &"Spawn"
+}, {
+"args": [],
+"method": &"Spawn"
+}, {
+"args": [],
+"method": &"Spawn"
+}, {
+"args": [],
+"method": &"Spawn"
+}, {
+"args": [],
+"method": &"Spawn"
+}, {
+"args": [],
+"method": &"Spawn"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_choun"]
+_data = {
+&"burst_10": SubResource("Animation_85g3d")
+}
 
 [node name="Main" type="Node" unique_id=440558421]
 
@@ -63,6 +114,22 @@ mesh = SubResource("QuadMesh_tqw2u")
 
 [node name="Mob Spawner" type="Node" parent="Node2D" unique_id=1037427461]
 script = ExtResource("4_tbgi4")
+StartAmount = 10
+SpawnInterval = 3.0
+
+[node name="Timer" type="Timer" parent="Node2D/Mob Spawner" unique_id=346712547]
+process_callback = 0
+wait_time = 20.0
+autostart = true
+
+[node name="Waves" type="AnimationPlayer" parent="Node2D/Mob Spawner" unique_id=1296032785]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_choun")
+
+[node name="Play burst_10" type="Node" parent="Node2D/Mob Spawner/Waves" unique_id=1641880258]
+script = ExtResource("7_choun")
+AnimationName = &"burst_10"
+metadata/_custom_type_script = "uid://dukfxpmahaflv"
 
 [node name="Timer Effect Log" parent="Node2D" unique_id=358342731 instance=ExtResource("6_tefeu")]
 position = Vector2(-387, -185)
@@ -78,3 +145,5 @@ skew = 0.35953784
 
 [node name="Speed Display" parent="Node2D/Node2D" unique_id=73703978 instance=ExtResource("8_tipki")]
 rotation = 1.5707964
+
+[connection signal="timeout" from="Node2D/Mob Spawner/Timer" to="Node2D/Mob Spawner/Waves/Play burst_10" method="Trigger"]

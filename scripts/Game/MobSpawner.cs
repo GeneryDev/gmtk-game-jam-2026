@@ -7,13 +7,14 @@ namespace Game;
 public partial class MobSpawner : Node
 {
     [Export] public int StartAmount = 20;
+    [Export] public float SpawnInterval = 2;
 
     private Accumulator _timer;
 
     public override void _PhysicsProcess(double delta)
     {
         _timer.Add((float)delta);
-        while (_timer.Consume(2))
+        while (_timer.Consume(SpawnInterval))
         {
             Spawn();
         }
@@ -32,7 +33,6 @@ public partial class MobSpawner : Node
     public void Spawn()
     {
         var instance = MobBuilder.NewMob();
-        instance.AddToGroup("All Mobs");
         GetParent().AddChild(instance);
     }
 }

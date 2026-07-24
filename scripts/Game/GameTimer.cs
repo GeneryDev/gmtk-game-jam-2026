@@ -47,18 +47,18 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 		}
 	}
 
+	public double TotalElapsedRealTime { get; private set; } = 0;
 	private Accumulator _tickTimer;
 
-	private readonly StringBuilder _sb = new();
+	private static readonly StringBuilder _sb = new();
 	private long _remainingTime = 0;
 	private float _tickRate = 1;
 
-
-	public string GetFormattedTime()
+	public static string GetFormattedTime(double timeSec)
 	{
 		_sb.Clear();
-		if (_remainingTime < 0) _sb.Append('-');
-		var time = TimeSpan.FromSeconds(_remainingTime).Duration();
+		if (timeSec < 0) _sb.Append('-');
+		var time = TimeSpan.FromSeconds(timeSec).Duration();
 
 		if (time.TotalHours >= 1)
 		{
@@ -73,9 +73,15 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 		return formatted;
 	}
 
-	public override void _Process(double delta)
+	public string GetFormattedTime()
 	{
-		base._Process(delta);
+		return GetFormattedTime(_remainingTime);
+	}
+
+	public override void _PhysicsProcess(double delta)
+	{
+		base._PhysicsProcess(delta);
+		TotalElapsedRealTime += delta;
 
 		_tickTimer.Add((float)(delta * TickRate));
 
@@ -114,6 +120,11 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 			case "time":
 			{
 				replacement = GetFormattedTime();
+				return true;
+			}
+			case "total_elapsed_real_time":
+			{
+				replacement = GetFormattedTime(TotalElapsedRealTime);
 				return true;
 			}
 		}

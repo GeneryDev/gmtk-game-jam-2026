@@ -24,10 +24,18 @@ public static class MobBuilder
         for (int i = 0; i < _tempEffects.Count; i++)
         {
             var effect = _tempEffects[i];
-            _tempWeights[i] = effect.Reference.SpawnWeight;
+            if (effect.Reference.SpawnCondition?.Evaluate() ?? true)
+            {
+                _tempWeights[i] = effect.Reference.SpawnWeight;
+            }
+            else
+            {
+                _tempWeights[i] = 0;
+            }
         }
 
         var pickedIndex = (int)_rng.RandWeighted(_tempWeights);
+        if (pickedIndex == -1) return default;
         var pickedEffect = _tempEffects[pickedIndex];
         return pickedEffect;
     }

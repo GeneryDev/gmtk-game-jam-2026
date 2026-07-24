@@ -39,6 +39,7 @@ enabled=PackedStringArray("res://addons/gdf-godot/plugin.cfg")
 [global_group]
 
 player_character=""
+mob=""
 
 [gui]
 

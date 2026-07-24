@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SceneSummary" format=3 uid="uid://b78wyeih7eehg"]
 
+[ext_resource type="Resource" uid="uid://hcxu7jl3vxo3" path="res://resources/timer_conditions/speed_effects_spawn_condition.tres" id="1_6yqoy"]
 [ext_resource type="Script" uid="uid://8167tjb1cm0a" path="res://scripts/Game/Timers/TimerEffect.cs" id="1_nplo1"]
 [ext_resource type="Script" uid="uid://pj67f1pjpit5" path="res://addons/gdf-godot/GDF/Resources/SceneSummary.cs" id="2_6yqoy"]
 
@@ -11,6 +12,7 @@ RootNodeProperties = {
 &"Description": "Speed ×2",
 &"LogMessage": "Speed ×2",
 &"ParticleMessage": "Speed ×2",
+&"SpawnCondition": ExtResource("1_6yqoy"),
 &"SpawnWeight": 2.0,
 &"Tags": Array[String](["speed", "speed_up", "neutral", "log_error"])
 }

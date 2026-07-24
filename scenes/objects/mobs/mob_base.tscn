@@ -169,7 +169,7 @@ _data = {
 &"hurt": SubResource("Animation_4fmyd")
 }
 
-[node name="Mob" type="CharacterBody2D" unique_id=63413937]
+[node name="Mob" type="CharacterBody2D" unique_id=63413937 groups=["mob"]]
 collision_layer = 10
 collision_mask = 3
 
@@ -248,6 +248,7 @@ libraries/ = SubResource("AnimationLibrary_5mw3m")
 script = ExtResource("10_5km6i")
 AnimationName = &"hurt"
 Restart = true
+FromAnimationList = []
 metadata/_custom_type_script = "uid://dukfxpmahaflv"
 
 [node name="Particle" type="Control" parent="." unique_id=1729297614]
