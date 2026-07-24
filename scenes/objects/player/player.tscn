@@ -38,6 +38,7 @@ colors = PackedColorArray(0.44445667, 0.44445667, 0.44445664, 1, 0.3261841, 0.32
 [node name="Player" type="CharacterBody2D" unique_id=63413937 groups=["player_character"]]
 z_index = 1
 collision_layer = 6
+collision_mask = 5
 
 [node name="ComponentIndex" type="Node" parent="." unique_id=1468369688 node_paths=PackedStringArray("ComponentOwner")]
 script = ExtResource("1_1bf4k")

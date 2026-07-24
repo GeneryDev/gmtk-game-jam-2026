@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Game.Timers;
 using GDF.Composition;
 using GDF.Util;
 using Godot;
@@ -10,13 +9,13 @@ public static class MobBuilder
 {
     private static RandomNumberGenerator _rng = new();
 
-    private static List<TimerEffects.Descriptor> _tempEffects = new();
+    private static List<MobEffects.Descriptor> _tempEffects = new();
     private static float[] _tempWeights;
     
-    public static TimerEffects.Descriptor PickTimerEffect()
+    public static MobEffects.Descriptor PickMobEffect()
     {
         _tempEffects.Clear();
-        TimerEffects.CollectAll(_tempEffects);
+        MobEffects.CollectAll(_tempEffects);
         if (_tempEffects.Count <= 0) return default;
         
         if (_tempWeights?.Length != _tempEffects.Count)
@@ -47,7 +46,11 @@ public static class MobBuilder
 
     public static Node NewMob()
     {
-        var effect = PickTimerEffect();
+        return NewMob(PickMobEffect());
+    }
+
+    public static Node NewMob(MobEffects.Descriptor effect)
+    {
         if (effect.IsEmpty) return null;
         var mobType = MobTypes.SelectForEffect(effect, _rng);
         if (mobType.IsEmpty) return null;
@@ -57,7 +60,7 @@ public static class MobBuilder
         
         // Initialize
         instance.Position = PickSpawnPos();
-        instance.GetComponent<TimerEffectHost>()?.InstallEffect(effect);
+        instance.GetComponent<MobEffectHost>()?.InstallEffect(effect);
 
         return instance;
     }

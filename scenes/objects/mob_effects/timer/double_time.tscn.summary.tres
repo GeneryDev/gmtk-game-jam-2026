@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SceneSummary" format=3 uid="uid://dicrli76ibm2j"]
+
+[ext_resource type="Resource" uid="uid://bxhxcks67bc6" path="res://resources/timer_conditions/mid_game_spawn_conditions_negative.tres" id="1_h2uf4"]
+[ext_resource type="Script" uid="uid://8167tjb1cm0a" path="res://scripts/Game/Entities/MobEffect.cs" id="2_q8ccq"]
+[ext_resource type="Script" uid="uid://pj67f1pjpit5" path="res://addons/gdf-godot/GDF/Resources/SceneSummary.cs" id="3_5jhfm"]
+
+[resource]
+script = ExtResource("3_5jhfm")
+RootNodeName = &"DoubleTime"
+RootNodeScript = ExtResource("2_q8ccq")
+RootNodeProperties = {
+&"Description": "Time ×2",
+&"LogMessage": "Time ×2",
+&"ParticleMessage": "Time ×2",
+&"SpawnCondition": ExtResource("1_h2uf4"),
+&"SpawnWeight": 4.0,
+&"Tags": Array[String](["timer", "multiplier", "negative", "log_warning"])
+}

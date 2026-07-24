@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://c4garyitwauvq"]
+
+[ext_resource type="Script" uid="uid://8167tjb1cm0a" path="res://scripts/Game/Entities/MobEffect.cs" id="1_8pxwh"]
+[ext_resource type="Resource" uid="uid://lj1s0ymrn3d6" path="res://scenes/objects/mob_effects/explode.tscn.summary.tres" id="2_ikj04"]
+[ext_resource type="Script" uid="uid://k8suh3w0dagg" path="res://addons/gdf-godot/GDF/Data/InjectedDataContext.cs" id="3_ikj04"]
+[ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="4_37aji"]
+[ext_resource type="Script" uid="uid://dmxsrwhwawg28" path="res://scripts/Game/Util/ObjectSpawner.cs" id="4_xr6u2"]
+[ext_resource type="PackedScene" uid="uid://bn4gdb62llt2w" path="res://scenes/objects/hazards/explosion.tscn" id="6_37aji"]
+[ext_resource type="Script" uid="uid://0mjmm7eo3o6v" path="res://addons/gdf-godot/GDF/Data/DataQuery.cs" id="7_bd8bi"]
+
+[sub_resource type="Resource" id="Resource_tqw2u"]
+script = ExtResource("7_bd8bi")
+DataContext = NodePath("../../Entity Context")
+Query = "{position}"
+metadata/_custom_type_script = "uid://0mjmm7eo3o6v"
+
+[node name="Explode" type="Node" unique_id=1558047290]
+script = ExtResource("1_8pxwh")
+Summary = ExtResource("2_ikj04")
+metadata/_custom_type_script = "uid://8167tjb1cm0a"
+
+[node name="Entity Context" type="Node" parent="." unique_id=323611527]
+script = ExtResource("3_ikj04")
+InjectableSlotId = &"entity_context"
+DefaultVariableValues = {}
+DefaultCollections = {}
+EditorPreviewVariables = {}
+metadata/_custom_type_script = "uid://k8suh3w0dagg"
+
+[node name="ObjectSpawner" type="Node" parent="." unique_id=1555222830]
+script = ExtResource("4_xr6u2")
+RelativeMode = 2
+metadata/_custom_type_script = "uid://dmxsrwhwawg28"
+
+[node name="Spawn" type="Node" parent="ObjectSpawner" unique_id=1081125721 node_paths=PackedStringArray("Target")]
+script = ExtResource("4_37aji")
+Target = NodePath("..")
+Method = &"Spawn"
+Args = [&"Explosion", ExtResource("6_37aji"), SubResource("Resource_tqw2u")]
+ArgInputTypes = Array[int]([0, 0, 1])
+ArgAbortIfNull = Array[bool]([false, false, false])
+ArgReplicate = Array[bool]([false, false, false])
+TargetMethodInfo = {
+"args": Array[Dictionary]([{
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "name",
+"type": 21,
+"usage": 6
+}, {
+"class_name": &"PackedScene",
+"hint": 0,
+"hint_string": "",
+"name": "scene",
+"type": 24,
+"usage": 6
+}, {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "position",
+"type": 5,
+"usage": 6
+}]),
+"default_args": [],
+"flags": 1,
+"id": 0,
+"name": "Spawn",
+"return": {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 0,
+"usage": 6
+}
+}
+metadata/_custom_type_script = "uid://buqbj5n61xjbu"
+
+[connection signal="Triggered" from="." to="ObjectSpawner/Spawn" method="Trigger"]

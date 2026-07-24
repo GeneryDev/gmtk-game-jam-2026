@@ -1,10 +1,12 @@
 ﻿using Game.Entities;
+using GDF.Debug;
 using GDF.Util;
 using Godot;
 
 namespace Game;
 
-public partial class MobSpawner : Node
+[HasDebugCommands]
+public partial class MobSpawner : SingletonNode<MobSpawner>
 {
     [Export] public int StartAmount = 20;
     [Export] public float SpawnInterval = 2;
@@ -34,5 +36,20 @@ public partial class MobSpawner : Node
     {
         var instance = MobBuilder.NewMob();
         GetParent().AddChild(instance);
+    }
+
+    [DebugCommand("spawn", DebugCommandType.TriggerWithArguments)]
+    public static void DebugSpawn(DebugCommandArgumentParser args)
+    {
+        if (args.ReadWord(out string effectId))
+        {
+            var effect = MobEffects.FromId(effectId);
+            var instance = MobBuilder.NewMob(effect);
+            Instance?.GetParent().AddChild(instance);
+        }
+        else
+        {
+            args.PrintError();
+        }
     }
 }

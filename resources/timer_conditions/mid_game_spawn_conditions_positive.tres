@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TimerCondition" format=3 uid="uid://5wxe5f18kwnf"]
+
+[ext_resource type="Script" uid="uid://dr7wpap8ayqnh" path="res://scripts/Game/Timers/TimerCondition.cs" id="1_06kg2"]
+
+[resource]
+script = ExtResource("1_06kg2")
+RequireMobCount = true
+RequireMobCountMin = 20
+RequireMobCountMax = null
+RequireElapsedRealTime = true
+RequireElapsedRealTimeUnit = 60
+RequireElapsedRealTimeMin = 3.0
+RequireElapsedRealTimeMax = null
+metadata/_custom_type_script = "uid://dr7wpap8ayqnh"

@@ -3,17 +3,20 @@
 [ext_resource type="Script" uid="uid://56fvy6sd714g" path="res://addons/gdf-godot/GDF/Composition/ComponentIndex.cs" id="1_1fa5o"]
 [ext_resource type="Texture2D" uid="uid://br88hwvbf6ddl" path="res://assets/textures/sprites/mob_trivial.png" id="2_y4u25"]
 [ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="3_1an03"]
+[ext_resource type="Script" uid="uid://dvnqkwg5xysf2" path="res://scripts/Game/Entities/EntityContext.cs" id="4_1an03"]
 [ext_resource type="Script" uid="uid://dmhldnch5rsyx" path="res://scripts/Game/Entities/EntityFlags.cs" id="4_hx6kq"]
 [ext_resource type="Script" uid="uid://co3d12m3ihdwj" path="res://scripts/Game/Entities/MobController.cs" id="5_t5ssb"]
 [ext_resource type="Script" uid="uid://ds1xannxtoxqn" path="res://scripts/Game/Entities/EntityDrag.cs" id="6_r388d"]
 [ext_resource type="Script" uid="uid://bfx0gcgwji8m0" path="res://scripts/Game/Entities/MotionComponent.cs" id="7_c0i0d"]
 [ext_resource type="Script" uid="uid://du06k8gwkwajk" path="res://scripts/Game/Entities/DamageableComponent.cs" id="8_bnim1"]
-[ext_resource type="Script" uid="uid://bhfpc3sve7mxh" path="res://scripts/Game/Timers/TimerEffectHost.cs" id="9_d6eh5"]
+[ext_resource type="Script" uid="uid://bhfpc3sve7mxh" path="res://scripts/Game/Entities/MobEffectHost.cs" id="9_d6eh5"]
 [ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="10_5km6i"]
 [ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="11_sehlk"]
 [ext_resource type="Script" uid="uid://csxjam05y7w8k" path="res://addons/gdf-godot/GDF/UI/ControlStateContext.cs" id="12_fstnm"]
+[ext_resource type="Script" uid="uid://oliucmlr4xel" path="res://addons/gdf-godot/GDF/Logical/Signals/SignalPortOutbound.cs" id="13_hx6kq"]
 [ext_resource type="Script" uid="uid://b6sb42qs0fsp1" path="res://scripts/Game/Util/ScreenSpawner.cs" id="13_m0y3u"]
 [ext_resource type="PackedScene" uid="uid://dkf1riu3oh521" path="res://scenes/ui/screens/mob_tooltip.tscn" id="14_0f8rm"]
+[ext_resource type="Script" uid="uid://k88c5byfcni6" path="res://addons/gdf-godot/GDF/Logical/Signals/SignalStation.cs" id="16_hx6kq"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_7nx1l"]
 size = Vector2(60, -60)
@@ -208,6 +211,9 @@ mesh = SubResource("QuadMesh_7nx1l")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=508152118]
 shape = SubResource("CircleShape2D_tqw2u")
 
+[node name="Entity Context" type="Node" parent="." unique_id=1667695090]
+script = ExtResource("4_1an03")
+
 [node name="Entity Flags" type="Node" parent="." unique_id=925536659]
 script = ExtResource("4_hx6kq")
 
@@ -250,6 +256,14 @@ AnimationName = &"hurt"
 Restart = true
 FromAnimationList = []
 metadata/_custom_type_script = "uid://dukfxpmahaflv"
+
+[node name="Mob Signals" type="Node" parent="." unique_id=1204803228]
+script = ExtResource("16_hx6kq")
+metadata/_custom_type_script = "uid://k88c5byfcni6"
+
+[node name="Hurt" type="Node" parent="Mob Signals" unique_id=947510298]
+script = ExtResource("13_hx6kq")
+metadata/_custom_type_script = "uid://oliucmlr4xel"
 
 [node name="Particle" type="Control" parent="." unique_id=1729297614]
 modulate = Color(1, 1, 1, 0)
@@ -351,6 +365,7 @@ RelativeMode = 1
 metadata/_custom_type_script = "uid://b6sb42qs0fsp1"
 
 [connection signal="Hurt" from="Damageable" to="Damage Animations/Play hurt" method="Trigger"]
+[connection signal="Hurt" from="Damageable" to="Mob Signals/Hurt" method="Emit"]
 [connection signal="Triggered" from="Timer Effect Host" to="Action Animations/Play trigger" method="Trigger"]
 [connection signal="EvaluatedFalse" from="Control/Hover Sensor/Hover Context/On Hover" to="Control/ScreenSpawner" method="CloseAll"]
 [connection signal="EvaluatedTrue" from="Control/Hover Sensor/Hover Context/On Hover" to="Control/ScreenSpawner" method="Trigger"]
