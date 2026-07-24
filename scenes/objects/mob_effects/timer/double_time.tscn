@@ -1,20 +1,20 @@
 [gd_scene format=3 uid="uid://0t22nd81e4wh"]
 
-[ext_resource type="Script" uid="uid://8167tjb1cm0a" path="res://scripts/Game/Entities/MobEffect.cs" id="1_4ojq6"]
-[ext_resource type="Resource" uid="uid://dicrli76ibm2j" path="res://scenes/objects/mob_effects/double_time.tscn.summary.tres" id="2_4ojq6"]
-[ext_resource type="Script" uid="uid://ccy1yqjcbg6iq" path="res://scripts/Game/Timers/TimerFunctions.cs" id="3_xiwyj"]
-[ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="4_t4v2v"]
+[ext_resource type="Script" uid="uid://8167tjb1cm0a" path="res://scripts/Game/Entities/MobEffect.cs" id="1_d054s"]
+[ext_resource type="Resource" uid="uid://dicrli76ibm2j" path="res://scenes/objects/mob_effects/timer/double_time.tscn.summary.tres" id="2_bqxb7"]
+[ext_resource type="Script" uid="uid://ccy1yqjcbg6iq" path="res://scripts/Game/Timers/TimerFunctions.cs" id="3_ouiwx"]
+[ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="4_4ta60"]
 
 [node name="DoubleTime" type="Node" unique_id=1558047290]
-script = ExtResource("1_4ojq6")
-Summary = ExtResource("2_4ojq6")
+script = ExtResource("1_d054s")
+Summary = ExtResource("2_bqxb7")
 metadata/_custom_type_script = "uid://8167tjb1cm0a"
 
 [node name="Timer Functions" type="Node" parent="." unique_id=1703951640]
-script = ExtResource("3_xiwyj")
+script = ExtResource("3_ouiwx")
 
 [node name="Method Call" type="Node" parent="Timer Functions" unique_id=1081125721 node_paths=PackedStringArray("Target")]
-script = ExtResource("4_t4v2v")
+script = ExtResource("4_4ta60")
 Target = NodePath("..")
 Method = &"MultiplyTime"
 Args = [2.0]

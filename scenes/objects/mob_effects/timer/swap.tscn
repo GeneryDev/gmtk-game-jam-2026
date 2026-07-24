@@ -1,12 +1,19 @@
 [gd_scene format=3 uid="uid://1m3beodurda0"]
 
 [ext_resource type="Script" uid="uid://8167tjb1cm0a" path="res://scripts/Game/Entities/MobEffect.cs" id="1_a4nyp"]
-[ext_resource type="Resource" uid="uid://imxwr0qsocj5" path="res://scenes/objects/mob_effects/swap.tscn.summary.tres" id="2_a4nyp"]
+[ext_resource type="Resource" uid="uid://imxwr0qsocj5" path="res://scenes/objects/mob_effects/timer/swap.tscn.summary.tres" id="2_a4nyp"]
+[ext_resource type="Resource" uid="uid://rg5a3iyj28ul" path="res://resources/timer_conditions/swap_effect_spawn_condition.tres" id="2_x2y8s"]
 [ext_resource type="Script" uid="uid://ccy1yqjcbg6iq" path="res://scripts/Game/Timers/TimerFunctions.cs" id="3_pc5w6"]
 [ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="4_msjq6"]
 
 [node name="Swap Minutes and Seconds" type="Node" unique_id=1558047290]
 script = ExtResource("1_a4nyp")
+Description = "Swaps the minutes and seconds"
+LogMessage = "Minutes ⇄ Seconds"
+ParticleMessage = "m ⇄ s"
+SpawnWeight = 2.0
+SpawnCondition = ExtResource("2_x2y8s")
+Tags = Array[String](["timer", "swap", "neutral", "log_error"])
 Summary = ExtResource("2_a4nyp")
 metadata/_custom_type_script = "uid://8167tjb1cm0a"
 

@@ -1,12 +1,19 @@
 [gd_scene format=3 uid="uid://2d7w0igv31yk"]
 
 [ext_resource type="Script" uid="uid://8167tjb1cm0a" path="res://scripts/Game/Entities/MobEffect.cs" id="1_r1dyp"]
-[ext_resource type="Resource" uid="uid://c1cdjyiyl7hcl" path="res://scenes/objects/mob_effects/minus_1_min.tscn.summary.tres" id="2_r1dyp"]
+[ext_resource type="Resource" uid="uid://dppfotmufbqkn" path="res://resources/timer_conditions/post_intro_spawn_conditions_positive.tres" id="2_cjxju"]
+[ext_resource type="Resource" uid="uid://c1cdjyiyl7hcl" path="res://scenes/objects/mob_effects/timer/minus_1_min.tscn.summary.tres" id="2_r1dyp"]
 [ext_resource type="Script" uid="uid://ccy1yqjcbg6iq" path="res://scripts/Game/Timers/TimerFunctions.cs" id="3_h2dsn"]
 [ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="4_pvvaw"]
 
 [node name="Minus1Min" type="Node" unique_id=1558047290]
 script = ExtResource("1_r1dyp")
+Description = "-60 seconds"
+LogMessage = "-60 seconds"
+ParticleMessage = "-60s"
+SpawnWeight = 2.0
+SpawnCondition = ExtResource("2_cjxju")
+Tags = Array[String](["timer", "minutes", "positive", "log_warning"])
 Summary = ExtResource("2_r1dyp")
 metadata/_custom_type_script = "uid://8167tjb1cm0a"
 
