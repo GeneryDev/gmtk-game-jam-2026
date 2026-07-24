@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://ueooctks1neu"]
+
+[ext_resource type="Script" uid="uid://dsd7tvanlvfu0" path="res://addons/gdf-godot/GDF/Data/Static/StaticDataContextNode.cs" id="1_7ixe7"]
+[ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="1_m2vi6"]
+[ext_resource type="FontVariation" uid="uid://bhw0i257ab6tc" path="res://assets/fonts/DigitalNumbers Modified.tres" id="2_yrpwf"]
+[ext_resource type="Script" uid="uid://iir4w637gc2k" path="res://addons/gdf-godot/GDF/UI/LabelAutoFontSize.cs" id="4_xwne3"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_tqw2u"]
+
+[sub_resource type="Resource" id="Resource_ohnff"]
+script = ExtResource("4_xwne3")
+BaseFontSize = 24
+ContentWidthThresholdToShrink = 130
+metadata/_custom_type_script = "uid://iir4w637gc2k"
+
+[node name="Node2D" type="Node2D" unique_id=1364720254]
+
+[node name="Game Timer Context" type="Node" parent="." unique_id=17225227]
+script = ExtResource("1_7ixe7")
+TypeId = "game_timer_context"
+metadata/_custom_type_script = "uid://dsd7tvanlvfu0"
+
+[node name="Scene" type="Node2D" parent="." unique_id=1652789335]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Scene" unique_id=1455876909]
+modulate = Color(0.18000486, 0.18000486, 0.18000486, 1)
+position = Vector2(0, 3.8146973e-06)
+scale = Vector2(200, 120)
+mesh = SubResource("QuadMesh_tqw2u")
+
+[node name="Table" type="Polygon2D" parent="Scene" unique_id=909192473]
+position = Vector2(-100, -60)
+color = Color(0.32, 0.20053333, 0.115200005, 1)
+polygon = PackedVector2Array(-18, 95, 96, -21, 317, 9, 287, 153)
+
+[node name="Polygon2D" type="Polygon2D" parent="Scene" unique_id=18859721]
+position = Vector2(-100, -60)
+color = Color(0.1148968, 0.11489681, 0.1148968, 1)
+polygon = PackedVector2Array(32, 19, 38, 80, 184, 109, 228, 54, 224, -5, 176, 34)
+
+[node name="Display Background" type="Polygon2D" parent="Scene" unique_id=300932700]
+position = Vector2(-100, -60)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(42, 75, 38, 25, 171.69995, 39.19998, 177, 100)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Scene" unique_id=1750488081]
+position = Vector2(-100, -60)
+color = Color(0.2520276, 0.25202766, 0.25202763, 1)
+polygon = PackedVector2Array(33, 19, 176, 34, 223, -4, 78, -15)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Scene" unique_id=1462482096]
+position = Vector2(-100, -60)
+color = Color(0.22490779, 0.11421894, 0.07049886, 1)
+polygon = PackedVector2Array(-18, 95, 287, 152, 288, 175, -17, 172)
+
+[node name="Node2D" type="Node2D" parent="Scene" unique_id=578199136]
+position = Vector2(9, 2.9999962)
+rotation = -1.5707964
+skew = 0.15533435
+
+[node name="Node2D2" type="Node2D" parent="Scene/Node2D" unique_id=1485992150]
+rotation = 1.5707964
+
+[node name="Control" type="Control" parent="Scene/Node2D/Node2D2" unique_id=1726331405]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1.0
+offset_top = -2.0
+offset_right = -1.0
+offset_bottom = -2.0
+mouse_filter = 2
+
+[node name="FormattedLabel" type="RichTextLabel" parent="Scene/Node2D/Node2D2/Control" unique_id=439812972 node_paths=PackedStringArray("DataContext")]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.6164671, 0.9738824, 1.540184e-06, 1)
+theme_override_fonts/normal_font = ExtResource("2_yrpwf")
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 2
+script = ExtResource("1_m2vi6")
+TextFormat = "{time}"
+DataContext = NodePath("../../../../../Game Timer Context")
+UsePostProcessing = true
+PostProcessors = [SubResource("Resource_ohnff")]
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=721532277]
+custom_minimum_size = Vector2(200, 120)
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2

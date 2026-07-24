@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://iga4ll57v2o0"]
+
+[ext_resource type="Script" uid="uid://dsd7tvanlvfu0" path="res://addons/gdf-godot/GDF/Data/Static/StaticDataContextNode.cs" id="1_ga2pf"]
+[ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="2_wihry"]
+
+[node name="Timer Display" type="Node2D" unique_id=1766795991]
+
+[node name="Game Timer Context" type="Node" parent="." unique_id=1514591060]
+script = ExtResource("1_ga2pf")
+TypeId = "game_timer_context"
+metadata/_custom_type_script = "uid://dsd7tvanlvfu0"
+
+[node name="Control" type="Control" parent="." unique_id=1827126944]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=38139649]
+show_behind_parent = true
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="FormattedLabel" type="RichTextLabel" parent="Control" unique_id=893955773 node_paths=PackedStringArray("DataContext")]
+clip_contents = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.6164671, 0.9738824, 1.540184e-06, 1)
+theme_override_font_sizes/normal_font_size = 62
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_wihry")
+TextFormat = "{time}"
+DataContext = NodePath("../../Game Timer Context")
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"

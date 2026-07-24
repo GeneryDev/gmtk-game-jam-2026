@@ -62,6 +62,7 @@ metadata/_custom_type_script = "uid://wbquqef0rnl5"
 shape = SubResource("CircleShape2D_tqw2u")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=262534271]
+zoom = Vector2(0.8, 0.8)
 
 [node name="GdfPlayerInput" type="Node" parent="." unique_id=1688983007]
 script = ExtResource("2_0a575")
@@ -75,7 +76,8 @@ script = ExtResource("5_ejlqc")
 script = ExtResource("4_wim6f")
 MoveAction = ExtResource("5_gmdvr")
 DashAction = ExtResource("6_io36v")
-MovementSpeed = 150.0
+MovementSpeed = 200.0
+DashSpeedMultiplier = 1.0
 
 [node name="Player Attacks" type="Node" parent="." unique_id=447543846]
 script = ExtResource("7_ponut")
@@ -90,10 +92,9 @@ Drag = 5.0
 script = ExtResource("8_bdcal")
 Body = NodePath("..")
 
-[node name="WalkingEffect" type="Node" parent="." unique_id=1508963850 node_paths=PackedStringArray("leftFootParticles", "rightFootParticles", "body")]
+[node name="WalkingEffect" type="Node" parent="." unique_id=1508963850 node_paths=PackedStringArray("leftFootParticles", "body")]
 script = ExtResource("15_g65c7")
 leftFootParticles = NodePath("../WalkParticleLeft")
-rightFootParticles = NodePath("")
 body = NodePath("..")
 
 [node name="WalkParticleLeft" type="CPUParticles2D" parent="." unique_id=1040265920]

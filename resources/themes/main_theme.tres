@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://dt3m1dsdrf3fl"]
+
+[ext_resource type="FontVariation" uid="uid://ceguiljjd010f" path="res://assets/fonts/Aldrich Modified.tres" id="1_x2ak3"]
+
+[resource]
+default_font = ExtResource("1_x2ak3")

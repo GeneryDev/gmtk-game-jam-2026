@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://byv3tqb16h6mr" path="res://scripts/Game/Timers/TimerEffectLog.cs" id="2_tbgi4"]
 [ext_resource type="Script" uid="uid://dux7ids7mjj4q" path="res://scripts/Game/MobSpawner.cs" id="4_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://bgink1y3to7s4" path="res://scenes/objects/level/timer_effect_log_on_wall.tscn" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://iga4ll57v2o0" path="res://scenes/objects/level/timer_display.tscn" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://b3hl1vuham125" path="res://scenes/objects/level/speed_display.tscn" id="8_tipki"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tqw2u"]
 
@@ -62,3 +64,14 @@ script = ExtResource("4_tbgi4")
 [node name="Timer Effect Log" parent="Node2D" unique_id=358342731 instance=ExtResource("6_tefeu")]
 position = Vector2(-387, -185)
 skew = -0.3926991
+
+[node name="Timer Display" parent="Node2D" unique_id=1766795991 instance=ExtResource("7_o6xl0")]
+position = Vector2(0, -361)
+
+[node name="Node2D" type="Node2D" parent="Node2D" unique_id=2136043049]
+position = Vector2(436, -247)
+rotation = -1.5707964
+skew = 0.35953784
+
+[node name="Speed Display" parent="Node2D/Node2D" unique_id=73703978 instance=ExtResource("8_tipki")]
+rotation = 1.5707964
