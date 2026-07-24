@@ -69,10 +69,6 @@ TargetNode = NodePath("..")
 TargetPropertyName = "scale:x"
 metadata/_custom_type_script = "uid://wbquqef0rnl5"
 
-[node name="Camera2D" type="Camera2D" parent="Visuals" unique_id=262534271]
-position = Vector2(0, -24)
-zoom = Vector2(0.8, 0.8)
-
 [node name="YSorted" type="Node" parent="Visuals" unique_id=539187292]
 script = ExtResource("4_jxhie")
 metadata/_custom_type_script = "uid://t054pq8o3tmj"
@@ -95,6 +91,14 @@ color_ramp = SubResource("Gradient_tofx1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=508152118]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_tqw2u")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=262534271]
+process_priority = 10
+process_physics_priority = 10
+position = Vector2(0, -24)
+zoom = Vector2(0.8, 0.8)
+process_callback = 0
+position_smoothing_enabled = true
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1385734560]
 collision_layer = 96
