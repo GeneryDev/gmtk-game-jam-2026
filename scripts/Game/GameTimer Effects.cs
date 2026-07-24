@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using Game.Timers;
 using Godot;
+using MobEffectHost = Game.Entities.MobEffectHost;
 
 namespace Game;
 
 public partial class GameTimer
 {
-    private readonly List<TimerEffectHost> _tempEffectHosts = new();
+    private readonly List<MobEffectHost> _tempEffectHosts = new();
     private float[] _tempWeights;
 
     private readonly RandomNumberGenerator _rng = new();
@@ -14,9 +15,9 @@ public partial class GameTimer
     private void TriggerEffects()
     {
         _tempEffectHosts.Clear();
-        foreach (var node in GetTree().GetNodesInGroup(TimerEffectHost.Group))
+        foreach (var node in GetTree().GetNodesInGroup(MobEffectHost.Group))
         {
-            if (node is not TimerEffectHost host) continue;
+            if (node is not MobEffectHost host) continue;
             if (host.TriggerWeight <= 0) continue;
             _tempEffectHosts.Add(host);
         }

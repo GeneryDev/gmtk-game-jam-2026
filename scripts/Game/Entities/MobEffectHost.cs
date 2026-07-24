@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
-using GDF.Composition;
 using GDF.Data;
 using Godot;
 
-namespace Game.Timers;
+namespace Game.Entities;
 
-public partial class TimerEffectHost : Node, IDataContext
+public partial class MobEffectHost : Node, IDataContext
 {
-    public static readonly StringName Group = "timer_effect_host";
+    public static readonly StringName Group = "mob_effect_host";
 
     [Signal]
     public delegate void TriggeredEventHandler();
@@ -17,10 +16,10 @@ public partial class TimerEffectHost : Node, IDataContext
 
     [Export] public float TriggerWeight = 1;
 
-    private readonly List<TimerEffect> _installedEffects = new();
+    private readonly List<MobEffect> _installedEffects = new();
     private readonly RandomNumberGenerator _rng = new();
 
-    private TimerEffect _lastTriggeredEffect;
+    private MobEffect _lastTriggeredEffect;
 
     public override void _EnterTree()
     {
@@ -28,7 +27,7 @@ public partial class TimerEffectHost : Node, IDataContext
         this.AddToGroup(Group);
     }
 
-    public void InstallEffect(TimerEffects.Descriptor effectDescriptor)
+    public void InstallEffect(MobEffects.Descriptor effectDescriptor)
     {
         if (effectDescriptor.IsEmpty) return;
         var effect = effectDescriptor.New();
@@ -37,7 +36,7 @@ public partial class TimerEffectHost : Node, IDataContext
         effect.Owner = this.Owner;
     }
 
-    private void UninstallEffect(TimerEffect effect)
+    private void UninstallEffect(MobEffect effect)
     {
         if (effect == null) return;
         effect.GetParent()?.RemoveChild(effect);
@@ -55,7 +54,7 @@ public partial class TimerEffectHost : Node, IDataContext
         Trigger(pickedEffect);
     }
 
-    private void Trigger(TimerEffect effect)
+    private void Trigger(MobEffect effect)
     {
         if (effect == null) return;
         _lastTriggeredEffect = effect;

@@ -1,15 +1,15 @@
 ﻿using GDF.Resources;
 
-namespace Game.Timers;
+namespace Game.Entities;
 
 [LibraryAccessibleInEditor]
-public partial class TimerEffects : SceneResourceLibrary<TimerEffect>
+public partial class MobEffects : SceneResourceLibrary<MobEffect>
 {
     public override LibraryConfig GetLibraryConfig()
     {
         return new()
         {
-            Roots = new[] { new LibraryConfig.LibraryRoot("res://scenes/objects/timer_effects") },
+            Roots = new[] { new LibraryConfig.LibraryRoot("res://scenes/objects/mob_effects") },
             PreloadAll = true
         };
     }

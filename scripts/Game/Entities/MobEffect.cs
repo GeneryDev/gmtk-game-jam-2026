@@ -1,14 +1,15 @@
-﻿using GDF.Data;
+﻿using Game.Timers;
+using GDF.Data;
 using GDF.Resources;
 using GDF.Util;
 using Godot;
 using Godot.Collections;
 
-namespace Game.Timers;
+namespace Game.Entities;
 
 [Tool]
 [GlobalClass]
-public partial class TimerEffect : SummarizableScene, IDataContext, ITagged<string>
+public partial class MobEffect : SummarizableScene, IDataContext, ITagged<string>
 {
     [Signal]
     public delegate void TriggeredEventHandler();
@@ -25,12 +26,13 @@ public partial class TimerEffect : SummarizableScene, IDataContext, ITagged<stri
     [ExportGroup("Metadata")]
     [Export] [StoreInSummary] public Array<string> Tags = new();
 
-    public TimerEffects.Descriptor Descriptor => TimerEffects.From(this);
+    public MobEffects.Descriptor Descriptor => MobEffects.From(this);
 
     public void Trigger()
     {
         EmitSignalTriggered();
-        TimerEffectLog.Instance?.Log(LogMessage, this);
+        if (!string.IsNullOrEmpty(LogMessage))
+            TimerEffectLog.Instance?.Log(LogMessage, this);
     }
     
     public bool HasTag(string tag)

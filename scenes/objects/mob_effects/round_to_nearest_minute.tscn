@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://beh2705loswv4"]
 
-[ext_resource type="Script" uid="uid://8167tjb1cm0a" path="res://scripts/Game/Timers/TimerEffect.cs" id="1_r3mhm"]
-[ext_resource type="Resource" uid="uid://bkwitkj1q7s0o" path="res://scenes/objects/timer_effects/round_to_nearest_minute.tscn.summary.tres" id="2_r3mhm"]
+[ext_resource type="Script" uid="uid://8167tjb1cm0a" path="res://scripts/Game/Entities/MobEffect.cs" id="1_r3mhm"]
+[ext_resource type="Resource" uid="uid://bkwitkj1q7s0o" path="res://scenes/objects/mob_effects/round_to_nearest_minute.tscn.summary.tres" id="2_r3mhm"]
 [ext_resource type="Script" uid="uid://ccy1yqjcbg6iq" path="res://scripts/Game/Timers/TimerFunctions.cs" id="3_5nomb"]
 [ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="4_oro35"]
 

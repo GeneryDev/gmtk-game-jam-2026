@@ -20,7 +20,7 @@ public partial class MobTypes : ResourceLibrary<MobType, MobType>
 
     private static readonly List<MobTypes.Descriptor> TempTypes = new();
     
-    public static MobTypes.Descriptor SelectForEffect(TimerEffects.Descriptor effect, RandomNumberGenerator rng)
+    public static MobTypes.Descriptor SelectForEffect(MobEffects.Descriptor effect, RandomNumberGenerator rng)
     {
         if (effect.IsEmpty) return null;
         

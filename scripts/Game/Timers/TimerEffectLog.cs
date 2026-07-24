@@ -24,7 +24,7 @@ public partial class TimerEffectLog : SingletonNode<TimerEffectLog>, IDataContex
         InsertLogItem(item);
     }
 
-    public void Log(string message, TimerEffects.Descriptor associatedEffect)
+    public void Log(string message, Entities.MobEffects.Descriptor associatedEffect)
     {
         var item = new Item()
         {
@@ -64,7 +64,7 @@ public partial class TimerEffectLog : SingletonNode<TimerEffectLog>, IDataContex
     public class Item : IDataContext
     {
         public string Message = "";
-        public TimerEffects.Descriptor AssociatedEffect;
+        public Entities.MobEffects.Descriptor AssociatedEffect;
 
         public bool GetContextString(string key, string input, ref string replacement, IDataQueryOptions options)
         {
