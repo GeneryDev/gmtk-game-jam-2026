@@ -16,12 +16,15 @@ radius = 30.0
 [node name="Mob Elite" unique_id=63413937 instance=ExtResource("1_5u0aj")]
 
 [node name="MeshInstance2D" parent="Visuals" parent_id_path=PackedInt32Array(37646152) index="0" unique_id=1784942333]
+position = Vector2(0, -32)
 mesh = SubResource("QuadMesh_5u0aj")
 
 [node name="Hurt Flash" parent="Visuals" parent_id_path=PackedInt32Array(37646152) index="2" unique_id=1278280188]
+position = Vector2(0, -32)
 mesh = SubResource("QuadMesh_8ev6r")
 
 [node name="CollisionShape2D" parent="." index="2" unique_id=508152118]
+position = Vector2(0, -32)
 shape = SubResource("CircleShape2D_6xsg7")
 
 [node name="Mob Color" type="Node" parent="." index="4" unique_id=841674054 node_paths=PackedStringArray("Visual")]
@@ -37,3 +40,11 @@ MaxHitPoints = 8
 
 [node name="Timer Effect Host" parent="." index="11" unique_id=967788250]
 TriggerWeight = 4.0
+
+[node name="Particle" parent="CanvasLayer" parent_id_path=PackedInt32Array(1854369216) index="0" unique_id=1729297614]
+offset_top = -73.0
+offset_bottom = -73.0
+
+[node name="Control" parent="CanvasLayer" parent_id_path=PackedInt32Array(1854369216) index="1" unique_id=1028568971]
+offset_top = -32.0
+offset_bottom = -32.0

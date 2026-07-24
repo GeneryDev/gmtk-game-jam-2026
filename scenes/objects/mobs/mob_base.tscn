@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="3_1an03"]
 [ext_resource type="Script" uid="uid://dvnqkwg5xysf2" path="res://scripts/Game/Entities/EntityContext.cs" id="4_1an03"]
 [ext_resource type="Script" uid="uid://dmhldnch5rsyx" path="res://scripts/Game/Entities/EntityFlags.cs" id="4_hx6kq"]
+[ext_resource type="Script" uid="uid://t054pq8o3tmj" path="res://scripts/Game/Util/YSorted.cs" id="4_r388d"]
 [ext_resource type="Script" uid="uid://co3d12m3ihdwj" path="res://scripts/Game/Entities/MobController.cs" id="5_t5ssb"]
 [ext_resource type="Script" uid="uid://ds1xannxtoxqn" path="res://scripts/Game/Entities/EntityDrag.cs" id="6_r388d"]
 [ext_resource type="Script" uid="uid://bfx0gcgwji8m0" path="res://scripts/Game/Entities/MotionComponent.cs" id="7_c0i0d"]
@@ -186,6 +187,7 @@ metadata/_custom_type_script = "uid://56fvy6sd714g"
 [node name="Visuals" type="CanvasGroup" parent="." unique_id=37646152]
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Visuals" unique_id=1784942333]
+position = Vector2(0, -24)
 mesh = SubResource("QuadMesh_7nx1l")
 texture = ExtResource("2_y4u25")
 
@@ -207,9 +209,15 @@ metadata/_custom_type_script = "uid://wbquqef0rnl5"
 modulate = Color(0.82605994, 0.82606006, 0.8260599, 1)
 self_modulate = Color(0, 0, 0, 0)
 material = SubResource("CanvasItemMaterial_tqw2u")
+position = Vector2(0, -24)
 mesh = SubResource("QuadMesh_7nx1l")
 
+[node name="YSorted" type="Node" parent="Visuals" unique_id=486672796]
+script = ExtResource("4_r388d")
+metadata/_custom_type_script = "uid://t054pq8o3tmj"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=508152118]
+position = Vector2(0, -24)
 shape = SubResource("CircleShape2D_tqw2u")
 
 [node name="Entity Context" type="Node" parent="." unique_id=1667695090]
@@ -277,8 +285,8 @@ modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 3
 anchors_preset = 0
-offset_top = -41.0
-offset_bottom = -41.0
+offset_top = -65.0
+offset_bottom = -65.0
 offset_transform_enabled = true
 mouse_filter = 2
 
@@ -308,6 +316,8 @@ metadata/_custom_type_script = "uid://dxkaapm2dks2e"
 z_index = 2
 layout_mode = 3
 anchors_preset = 0
+offset_top = -24.0
+offset_bottom = -24.0
 mouse_filter = 2
 
 [node name="Hover Sensor" type="Control" parent="CanvasLayer/Control" unique_id=606570361]
