@@ -118,23 +118,25 @@ script = ExtResource("3_dxqtg")
 metadata/_custom_type_script = "uid://dfjun343ur75s"
 
 [node name="GdfInputSystem" type="Node" parent="." unique_id=1985833570]
+process_mode = 3
 script = ExtResource("1_opebo")
 metadata/_custom_type_script = "uid://crj48tyk0nmvf"
 
 [node name="GlobalPropertyStack" type="Node" parent="." unique_id=1024276917]
+process_mode = 3
 script = ExtResource("2_mmyj5")
 PropertyRegistry = SubResource("Resource_tqw2u")
 metadata/_custom_type_script = "uid://5krjgh5qqo37"
 
-[node name="PropertyStackWatcher [Idle]" type="Node" parent="." unique_id=547863332 node_paths=PackedStringArray("Stack")]
+[node name="PropertyStackWatcher [Idle]" type="Node" parent="GlobalPropertyStack" unique_id=547863332 node_paths=PackedStringArray("Stack")]
 script = ExtResource("8_5rvs8")
-Stack = NodePath("../GlobalPropertyStack")
+Stack = NodePath("..")
 MouseModePropertyId = "mouse_mode"
 metadata/_custom_type_script = "uid://bituwxio8sdy4"
 
-[node name="PropertyStackWatcher [Physics]" type="Node" parent="." unique_id=901048031 node_paths=PackedStringArray("Stack")]
+[node name="PropertyStackWatcher [Physics]" type="Node" parent="GlobalPropertyStack" unique_id=901048031 node_paths=PackedStringArray("Stack")]
 script = ExtResource("8_5rvs8")
-Stack = NodePath("../GlobalPropertyStack")
+Stack = NodePath("..")
 UpdateMode = 1
 TimeScalePropertyId = "time_scale"
 PausedPropertyId = "paused"

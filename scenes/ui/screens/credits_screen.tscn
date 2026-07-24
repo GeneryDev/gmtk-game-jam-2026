@@ -212,6 +212,7 @@ script = ExtResource("1_8u1k5")
 Order = 20
 Mode = 1
 UserInterface = NodePath("UserInterface")
+ShadowLowerOrderInterfaces = true
 metadata/_custom_type_script = "uid://bko61fppga1kx"
 
 [node name="UserInterface" parent="." unique_id=1004258199 instance=ExtResource("2_ji6td")]
@@ -301,6 +302,7 @@ autoplay = &"fade_in"
 [node name="Play fade_in" type="Node" parent="AnimationPlayer" unique_id=1907597076]
 script = ExtResource("6_empfr")
 AnimationName = &"fade_in"
+FromAnimationList = []
 metadata/_custom_type_script = "uid://dukfxpmahaflv"
 
 [node name="Play fade_out" type="Node" parent="AnimationPlayer" unique_id=2060155919]

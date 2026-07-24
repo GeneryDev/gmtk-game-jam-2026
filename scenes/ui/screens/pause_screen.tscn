@@ -1,11 +1,18 @@
-[gd_scene format=3 uid="uid://cxhb2mpwpx1sc"]
+[gd_scene format=3 uid="uid://b6ehlqjtt2cy0"]
 
-[ext_resource type="Script" uid="uid://bko61fppga1kx" path="res://addons/gdf-godot/GDF/UI/Screen.cs" id="1_o2ejh"]
-[ext_resource type="PackedScene" uid="uid://dfiex6xxhyw40" path="res://scenes/objects/standard_user_interface.tscn" id="2_lt2jd"]
-[ext_resource type="Script" uid="uid://bfppi36isqkgt" path="res://addons/gdf-godot/GDF/UI/UserInterfaceComponent.cs" id="3_bdoul"]
-[ext_resource type="Resource" uid="uid://b55woujpabosc" path="res://resources/input_actions/ui_cancel.tres" id="4_b1jnu"]
-[ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="5_isaqb"]
-[ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="6_cafdd"]
+[ext_resource type="Script" uid="uid://bko61fppga1kx" path="res://addons/gdf-godot/GDF/UI/Screen.cs" id="1_iqn1k"]
+[ext_resource type="PackedScene" uid="uid://dfiex6xxhyw40" path="res://scenes/objects/standard_user_interface.tscn" id="2_d5lhm"]
+[ext_resource type="Script" uid="uid://bfppi36isqkgt" path="res://addons/gdf-godot/GDF/UI/UserInterfaceComponent.cs" id="3_6u1oe"]
+[ext_resource type="Resource" uid="uid://b55woujpabosc" path="res://resources/input_actions/ui_cancel.tres" id="4_hfgbi"]
+[ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="5_ytdwn"]
+[ext_resource type="PackedScene" uid="uid://c1n3rbfmrpm5y" path="res://scenes/ui/elements/pause_screen_button.tscn" id="6_6u1oe"]
+[ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="6_54tjd"]
+[ext_resource type="Script" uid="uid://bloknciu4pxh2" path="res://scripts/Game/Util/AnimatableProperties.cs" id="6_d5lhm"]
+[ext_resource type="Script" uid="uid://b6sb42qs0fsp1" path="res://scripts/Game/Util/ScreenSpawner.cs" id="7_ytdwn"]
+[ext_resource type="PackedScene" uid="uid://cxhb2mpwpx1sc" path="res://scenes/ui/screens/options_screen.tscn" id="8_54tjd"]
+[ext_resource type="Script" uid="uid://cwgjseomfcygb" path="res://scripts/Game/UI/MenuFunctions.cs" id="9_54tjd"]
+[ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="10_ncjss"]
+[ext_resource type="Script" uid="uid://ce2cpgowa1bvu" path="res://addons/gdf-godot/GDF/IO/ResourceReference.cs" id="11_wr0dw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_empfr"]
 content_margin_left = 0.0
@@ -23,6 +30,14 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
+
+[sub_resource type="Resource" id="Resource_tqw2u"]
+resource_name = "main_menu.tscn"
+script = ExtResource("11_wr0dw")
+StoredResourceId = "uid://chd1e6tufoex6"
+StoredResourcePath = "res://scenes/main_menu.tscn"
+StoredResourceType = "Godot.PackedScene"
+metadata/_custom_type_script = "uid://ce2cpgowa1bvu"
 
 [sub_resource type="Animation" id="Animation_empfr"]
 length = 0.001
@@ -200,7 +215,7 @@ _data = {
 &"fade_out": SubResource("Animation_60w8f")
 }
 
-[node name="OptionsScreen" type="Control" unique_id=666529771 node_paths=PackedStringArray("UserInterface")]
+[node name="Pause Screen" type="Control" unique_id=666529771 node_paths=PackedStringArray("UserInterface")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -209,14 +224,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_o2ejh")
-Order = 20
+script = ExtResource("1_iqn1k")
+Order = 18
 Mode = 1
 UserInterface = NodePath("UserInterface")
 ShadowLowerOrderInterfaces = true
 metadata/_custom_type_script = "uid://bko61fppga1kx"
 
-[node name="UserInterface" parent="." unique_id=1004258199 instance=ExtResource("2_lt2jd")]
+[node name="UserInterface" parent="." unique_id=1004258199 instance=ExtResource("2_d5lhm")]
 
 [node name="Background" type="ColorRect" parent="." unique_id=1635419465]
 layout_mode = 1
@@ -228,11 +243,11 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.44705883)
 
 [node name="UserInterfaceComponent" type="Node" parent="Background" unique_id=1210299034]
-script = ExtResource("3_bdoul")
+script = ExtResource("3_6u1oe")
 Submittable = true
 Clickable = true
 ShortcutEnabled = true
-ShortcutAction = ExtResource("4_b1jnu")
+ShortcutAction = ExtResource("4_hfgbi")
 metadata/_custom_type_script = "uid://bfppi36isqkgt"
 
 [node name="Popup" type="PanelContainer" parent="." unique_id=187744927]
@@ -256,6 +271,7 @@ theme_override_constants/margin_bottom = 32
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Popup/MarginContainer" unique_id=1602037565]
 layout_mode = 2
+theme_override_constants/separation = 16
 
 [node name="FormattedLabel" type="RichTextLabel" parent="Popup/MarginContainer/VBoxContainer" unique_id=1844216741]
 layout_mode = 2
@@ -268,46 +284,99 @@ theme_override_font_sizes/mono_font_size = 32
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
-script = ExtResource("5_isaqb")
-TextFormat = "Options"
+script = ExtResource("5_ytdwn")
+TextFormat = "Paused"
 metadata/_custom_type_script = "uid://dxkaapm2dks2e"
 
 [node name="HSeparator" type="HSeparator" parent="Popup/MarginContainer/VBoxContainer" unique_id=1558201267]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Popup/MarginContainer/VBoxContainer" unique_id=1687779084]
-custom_minimum_size = Vector2(360, 300)
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup/MarginContainer/VBoxContainer" unique_id=549091387]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme_override_constants/separation = 16
 
-[node name="MarginContainer" type="MarginContainer" parent="Popup/MarginContainer/VBoxContainer/ScrollContainer" unique_id=308154716]
+[node name="Resume Button" parent="Popup/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1929653182 instance=ExtResource("6_6u1oe")]
+custom_minimum_size = Vector2(9, 40)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+ButtonText = "Resume"
 
-[node name="FormattedLabel" type="RichTextLabel" parent="Popup/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer" unique_id=995801930]
+[node name="Options Button" parent="Popup/MarginContainer/VBoxContainer/VBoxContainer" unique_id=7349106 instance=ExtResource("6_6u1oe")]
+custom_minimum_size = Vector2(9, 40)
 layout_mode = 2
-mouse_filter = 2
-horizontal_alignment = 1
-script = ExtResource("5_isaqb")
-TextFormat = "TODO"
-metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+ButtonText = "Options"
+
+[node name="ScreenSpawner" type="Node" parent="Popup/MarginContainer/VBoxContainer/VBoxContainer/Options Button" unique_id=1614218287]
+script = ExtResource("7_ytdwn")
+Template = ExtResource("8_54tjd")
+metadata/_custom_type_script = "uid://b6sb42qs0fsp1"
+
+[node name="Main Menu" parent="Popup/MarginContainer/VBoxContainer/VBoxContainer" unique_id=57252291 instance=ExtResource("6_6u1oe")]
+custom_minimum_size = Vector2(9, 40)
+layout_mode = 2
+ButtonText = "Main Menu"
+
+[node name="Menu Functions" type="Node" parent="Popup/MarginContainer/VBoxContainer/VBoxContainer/Main Menu" unique_id=1647162901]
+script = ExtResource("9_54tjd")
+
+[node name="Main Menu" type="Node" parent="Popup/MarginContainer/VBoxContainer/VBoxContainer/Main Menu/Menu Functions" unique_id=608160204 node_paths=PackedStringArray("Target")]
+script = ExtResource("10_ncjss")
+Target = NodePath("..")
+Method = &"ChangeScene"
+Args = [SubResource("Resource_tqw2u"), null]
+ArgInputTypes = Array[int]([0, 0])
+ArgReplicate = Array[bool]([false, false])
+TargetMethodInfo = {
+"args": Array[Dictionary]([{
+"class_name": &"Resource",
+"hint": 0,
+"hint_string": "",
+"name": "sceneReference",
+"type": 24,
+"usage": 6
+}, {
+"class_name": &"Resource",
+"hint": 0,
+"hint_string": "",
+"name": "screenTransitionReference",
+"type": 24,
+"usage": 6
+}]),
+"default_args": [],
+"flags": 1,
+"id": 0,
+"name": "ChangeScene",
+"return": {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 0,
+"usage": 6
+}
+}
+metadata/_custom_type_script = "uid://buqbj5n61xjbu"
+
+[node name="Pause" type="Node" parent="." unique_id=170952946]
+script = ExtResource("6_d5lhm")
+Active = true
+Properties = Dictionary[String, Variant]({
+"paused": true
+})
+Order = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=145073308]
 libraries/ = SubResource("AnimationLibrary_empfr")
 autoplay = &"fade_in"
 
 [node name="Play fade_in" type="Node" parent="AnimationPlayer" unique_id=1907597076]
-script = ExtResource("6_cafdd")
+script = ExtResource("6_54tjd")
 AnimationName = &"fade_in"
 FromAnimationList = []
 metadata/_custom_type_script = "uid://dukfxpmahaflv"
 
 [node name="Play fade_out" type="Node" parent="AnimationPlayer" unique_id=2060155919]
-script = ExtResource("6_cafdd")
+script = ExtResource("6_54tjd")
 AnimationName = &"fade_out"
 FromAnimationList = []
 metadata/_custom_type_script = "uid://dukfxpmahaflv"
@@ -315,3 +384,6 @@ metadata/_custom_type_script = "uid://dukfxpmahaflv"
 [connection signal="ScreenFadingOut" from="." to="AnimationPlayer/Play fade_out" method="Trigger"]
 [connection signal="ScreenShown" from="." to="AnimationPlayer/Play fade_in" method="Trigger"]
 [connection signal="Submitted" from="Background/UserInterfaceComponent" to="." method="FadeOutScreen" flags=3]
+[connection signal="Submitted" from="Popup/MarginContainer/VBoxContainer/VBoxContainer/Resume Button" to="." method="FadeOutScreen" flags=3]
+[connection signal="Submitted" from="Popup/MarginContainer/VBoxContainer/VBoxContainer/Options Button" to="Popup/MarginContainer/VBoxContainer/VBoxContainer/Options Button/ScreenSpawner" method="Trigger" flags=3]
+[connection signal="Submitted" from="Popup/MarginContainer/VBoxContainer/VBoxContainer/Main Menu" to="Popup/MarginContainer/VBoxContainer/VBoxContainer/Main Menu/Menu Functions/Main Menu" method="Trigger"]
