@@ -35,11 +35,11 @@ Random = true
 [node name="Random Stroll" type="Node" parent="Goals" parent_id_path=PackedInt32Array(721629563) index="0" unique_id=1365133068]
 script = ExtResource("3_6xsg7")
 
-[node name="Damageable" parent="." index="10" unique_id=893346049]
+[node name="Damageable" parent="." index="11" unique_id=893346049]
 MaxHitPoints = 8
 
-[node name="Timer Effect Host" parent="." index="11" unique_id=967788250]
-TriggerWeight = 4.0
+[node name="Timer Effect Host" parent="." index="12" unique_id=967788250]
+TriggerWeight = 16.0
 
 [node name="Particle" parent="CanvasLayer" parent_id_path=PackedInt32Array(1854369216) index="0" unique_id=1729297614]
 offset_top = -73.0
