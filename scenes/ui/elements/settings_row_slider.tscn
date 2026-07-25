@@ -1,0 +1,249 @@
+[gd_scene format=3 uid="uid://dn645eemq8ent"]
+
+[ext_resource type="Script" uid="uid://k8suh3w0dagg" path="res://addons/gdf-godot/GDF/Data/InjectedDataContext.cs" id="1_w70d0"]
+[ext_resource type="Script" uid="uid://pw52dbc1s6q3" path="res://scripts/Game/Settings/SettingsFunctions.cs" id="2_d6ohu"]
+[ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="2_xsk8o"]
+[ext_resource type="Script" uid="uid://crqb6h7tshjup" path="res://scripts/Game/UI/HSliderExtension.cs" id="3_d6ohu"]
+[ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="3_qvscs"]
+[ext_resource type="Script" uid="uid://0mjmm7eo3o6v" path="res://addons/gdf-godot/GDF/Data/DataQuery.cs" id="4_88huk"]
+[ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="4_qvscs"]
+[ext_resource type="Script" uid="uid://wrcbyscb3t11" path="res://addons/gdf-godot/GDF/Audio/GdfAudioPlayer.cs" id="8_88huk"]
+[ext_resource type="AudioStream" uid="uid://d2m8t8gpsttj0" path="res://assets/audio/sfx/Timer_-1Min.wav" id="9_m38sb"]
+[ext_resource type="Script" uid="uid://bfppi36isqkgt" path="res://addons/gdf-godot/GDF/UI/UserInterfaceComponent.cs" id="10_mmfur"]
+[ext_resource type="Script" uid="uid://b2pa2urnvprft" path="res://addons/gdf-godot/GDF/Logical/Values/ObjectCallable.cs" id="11_un46g"]
+[ext_resource type="Script" uid="uid://mx32dultovew" path="res://addons/gdf-godot/GDF/Logical/Values/ValueFromNodePath.cs" id="12_0bkrh"]
+[ext_resource type="Script" uid="uid://csxjam05y7w8k" path="res://addons/gdf-godot/GDF/UI/ControlStateContext.cs" id="13_un46g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mmfur"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.49803922, 1, 0.43137255, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 16.0
+expand_margin_top = 4.0
+expand_margin_right = 8.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="Resource" id="Resource_88huk"]
+script = ExtResource("4_88huk")
+DataContext = NodePath("../../Field Context")
+Query = "{key}"
+metadata/_custom_type_script = "uid://0mjmm7eo3o6v"
+
+[sub_resource type="Resource" id="Resource_m38sb"]
+script = ExtResource("4_88huk")
+DataContext = NodePath("../../HBoxContainer/HSlider")
+Query = "{value} / 100.0"
+metadata/_custom_type_script = "uid://0mjmm7eo3o6v"
+
+[sub_resource type="Resource" id="Resource_ww00m"]
+script = ExtResource("12_0bkrh")
+NodePath = NodePath("../HBoxContainer/HSlider")
+
+[sub_resource type="Resource" id="Resource_d4yui"]
+script = ExtResource("11_un46g")
+Target = SubResource("Resource_ww00m")
+Method = &"Decrement"
+Args = []
+metadata/_custom_type_script = "uid://b2pa2urnvprft"
+
+[sub_resource type="Resource" id="Resource_tqw2u"]
+script = ExtResource("11_un46g")
+Target = SubResource("Resource_ww00m")
+Method = &"Increment"
+Args = []
+metadata/_custom_type_script = "uid://b2pa2urnvprft"
+
+[node name="Row" type="MarginContainer" unique_id=369916578]
+offset_right = 367.0
+offset_bottom = 16.0
+theme_override_constants/margin_left = 8
+
+[node name="Hover Overlay" type="Control" parent="." unique_id=1955620801]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="No Outline" type="Control" parent="Hover Overlay" unique_id=1011827990]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="Hover Overlay" unique_id=1513112955]
+self_modulate = Color(1, 1, 1, 0.23529412)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mmfur")
+
+[node name="Visibility Binding" type="Node" parent="Hover Overlay" unique_id=1275358283 node_paths=PackedStringArray("DataContext", "TargetNode")]
+script = ExtResource("4_qvscs")
+DataContext = NodePath("../../ControlStateContext")
+Query = "{is_focused}"
+TargetNode = NodePath("..")
+TargetPropertyName = "visible"
+metadata/_custom_type_script = "uid://wbquqef0rnl5"
+
+[node name="Field Context" type="Node" parent="." unique_id=1261137977]
+script = ExtResource("1_w70d0")
+DefaultVariableValues = {}
+DefaultCollections = {}
+EditorPreviewVariables = {}
+metadata/_custom_type_script = "uid://k8suh3w0dagg"
+
+[node name="Settings Functions" type="Node" parent="." unique_id=1592523680]
+script = ExtResource("2_d6ohu")
+
+[node name="Write" type="Node" parent="Settings Functions" unique_id=292537618 node_paths=PackedStringArray("Target")]
+script = ExtResource("3_qvscs")
+Target = NodePath("..")
+Method = &"SetSetting"
+Args = [SubResource("Resource_88huk"), SubResource("Resource_m38sb")]
+ArgInputTypes = Array[int]([1, 1])
+ArgAbortIfNull = Array[bool]([false, false])
+ArgReplicate = Array[bool]([false, false])
+TargetMethodInfo = {
+"args": Array[Dictionary]([{
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "key",
+"type": 4,
+"usage": 6
+}, {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "value",
+"type": 0,
+"usage": 131078
+}]),
+"default_args": [],
+"flags": 1,
+"id": 0,
+"name": "SetSetting",
+"return": {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 0,
+"usage": 6
+}
+}
+metadata/_custom_type_script = "uid://buqbj5n61xjbu"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1682218298]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="HBoxContainer" unique_id=1842470480 node_paths=PackedStringArray("DataContext")]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+fit_content = true
+script = ExtResource("2_xsk8o")
+TextFormat = "{name}"
+DataContext = NodePath("../../Field Context")
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="HSlider" type="HSlider" parent="HBoxContainer" unique_id=1398015417]
+layout_mode = 2
+size_flags_horizontal = 3
+step = 5.0
+script = ExtResource("3_d6ohu")
+
+[node name="Value Binding" type="Node" parent="HBoxContainer/HSlider" unique_id=1437131446 node_paths=PackedStringArray("DataContext")]
+script = ExtResource("4_qvscs")
+DataContext = NodePath("../../../Field Context")
+Query = "{value}*100"
+SendUpdatedSignalWithValue = true
+metadata/_custom_type_script = "uid://wbquqef0rnl5"
+
+[node name="Value Label" type="RichTextLabel" parent="HBoxContainer" unique_id=112495763 node_paths=PackedStringArray("DataContext")]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 14
+theme_override_font_sizes/bold_italics_font_size = 14
+theme_override_font_sizes/italics_font_size = 14
+theme_override_font_sizes/mono_font_size = 14
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("2_xsk8o")
+TextFormat = "str(int(round({value} * 100))) + \"%\""
+DataContext = NodePath("../../Field Context")
+QueryType = 0
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="Test Sound" type="Node" parent="." unique_id=1728935444]
+script = ExtResource("8_88huk")
+Bus = &"SFX"
+UseDeduplication = true
+DeduplicationTimeFrameSec = 0.16
+metadata/_custom_type_script = "uid://wrcbyscb3t11"
+
+[node name="Play" type="Node" parent="Test Sound" unique_id=1514593370 node_paths=PackedStringArray("Target")]
+script = ExtResource("3_qvscs")
+Target = NodePath("..")
+Method = &"Play"
+TargetMethodInfo = {
+"args": Array[Dictionary]([]),
+"default_args": [],
+"flags": 1,
+"id": 0,
+"name": "Play",
+"return": {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 0,
+"usage": 6
+}
+}
+metadata/_custom_type_script = "uid://buqbj5n61xjbu"
+
+[node name="Stream Binding" type="Node" parent="Test Sound" unique_id=973547464 node_paths=PackedStringArray("DataContext", "TargetNode")]
+script = ExtResource("4_qvscs")
+DataContext = NodePath("../../Field Context")
+Query = "{key}"
+ValueMappingEnabled = true
+ValueMappings = {
+"sfx_volume": ExtResource("9_m38sb")
+}
+TargetNode = NodePath("..")
+TargetPropertyName = "Stream"
+metadata/_custom_type_script = "uid://wbquqef0rnl5"
+
+[node name="UserInterfaceComponent" type="Node" parent="." unique_id=935348480 node_paths=PackedStringArray("OverrideOutlinedControl")]
+script = ExtResource("10_mmfur")
+NavigableTo = true
+ConsumesNavigation = true
+ConsumedNavigationSides = Dictionary[int, ExtResource("11_un46g")]({
+0: SubResource("Resource_d4yui"),
+2: SubResource("Resource_tqw2u")
+})
+OverrideOutlinedControl = NodePath("../Hover Overlay/No Outline")
+metadata/_custom_type_script = "uid://bfppi36isqkgt"
+
+[node name="ControlStateContext" type="Node" parent="." unique_id=400983095]
+script = ExtResource("13_un46g")
+TrackedStates = 256
+metadata/_custom_type_script = "uid://csxjam05y7w8k"
+
+[connection signal="value_changed" from="HBoxContainer/HSlider" to="Settings Functions/Write" method="Trigger" flags=3 unbinds=1]
+[connection signal="value_changed" from="HBoxContainer/HSlider" to="Test Sound/Play" method="Trigger" flags=3 unbinds=1]
+[connection signal="UpdatedWithValue" from="HBoxContainer/HSlider/Value Binding" to="HBoxContainer/HSlider" method="set_value_no_signal"]

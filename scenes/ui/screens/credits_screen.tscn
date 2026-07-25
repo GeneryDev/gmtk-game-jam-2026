@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bfppi36isqkgt" path="res://addons/gdf-godot/GDF/UI/UserInterfaceComponent.cs" id="3_cwhfb"]
 [ext_resource type="Resource" uid="uid://b55woujpabosc" path="res://resources/input_actions/ui_cancel.tres" id="4_tr12m"]
 [ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="5_tr12m"]
+[ext_resource type="PackedScene" uid="uid://b5njuw4g4wqef" path="res://scenes/ui/elements/popup_button.tscn" id="6_60w8f"]
 [ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="6_empfr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_empfr"]
@@ -295,6 +296,16 @@ script = ExtResource("5_tr12m")
 TextFormat = "TODO"
 metadata/_custom_type_script = "uid://dxkaapm2dks2e"
 
+[node name="Buttons" type="HFlowContainer" parent="Popup/MarginContainer/VBoxContainer" unique_id=1217214009]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" parent="Popup/MarginContainer/VBoxContainer/Buttons" unique_id=1929653182 instance=ExtResource("6_60w8f")]
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 2
+ButtonText = "Close"
+ButtonCustomMinimumSize = Vector2(160, 40)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=145073308]
 libraries/ = SubResource("AnimationLibrary_empfr")
 autoplay = &"fade_in"
@@ -314,3 +325,4 @@ metadata/_custom_type_script = "uid://dukfxpmahaflv"
 [connection signal="ScreenFadingOut" from="." to="AnimationPlayer/Play fade_out" method="Trigger"]
 [connection signal="ScreenShown" from="." to="AnimationPlayer/Play fade_in" method="Trigger"]
 [connection signal="Submitted" from="Background/UserInterfaceComponent" to="." method="FadeOutScreen" flags=3]
+[connection signal="Submitted" from="Popup/MarginContainer/VBoxContainer/Buttons/Button" to="." method="FadeOutScreen"]

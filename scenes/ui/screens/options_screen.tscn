@@ -5,7 +5,14 @@
 [ext_resource type="Script" uid="uid://bfppi36isqkgt" path="res://addons/gdf-godot/GDF/UI/UserInterfaceComponent.cs" id="3_bdoul"]
 [ext_resource type="Resource" uid="uid://b55woujpabosc" path="res://resources/input_actions/ui_cancel.tres" id="4_b1jnu"]
 [ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="5_isaqb"]
+[ext_resource type="Script" uid="uid://dsd7tvanlvfu0" path="res://addons/gdf-godot/GDF/Data/Static/StaticDataContextNode.cs" id="5_lt2jd"]
 [ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="6_cafdd"]
+[ext_resource type="Script" uid="uid://l7wbvi5jgr0h" path="res://addons/gdf-godot/GDF/Data/NodeFactory.cs" id="7_bdoul"]
+[ext_resource type="Script" uid="uid://v32ge7gw3qfn" path="res://addons/gdf-godot/GDF/Data/NodeFactoryConditionalTemplate.cs" id="8_c6rw1"]
+[ext_resource type="Script" uid="uid://cipgbcqmkinta" path="res://addons/gdf-godot/GDF/Data/NodeTemplate.cs" id="8_isaqb"]
+[ext_resource type="PackedScene" uid="uid://duqroup4dc10j" path="res://scenes/ui/elements/settings_row_header.tscn" id="9_c6rw1"]
+[ext_resource type="PackedScene" uid="uid://dn645eemq8ent" path="res://scenes/ui/elements/settings_row_slider.tscn" id="9_cafdd"]
+[ext_resource type="PackedScene" uid="uid://b5njuw4g4wqef" path="res://scenes/ui/elements/popup_button.tscn" id="12_rj6le"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_empfr"]
 content_margin_left = 0.0
@@ -23,6 +30,20 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
+
+[sub_resource type="Resource" id="Resource_rj6le"]
+resource_name = "Header Template: {type} == \"header\""
+script = ExtResource("8_c6rw1")
+TemplatePath = NodePath("../Header Template")
+Query = "{type} == \"header\""
+metadata/_custom_type_script = "uid://v32ge7gw3qfn"
+
+[sub_resource type="Resource" id="Resource_cyfgk"]
+resource_name = "Slider Template: {type} == \"volume_slider\""
+script = ExtResource("8_c6rw1")
+TemplatePath = NodePath("../Slider Template")
+Query = "{type} == \"volume_slider\""
+metadata/_custom_type_script = "uid://v32ge7gw3qfn"
 
 [sub_resource type="Animation" id="Animation_empfr"]
 length = 0.001
@@ -235,6 +256,11 @@ ShortcutEnabled = true
 ShortcutAction = ExtResource("4_b1jnu")
 metadata/_custom_type_script = "uid://bfppi36isqkgt"
 
+[node name="Settings Interface" type="Node" parent="." unique_id=508574145]
+script = ExtResource("5_lt2jd")
+TypeId = "settings_interface"
+metadata/_custom_type_script = "uid://dsd7tvanlvfu0"
+
 [node name="Popup" type="PanelContainer" parent="." unique_id=187744927]
 layout_mode = 1
 anchors_preset = -1
@@ -276,8 +302,9 @@ metadata/_custom_type_script = "uid://dxkaapm2dks2e"
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Popup/MarginContainer/VBoxContainer" unique_id=1687779084]
-custom_minimum_size = Vector2(360, 300)
+custom_minimum_size = Vector2(360, 160)
 layout_mode = 2
+follow_focus = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Popup/MarginContainer/VBoxContainer/ScrollContainer" unique_id=308154716]
 layout_mode = 2
@@ -288,13 +315,39 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="FormattedLabel" type="RichTextLabel" parent="Popup/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer" unique_id=995801930]
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer" unique_id=415473910]
 layout_mode = 2
-mouse_filter = 2
-horizontal_alignment = 1
-script = ExtResource("5_isaqb")
-TextFormat = "TODO"
-metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+theme_override_constants/separation = 8
+
+[node name="NodeFactory" type="Node" parent="Popup/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1297244089 node_paths=PackedStringArray("DataContext", "DefaultTemplate")]
+script = ExtResource("7_bdoul")
+DataContext = NodePath("../../../../../../../Settings Interface")
+CollectionQuery = "{settings_fields}"
+DefaultTemplate = NodePath("../Slider Template")
+ConditionalTemplates = Array[ExtResource("8_c6rw1")]([SubResource("Resource_rj6le"), SubResource("Resource_cyfgk")])
+metadata/_custom_type_script = "uid://l7wbvi5jgr0h"
+
+[node name="Header Template" type="Node" parent="Popup/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=880794612]
+script = ExtResource("8_isaqb")
+TemplateScene = ExtResource("9_c6rw1")
+PreviewCount = 1
+metadata/_custom_type_script = "uid://cipgbcqmkinta"
+
+[node name="Slider Template" type="Node" parent="Popup/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1082343220]
+script = ExtResource("8_isaqb")
+TemplateScene = ExtResource("9_cafdd")
+PreviewCount = 3
+metadata/_custom_type_script = "uid://cipgbcqmkinta"
+
+[node name="Buttons" type="HFlowContainer" parent="Popup/MarginContainer/VBoxContainer" unique_id=1130887890]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" parent="Popup/MarginContainer/VBoxContainer/Buttons" unique_id=1929653182 instance=ExtResource("12_rj6le")]
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 2
+ButtonText = "Close"
+ButtonCustomMinimumSize = Vector2(160, 40)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=145073308]
 libraries/ = SubResource("AnimationLibrary_empfr")
@@ -315,3 +368,4 @@ metadata/_custom_type_script = "uid://dukfxpmahaflv"
 [connection signal="ScreenFadingOut" from="." to="AnimationPlayer/Play fade_out" method="Trigger"]
 [connection signal="ScreenShown" from="." to="AnimationPlayer/Play fade_in" method="Trigger"]
 [connection signal="Submitted" from="Background/UserInterfaceComponent" to="." method="FadeOutScreen" flags=3]
+[connection signal="Submitted" from="Popup/MarginContainer/VBoxContainer/Buttons/Button" to="." method="FadeOutScreen" flags=3]
