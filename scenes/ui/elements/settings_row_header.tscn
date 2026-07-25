@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://duqroup4dc10j"]
+
+[ext_resource type="Script" uid="uid://k8suh3w0dagg" path="res://addons/gdf-godot/GDF/Data/InjectedDataContext.cs" id="1_mb3hl"]
+[ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="2_u60j3"]
+
+[node name="Row" type="MarginContainer" unique_id=369916578]
+offset_right = 367.0
+offset_bottom = 16.0
+
+[node name="Field Context" type="Node" parent="." unique_id=1261137977]
+script = ExtResource("1_mb3hl")
+DefaultVariableValues = {}
+DefaultCollections = {}
+EditorPreviewVariables = {}
+metadata/_custom_type_script = "uid://k8suh3w0dagg"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1682218298]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="RichTextLabel" parent="HBoxContainer" unique_id=1842470480 node_paths=PackedStringArray("DataContext")]
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/bold_font_size = 18
+theme_override_font_sizes/bold_italics_font_size = 18
+theme_override_font_sizes/italics_font_size = 18
+theme_override_font_sizes/mono_font_size = 18
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("2_u60j3")
+TextFormat = "{name}"
+DataContext = NodePath("../../Field Context")
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=692711695]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/VBoxContainer" unique_id=976444585]
+layout_mode = 2

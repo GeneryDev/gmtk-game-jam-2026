@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://ognnfgeqv83q" path="res://addons/gdf-godot/GDF/Multiplayer/PerPlayerPropertyStacks.cs" id="11_korfd"]
 [ext_resource type="Script" uid="uid://cxsnc7i1qox8m" path="res://addons/gdf-godot/GDF/Scenes/Transitions/ScreenTransitionSystem.cs" id="13_e7lx3"]
 [ext_resource type="Script" uid="uid://bue2dh8nq45gq" path="res://addons/gdf-godot/GDF/Debug/DebugCommandMacro.cs" id="14_7upwp"]
+[ext_resource type="Script" uid="uid://cvppsvjnguv0y" path="res://scripts/Game/Settings/SettingsManager.cs" id="23_ntttm"]
 
 [sub_resource type="Resource" id="Resource_b18l6"]
 script = ExtResource("2_b18l6")
@@ -187,5 +188,8 @@ metadata/_custom_type_script = "uid://cxsnc7i1qox8m"
 script = ExtResource("2_m3l3d")
 Macros = Array[ExtResource("14_7upwp")]([SubResource("Resource_0wfyh"), SubResource("Resource_w2iga")])
 metadata/_custom_type_script = "uid://cqtokr6spdybx"
+
+[node name="Settings Manager" type="Node" parent="." unique_id=1355423142]
+script = ExtResource("23_ntttm")
 
 [connection signal="pressed" from="GdfViewportResizer/Fullscreen Shortcuts" to="GdfViewportResizer" method="ToggleFullscreen"]

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b5njuw4g4wqef"]
+
+[ext_resource type="PackedScene" uid="uid://majwuxropqaj" path="res://scenes/ui/elements/main_menu_button.tscn" id="1_5qxsm"]
+
+[node name="Button" unique_id=1929653182 instance=ExtResource("1_5qxsm")]
+
+[node name="FormattedLabel" parent="Content" parent_id_path=PackedInt32Array(75312773) index="0" unique_id=427085979]
+theme_override_font_sizes/normal_font_size = 18
