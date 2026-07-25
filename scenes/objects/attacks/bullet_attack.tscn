@@ -7,29 +7,24 @@
 [ext_resource type="Script" uid="uid://cd3ua188ba80t" path="res://scripts/Game/Player/AttackFunctions.cs" id="3_6neqo"]
 [ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="3_oh78d"]
 [ext_resource type="Script" uid="uid://eribg7y4pkkf" path="res://addons/gdf-godot/GDF/Logical/Diode.cs" id="6_44pwh"]
+[ext_resource type="Texture2D" uid="uid://p7llaldh0jxd" path="res://assets/textures/sprites/weapons/wrench_for_throwing.png" id="8_si6xu"]
 [ext_resource type="Script" uid="uid://t054pq8o3tmj" path="res://scripts/Game/Util/YSorted.cs" id="8_vqb76"]
+[ext_resource type="Script" uid="uid://dmxsrwhwawg28" path="res://scripts/Game/Util/ObjectSpawner.cs" id="9_g7xx3"]
+[ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="10_wqtto"]
+[ext_resource type="PackedScene" uid="uid://flm25dk35n3v" path="res://scenes/objects/vfx/bullet_attack_trail_effect.tscn" id="11_5ux2m"]
+[ext_resource type="Script" uid="uid://mx32dultovew" path="res://addons/gdf-godot/GDF/Logical/Values/ValueFromNodePath.cs" id="12_e1pq1"]
+[ext_resource type="Script" uid="uid://cjffj2u8gpx5c" path="res://addons/gdf-godot/GDF/Logical/Values/ObjectProperty.cs" id="13_sthln"]
+[ext_resource type="PackedScene" uid="uid://c0clikfh3dxi5" path="res://scenes/objects/vfx/generic_hit_splat.tscn" id="14_5ux2m"]
 
 [sub_resource type="Animation" id="Animation_3h4tt"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Origin/RigidBody2D/MeshInstance2D:scale")
+tracks/0/path = NodePath("Origin/RigidBody2D:freeze")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Origin/RigidBody2D:freeze")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -74,7 +69,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.13333333),
+"times": PackedFloat32Array(0.03333333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -84,26 +79,28 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Origin/RigidBody2D/MeshInstance2D:scale")
+tracks/1/path = NodePath("Origin/RigidBody2D:freeze")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.12),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(2, 2)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
-tracks/2/type = "value"
+tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Origin/RigidBody2D:freeze")
+tracks/2/path = NodePath("Origin/RigidBody2D/ObjectSpawner/Spawn Splat")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"values": [{
+"args": [],
+"method": &"Trigger"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3h4tt"]
@@ -115,8 +112,53 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6w2wd"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_6w2wd"]
-size = Vector2(20, 20)
+[sub_resource type="Resource" id="Resource_cxavo"]
+script = ExtResource("12_e1pq1")
+NodePath = NodePath("../..")
+
+[sub_resource type="Resource" id="Resource_tqw2u"]
+script = ExtResource("13_sthln")
+Target = SubResource("Resource_cxavo")
+Property = &"global_position"
+metadata/_custom_type_script = "uid://cjffj2u8gpx5c"
+
+[sub_resource type="Animation" id="Animation_g7xx3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Origin/RigidBody2D/Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_si6xu"]
+resource_name = "spin"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Origin/RigidBody2D/Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g7xx3"]
+_data = {
+&"RESET": SubResource("Animation_g7xx3"),
+&"spin": SubResource("Animation_si6xu")
+}
 
 [node name="BulletAttack" type="Node" unique_id=1282109577]
 script = ExtResource("1_6neqo")
@@ -187,8 +229,112 @@ shape = SubResource("CircleShape2D_6w2wd")
 [node name="AttackFunctions" type="Node" parent="Origin/RigidBody2D" unique_id=207897347]
 script = ExtResource("3_6neqo")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Origin/RigidBody2D" unique_id=1483194687]
-mesh = SubResource("QuadMesh_6w2wd")
+[node name="Sprite2D" type="Sprite2D" parent="Origin/RigidBody2D" unique_id=1710251733]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("8_si6xu")
+hframes = 4
+
+[node name="ObjectSpawner" type="Node" parent="Origin/RigidBody2D" unique_id=1419317203]
+script = ExtResource("9_g7xx3")
+RelativeMode = 2
+metadata/_custom_type_script = "uid://dmxsrwhwawg28"
+
+[node name="Spawn Trail" type="Node" parent="Origin/RigidBody2D/ObjectSpawner" unique_id=1945505980 node_paths=PackedStringArray("Target")]
+script = ExtResource("10_wqtto")
+Target = NodePath("..")
+Method = &"Spawn"
+Args = [&"Wrench VFX", ExtResource("11_5ux2m"), SubResource("Resource_tqw2u")]
+ArgInputTypes = Array[int]([0, 0, 1])
+ArgAbortIfNull = Array[bool]([false, false, true])
+ArgReplicate = Array[bool]([false, false, false])
+TargetMethodInfo = {
+"args": Array[Dictionary]([{
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "name",
+"type": 21,
+"usage": 6
+}, {
+"class_name": &"PackedScene",
+"hint": 0,
+"hint_string": "",
+"name": "scene",
+"type": 24,
+"usage": 6
+}, {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "position",
+"type": 5,
+"usage": 6
+}]),
+"default_args": [],
+"flags": 1,
+"id": 0,
+"name": "Spawn",
+"return": {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 0,
+"usage": 6
+}
+}
+metadata/_custom_type_script = "uid://buqbj5n61xjbu"
+
+[node name="Spawn Splat" type="Node" parent="Origin/RigidBody2D/ObjectSpawner" unique_id=1359369541 node_paths=PackedStringArray("Target")]
+script = ExtResource("10_wqtto")
+Target = NodePath("..")
+Method = &"Spawn"
+Args = [&"Splat", ExtResource("14_5ux2m"), SubResource("Resource_tqw2u")]
+ArgInputTypes = Array[int]([0, 0, 1])
+ArgAbortIfNull = Array[bool]([false, false, true])
+ArgReplicate = Array[bool]([false, false, false])
+TargetMethodInfo = {
+"args": Array[Dictionary]([{
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "name",
+"type": 21,
+"usage": 6
+}, {
+"class_name": &"PackedScene",
+"hint": 0,
+"hint_string": "",
+"name": "scene",
+"type": 24,
+"usage": 6
+}, {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "position",
+"type": 5,
+"usage": 6
+}]),
+"default_args": [],
+"flags": 1,
+"id": 0,
+"name": "Spawn",
+"return": {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 0,
+"usage": 6
+}
+}
+metadata/_custom_type_script = "uid://buqbj5n61xjbu"
+
+[node name="Timer" type="Timer" parent="Origin/RigidBody2D/ObjectSpawner" unique_id=882151597]
+wait_time = 0.05
+autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Origin/RigidBody2D" unique_id=1293275946]
 shape = SubResource("CircleShape2D_6w2wd")
@@ -197,9 +343,24 @@ shape = SubResource("CircleShape2D_6w2wd")
 script = ExtResource("8_vqb76")
 metadata/_custom_type_script = "uid://t054pq8o3tmj"
 
+[node name="Spin" type="AnimationPlayer" parent="." unique_id=59305308]
+libraries/ = SubResource("AnimationLibrary_g7xx3")
+autoplay = &"spin"
+speed_scale = 20.0
+
+[node name="Current Animation Position Binding" type="Node" parent="Spin" unique_id=2147455426]
+script = ExtResource("2_oh78d")
+Query = "randf()*4"
+SendUpdatedSignalWithValue = true
+UpdateOutsideTree = false
+UpdateOnTreeEntered = 2
+metadata/_custom_type_script = "uid://wbquqef0rnl5"
+
 [connection signal="body_entered" from="Origin/RigidBody2D" to="Origin/RigidBody2D/Hit" method="Trigger" flags=3 unbinds=1]
 [connection signal="Triggered" from="Origin/RigidBody2D/Hit" to="AnimationPlayer/Play hit" method="Trigger" flags=7]
 [connection signal="area_entered" from="Origin/RigidBody2D/Hurtbox" to="Origin/RigidBody2D/AttackFunctions" method="Hurt"]
 [connection signal="area_entered" from="Origin/RigidBody2D/Hurtbox" to="Origin/RigidBody2D/Hit" method="Trigger" unbinds=1]
 [connection signal="body_entered" from="Origin/RigidBody2D/Hurtbox" to="Origin/RigidBody2D/AttackFunctions" method="Hurt"]
 [connection signal="body_entered" from="Origin/RigidBody2D/Hurtbox" to="Origin/RigidBody2D/Hit" method="Trigger" unbinds=1]
+[connection signal="timeout" from="Origin/RigidBody2D/ObjectSpawner/Timer" to="Origin/RigidBody2D/ObjectSpawner/Spawn Trail" method="Trigger"]
+[connection signal="UpdatedWithValue" from="Spin/Current Animation Position Binding" to="Spin" method="seek"]
