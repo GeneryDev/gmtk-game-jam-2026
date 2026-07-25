@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bgink1y3to7s4"]
 
 [ext_resource type="PackedScene" uid="uid://bjcxjov0cydvs" path="res://scenes/ui/elements/timer_effect_log.tscn" id="1_qau1t"]
-[ext_resource type="Script" uid="uid://t054pq8o3tmj" path="res://scripts/Game/Util/YSorted.cs" id="2_pmofs"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_choun"]
 blend_mode = 4
@@ -27,7 +26,3 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="YSorted" type="Node" parent="." unique_id=118948597]
-script = ExtResource("2_pmofs")
-metadata/_custom_type_script = "uid://t054pq8o3tmj"

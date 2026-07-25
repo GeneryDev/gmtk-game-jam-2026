@@ -72,7 +72,7 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 
 		if (time.TotalHours >= 1)
 		{
-			_sb.Append(time.Hours.ToString().PadZeros(2));
+			_sb.Append(((int)time.TotalHours).ToString().PadZeros(2));
 			_sb.Append(':');
 		}
 		_sb.Append(time.Minutes.ToString().PadZeros(2));

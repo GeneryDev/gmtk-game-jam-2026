@@ -39,17 +39,12 @@ public static class MobBuilder
         return pickedEffect;
     }
     
-    public static Vector2 PickSpawnPos()
-    {
-        return new Vector2(_rng.RandfRange(-1, 1), _rng.RandfRange(-1, 1)) * new Vector2(500, 300);
-    }
-
-    public static Node NewMob()
+    public static Node2D NewMob()
     {
         return NewMob(PickMobEffect());
     }
 
-    public static Node NewMob(MobEffects.Descriptor effect)
+    public static Node2D NewMob(MobEffects.Descriptor effect)
     {
         if (effect.IsEmpty) return null;
         var mobType = MobTypes.SelectForEffect(effect, _rng);
@@ -59,7 +54,6 @@ public static class MobBuilder
         var instance = templateScene.GdfInstantiate<Node2D>();
         
         // Initialize
-        instance.Position = PickSpawnPos();
         instance.GetComponent<MobEffectHost>()?.InstallEffect(effect);
 
         return instance;
