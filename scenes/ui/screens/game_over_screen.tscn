@@ -15,6 +15,8 @@
 [ext_resource type="Script" uid="uid://cwgjseomfcygb" path="res://scripts/Game/UI/MenuFunctions.cs" id="12_hf5of"]
 [ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="13_fw75h"]
 [ext_resource type="Script" uid="uid://ce2cpgowa1bvu" path="res://addons/gdf-godot/GDF/IO/ResourceReference.cs" id="14_ljeeo"]
+[ext_resource type="Script" uid="uid://wrcbyscb3t11" path="res://addons/gdf-godot/GDF/Audio/GdfAudioPlayer.cs" id="16_cm61m"]
+[ext_resource type="AudioStream" uid="uid://cv0pr8mf54r1r" path="res://assets/audio/music/main_music.part_3.mp3" id="17_y4fdl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_empfr"]
 content_margin_left = 0.0
@@ -827,7 +829,20 @@ TargetMethodInfo = {
 }
 metadata/_custom_type_script = "uid://buqbj5n61xjbu"
 
+[node name="Music" type="Node" parent="." unique_id=1566699238]
+script = ExtResource("16_cm61m")
+Stream = ExtResource("17_y4fdl")
+VolumeDb = -10.0
+Bus = &"Music"
+UseGlobalPool = true
+ReleaseAction = 2
+FadeOutTime = 0.5
+ParameterLooping = true
+metadata/_custom_type_script = "uid://wrcbyscb3t11"
+
 [connection signal="ScreenFadingOut" from="." to="AnimationPlayer/Play fade_out" method="Trigger"]
+[connection signal="ScreenFadingOut" from="." to="Music" method="Stop"]
 [connection signal="ScreenShown" from="." to="AnimationPlayer/Play fade_in" method="Trigger"]
+[connection signal="ScreenShown" from="." to="Music" method="Play"]
 [connection signal="Submitted" from="Button" to="Menu Functions/Main Menu" method="Trigger"]
 [connection signal="PlayerSubmitted" from="Button/UserInterfaceComponent" to="Button" method="Submit"]
