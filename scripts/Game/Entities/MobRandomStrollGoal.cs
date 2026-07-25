@@ -22,7 +22,7 @@ public partial class MobRandomStrollGoal : MobGoal
 
     private void ReselectTarget()
     {
-        _targetPos = new Vector2(_rng.RandfRange(-1, 1), _rng.RandfRange(-1, 1)) * new Vector2(500, 300);
+        _targetPos = MobSpawner.Instance.GetRandomPoint();
         _targetReselectCooldown = _rng.RandfRange(1, 4);
     }
 

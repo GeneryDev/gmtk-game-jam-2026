@@ -6,6 +6,14 @@
 [ext_resource type="Script" uid="uid://c3hkl8pcy8l32" path="res://addons/gdf-godot/GDF/Logical/Signals/SignalPortInbound.cs" id="3_0415q"]
 [ext_resource type="Script" uid="uid://t054pq8o3tmj" path="res://scripts/Game/Util/YSorted.cs" id="3_wihry"]
 [ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="4_l0bub"]
+[ext_resource type="Script" uid="uid://iir4w637gc2k" path="res://addons/gdf-godot/GDF/UI/LabelAutoFontSize.cs" id="5_0415q"]
+
+[sub_resource type="Resource" id="Resource_urkl7"]
+script = ExtResource("5_0415q")
+BaseFontSize = 62
+ContentWidthThresholdToShrink = 300
+ContentWidthThresholdToShrinkSubsequentLines = 300
+metadata/_custom_type_script = "uid://iir4w637gc2k"
 
 [sub_resource type="Animation" id="Animation_wihry"]
 length = 0.001
@@ -88,7 +96,7 @@ mouse_filter = 2
 [node name="ColorRect" type="ColorRect" parent="Node2D/Control" unique_id=38139649]
 visible = false
 show_behind_parent = true
-custom_minimum_size = Vector2(400, 100)
+custom_minimum_size = Vector2(320, 100)
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -118,6 +126,8 @@ vertical_alignment = 1
 script = ExtResource("2_wihry")
 TextFormat = "{time}"
 DataContext = NodePath("../../../Game Timer Context")
+UsePostProcessing = true
+PostProcessors = [SubResource("Resource_urkl7")]
 metadata/_custom_type_script = "uid://dxkaapm2dks2e"
 
 [node name="YSorted" type="Node" parent="." unique_id=2104180703]
@@ -131,6 +141,7 @@ next/reached_zero = &"idle"
 [node name="Play reached_zero" type="Node" parent="AnimationPlayer" unique_id=537079316]
 script = ExtResource("4_l0bub")
 AnimationName = &"reached_zero"
+FromAnimationList = []
 metadata/_custom_type_script = "uid://dukfxpmahaflv"
 
 [connection signal="ContextSignalReceived" from="Game Timer Context" to="Game Timer Context/Context Signals" method="Receive"]

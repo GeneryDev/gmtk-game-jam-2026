@@ -1,5 +1,6 @@
 ﻿using Game.Entities;
 using Game.Timers;
+using GDF.Composition;
 using GDF.Data;
 using GDF.Data.Static;
 using GDF.Debug;
@@ -20,6 +21,10 @@ public partial class MobSpawner : SingletonNode<MobSpawner>, IDataContext
     private int _totalSpawned = 0;
     private int _highestMobCount = 0;
 
+    private ComponentCache<NavigationRegion2D> _navRegion;
+
+    private int _queuedSpawns = 0;
+
     public override void _Ready()
     {
         base._Ready();
@@ -28,10 +33,33 @@ public partial class MobSpawner : SingletonNode<MobSpawner>, IDataContext
             CallDeferred(MethodName.Spawn);
         }
     }
-    
+
+    public override void _PhysicsProcess(double delta)
+    {
+        base._PhysicsProcess(delta);
+        if (_queuedSpawns > 0)
+        {
+            _queuedSpawns--;
+            SpawnImmediate();
+        }
+    }
+
     public void Spawn()
     {
+        _queuedSpawns++;
+    }
+
+    private void SpawnImmediate()
+    {
+        var spawnPos = GetRandomPoint();
+        if (spawnPos == Vector2.Zero)
+        {
+            _queuedSpawns++;
+            // Navigation server not ready
+            return;
+        }
         var instance = MobBuilder.NewMob();
+        instance.Position = spawnPos;
         GetParent().AddChild(instance);
         NotifySpawned();
     }
@@ -69,6 +97,7 @@ public partial class MobSpawner : SingletonNode<MobSpawner>, IDataContext
         {
             var effect = MobEffects.FromId(effectId);
             var instance = MobBuilder.NewMob(effect);
+            instance.Position = Instance.GetRandomPoint();
             Instance?.GetParent().AddChild(instance);
             Instance?.NotifySpawned();
         }
@@ -76,6 +105,16 @@ public partial class MobSpawner : SingletonNode<MobSpawner>, IDataContext
         {
             args.PrintError();
         }
+    }
+
+    public Vector2 GetRandomPoint()
+    {
+        if (_navRegion.Get(this) is {} navRegion)
+        {
+            var point = NavigationServer2D.RegionGetRandomPoint(navRegion.GetRid(), navRegion.NavigationLayers, uniformly: false);
+            return point;
+        }
+        return Vector2.Zero;
     }
 }
 
