@@ -1,0 +1,833 @@
+[gd_scene format=3 uid="uid://cmne10ht8cwuy"]
+
+[ext_resource type="Script" uid="uid://bko61fppga1kx" path="res://addons/gdf-godot/GDF/UI/Screen.cs" id="1_w7se0"]
+[ext_resource type="PackedScene" uid="uid://dfiex6xxhyw40" path="res://scenes/objects/standard_user_interface.tscn" id="2_j06mw"]
+[ext_resource type="Script" uid="uid://c5nknwgnhn1l7" path="res://scripts/Game/UI/GameOverScreenExtras.cs" id="3_fw75h"]
+[ext_resource type="Script" uid="uid://bfppi36isqkgt" path="res://addons/gdf-godot/GDF/UI/UserInterfaceComponent.cs" id="3_pistr"]
+[ext_resource type="Script" uid="uid://dsd7tvanlvfu0" path="res://addons/gdf-godot/GDF/Data/Static/StaticDataContextNode.cs" id="5_j06mw"]
+[ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="5_yj2q4"]
+[ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="6_knd67"]
+[ext_resource type="PackedScene" uid="uid://ogg6is3rr7on" path="res://scenes/ui/elements/timer_effect_log_detailed.tscn" id="7_pistr"]
+[ext_resource type="Script" uid="uid://ue3ds1tf61va" path="res://scripts/Game/UI/ScrollNavigator.cs" id="7_uf6m3"]
+[ext_resource type="Resource" uid="uid://m57c325gweiq" path="res://resources/input_actions/ui_navigate.tres" id="8_yj2q4"]
+[ext_resource type="Script" uid="uid://cmpms1lahwmsr" path="res://scripts/Game/UI/ButtonExtension.cs" id="10_knd67"]
+[ext_resource type="Resource" uid="uid://cfp18enrjxj36" path="res://resources/input_actions/ui_confirm.tres" id="11_d3g1a"]
+[ext_resource type="Script" uid="uid://cwgjseomfcygb" path="res://scripts/Game/UI/MenuFunctions.cs" id="12_hf5of"]
+[ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="13_fw75h"]
+[ext_resource type="Script" uid="uid://ce2cpgowa1bvu" path="res://addons/gdf-godot/GDF/IO/ResourceReference.cs" id="14_ljeeo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_empfr"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.007843138, 0.039215688, 0.007843138, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.49803922, 1, 0.43137255, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Animation" id="Animation_empfr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Popup Left:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Popup Left:offset_transform_position_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Background:offset_transform_position_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Popup Left:anchor_left")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Popup Left:anchor_right")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Popup Right:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Popup Right:offset_transform_position_ratio")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Popup Right:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Button:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Button:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Button:offset_transform_position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tr12m"]
+resource_name = "fade_in"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Popup Left:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Popup Left:offset_transform_position_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 0.8666666),
+"transitions": PackedFloat32Array(0.34151033, 1),
+"update": 0,
+"values": [Vector2(0, -2), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Background:offset_transform_position_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(1.8660666, 1),
+"update": 0,
+"values": [Vector2(0, -1), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Popup Left:anchor_left")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3, 3.5333333),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [0.5, 0.5, 0.301]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Popup Left:anchor_right")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3, 3.5333333),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [0.5, 0.5, 0.301]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Popup Right:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(3.2333333, 3.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Popup Right:offset_transform_position_ratio")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(3.2333333, 3.6),
+"transitions": PackedFloat32Array(0.49999997, 1),
+"update": 0,
+"values": [Vector2(0, 0.5), Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Popup Right:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 3.1666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Button:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 4.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Button:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(4.233333, 4.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Button:offset_transform_position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(4.233333, 4.437915),
+"transitions": PackedFloat32Array(0.39229217, 1),
+"update": 0,
+"values": [Vector2(0, 20), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_60w8f"]
+resource_name = "fade_out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Popup Left:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Popup Left:offset_transform_position_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.06666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"HideAndFreeScreen"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_empfr"]
+_data = {
+&"RESET": SubResource("Animation_empfr"),
+&"fade_in": SubResource("Animation_tr12m"),
+&"fade_out": SubResource("Animation_60w8f")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svv0g"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.13758689, 0.15535554, 0.1156755, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7hl0s"]
+content_margin_left = 4.0
+content_margin_top = 6.0
+content_margin_right = 4.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pmsx8"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.22, 0.22, 0.22, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Resource" id="Resource_tqw2u"]
+resource_name = "main_menu.tscn"
+script = ExtResource("14_ljeeo")
+StoredResourceId = "uid://chd1e6tufoex6"
+StoredResourcePath = "res://scenes/main_menu.tscn"
+StoredResourceType = "Godot.PackedScene"
+metadata/_custom_type_script = "uid://ce2cpgowa1bvu"
+
+[node name="GameOverScreen" type="Control" unique_id=666529771 node_paths=PackedStringArray("UserInterface")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_w7se0")
+Order = 20
+Mode = 1
+UserInterface = NodePath("UserInterface")
+ShadowLowerOrderInterfaces = true
+metadata/_custom_type_script = "uid://bko61fppga1kx"
+
+[node name="UserInterface" parent="." unique_id=1004258199 instance=ExtResource("2_j06mw")]
+
+[node name="Extras" type="Node" parent="." unique_id=424214556]
+script = ExtResource("3_fw75h")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1635419465]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+color = Color(0, 0, 0, 1)
+
+[node name="Game Timer Context" type="Node" parent="Background" unique_id=1616441367]
+script = ExtResource("5_j06mw")
+TypeId = "game_timer_context"
+metadata/_custom_type_script = "uid://dsd7tvanlvfu0"
+
+[node name="Mob Spawner Context" type="Node" parent="Background" unique_id=1693220023]
+script = ExtResource("5_j06mw")
+TypeId = "mob_spawner_context"
+metadata/_custom_type_script = "uid://dsd7tvanlvfu0"
+
+[node name="Popup Left" type="PanelContainer" parent="." unique_id=187744927]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_empfr")
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup Left" unique_id=425295735]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup Left/MarginContainer" unique_id=1602037565]
+layout_mode = 2
+
+[node name="FormattedLabel" type="RichTextLabel" parent="Popup Left/MarginContainer/VBoxContainer" unique_id=1844216741]
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+script = ExtResource("5_yj2q4")
+TextFormat = "Game Over!"
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Popup Left/MarginContainer/VBoxContainer" unique_id=1687779084]
+custom_minimum_size = Vector2(360, 150)
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup Left/MarginContainer/VBoxContainer/ScrollContainer" unique_id=308154716]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup Left/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer" unique_id=408810733]
+layout_mode = 2
+
+[node name="FormattedLabel" type="RichTextLabel" parent="Popup Left/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=995801930]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+horizontal_alignment = 1
+script = ExtResource("5_yj2q4")
+TextFormat = "The 10-minute timer went off in:"
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup Left/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=922482557]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="FormattedLabel2" type="RichTextLabel" parent="Popup Left/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=1875674571 node_paths=PackedStringArray("DataContext")]
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 24
+fit_content = true
+horizontal_alignment = 1
+script = ExtResource("5_yj2q4")
+TextFormat = "{total_elapsed_real_time}"
+DataContext = NodePath("../../../../../../../../Background/Game Timer Context")
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="FormattedLabel2" type="RichTextLabel" parent="Popup Left/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1542782743 node_paths=PackedStringArray("DataContext")]
+clip_contents = false
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+horizontal_alignment = 1
+script = ExtResource("5_yj2q4")
+TextFormat = "\"{end_quote}\""
+DataContext = NodePath("../../../../../../../Extras")
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="Popup Right" type="PanelContainer" parent="." unique_id=757133965]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7
+anchor_top = 0.5
+anchor_right = 0.7
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_empfr")
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup Right" unique_id=563013574]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup Right/MarginContainer" unique_id=335956780]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="FormattedLabel3" type="RichTextLabel" parent="Popup Right/MarginContainer/VBoxContainer" unique_id=1932620407]
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 28
+theme_override_font_sizes/bold_font_size = 28
+theme_override_font_sizes/bold_italics_font_size = 28
+theme_override_font_sizes/italics_font_size = 28
+theme_override_font_sizes/mono_font_size = 28
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+script = ExtResource("5_yj2q4")
+TextFormat = "Stats"
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup Right/MarginContainer/VBoxContainer" unique_id=1494717826]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Popup Right/MarginContainer/VBoxContainer/MarginContainer" unique_id=750753284]
+custom_minimum_size = Vector2(360, 300)
+layout_mode = 2
+
+[node name="UserInterfaceComponent" type="Node" parent="Popup Right/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer" unique_id=958522730 node_paths=PackedStringArray("OverrideOutlinedControl")]
+script = ExtResource("3_pistr")
+NavigableTo = true
+OverrideOutlinedControl = NodePath("../..")
+metadata/_custom_type_script = "uid://bfppi36isqkgt"
+
+[node name="Scroll Navigator" type="Node" parent="Popup Right/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/UserInterfaceComponent" unique_id=967131786 node_paths=PackedStringArray("ScrollContainer")]
+script = ExtResource("7_uf6m3")
+ScrollContainer = NodePath("../..")
+ManualScroll = true
+ManualScrollAction = ExtResource("8_yj2q4")
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup Right/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer" unique_id=733372801]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup Right/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer" unique_id=1792444099]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Popup Right/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=558235237]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup Right/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer" unique_id=858541378]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup Right/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=113292376]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Popup Right/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1909697547]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="FormattedLabel" type="RichTextLabel" parent="Popup Right/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=13597736]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 2
+fit_content = true
+vertical_alignment = 1
+script = ExtResource("5_yj2q4")
+TextFormat = "Highest time reached on timer"
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="FormattedLabel2" type="RichTextLabel" parent="Popup Right/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=273743438 node_paths=PackedStringArray("DataContext")]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+fit_content = true
+vertical_alignment = 1
+script = ExtResource("5_yj2q4")
+TextFormat = "{highest_reached_time}"
+DataContext = NodePath("../../../../../../../../../../../../Background/Game Timer Context")
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="HSeparator" type="HSeparator" parent="Popup Right/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=423942918]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Popup Right/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2054105612]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="FormattedLabel" type="RichTextLabel" parent="Popup Right/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=2030270104]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 2
+fit_content = true
+vertical_alignment = 1
+script = ExtResource("5_yj2q4")
+TextFormat = "Total number of beasts"
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="FormattedLabel2" type="RichTextLabel" parent="Popup Right/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=836914344 node_paths=PackedStringArray("DataContext")]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+fit_content = true
+vertical_alignment = 1
+script = ExtResource("5_yj2q4")
+TextFormat = "{total_mobs_spawned}"
+DataContext = NodePath("../../../../../../../../../../../../Background/Mob Spawner Context")
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="HSeparator2" type="HSeparator" parent="Popup Right/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=638413766]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Popup Right/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=487565797]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="FormattedLabel" type="RichTextLabel" parent="Popup Right/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=305657235]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 2
+fit_content = true
+vertical_alignment = 1
+script = ExtResource("5_yj2q4")
+TextFormat = "Highest number of beasts present at once"
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="FormattedLabel2" type="RichTextLabel" parent="Popup Right/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=717817415 node_paths=PackedStringArray("DataContext")]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+fit_content = true
+vertical_alignment = 1
+script = ExtResource("5_yj2q4")
+TextFormat = "{highest_mob_count}"
+DataContext = NodePath("../../../../../../../../../../../../Background/Mob Spawner Context")
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="HSeparator3" type="HSeparator" parent="Popup Right/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=223505018]
+layout_mode = 2
+
+[node name="Final Log" type="RichTextLabel" parent="Popup Right/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=460009749]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 2
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_yj2q4")
+TextFormat = "Final Log"
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="Control" parent="Popup Right/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2016401888 instance=ExtResource("7_pistr")]
+layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=145073308]
+libraries/ = SubResource("AnimationLibrary_empfr")
+autoplay = &"fade_in"
+
+[node name="Play fade_in" type="Node" parent="AnimationPlayer" unique_id=1907597076]
+script = ExtResource("6_knd67")
+AnimationName = &"fade_in"
+FromAnimationList = []
+metadata/_custom_type_script = "uid://dukfxpmahaflv"
+
+[node name="Play fade_out" type="Node" parent="AnimationPlayer" unique_id=2060155919]
+script = ExtResource("6_knd67")
+AnimationName = &"fade_out"
+FromAnimationList = []
+metadata/_custom_type_script = "uid://dukfxpmahaflv"
+
+[node name="Button" type="Button" parent="." unique_id=1929653182 node_paths=PackedStringArray("ButtonContentControl")]
+custom_minimum_size = Vector2(200, 51)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_enabled = true
+theme_override_styles/normal = SubResource("StyleBoxFlat_svv0g")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7hl0s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pmsx8")
+script = ExtResource("10_knd67")
+ButtonText = "Return"
+ButtonContentControl = NodePath("Content")
+ButtonCustomMinimumSize = Vector2(200, 0)
+metadata/_custom_type_script = "uid://cmpms1lahwmsr"
+
+[node name="UserInterfaceComponent" type="Node" parent="Button" unique_id=822518818]
+script = ExtResource("3_pistr")
+Submittable = true
+Clickable = true
+Tappable = true
+ShortcutEnabled = true
+ShortcutAction = ExtResource("11_d3g1a")
+metadata/_custom_type_script = "uid://bfppi36isqkgt"
+
+[node name="Content" type="MarginContainer" parent="Button" unique_id=75312773]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 196.0
+offset_bottom = 47.0
+mouse_filter = 2
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="FormattedLabel" type="RichTextLabel" parent="Button/Content" unique_id=427085979 node_paths=PackedStringArray("DataContext")]
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 28
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_yj2q4")
+TextFormat = "{button_text}"
+DataContext = NodePath("../..")
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="Menu Functions" type="Node" parent="." unique_id=995011472]
+script = ExtResource("12_hf5of")
+
+[node name="Main Menu" type="Node" parent="Menu Functions" unique_id=939624226 node_paths=PackedStringArray("Target")]
+script = ExtResource("13_fw75h")
+Target = NodePath("..")
+Method = &"ChangeScene"
+Args = [SubResource("Resource_tqw2u"), null]
+ArgInputTypes = Array[int]([0, 0])
+ArgAbortIfNull = Array[bool]([false, false])
+ArgReplicate = Array[bool]([false, false])
+TargetMethodInfo = {
+"args": Array[Dictionary]([{
+"class_name": &"Resource",
+"hint": 0,
+"hint_string": "",
+"name": "sceneReference",
+"type": 24,
+"usage": 6
+}, {
+"class_name": &"Resource",
+"hint": 0,
+"hint_string": "",
+"name": "screenTransitionReference",
+"type": 24,
+"usage": 6
+}]),
+"default_args": [],
+"flags": 1,
+"id": 0,
+"name": "ChangeScene",
+"return": {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 0,
+"usage": 6
+}
+}
+metadata/_custom_type_script = "uid://buqbj5n61xjbu"
+
+[connection signal="ScreenFadingOut" from="." to="AnimationPlayer/Play fade_out" method="Trigger"]
+[connection signal="ScreenShown" from="." to="AnimationPlayer/Play fade_in" method="Trigger"]
+[connection signal="Submitted" from="Button" to="Menu Functions/Main Menu" method="Trigger"]
+[connection signal="PlayerSubmitted" from="Button/UserInterfaceComponent" to="Button" method="Submit"]

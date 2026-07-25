@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cd3ua188ba80t" path="res://scripts/Game/Player/AttackFunctions.cs" id="1_0bh71"]
 [ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="2_fokvk"]
 [ext_resource type="Script" uid="uid://c0yjanqaifkam" path="res://addons/gdf-godot/GDF/Logical/Signals/InboundSignalArgument.cs" id="3_4ft6e"]
+[ext_resource type="Script" uid="uid://bloknciu4pxh2" path="res://scripts/Game/Util/AnimatableProperties.cs" id="4_4ft6e"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_jd1vo"]
 radius = 80.0
@@ -53,6 +54,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera Shake:properties/camera_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_byabo"]
 resource_name = "fire"
@@ -87,7 +100,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.26666668),
+"times": PackedFloat32Array(0.46666667),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -105,6 +118,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera Shake:properties/camera_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.096099496, 0.16276617, 0.22943284, 0.295545, 0.36606658, 0.43333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(80, 0), Vector2(-40, 0), Vector2(20, 0), Vector2(-16, 0), Vector2(8, 0), Vector2(-8, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3h4tt"]
@@ -173,6 +198,17 @@ metadata/_custom_type_script = "uid://buqbj5n61xjbu"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=326168278]
 libraries/ = SubResource("AnimationLibrary_3h4tt")
 autoplay = &"fire"
+
+[node name="Camera Shake" type="Node" parent="." unique_id=53874928]
+script = ExtResource("4_4ft6e")
+StackSource = 2
+Active = true
+Properties = Dictionary[String, Variant]({
+"camera_position": Vector2(0, 0)
+})
+PropertyModificationOperations = Dictionary[String, int]({
+"camera_position": 1
+})
 
 [connection signal="area_entered" from="Area2D" to="Area2D/AttackFunctions/Hurt" method="Trigger"]
 [connection signal="body_entered" from="Area2D" to="Area2D/AttackFunctions/Hurt" method="Trigger"]

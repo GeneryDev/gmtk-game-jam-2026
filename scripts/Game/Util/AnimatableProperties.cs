@@ -1,4 +1,5 @@
-﻿using GDF.Logical.Values;
+﻿using GDF.Composition;
+using GDF.Logical.Values;
 using GDF.PropertyStacks;
 using GDF.PropertyStacks.Definitions;
 using Godot;
@@ -19,6 +20,8 @@ public partial class AnimatableProperties : Node
     
     private Godot.Collections.Dictionary<string, Variant> _properties = new();
     private Godot.Collections.Dictionary<string, ModificationOperation> _propertyOperations = new();
+
+    [Export(PropertyHint.Enum,"Global,Own,Camera")] public int StackSource = 0;
     
     [Export]
     public bool Active
@@ -85,7 +88,17 @@ public partial class AnimatableProperties : Node
 
     private PropertyStack GetStack()
     {
-        return GlobalPropertyStack.Instance;
+        switch (StackSource)
+        {
+            case 0:
+                return GlobalPropertyStack.Instance;
+            case 1:
+                return this.GetComponent<PropertyStack>();
+            case 2:
+                return GetViewport()?.GetCamera2D()?.GetComponent<PropertyStack>();
+            default:
+                return null;
+        }
     }
 
     public override void _EnterTree()

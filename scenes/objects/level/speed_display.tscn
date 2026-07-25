@@ -277,7 +277,7 @@ metadata/_custom_type_script = "uid://dxkaapm2dks2e"
 [node name="Visibility Binding" type="Node" parent="Control/HBoxContainer" unique_id=1376827174 node_paths=PackedStringArray("DataContext", "TargetNode")]
 script = ExtResource("3_x7qpw")
 DataContext = NodePath("../../../Game Timer Context")
-Query = "{tick_rate} > 0"
+Query = "{is_active}"
 TargetNode = NodePath("..")
 TargetPropertyName = "visible"
 metadata/_custom_type_script = "uid://wbquqef0rnl5"

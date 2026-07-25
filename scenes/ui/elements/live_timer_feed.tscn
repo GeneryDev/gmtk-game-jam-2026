@@ -2,8 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dsd7tvanlvfu0" path="res://addons/gdf-godot/GDF/Data/Static/StaticDataContextNode.cs" id="1_7ixe7"]
 [ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="1_m2vi6"]
+[ext_resource type="Script" uid="uid://k88c5byfcni6" path="res://addons/gdf-godot/GDF/Logical/Signals/SignalStation.cs" id="2_d38f6"]
 [ext_resource type="FontVariation" uid="uid://bhw0i257ab6tc" path="res://assets/fonts/DigitalNumbers Modified.tres" id="2_yrpwf"]
+[ext_resource type="Script" uid="uid://c3hkl8pcy8l32" path="res://addons/gdf-godot/GDF/Logical/Signals/SignalPortInbound.cs" id="3_16vgp"]
 [ext_resource type="Script" uid="uid://iir4w637gc2k" path="res://addons/gdf-godot/GDF/UI/LabelAutoFontSize.cs" id="4_xwne3"]
+[ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="7_5hehg"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_tqw2u"]
 
@@ -13,6 +16,241 @@ BaseFontSize = 24
 ContentWidthThresholdToShrink = 130
 metadata/_custom_type_script = "uid://iir4w637gc2k"
 
+[sub_resource type="Animation" id="Animation_5hehg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scene/Timer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scene/Timer:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Scene/Timer:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Scene:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Scene/Timer/Node2D/Node2D2/Control:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Scene:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_h8ma7"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scene/Timer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scene/Timer:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Scene/Timer:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Scene:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 6)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Scene/Timer/Node2D/Node2D2/Control:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Scene:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.91, 0.91)]
+}
+
+[sub_resource type="Animation" id="Animation_16vgp"]
+resource_name = "reached_zero"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scene/Timer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.026835999, 0.16666667, 0.32561013, 0.5, 0.7066813, 0.8810712, 1.0913438, 1.2657336, 1.472415, 1.6468048, 1.8315126, 2.0059025, 2.2125838, 2.3869736, 2.577084, 2.751474, 2.9581552, 3.132545, 3.3118503, 3.4862401, 3.6929214, 3.8673115, 3.9439652),
+"transitions": PackedFloat32Array(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1, -8), Vector2(-5, -13), Vector2(-1, -8), Vector2(-5, -13), Vector2(-1, -8), Vector2(-5, -13), Vector2(-1, -8), Vector2(-5, -13), Vector2(-1, -8), Vector2(-5, -13), Vector2(-1, -8), Vector2(-5, -13), Vector2(-1, -8), Vector2(-5, -13), Vector2(-1, -8), Vector2(-5, -13), Vector2(-1, -8), Vector2(-5, -13), Vector2(-1, -8), Vector2(-5, -13), Vector2(-1, -8), Vector2(-5, -13), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scene/Timer:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.026835999, 0.16666667, 0.32561013, 0.5, 0.7066813, 0.8810712, 1.0913438, 1.2657336, 1.472415, 1.6468048, 1.8315126, 2.0059025, 2.2125838, 2.3869736, 2.577084, 2.751474, 2.9581552, 3.132545, 3.3118503, 3.4862401, 3.6929214, 3.8673115, 3.9439652),
+"transitions": PackedFloat32Array(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1),
+"update": 0,
+"values": [0.0, -0.09356534, 0.09088396, -0.09356534, 0.09088396, -0.09356534, 0.09088396, -0.09356534, 0.09088396, -0.09356534, 0.09088396, -0.09356534, 0.09088396, -0.09356534, 0.09088396, -0.09356534, 0.09088396, -0.09356534, 0.09088396, -0.09356534, 0.09088396, -0.09356534, 0.09088396, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Scene/Timer:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Scene:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.08408613, 0.2, 0.3273992, 0.44331306, 0.57071227, 0.68662614, 0.80508, 0.92099386, 1.0147302, 1.1306441, 1.2580433, 1.3739572, 1.5013564, 1.6172702, 1.7357241, 1.851638, 1.9601817, 2.0760956, 2.2034948, 2.3194087, 2.4468079, 2.5627217, 2.6811757, 2.7970896, 2.9282591, 3.044173, 3.1715722, 3.287486, 3.4148853, 3.5307992, 3.649253, 3.7651668, 3.825106),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(0, 6)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Scene/Timer/Node2D/Node2D2/Control:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Scene:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.08397131),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.91, 0.91)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5hehg"]
+_data = {
+&"RESET": SubResource("Animation_5hehg"),
+&"idle": SubResource("Animation_h8ma7"),
+&"reached_zero": SubResource("Animation_16vgp")
+}
+
 [node name="Node2D" type="Node2D" unique_id=1364720254]
 
 [node name="Game Timer Context" type="Node" parent="." unique_id=17225227]
@@ -20,48 +258,59 @@ script = ExtResource("1_7ixe7")
 TypeId = "game_timer_context"
 metadata/_custom_type_script = "uid://dsd7tvanlvfu0"
 
-[node name="Scene" type="Node2D" parent="." unique_id=1652789335]
+[node name="Context Signals" type="Node" parent="Game Timer Context" unique_id=1275648193]
+script = ExtResource("2_d38f6")
+metadata/_custom_type_script = "uid://k88c5byfcni6"
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Scene" unique_id=1455876909]
+[node name="ReachedZero" type="Node" parent="Game Timer Context/Context Signals" unique_id=2072311671]
+script = ExtResource("3_16vgp")
+metadata/_custom_type_script = "uid://c3hkl8pcy8l32"
+
+[node name="Background" type="MeshInstance2D" parent="." unique_id=1455876909]
 modulate = Color(0.18000486, 0.18000486, 0.18000486, 1)
 position = Vector2(0, 3.8146973e-06)
 scale = Vector2(200, 120)
 mesh = SubResource("QuadMesh_tqw2u")
+
+[node name="Scene" type="Node2D" parent="." unique_id=1652789335]
 
 [node name="Table" type="Polygon2D" parent="Scene" unique_id=909192473]
 position = Vector2(-100, -60)
 color = Color(0.32, 0.20053333, 0.115200005, 1)
 polygon = PackedVector2Array(-18, 95, 96, -21, 317, 9, 287, 153)
 
-[node name="Polygon2D" type="Polygon2D" parent="Scene" unique_id=18859721]
-position = Vector2(-100, -60)
-color = Color(0.1148968, 0.11489681, 0.1148968, 1)
-polygon = PackedVector2Array(32, 19, 38, 80, 184, 109, 228, 54, 224, -5, 176, 34)
-
-[node name="Display Background" type="Polygon2D" parent="Scene" unique_id=300932700]
-position = Vector2(-100, -60)
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(42, 75, 38, 25, 171.69995, 39.19998, 177, 100)
-
-[node name="Polygon2D2" type="Polygon2D" parent="Scene" unique_id=1750488081]
-position = Vector2(-100, -60)
-color = Color(0.2520276, 0.25202766, 0.25202763, 1)
-polygon = PackedVector2Array(33, 19, 176, 34, 223, -4, 78, -15)
-
 [node name="Polygon2D3" type="Polygon2D" parent="Scene" unique_id=1462482096]
 position = Vector2(-100, -60)
 color = Color(0.22490779, 0.11421894, 0.07049886, 1)
 polygon = PackedVector2Array(-18, 95, 287, 152, 288, 175, -17, 172)
 
-[node name="Node2D" type="Node2D" parent="Scene" unique_id=578199136]
+[node name="Timer" type="Node2D" parent="Scene" unique_id=419602687]
+metadata/_edit_group_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="Scene/Timer" unique_id=18859721]
+position = Vector2(-100, -60)
+color = Color(0.1148968, 0.11489681, 0.1148968, 1)
+polygon = PackedVector2Array(32, 19, 38, 80, 184, 109, 228, 54, 224, -5, 176, 34)
+
+[node name="Display Background" type="Polygon2D" parent="Scene/Timer" unique_id=300932700]
+position = Vector2(-100, -60)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(42, 75, 38, 25, 171.69995, 39.19998, 177, 100)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Scene/Timer" unique_id=1750488081]
+position = Vector2(-100, -60)
+color = Color(0.2520276, 0.25202766, 0.25202763, 1)
+polygon = PackedVector2Array(33, 19, 176, 34, 223, -4, 78, -15)
+
+[node name="Node2D" type="Node2D" parent="Scene/Timer" unique_id=578199136]
 position = Vector2(9, 2.9999962)
 rotation = -1.5707964
 skew = 0.15533435
 
-[node name="Node2D2" type="Node2D" parent="Scene/Node2D" unique_id=1485992150]
+[node name="Node2D2" type="Node2D" parent="Scene/Timer/Node2D" unique_id=1485992150]
 rotation = 1.5707964
 
-[node name="Control" type="Control" parent="Scene/Node2D/Node2D2" unique_id=1726331405]
+[node name="Control" type="Control" parent="Scene/Timer/Node2D/Node2D2" unique_id=1726331405]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -1.0
@@ -70,7 +319,7 @@ offset_right = -1.0
 offset_bottom = -2.0
 mouse_filter = 2
 
-[node name="FormattedLabel" type="RichTextLabel" parent="Scene/Node2D/Node2D2/Control" unique_id=439812972 node_paths=PackedStringArray("DataContext")]
+[node name="FormattedLabel" type="RichTextLabel" parent="Scene/Timer/Node2D/Node2D2/Control" unique_id=439812972 node_paths=PackedStringArray("DataContext")]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -93,7 +342,7 @@ autowrap_mode = 0
 horizontal_alignment = 2
 script = ExtResource("1_m2vi6")
 TextFormat = "{time}"
-DataContext = NodePath("../../../../../Game Timer Context")
+DataContext = NodePath("../../../../../../Game Timer Context")
 UsePostProcessing = true
 PostProcessors = [SubResource("Resource_ohnff")]
 metadata/_custom_type_script = "uid://dxkaapm2dks2e"
@@ -107,3 +356,16 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1402365887]
+libraries/ = SubResource("AnimationLibrary_5hehg")
+next/reached_zero = &"idle"
+
+[node name="Play reached_zero" type="Node" parent="AnimationPlayer" unique_id=1409077835]
+script = ExtResource("7_5hehg")
+AnimationName = &"reached_zero"
+metadata/_custom_type_script = "uid://dukfxpmahaflv"
+
+[connection signal="ContextSignalReceived" from="Game Timer Context" to="Game Timer Context/Context Signals" method="Receive"]
+[connection signal="Received" from="Game Timer Context/Context Signals/ReachedZero" to="AnimationPlayer/Play reached_zero" method="Trigger"]

@@ -17,6 +17,12 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 	[Signal]
 	public delegate void TickedEventHandler();
 
+	[Signal]
+	public delegate void ReachedZeroEventHandler();
+
+	[Signal]
+	public delegate void ContextSignalReceivedEventHandler(StringName signalName, Godot.Collections.Array args);
+
 	[Export(PropertyHint.Range, "0,600,1,suffix:s")]
 
 	public long RemainingTime
@@ -26,9 +32,10 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 		{
 			if (_remainingTime == value) return;
 			_remainingTime = value;
+			_highestReachedTime = Mathf.Max(_highestReachedTime, _remainingTime);
 			if (_remainingTime <= 0)
 			{
-				_tickRate = 0;
+				OnTimeReachedZero();
 			}
 			EmitSignalUpdated();
 		}
@@ -47,12 +54,15 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 		}
 	}
 
+	public bool Active { get; private set; } = true;
+
 	public double TotalElapsedRealTime { get; private set; } = 0;
 	private Accumulator _tickTimer;
 
 	private static readonly StringBuilder _sb = new();
 	private long _remainingTime = 0;
 	private float _tickRate = 1;
+	private float _highestReachedTime = 0;
 
 	public static string GetFormattedTime(double timeSec)
 	{
@@ -81,28 +91,47 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 	public override void _PhysicsProcess(double delta)
 	{
 		base._PhysicsProcess(delta);
-		TotalElapsedRealTime += delta;
-
-		_tickTimer.Add((float)(delta * TickRate));
-
-		while (_tickTimer.Consume(1))
+		if (Active)
 		{
-			Tick();
+			TotalElapsedRealTime += delta;
+
+			_tickTimer.Add((float)(delta * TickRate));
+
+			while (_tickTimer.Consume(1))
+			{
+				Tick();
+			}
 		}
 	}
 
 	private void Tick()
 	{
 		EmitSignalTicked();
+		EmitSignalContextSignalReceived(SignalName.Ticked, new());
 		TriggerEffects();
 	}
 
+	private void OnTimeReachedZero()
+	{
+		_tickRate = 0;
+		Active = false;
+		EmitSignalReachedZero();
+		EmitSignalContextSignalReceived(SignalName.ReachedZero, new());
+	}
+
 	public StringName UpdatedSignalName => SignalName.Updated;
+	public StringName ContextSignalReceivedSignalName => SignalName.ContextSignalReceived;
 
 	public bool GetContextVariable(string key, string input, ref Variant output, IDataQueryOptions options)
 	{
 		switch (key)
 		{
+			case "active":
+			case "is_active":
+			{
+				output = Active;
+				return true;
+			}
 			case "tick_rate":
 			{
 				output = TickRate;
@@ -119,12 +148,24 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 		{
 			case "time":
 			{
-				replacement = GetFormattedTime();
+				if (input == "non_negative")
+				{
+					replacement = GetFormattedTime(Mathf.Max(0, RemainingTime));
+				}
+				else
+				{
+					replacement = GetFormattedTime();
+				}
 				return true;
 			}
 			case "total_elapsed_real_time":
 			{
 				replacement = GetFormattedTime(TotalElapsedRealTime);
+				return true;
+			}
+			case "highest_reached_time":
+			{
+				replacement = GetFormattedTime(_highestReachedTime);
 				return true;
 			}
 		}

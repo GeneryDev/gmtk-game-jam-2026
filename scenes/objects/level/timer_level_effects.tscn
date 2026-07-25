@@ -1,0 +1,197 @@
+[gd_scene format=3 uid="uid://dc1mfr47hxoky"]
+
+[ext_resource type="Script" uid="uid://dsd7tvanlvfu0" path="res://addons/gdf-godot/GDF/Data/Static/StaticDataContextNode.cs" id="1_771gt"]
+[ext_resource type="Script" uid="uid://k88c5byfcni6" path="res://addons/gdf-godot/GDF/Logical/Signals/SignalStation.cs" id="2_j2eav"]
+[ext_resource type="Script" uid="uid://c3hkl8pcy8l32" path="res://addons/gdf-godot/GDF/Logical/Signals/SignalPortInbound.cs" id="3_vhtog"]
+[ext_resource type="Script" uid="uid://bloknciu4pxh2" path="res://scripts/Game/Util/AnimatableProperties.cs" id="5_01s7o"]
+[ext_resource type="Script" uid="uid://bko61fppga1kx" path="res://addons/gdf-godot/GDF/UI/Screen.cs" id="6_771gt"]
+[ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="6_vmjwr"]
+[ext_resource type="PackedScene" uid="uid://cmne10ht8cwuy" path="res://scenes/ui/screens/game_over_screen.tscn" id="7_j2eav"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tqw2u"]
+blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_wihry"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/Light Overlay:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera Shake:properties/camera_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera Shake:properties/camera_rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_i5ltb"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_l0bub"]
+resource_name = "reached_zero"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/Light Overlay:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera Shake:properties/camera_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5, 1.625, 1.75, 1.875, 2, 2.125, 2.25, 2.375, 2.5, 2.625, 2.75, 2.875, 3, 3.125, 3.25, 3.375, 3.5, 3.625, 3.75, 3.875, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(20, 0), Vector2(-20, 0), Vector2(20, 0), Vector2(-20, 0), Vector2(20, 0), Vector2(-20, 0), Vector2(20, 0), Vector2(-20, 0), Vector2(20, 0), Vector2(-20, 0), Vector2(20, 0), Vector2(-20, 0), Vector2(20, 0), Vector2(-20, 0), Vector2(20, 0), Vector2(0, 0), Vector2(20, 0), Vector2(-20, 0), Vector2(20, 0), Vector2(-20, 0), Vector2(20, 0), Vector2(-20, 0), Vector2(20, 0), Vector2(-20, 0), Vector2(20, 0), Vector2(-20, 0), Vector2(20, 0), Vector2(-20, 0), Vector2(20, 0), Vector2(-20, 0), Vector2(20, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera Shake:properties/camera_rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.01, -0.01, 0.01, -0.01, 0.01, -0.01, 0.01, -0.01, 0.01, -0.01, 0.01, -0.01, 0.01, -0.01, 0.01, 0.0]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GameOverScreen")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"ShowScreen"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i5ltb"]
+_data = {
+&"RESET": SubResource("Animation_wihry"),
+&"idle": SubResource("Animation_i5ltb"),
+&"reached_zero": SubResource("Animation_l0bub")
+}
+
+[node name="Timer Level Effects" type="Node" unique_id=790727648]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=771111672]
+layer = 8
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1595115864]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Light Overlay" type="ColorRect" parent="CanvasLayer/Control" unique_id=1751431934]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_tqw2u")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.98, 0.16333336, 0, 0.14117648)
+
+[node name="Game Timer Context" type="Node" parent="." unique_id=1514591060]
+script = ExtResource("1_771gt")
+TypeId = "game_timer_context"
+metadata/_custom_type_script = "uid://dsd7tvanlvfu0"
+
+[node name="Context Signals" type="Node" parent="Game Timer Context" unique_id=333514714]
+script = ExtResource("2_j2eav")
+metadata/_custom_type_script = "uid://k88c5byfcni6"
+
+[node name="ReachedZero" type="Node" parent="Game Timer Context/Context Signals" unique_id=1550235803]
+script = ExtResource("3_vhtog")
+metadata/_custom_type_script = "uid://c3hkl8pcy8l32"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1059116148]
+libraries/ = SubResource("AnimationLibrary_i5ltb")
+next/reached_zero = &"idle"
+
+[node name="Play reached_zero" type="Node" parent="AnimationPlayer" unique_id=537079316]
+script = ExtResource("6_vmjwr")
+AnimationName = &"reached_zero"
+metadata/_custom_type_script = "uid://dukfxpmahaflv"
+
+[node name="Camera Shake" type="Node" parent="." unique_id=1629616242]
+script = ExtResource("5_01s7o")
+StackSource = 2
+Active = true
+Properties = Dictionary[String, Variant]({
+"camera_position": Vector2(0, 0),
+"camera_rotation": 0.0
+})
+PropertyModificationOperations = Dictionary[String, int]({
+"camera_position": 1,
+"camera_rotation": 1
+})
+
+[node name="No Input" type="Control" parent="." unique_id=922164565]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("6_771gt")
+Order = 9
+Mode = 1
+metadata/_custom_type_script = "uid://bko61fppga1kx"
+
+[node name="GameOverScreen" parent="." unique_id=666529771 instance=ExtResource("7_j2eav")]
+visible = false
+
+[connection signal="ContextSignalReceived" from="Game Timer Context" to="Game Timer Context/Context Signals" method="Receive"]
+[connection signal="Received" from="Game Timer Context/Context Signals/ReachedZero" to="AnimationPlayer/Play reached_zero" method="Trigger"]
+[connection signal="Received" from="Game Timer Context/Context Signals/ReachedZero" to="No Input" method="ShowScreen" flags=3]

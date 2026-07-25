@@ -1,8 +1,66 @@
 [gd_scene format=3 uid="uid://iga4ll57v2o0"]
 
 [ext_resource type="Script" uid="uid://dsd7tvanlvfu0" path="res://addons/gdf-godot/GDF/Data/Static/StaticDataContextNode.cs" id="1_ga2pf"]
+[ext_resource type="Script" uid="uid://k88c5byfcni6" path="res://addons/gdf-godot/GDF/Logical/Signals/SignalStation.cs" id="2_urkl7"]
 [ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="2_wihry"]
+[ext_resource type="Script" uid="uid://c3hkl8pcy8l32" path="res://addons/gdf-godot/GDF/Logical/Signals/SignalPortInbound.cs" id="3_0415q"]
 [ext_resource type="Script" uid="uid://t054pq8o3tmj" path="res://scripts/Game/Util/YSorted.cs" id="3_wihry"]
+[ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="4_l0bub"]
+
+[sub_resource type="Animation" id="Animation_wihry"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Control/FormattedLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_i5ltb"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Control/FormattedLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_l0bub"]
+resource_name = "reached_zero"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Control/FormattedLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i5ltb"]
+_data = {
+&"RESET": SubResource("Animation_wihry"),
+&"idle": SubResource("Animation_i5ltb"),
+&"reached_zero": SubResource("Animation_l0bub")
+}
 
 [node name="Timer Display" type="Node2D" unique_id=1766795991]
 
@@ -10,6 +68,14 @@
 script = ExtResource("1_ga2pf")
 TypeId = "game_timer_context"
 metadata/_custom_type_script = "uid://dsd7tvanlvfu0"
+
+[node name="Context Signals" type="Node" parent="Game Timer Context" unique_id=333514714]
+script = ExtResource("2_urkl7")
+metadata/_custom_type_script = "uid://k88c5byfcni6"
+
+[node name="ReachedZero" type="Node" parent="Game Timer Context/Context Signals" unique_id=1550235803]
+script = ExtResource("3_0415q")
+metadata/_custom_type_script = "uid://c3hkl8pcy8l32"
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1233902596]
 position = Vector2(0, -50)
@@ -56,3 +122,15 @@ metadata/_custom_type_script = "uid://dxkaapm2dks2e"
 [node name="YSorted" type="Node" parent="." unique_id=2104180703]
 script = ExtResource("3_wihry")
 metadata/_custom_type_script = "uid://t054pq8o3tmj"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1059116148]
+libraries/ = SubResource("AnimationLibrary_i5ltb")
+next/reached_zero = &"idle"
+
+[node name="Play reached_zero" type="Node" parent="AnimationPlayer" unique_id=537079316]
+script = ExtResource("4_l0bub")
+AnimationName = &"reached_zero"
+metadata/_custom_type_script = "uid://dukfxpmahaflv"
+
+[connection signal="ContextSignalReceived" from="Game Timer Context" to="Game Timer Context/Context Signals" method="Receive"]
+[connection signal="Received" from="Game Timer Context/Context Signals/ReachedZero" to="AnimationPlayer/Play reached_zero" method="Trigger"]

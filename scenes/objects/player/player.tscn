@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="3_rp72t"]
 [ext_resource type="Script" uid="uid://t054pq8o3tmj" path="res://scripts/Game/Util/YSorted.cs" id="4_jxhie"]
 [ext_resource type="Script" uid="uid://cr6edqb2hjfrb" path="res://scripts/Game/Player/PlayerController.cs" id="4_wim6f"]
+[ext_resource type="Script" uid="uid://b4g6upntwcoel" path="res://scripts/Game/Player/CameraTarget.cs" id="5_8bans"]
 [ext_resource type="Script" uid="uid://dmhldnch5rsyx" path="res://scripts/Game/Entities/EntityFlags.cs" id="5_ejlqc"]
 [ext_resource type="Resource" uid="uid://20hjbwrgl572" path="res://resources/input_actions/move.tres" id="5_gmdvr"]
 [ext_resource type="Resource" uid="uid://lcriijicejdl" path="res://resources/input_actions/attack.tres" id="6_gmdvr"]
@@ -92,13 +93,11 @@ color_ramp = SubResource("Gradient_tofx1")
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_tqw2u")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=262534271]
+[node name="Camera Target" type="Node2D" parent="." unique_id=1510870871]
 process_priority = 10
 process_physics_priority = 10
 position = Vector2(0, -24)
-zoom = Vector2(0.8, 0.8)
-process_callback = 0
-position_smoothing_enabled = true
+script = ExtResource("5_8bans")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1385734560]
 collision_layer = 96

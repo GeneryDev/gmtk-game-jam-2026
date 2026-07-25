@@ -7,10 +7,16 @@
 [ext_resource type="Script" uid="uid://cd3ua188ba80t" path="res://scripts/Game/Player/AttackFunctions.cs" id="3_2gmta"]
 [ext_resource type="Script" uid="uid://dg1gf1wnlvq8n" path="res://scripts/Game/Util/RayCast2DExtension.cs" id="3_dbhkx"]
 [ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="5_2gmta"]
+[ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="7_rq0v5"]
+[ext_resource type="Script" uid="uid://c0yjanqaifkam" path="res://addons/gdf-godot/GDF/Logical/Signals/InboundSignalArgument.cs" id="8_c2red"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_tqw2u"]
 size = Vector2(1, 4)
 center_offset = Vector3(0.5, 0, 0)
+
+[sub_resource type="Resource" id="Resource_tqw2u"]
+script = ExtResource("8_c2red")
+metadata/_custom_type_script = "uid://c0yjanqaifkam"
 
 [sub_resource type="Animation" id="Animation_3h4tt"]
 length = 0.001
@@ -243,6 +249,46 @@ script = ExtResource("3_dbhkx")
 [node name="AttackFunctions" type="Node" parent="Origin/RayCast2D" unique_id=207897347]
 script = ExtResource("3_2gmta")
 
+[node name="MethodCaller" type="Node" parent="Origin/RayCast2D/AttackFunctions" unique_id=1987169691 node_paths=PackedStringArray("Target")]
+script = ExtResource("7_rq0v5")
+Target = NodePath("..")
+Method = &"Hurt"
+FilterByArgumentCount = 2
+Args = [SubResource("Resource_tqw2u"), 3]
+ArgInputTypes = Array[int]([1, 0])
+ArgAbortIfNull = Array[bool]([false, false])
+ArgReplicate = Array[bool]([false, false])
+TargetMethodInfo = {
+"args": Array[Dictionary]([{
+"class_name": &"Node2D",
+"hint": 0,
+"hint_string": "",
+"name": "target",
+"type": 24,
+"usage": 6
+}, {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "hp",
+"type": 2,
+"usage": 6
+}]),
+"default_args": [],
+"flags": 1,
+"id": 0,
+"name": "Hurt",
+"return": {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 0,
+"usage": 6
+}
+}
+metadata/_custom_type_script = "uid://buqbj5n61xjbu"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Origin" unique_id=326168278]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_3h4tt")
@@ -273,6 +319,6 @@ AnimationName = &"hit"
 FromAnimationList = []
 metadata/_custom_type_script = "uid://dukfxpmahaflv"
 
-[connection signal="Collided" from="Origin/RayCast2D" to="Origin/RayCast2D/AttackFunctions" method="Hurt"]
+[connection signal="Collided" from="Origin/RayCast2D" to="Origin/RayCast2D/AttackFunctions/MethodCaller" method="Trigger"]
 [connection signal="HurtSuccess" from="Origin/RayCast2D/AttackFunctions" to="Origin/Hit Effect/Hit Animation/Play hit" method="Trigger"]
 [connection signal="HurtSuccess" from="Origin/RayCast2D/AttackFunctions" to="Origin/RayCast2D" method="set_enabled" binds= [false]]

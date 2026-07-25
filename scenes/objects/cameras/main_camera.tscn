@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://q3oorxcdwdxn"]
+
+[ext_resource type="Script" uid="uid://b8bhi836i15dn" path="res://addons/gdf-godot/GDF/PropertyStacks/PropertyStack.cs" id="1_u6fq0"]
+[ext_resource type="Script" uid="uid://dbylvo5shp4x8" path="res://addons/gdf-godot/GDF/PropertyStacks/Definitions/Vector2Property.cs" id="2_4esvv"]
+[ext_resource type="Script" uid="uid://dtiavjx30ng7w" path="res://addons/gdf-godot/GDF/PropertyStacks/Definitions/FloatProperty.cs" id="3_kwnkg"]
+[ext_resource type="Script" uid="uid://c0catxx0gwuor" path="res://addons/gdf-godot/GDF/PropertyStacks/PropertyRegistry.cs" id="4_kt6a5"]
+[ext_resource type="Script" uid="uid://bituwxio8sdy4" path="res://addons/gdf-godot/GDF/PropertyStacks/PropertyStackWatcher.cs" id="5_4esvv"]
+
+[sub_resource type="Resource" id="Resource_7nx1l"]
+resource_name = "camera_position [Vector2Property]"
+script = ExtResource("2_4esvv")
+PropertyId = "camera_position"
+metadata/_custom_type_script = "uid://dbylvo5shp4x8"
+
+[sub_resource type="Resource" id="Resource_g1d0q"]
+resource_name = "camera_rotation [FloatProperty]"
+script = ExtResource("3_kwnkg")
+PropertyId = "camera_rotation"
+metadata/_custom_type_script = "uid://dtiavjx30ng7w"
+
+[sub_resource type="Resource" id="Resource_tqw2u"]
+script = ExtResource("4_kt6a5")
+Definitions = Array[Object]([SubResource("Resource_7nx1l"), SubResource("Resource_g1d0q")])
+OtherRegistries = Array[Object]([])
+metadata/_custom_type_script = "uid://c0catxx0gwuor"
+
+[node name="Camera2D" type="Camera2D" unique_id=614381686]
+process_priority = 10
+process_physics_priority = 10
+ignore_rotation = false
+zoom = Vector2(0.8, 0.8)
+process_callback = 0
+position_smoothing_enabled = true
+
+[node name="PropertyStack" type="Node" parent="." unique_id=1863774139]
+script = ExtResource("1_u6fq0")
+PropertyRegistry = SubResource("Resource_tqw2u")
+metadata/_custom_type_script = "uid://b8bhi836i15dn"
+
+[node name="PropertyStackWatcher" type="Node" parent="." unique_id=1906659240 node_paths=PackedStringArray("Stack")]
+script = ExtResource("5_4esvv")
+Stack = NodePath("../PropertyStack")
+UpdateMode = 1
+Mappings = Dictionary[String, NodePath]({
+"camera_position": NodePath("..:global_position"),
+"camera_rotation": NodePath("..:rotation")
+})
+metadata/_custom_type_script = "uid://bituwxio8sdy4"

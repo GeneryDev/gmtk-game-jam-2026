@@ -8,11 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://bs7ti064ojarj" path="res://scenes/ui/screens/pausable.tscn" id="4_85g3d"]
 [ext_resource type="Script" uid="uid://dux7ids7mjj4q" path="res://scripts/Game/MobSpawner.cs" id="4_tbgi4"]
 [ext_resource type="Script" uid="uid://3qnog7e3rmn2" path="res://scripts/Game/Util/CanvasLayerParented.cs" id="5_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://q3oorxcdwdxn" path="res://scenes/objects/cameras/main_camera.tscn" id="6_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://bgink1y3to7s4" path="res://scenes/objects/level/timer_effect_log_on_wall.tscn" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="7_choun"]
 [ext_resource type="PackedScene" uid="uid://iga4ll57v2o0" path="res://scenes/objects/level/timer_display.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://b3hl1vuham125" path="res://scenes/objects/level/speed_display.tscn" id="8_tipki"]
+[ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="9_jkv2x"]
+[ext_resource type="Script" uid="uid://dsd7tvanlvfu0" path="res://addons/gdf-godot/GDF/Data/Static/StaticDataContextNode.cs" id="11_jbj1t"]
 [ext_resource type="Script" uid="uid://t054pq8o3tmj" path="res://scripts/Game/Util/YSorted.cs" id="13_trceg"]
+[ext_resource type="PackedScene" uid="uid://dc1mfr47hxoky" path="res://scenes/objects/level/timer_level_effects.tscn" id="17_muem4"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tqw2u"]
 
@@ -89,6 +93,8 @@ script = ExtResource("3_eb6dy")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=180755502]
 
+[node name="Camera2D" parent="Node2D" unique_id=614381686 instance=ExtResource("6_jbj1t")]
+
 [node name="Background Layer" type="CanvasLayer" parent="Node2D" unique_id=904160265]
 layer = -10
 follow_viewport_enabled = true
@@ -132,9 +138,34 @@ metadata/_custom_type_script = "uid://3qnog7e3rmn2"
 [node name="Mob Spawner" type="Node" parent="Node2D/Foreground Layer" unique_id=1037427461]
 script = ExtResource("4_tbgi4")
 StartAmount = 10
-SpawnInterval = 3.0
 
-[node name="Timer" type="Timer" parent="Node2D/Foreground Layer/Mob Spawner" unique_id=346712547]
+[node name="Game Timer Context" type="Node" parent="Node2D/Foreground Layer/Mob Spawner" unique_id=1317871942]
+script = ExtResource("11_jbj1t")
+TypeId = "game_timer_context"
+metadata/_custom_type_script = "uid://dsd7tvanlvfu0"
+
+[node name="Process Mode Binding" type="Node" parent="Node2D/Foreground Layer/Mob Spawner" unique_id=747819376 node_paths=PackedStringArray("DataContext", "TargetNode")]
+script = ExtResource("9_jkv2x")
+DataContext = NodePath("../Game Timer Context")
+Query = "{active}"
+ValueMappingEnabled = true
+ValueMappings = {
+false: 4,
+true: 0
+}
+ValueMappingDefault = 0
+TargetNode = NodePath("..")
+TargetPropertyName = "process_mode"
+metadata/_custom_type_script = "uid://wbquqef0rnl5"
+
+[node name="Spawn Intervals" type="Node" parent="Node2D/Foreground Layer/Mob Spawner" unique_id=502839201]
+
+[node name="Trickle Timer" type="Timer" parent="Node2D/Foreground Layer/Mob Spawner/Spawn Intervals" unique_id=346712547]
+process_callback = 0
+wait_time = 3.0
+autostart = true
+
+[node name="Burst Timer" type="Timer" parent="Node2D/Foreground Layer/Mob Spawner/Spawn Intervals" unique_id=974153505]
 process_callback = 0
 wait_time = 20.0
 autostart = true
@@ -169,4 +200,7 @@ rotation = 1.5707964
 script = ExtResource("13_trceg")
 metadata/_custom_type_script = "uid://t054pq8o3tmj"
 
-[connection signal="timeout" from="Node2D/Foreground Layer/Mob Spawner/Timer" to="Node2D/Foreground Layer/Mob Spawner/Waves/Play burst_10" method="Trigger"]
+[node name="Timer Level Effects" parent="Node2D" unique_id=790727648 instance=ExtResource("17_muem4")]
+
+[connection signal="timeout" from="Node2D/Foreground Layer/Mob Spawner/Spawn Intervals/Trickle Timer" to="Node2D/Foreground Layer/Mob Spawner" method="Spawn"]
+[connection signal="timeout" from="Node2D/Foreground Layer/Mob Spawner/Spawn Intervals/Burst Timer" to="Node2D/Foreground Layer/Mob Spawner/Waves/Play burst_10" method="Trigger"]

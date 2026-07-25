@@ -17,11 +17,7 @@ public partial class TimerEffectLog : SingletonNode<TimerEffectLog>, IDataContex
 
     public void Log(string message)
     {
-        var item = new Item()
-        {
-            Message = message
-        };
-        InsertLogItem(item);
+        Log(message, default);
     }
 
     public void Log(string message, Entities.MobEffects.Descriptor associatedEffect)
@@ -29,7 +25,8 @@ public partial class TimerEffectLog : SingletonNode<TimerEffectLog>, IDataContex
         var item = new Item()
         {
             Message = message,
-            AssociatedEffect = associatedEffect
+            AssociatedEffect = associatedEffect,
+            RemainingTime = GameTimer.Instance?.RemainingTime ?? 0
         };
         InsertLogItem(item);
     }
@@ -65,6 +62,7 @@ public partial class TimerEffectLog : SingletonNode<TimerEffectLog>, IDataContex
     {
         public string Message = "";
         public Entities.MobEffects.Descriptor AssociatedEffect;
+        public long RemainingTime = 0;
 
         public bool GetContextString(string key, string input, ref string replacement, IDataQueryOptions options)
         {
@@ -73,6 +71,11 @@ public partial class TimerEffectLog : SingletonNode<TimerEffectLog>, IDataContex
                 case "message":
                 {
                     replacement = Message;
+                    return true;
+                }
+                case "remaining_time":
+                {
+                    replacement = GameTimer.GetFormattedTime(RemainingTime);
                     return true;
                 }
             }
