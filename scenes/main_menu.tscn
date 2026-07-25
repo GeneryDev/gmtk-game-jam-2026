@@ -1,7 +1,21 @@
 [gd_scene format=3 uid="uid://chd1e6tufoex6"]
 
 [ext_resource type="PackedScene" uid="uid://ba3hpxgoyiytl" path="res://scenes/ui/screens/main_menu_screen.tscn" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://wrcbyscb3t11" path="res://addons/gdf-godot/GDF/Audio/GdfAudioPlayer.cs" id="2_bqqt6"]
+[ext_resource type="AudioStream" uid="uid://cwoq2hoowsouw" path="res://assets/audio/music/main_music.part_1.mp3" id="3_wu84c"]
 
 [node name="MainMenu" type="Node" unique_id=824774446]
 
 [node name="Main Menu Screen" parent="." unique_id=1168699841 instance=ExtResource("1_l6cm7")]
+
+[node name="Music" type="Node" parent="." unique_id=1519389915]
+script = ExtResource("2_bqqt6")
+TriggerMode = 2
+Stream = ExtResource("3_wu84c")
+VolumeDb = -10.0
+Bus = &"Music"
+UseGlobalPool = true
+ReleaseAction = 2
+FadeOutTime = 0.5
+ParameterLooping = true
+metadata/_custom_type_script = "uid://wrcbyscb3t11"

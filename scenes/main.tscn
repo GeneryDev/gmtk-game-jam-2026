@@ -7,11 +7,15 @@
 [ext_resource type="Script" uid="uid://c10onshnx3jmp" path="res://scripts/Game/Util/YSortSystem.cs" id="3_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://bs7ti064ojarj" path="res://scenes/ui/screens/pausable.tscn" id="4_85g3d"]
 [ext_resource type="Script" uid="uid://dux7ids7mjj4q" path="res://scripts/Game/MobSpawner.cs" id="4_tbgi4"]
+[ext_resource type="Script" uid="uid://wrcbyscb3t11" path="res://addons/gdf-godot/GDF/Audio/GdfAudioPlayer.cs" id="4_y6deb"]
+[ext_resource type="AudioStream" uid="uid://cwoq2hoowsouw" path="res://assets/audio/music/main_music.part_1.mp3" id="5_og1vs"]
 [ext_resource type="Script" uid="uid://3qnog7e3rmn2" path="res://scripts/Game/Util/CanvasLayerParented.cs" id="5_ya4ey"]
+[ext_resource type="AudioStream" uid="uid://bpxrcbfo3dgg1" path="res://assets/audio/music/main_music.part_2.mp3" id="6_2wyq8"]
 [ext_resource type="PackedScene" uid="uid://q3oorxcdwdxn" path="res://scenes/objects/cameras/main_camera.tscn" id="6_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://bgink1y3to7s4" path="res://scenes/objects/level/timer_effect_log_on_wall.tscn" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="7_choun"]
 [ext_resource type="PackedScene" uid="uid://iga4ll57v2o0" path="res://scenes/objects/level/timer_display.tscn" id="7_o6xl0"]
+[ext_resource type="AudioStream" uid="uid://cv0pr8mf54r1r" path="res://assets/audio/music/main_music.part_3.mp3" id="7_vxglm"]
 [ext_resource type="Texture2D" uid="uid://bwnbhuku0jfvc" path="res://assets/textures/tiles/floor.png" id="8_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://b3hl1vuham125" path="res://scenes/objects/level/speed_display.tscn" id="8_tipki"]
 [ext_resource type="Texture2D" uid="uid://bqwo4c16r4fq8" path="res://assets/textures/tiles/clock.png" id="9_gqmmt"]
@@ -22,6 +26,20 @@
 [ext_resource type="Script" uid="uid://t054pq8o3tmj" path="res://scripts/Game/Util/YSorted.cs" id="13_trceg"]
 [ext_resource type="PackedScene" uid="uid://dc1mfr47hxoky" path="res://scenes/objects/level/timer_level_effects.tscn" id="17_muem4"]
 [ext_resource type="Script" uid="uid://hxkw1qs5tu7s" path="res://scripts/Game/Util/WallBehindFade.cs" id="21_jscy8"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_2wyq8"]
+clip_count = 3
+clip_0/name = &"track_1"
+clip_0/stream = ExtResource("5_og1vs")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &"track_2"
+clip_1/stream = ExtResource("6_2wyq8")
+clip_1/auto_advance = 1
+clip_1/next_clip = 2
+clip_2/name = &"track_3"
+clip_2/stream = ExtResource("7_vxglm")
+clip_2/auto_advance = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ld40"]
 texture = ExtResource("8_dp3eg")
@@ -506,6 +524,17 @@ MaxItems = 8
 [node name="YSortSystem" type="Node" parent="." unique_id=1806549303]
 script = ExtResource("3_eb6dy")
 
+[node name="Music" type="Node" parent="." unique_id=1483509696]
+script = ExtResource("4_y6deb")
+TriggerMode = 2
+Stream = SubResource("AudioStreamInteractive_2wyq8")
+VolumeDb = -10.0
+Bus = &"Music"
+UseGlobalPool = true
+ReleaseAction = 2
+ParameterLooping = true
+metadata/_custom_type_script = "uid://wrcbyscb3t11"
+
 [node name="HUD" parent="." unique_id=1168699841 instance=ExtResource("1_0wfyh")]
 
 [node name="Pausable" parent="." unique_id=1617093545 instance=ExtResource("4_85g3d")]
@@ -683,5 +712,6 @@ polygon = PackedVector2Array(-352, -208, -128, -64, 384, -64, 432, -320, 432, -5
 
 [node name="Timer Level Effects" parent="Node2D" unique_id=790727648 instance=ExtResource("17_muem4")]
 
+[connection signal="ReachedZero" from="GameTimer" to="Music" method="Stop"]
 [connection signal="timeout" from="Node2D/Foreground Layer/Mob Spawner/Spawn Intervals/Trickle Timer" to="Node2D/Foreground Layer/Mob Spawner" method="Spawn"]
 [connection signal="timeout" from="Node2D/Foreground Layer/Mob Spawner/Spawn Intervals/Burst Timer" to="Node2D/Foreground Layer/Mob Spawner/Waves/Play burst_10" method="Trigger"]
