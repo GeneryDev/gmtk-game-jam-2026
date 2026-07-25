@@ -18,6 +18,9 @@ public partial class DamageableComponent : Node, IDataContext
     [Export]
     public int MaxHitPoints = 1;
 
+    [Export]
+    public AnimationPlayer deathAnim;
+
     public int HitPoints = 1;
 
     public override void _Ready()
@@ -42,6 +45,10 @@ public partial class DamageableComponent : Node, IDataContext
     {
         HitPoints = 0;
         EmitSignalDied();
+        deathAnim.Play("death");
+    }
+    public void DeathAnimationFinished(StringName anim)
+    {
         Owner.QueueFree();
     }
 
