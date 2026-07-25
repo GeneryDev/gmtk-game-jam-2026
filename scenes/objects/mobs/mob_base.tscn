@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://birvp7rww3wl2"]
 
 [ext_resource type="Script" uid="uid://56fvy6sd714g" path="res://addons/gdf-godot/GDF/Composition/ComponentIndex.cs" id="1_1fa5o"]
-[ext_resource type="Script" uid="uid://crsc045c715fb" path="res://scripts/Game/Player/Visuals.cs" id="2_5km6i"]
 [ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="3_1an03"]
 [ext_resource type="Texture2D" uid="uid://dodo124v32dp2" path="res://assets/textures/sprites/Mob/green hound/houndIdle.png" id="3_sehlk"]
 [ext_resource type="Script" uid="uid://dvnqkwg5xysf2" path="res://scripts/Game/Entities/EntityContext.cs" id="4_1an03"]
@@ -54,7 +53,7 @@ tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
+tracks/1/interp = 4
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
@@ -500,9 +499,7 @@ ComponentOwner = NodePath("..")
 OtherComponentContainers = [NodePath("../Goals")]
 metadata/_custom_type_script = "uid://56fvy6sd714g"
 
-[node name="Visuals" type="CanvasGroup" parent="." unique_id=37646152 node_paths=PackedStringArray("anim")]
-script = ExtResource("2_5km6i")
-anim = NodePath("Idle Animation")
+[node name="Visuals" type="CanvasGroup" parent="." unique_id=37646152]
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Visuals" unique_id=1784942333]
 position = Vector2(0, -24)
@@ -536,6 +533,7 @@ metadata/_custom_type_script = "uid://t054pq8o3tmj"
 
 [node name="Idle Animation" type="AnimationPlayer" parent="Visuals" unique_id=1208725175]
 libraries/ = SubResource("AnimationLibrary_i0ycf")
+autoplay = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=508152118]
 position = Vector2(2, -9.5)

@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://56fvy6sd714g" path="res://addons/gdf-godot/GDF/Composition/ComponentIndex.cs" id="1_1bf4k"]
 [ext_resource type="Script" uid="uid://ck26gmefod55p" path="res://addons/gdf-godot/GDF/Input/GdfPlayerInput.cs" id="2_0a575"]
-[ext_resource type="Script" uid="uid://crsc045c715fb" path="res://scripts/Game/Player/Visuals.cs" id="2_5t4rm"]
 [ext_resource type="Texture2D" uid="uid://u23pn35savw" path="res://assets/textures/sprites/player/playerIdle1.png" id="2_ibpxp"]
 [ext_resource type="Resource" uid="uid://cubdq0rio3s24" path="res://resources/input_auto_configs/character_control.tres" id="3_nkbs0"]
 [ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="3_rp72t"]
@@ -90,9 +89,7 @@ script = ExtResource("1_1bf4k")
 ComponentOwner = NodePath("..")
 metadata/_custom_type_script = "uid://56fvy6sd714g"
 
-[node name="Visuals" type="CanvasGroup" parent="." unique_id=708970617 node_paths=PackedStringArray("anim")]
-script = ExtResource("2_5t4rm")
-anim = NodePath("AnimationPlayer")
+[node name="Visuals" type="CanvasGroup" parent="." unique_id=708970617]
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Visuals" unique_id=1784942333]
 position = Vector2(0, -24)
@@ -134,6 +131,7 @@ color_ramp = SubResource("Gradient_tofx1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals" unique_id=1257170381]
 libraries/ = SubResource("AnimationLibrary_3j0tc")
+autoplay = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=508152118]
 position = Vector2(0, -8)
