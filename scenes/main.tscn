@@ -409,6 +409,8 @@ pattern_1 = SubResource("TileMapPattern_yc10j")
 pattern_2 = SubResource("TileMapPattern_jscy8")
 pattern_3 = SubResource("TileMapPattern_pm3ni")
 
+[sub_resource type="QuadMesh" id="QuadMesh_tqw2u"]
+
 [sub_resource type="Animation" id="Animation_85g3d"]
 resource_name = "burst_10"
 length = 1.7
@@ -525,6 +527,12 @@ skew = 0.4590216
 position = Vector2(-734.665, -458.1)
 rotation = -0.4537856
 skew = 0.43807763
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Node2D/Background Layer" unique_id=716570998]
+self_modulate = Color(0, 0, 0, 1)
+z_index = -100
+scale = Vector2(4128, 2176)
+mesh = SubResource("QuadMesh_tqw2u")
 
 [node name="Foreground Layer" type="CanvasLayer" parent="Node2D" unique_id=405655397]
 layer = -9
