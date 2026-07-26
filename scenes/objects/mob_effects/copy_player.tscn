@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dsd7tvanlvfu0" path="res://addons/gdf-godot/GDF/Data/Static/StaticDataContextNode.cs" id="3_oe235"]
 [ext_resource type="Script" uid="uid://dmxsrwhwawg28" path="res://scripts/Game/Util/ObjectSpawner.cs" id="4_0h4hb"]
 [ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="5_637d0"]
-[ext_resource type="PackedScene" uid="uid://l7vx1ppodn0d" path="res://scenes/objects/player/player.tscn" id="6_3j7fc"]
+[ext_resource type="PackedScene" uid="uid://d4ar2obfqf56u" path="res://scenes/objects/player/player_copy.tscn" id="6_oe235"]
 [ext_resource type="Script" uid="uid://0mjmm7eo3o6v" path="res://addons/gdf-godot/GDF/Data/DataQuery.cs" id="7_agay8"]
 
 [sub_resource type="Resource" id="Resource_tqw2u"]
@@ -32,7 +32,7 @@ metadata/_custom_type_script = "uid://dmxsrwhwawg28"
 script = ExtResource("5_637d0")
 Target = NodePath("..")
 Method = &"Spawn"
-Args = [&"Explosion", ExtResource("6_3j7fc"), SubResource("Resource_tqw2u")]
+Args = [&"Explosion", ExtResource("6_oe235"), SubResource("Resource_tqw2u")]
 ArgInputTypes = Array[int]([0, 0, 1])
 ArgAbortIfNull = Array[bool]([false, false, true])
 ArgReplicate = Array[bool]([false, false, false])

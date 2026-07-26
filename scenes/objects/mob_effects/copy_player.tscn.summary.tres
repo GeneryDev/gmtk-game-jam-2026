@@ -20,9 +20,9 @@ script = ExtResource("2_b3y0e")
 RootNodeName = &"Copy Player"
 RootNodeScript = ExtResource("1_fgle0")
 RootNodeProperties = {
-&"Description": "Copy Player",
+&"Description": "Copy Timekeeper",
 &"LogMessage": "",
-&"ParticleMessage": "Copy Player",
+&"ParticleMessage": "Copy Timekeeper",
 &"SpawnCondition": SubResource("Resource_oe235"),
 &"SpawnWeight": 1.0,
 &"Tags": Array[String](["mob", "copy", "trivial", "rare"])
