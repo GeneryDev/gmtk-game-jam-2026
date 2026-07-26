@@ -4,14 +4,8 @@
 [ext_resource type="Resource" uid="uid://cbqcje56khwta" path="res://scenes/objects/mob_effects/timer/plus_1_min.tscn.summary.tres" id="2_k5l8t"]
 [ext_resource type="Script" uid="uid://ccy1yqjcbg6iq" path="res://scripts/Game/Timers/TimerFunctions.cs" id="3_6owme"]
 [ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="4_pglpn"]
-[ext_resource type="Script" uid="uid://wrcbyscb3t11" path="res://addons/gdf-godot/GDF/Audio/GdfAudioPlayer.cs" id="5_hemgk"]
+[ext_resource type="PackedScene" uid="uid://8ctlixmk3of2" path="res://scenes/objects/timer_effect_sfx.tscn" id="5_hemgk"]
 [ext_resource type="AudioStream" uid="uid://ho8obbedu7a" path="res://assets/audio/SFX/Timer_+1Min.wav" id="6_rqnas"]
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hemgk"]
-random_pitch = 1.0594631
-random_volume_offset_db = 2.0
-streams_count = 1
-stream_0/stream = ExtResource("6_rqnas")
 
 [node name="Plus1Min" type="Node" unique_id=1558047290]
 script = ExtResource("1_k5l8t")
@@ -53,15 +47,8 @@ TargetMethodInfo = {
 }
 metadata/_custom_type_script = "uid://buqbj5n61xjbu"
 
-[node name="Timer SFX" type="Node" parent="." unique_id=500683383]
-script = ExtResource("5_hemgk")
-TriggerMode = 2
-Stream = SubResource("AudioStreamRandomizer_hemgk")
-Bus = &"SFX"
-UseGlobalPool = true
-ReleaseAction = 1
-UseDeduplication = true
-DeduplicationTimeFrameSec = 0.1
-metadata/_custom_type_script = "uid://wrcbyscb3t11"
+[node name="Timer SFX" parent="." unique_id=883309933 instance=ExtResource("5_hemgk")]
+Stream = ExtResource("6_rqnas")
 
 [connection signal="Triggered" from="." to="Timer Functions/Method Call" method="Trigger"]
+[connection signal="Triggered" from="." to="Timer SFX" method="Trigger"]

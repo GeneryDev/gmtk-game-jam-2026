@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://imxwr0qsocj5" path="res://scenes/objects/mob_effects/timer/swap.tscn.summary.tres" id="2_a4nyp"]
 [ext_resource type="Script" uid="uid://ccy1yqjcbg6iq" path="res://scripts/Game/Timers/TimerFunctions.cs" id="3_pc5w6"]
 [ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="4_msjq6"]
-[ext_resource type="Script" uid="uid://wrcbyscb3t11" path="res://addons/gdf-godot/GDF/Audio/GdfAudioPlayer.cs" id="5_erlch"]
+[ext_resource type="PackedScene" uid="uid://8ctlixmk3of2" path="res://scenes/objects/timer_effect_sfx.tscn" id="5_erlch"]
 [ext_resource type="AudioStream" uid="uid://bcyudtmtbm3aj" path="res://assets/audio/SFX/Timer_Swap.wav" id="6_nd1m1"]
 
 [node name="Swap Minutes and Seconds" type="Node" unique_id=1558047290]
@@ -36,15 +36,8 @@ TargetMethodInfo = {
 }
 metadata/_custom_type_script = "uid://buqbj5n61xjbu"
 
-[node name="Timer SFX" type="Node" parent="." unique_id=2022836571]
-script = ExtResource("5_erlch")
-TriggerMode = 2
+[node name="Timer SFX" parent="." unique_id=883309933 instance=ExtResource("5_erlch")]
 Stream = ExtResource("6_nd1m1")
-Bus = &"SFX"
-UseGlobalPool = true
-ReleaseAction = 1
-UseDeduplication = true
-DeduplicationTimeFrameSec = 0.15
-metadata/_custom_type_script = "uid://wrcbyscb3t11"
 
 [connection signal="Triggered" from="." to="Timer Functions/Method Call" method="Trigger"]
+[connection signal="Triggered" from="." to="Timer SFX" method="Trigger"]
