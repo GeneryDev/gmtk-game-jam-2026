@@ -5,9 +5,13 @@
 [ext_resource type="Resource" uid="uid://20hjbwrgl572" path="res://resources/input_actions/move.tres" id="3_yed0n"]
 [ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="4_5pfmv"]
 [ext_resource type="Resource" uid="uid://lcriijicejdl" path="res://resources/input_actions/attack.tres" id="6_yed0n"]
+[ext_resource type="Script" uid="uid://bwjl50hav4euk" path="res://addons/gdf-godot/GDF/Resources/ResourceLibraryLookupContext.cs" id="9_ux455"]
 [ext_resource type="PackedScene" uid="uid://ueooctks1neu" path="res://scenes/ui/elements/live_timer_feed.tscn" id="10_7bpd2"]
 [ext_resource type="Script" uid="uid://dsd7tvanlvfu0" path="res://addons/gdf-godot/GDF/Data/Static/StaticDataContextNode.cs" id="10_wkpi1"]
+[ext_resource type="Script" uid="uid://l7wbvi5jgr0h" path="res://addons/gdf-godot/GDF/Data/NodeFactory.cs" id="10_xk46f"]
 [ext_resource type="Script" uid="uid://b2kgjtodfigs7" path="res://scripts/Game/Util/SubViewportScaler.cs" id="11_7bpd2"]
+[ext_resource type="Script" uid="uid://cipgbcqmkinta" path="res://addons/gdf-godot/GDF/Data/NodeTemplate.cs" id="11_ux455"]
+[ext_resource type="PackedScene" uid="uid://yi20anoya8be" path="res://scenes/ui/elements/weapon_hud.tscn" id="12_xk46f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ne7ms"]
 content_margin_left = 4.0
@@ -179,3 +183,38 @@ SubViewportContainer = NodePath("..")
 SubViewport = NodePath("../SubViewport")
 SubViewportCanvas = NodePath("../SubViewport/CanvasLayer")
 metadata/_custom_type_script = "uid://b2kgjtodfigs7"
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=967010484]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Control/MarginContainer" unique_id=1216148522]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="Player Attacks Library" type="Node" parent="Control/MarginContainer/VBoxContainer" unique_id=1611584632]
+script = ExtResource("9_ux455")
+LibraryTypeString = "PlayerAttack"
+metadata/_custom_type_script = "uid://bwjl50hav4euk"
+
+[node name="NodeFactory" type="Node" parent="Control/MarginContainer/VBoxContainer" unique_id=1936480538 node_paths=PackedStringArray("DataContext", "DefaultTemplate")]
+script = ExtResource("10_xk46f")
+DataContext = NodePath("../Player Attacks Library")
+CollectionQuery = "{all} {_collection:sort:{order}}"
+DefaultTemplate = NodePath("../NodeTemplate")
+metadata/_custom_type_script = "uid://l7wbvi5jgr0h"
+
+[node name="NodeTemplate" type="Node" parent="Control/MarginContainer/VBoxContainer" unique_id=738405083]
+script = ExtResource("11_ux455")
+TemplateScene = ExtResource("12_xk46f")
+PreviewCount = 3
+metadata/_custom_type_script = "uid://cipgbcqmkinta"

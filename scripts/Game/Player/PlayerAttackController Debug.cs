@@ -16,14 +16,8 @@ public partial class PlayerAttackController
             var attackDescriptor = PlayerAttacks.FromId(attackId);
             if (!attackDescriptor.IsEmpty)
             {
-                foreach (var node in SceneManager.Instance.GetTree().GetNodesInGroup("player_character"))
-                {
-                    if (node.GetComponent<PlayerAttackController>() is { } controller)
-                    {
-                        controller.AttackScene = attackDescriptor.Scene;
-                        GD.Print($"Attack changed to {attackDescriptor.Summary.RootNodeName}");
-                    }
-                }
+                WeaponSystem.Instance.SetEquipped(attackDescriptor);
+                GD.Print($"Attack changed to {attackDescriptor.Summary.RootNodeName}");
             }
             else
             {

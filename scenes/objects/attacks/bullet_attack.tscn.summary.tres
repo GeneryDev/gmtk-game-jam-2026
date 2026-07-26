@@ -1,12 +1,18 @@
 [gd_resource type="Resource" script_class="SceneSummary" format=3 uid="uid://dc7yabiqa6j4h"]
 
 [ext_resource type="Script" uid="uid://dvhbt8l5vjyou" path="res://scripts/Game/Player/PlayerAttack.cs" id="1_6iepm"]
+[ext_resource type="Texture2D" uid="uid://5wf5ug1mmkrs" path="res://assets/textures/ui/weapon_wrench.png" id="1_52q42"]
 [ext_resource type="Script" uid="uid://pj67f1pjpit5" path="res://addons/gdf-godot/GDF/Resources/SceneSummary.cs" id="2_83etw"]
+[ext_resource type="Resource" uid="uid://c8dafi8es4u25" path="res://resources/input_actions/equip_1.tres" id="2_ppgrx"]
 
 [resource]
 script = ExtResource("2_83etw")
 RootNodeName = &"BulletAttack"
 RootNodeScript = ExtResource("1_6iepm")
 RootNodeProperties = {
-&"AttackInterval": 0.2
+&"AttackInterval": 0.2,
+&"Icon": ExtResource("1_52q42"),
+&"MaxAmmo": -1,
+&"Order": 0,
+&"TriggerAction": ExtResource("2_ppgrx")
 }

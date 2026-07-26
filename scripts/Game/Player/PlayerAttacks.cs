@@ -11,7 +11,8 @@ public partial class PlayerAttacks : SceneResourceLibrary<PlayerAttack>
         {
             Roots = new[] { new LibraryConfig.LibraryRoot("res://scenes/objects/attacks") },
             PreloadAll = true,
-            CacheResources = true
+            CacheResources = true,
+            FallbackId = "bullet_attack"
         };
     }
 }

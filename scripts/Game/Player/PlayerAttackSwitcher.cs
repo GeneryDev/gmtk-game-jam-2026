@@ -10,7 +10,6 @@ public partial class PlayerAttackSwitcher : Node
     [Export] public Dictionary<GdfInputAction, StringName> AttackOptions;
 
     private ComponentCache<GdfPlayerInput> _playerInput;
-    private ComponentCache<PlayerAttackController> _playerAttack;
 
     public override void _Process(double delta)
     {
@@ -23,7 +22,7 @@ public partial class PlayerAttackSwitcher : Node
                 if (playerInput.ConsumeActionEvent(action))
                 {
                     var attackDescriptor = PlayerAttacks.FromId(attackId);
-                    _playerAttack.Get(this).AttackScene = attackDescriptor.Scene;
+                    WeaponSystem.Instance.SetEquipped(attackDescriptor);
                 }
             }
         }

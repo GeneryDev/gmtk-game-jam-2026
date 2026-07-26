@@ -1,6 +1,8 @@
 [gd_resource type="Resource" script_class="SceneSummary" format=3 uid="uid://2rcv1ni1pp53"]
 
+[ext_resource type="Texture2D" uid="uid://d33itdg8b6q0h" path="res://assets/textures/ui/weapon_beam.png" id="1_01ysq"]
 [ext_resource type="Script" uid="uid://dvhbt8l5vjyou" path="res://scripts/Game/Player/PlayerAttack.cs" id="1_fohld"]
+[ext_resource type="Resource" uid="uid://quegfyyuigyq" path="res://resources/input_actions/equip_3.tres" id="2_ghgml"]
 [ext_resource type="Script" uid="uid://pj67f1pjpit5" path="res://addons/gdf-godot/GDF/Resources/SceneSummary.cs" id="2_rryca"]
 
 [resource]
@@ -8,5 +10,9 @@ script = ExtResource("2_rryca")
 RootNodeName = &"BeamAttack"
 RootNodeScript = ExtResource("1_fohld")
 RootNodeProperties = {
-&"AttackInterval": 1.0
+&"AttackInterval": 1.0,
+&"Icon": ExtResource("1_01ysq"),
+&"MaxAmmo": 3,
+&"Order": 3,
+&"TriggerAction": ExtResource("2_ghgml")
 }

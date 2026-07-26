@@ -9,6 +9,9 @@ namespace Game.Player;
 
 public partial class PlayerAttackController : Node
 {
+    [Signal]
+    public delegate void NoAmmoEventHandler();
+    
     [Export] public GdfInputAction AttackAction;
     
     private ComponentCache<GdfPlayerInput> _playerInput;
@@ -22,15 +25,11 @@ public partial class PlayerAttackController : Node
 
     private Vector2 _targetPosGlobal;
 
-    [Export] public PackedScene AttackScene;
+    public PlayerAttacks.Descriptor EquippedAttack => WeaponSystem.Instance.EquippedAttack;
 
     private float GetAttackInterval()
     {
-        if (PlayerAttacks.From(AttackScene) is { IsEmpty: false } attack)
-        {
-            return attack.Reference.AttackInterval;
-        }
-        return 1;
+        return EquippedAttack.Reference?.AttackInterval ?? 1;
     }
     
     public override void _Process(double delta)
@@ -43,10 +42,17 @@ public partial class PlayerAttackController : Node
         {
             if (playerInput.ConsumeActionEvent(AttackAction))
             {
-                _fireIntervalTimer.Reset();
-                float attackInterval = GetAttackInterval();
-                _fireIntervalTimer.Add(attackInterval);
-                _fireStartCooldown = attackInterval;
+                if (WeaponSystem.Instance.HasAmmo(EquippedAttack))
+                {
+                    _fireIntervalTimer.Reset();
+                    float attackInterval = GetAttackInterval();
+                    _fireIntervalTimer.Add(attackInterval);
+                    _fireStartCooldown = attackInterval;
+                }
+                else
+                {
+                    EmitSignalNoAmmo();
+                }
             }
         }
 
@@ -82,10 +88,12 @@ public partial class PlayerAttackController : Node
     public void Attack()
     {
         var body = _motionComponent.Get(this).Body;
-        if (AttackScene == null) return;
+        if (EquippedAttack.IsEmpty) return;
+        if (!WeaponSystem.Instance.ConsumeAmmo(EquippedAttack)) return;
+        
         var attackContext = new AttackInstanceContext(Owner, body.GlobalPosition, _targetPosGlobal);
 
-        var attackInstance = AttackScene.GdfInstantiate();
+        var attackInstance = EquippedAttack.New();
         
         attackInstance.InjectContext(attackContext);
         Owner.AddChild(attackInstance);
