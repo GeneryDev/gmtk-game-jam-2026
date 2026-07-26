@@ -1,4 +1,5 @@
 ﻿using Game.Entities;
+using GDF.Audio;
 using GDF.Composition;
 using GDF.Data;
 using GDF.Input;
@@ -11,6 +12,7 @@ public partial class PlayerAttackController : Node
 {
     [Export] public GdfInputAction AttackAction;
     [Export] public float AttackInterval = 0.2f;
+    [Export] public GdfAudioPlayer AttackSFX;
     
     private ComponentCache<GdfPlayerInput> _playerInput;
     private ComponentCache<PlayerController> _playerController;
@@ -71,6 +73,8 @@ public partial class PlayerAttackController : Node
 
     public void Attack()
     {
+        AttackSFX.playing = true;
+
         var body = _motionComponent.Get(this).Body;
         if (AttackScene == null) return;
         var attackContext = new AttackInstanceContext(Owner, body.GlobalPosition, _targetPosGlobal);
