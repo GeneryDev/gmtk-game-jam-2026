@@ -49,6 +49,7 @@ metadata/_custom_type_script = "uid://buqbj5n61xjbu"
 
 [node name="Timer SFX" parent="." unique_id=883309933 instance=ExtResource("5_ouiwx")]
 Stream = ExtResource("6_4ta60")
+VolumeDb = -10.0
 
 [connection signal="Triggered" from="." to="Timer Functions/Method Call" method="Trigger"]
 [connection signal="Triggered" from="." to="Timer SFX" method="Trigger"]
