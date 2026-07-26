@@ -3,6 +3,13 @@
 [ext_resource type="Script" uid="uid://cmpms1lahwmsr" path="res://scripts/Game/UI/ButtonExtension.cs" id="1_86h1w"]
 [ext_resource type="Script" uid="uid://bfppi36isqkgt" path="res://addons/gdf-godot/GDF/UI/UserInterfaceComponent.cs" id="2_wgl43"]
 [ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="3_vbru2"]
+[ext_resource type="Script" uid="uid://il80perrjtg7" path="res://scripts/Game/UI/MenuButtonSfx.cs" id="4_qwn2g"]
+[ext_resource type="Script" uid="uid://wrcbyscb3t11" path="res://addons/gdf-godot/GDF/Audio/GdfAudioPlayer.cs" id="5_3s0v7"]
+[ext_resource type="AudioStream" uid="uid://rhmbmgo7g6hq" path="res://assets/audio/SFX/UI/Hover/UI_06.wav" id="6_2lugm"]
+[ext_resource type="AudioStream" uid="uid://demw8grpr8st3" path="res://assets/audio/SFX/UI/Click/UI_01.wav" id="6_r1cop"]
+[ext_resource type="AudioStream" uid="uid://okorxrjsx0ah" path="res://assets/audio/SFX/UI/StartGame/UI_04.wav" id="7_qwn2g"]
+[ext_resource type="AudioStream" uid="uid://xu2v8ylfh8tb" path="res://assets/audio/SFX/UI/Click/UI_02.wav" id="7_r1cop"]
+[ext_resource type="AudioStream" uid="uid://ni3pt6kn30pi" path="res://assets/audio/SFX/UI/Click/UI_05.wav" id="8_8n87n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86h1w"]
 content_margin_left = 4.0
@@ -39,6 +46,20 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vro4l"]
+random_pitch = 1.0272235
+random_volume_offset_db = 1.09
+streams_count = 3
+stream_0/stream = ExtResource("6_r1cop")
+stream_1/stream = ExtResource("7_r1cop")
+stream_2/stream = ExtResource("8_8n87n")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_adbmh"]
+random_pitch = 1.1892071
+random_volume_offset_db = 1.0
+streams_count = 1
+stream_0/stream = ExtResource("6_2lugm")
 
 [node name="Button" type="Button" unique_id=1929653182 node_paths=PackedStringArray("ButtonContentControl")]
 custom_minimum_size = Vector2(9, 16)
@@ -83,4 +104,37 @@ TextFormat = "{button_text}"
 DataContext = NodePath("../..")
 metadata/_custom_type_script = "uid://dxkaapm2dks2e"
 
+[node name="Menu SFX" type="Node" parent="." unique_id=2059166992 node_paths=PackedStringArray("ClickPlayer", "StartPlayer", "HoverPlayer")]
+script = ExtResource("4_qwn2g")
+ClickPlayer = NodePath("../ClickPlayer")
+StartPlayer = NodePath("../StartPlayer")
+HoverPlayer = NodePath("../HoverPlayer")
+
+[node name="ClickPlayer" type="Node" parent="." unique_id=1686413570]
+script = ExtResource("5_3s0v7")
+Stream = SubResource("AudioStreamRandomizer_vro4l")
+Bus = &"SFX"
+UseGlobalPool = true
+ReleaseAction = 1
+metadata/_custom_type_script = "uid://wrcbyscb3t11"
+
+[node name="HoverPlayer" type="Node" parent="." unique_id=525105972]
+script = ExtResource("5_3s0v7")
+Stream = SubResource("AudioStreamRandomizer_adbmh")
+VolumeDb = -35.225
+Bus = &"SFX"
+UseGlobalPool = true
+ReleaseAction = 1
+metadata/_custom_type_script = "uid://wrcbyscb3t11"
+
+[node name="StartPlayer" type="Node" parent="." unique_id=18510143]
+script = ExtResource("5_3s0v7")
+Stream = ExtResource("7_qwn2g")
+Bus = &"SFX"
+UseGlobalPool = true
+ReleaseAction = 1
+metadata/_custom_type_script = "uid://wrcbyscb3t11"
+
+[connection signal="button_down" from="." to="Menu SFX" method="Clicked"]
+[connection signal="mouse_entered" from="." to="Menu SFX" method="Hover"]
 [connection signal="PlayerSubmitted" from="UserInterfaceComponent" to="." method="Submit"]
