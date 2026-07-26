@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cwgjseomfcygb" path="res://scripts/Game/UI/MenuFunctions.cs" id="8_7hl0s"]
 [ext_resource type="Script" uid="uid://b6sb42qs0fsp1" path="res://scripts/Game/Util/ScreenSpawner.cs" id="10_ioxk6"]
 [ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="11_vp6oy"]
+[ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="12_e7nmi"]
 [ext_resource type="Script" uid="uid://ce2cpgowa1bvu" path="res://addons/gdf-godot/GDF/IO/ResourceReference.cs" id="12_ioxk6"]
 [ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="12_vp6oy"]
 
@@ -185,6 +186,7 @@ Target = NodePath("..")
 Method = &"ChangeScene"
 Args = [SubResource("Resource_tqw2u"), null]
 ArgInputTypes = Array[int]([0, 0])
+ArgAbortIfNull = Array[bool]([false, false])
 ArgReplicate = Array[bool]([false, false])
 TargetMethodInfo = {
 "args": Array[Dictionary]([{
@@ -237,6 +239,24 @@ TargetMethodInfo = {
 }
 }
 metadata/_custom_type_script = "uid://buqbj5n61xjbu"
+
+[node name="FormattedLabel" type="RichTextLabel" parent="Control" unique_id=1835658666]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("12_e7nmi")
+TextFormat = "v1.0.0"
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
 
 [node name="Shadowing" type="AnimationPlayer" parent="." unique_id=577264285]
 libraries/ = SubResource("AnimationLibrary_vp6oy")
