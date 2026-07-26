@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="GMTK Game Jam 2026"
+config/name="Is Your Microwave Running?"
+config/description="A simple game about using a microwave, except maybe not all things are predictable."
 run/main_scene="uid://l2i5javvg5r4"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://bet4rjoyy05m8"
 
 [audio]
 
