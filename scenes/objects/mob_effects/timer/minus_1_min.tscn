@@ -1,19 +1,20 @@
 [gd_scene format=3 uid="uid://2d7w0igv31yk"]
 
 [ext_resource type="Script" uid="uid://8167tjb1cm0a" path="res://scripts/Game/Entities/MobEffect.cs" id="1_r1dyp"]
-[ext_resource type="Resource" uid="uid://dppfotmufbqkn" path="res://resources/timer_conditions/post_intro_spawn_conditions_positive.tres" id="2_cjxju"]
 [ext_resource type="Resource" uid="uid://c1cdjyiyl7hcl" path="res://scenes/objects/mob_effects/timer/minus_1_min.tscn.summary.tres" id="2_r1dyp"]
 [ext_resource type="Script" uid="uid://ccy1yqjcbg6iq" path="res://scripts/Game/Timers/TimerFunctions.cs" id="3_h2dsn"]
 [ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="4_pvvaw"]
+[ext_resource type="Script" uid="uid://wrcbyscb3t11" path="res://addons/gdf-godot/GDF/Audio/GdfAudioPlayer.cs" id="5_qnys3"]
+[ext_resource type="AudioStream" uid="uid://d2m8t8gpsttj0" path="res://assets/audio/SFX/Timer_-1Min.wav" id="6_uv8t4"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qnys3"]
+random_pitch = 1.0594631
+random_volume_offset_db = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("6_uv8t4")
 
 [node name="Minus1Min" type="Node" unique_id=1558047290]
 script = ExtResource("1_r1dyp")
-Description = "-60 seconds"
-LogMessage = "-60 seconds"
-ParticleMessage = "-60s"
-SpawnWeight = 2.0
-SpawnCondition = ExtResource("2_cjxju")
-Tags = Array[String](["timer", "minutes", "positive", "log_warning"])
 Summary = ExtResource("2_r1dyp")
 metadata/_custom_type_script = "uid://8167tjb1cm0a"
 
@@ -26,6 +27,7 @@ Target = NodePath("..")
 Method = &"SubtractTime"
 Args = [60]
 ArgInputTypes = Array[int]([0])
+ArgAbortIfNull = Array[bool]([false])
 ArgReplicate = Array[bool]([false])
 TargetMethodInfo = {
 "args": Array[Dictionary]([{
@@ -50,5 +52,16 @@ TargetMethodInfo = {
 }
 }
 metadata/_custom_type_script = "uid://buqbj5n61xjbu"
+
+[node name="Timer SFX" type="Node" parent="." unique_id=1432181735]
+script = ExtResource("5_qnys3")
+TriggerMode = 2
+Stream = SubResource("AudioStreamRandomizer_qnys3")
+Bus = &"SFX"
+UseGlobalPool = true
+ReleaseAction = 1
+UseDeduplication = true
+DeduplicationTimeFrameSec = 0.1
+metadata/_custom_type_script = "uid://wrcbyscb3t11"
 
 [connection signal="Triggered" from="." to="Timer Functions/Method Call" method="Trigger"]

@@ -4,14 +4,17 @@
 [ext_resource type="Resource" uid="uid://c7bla1omycfhp" path="res://scenes/objects/mob_effects/timer/minus_1_sec.tscn.summary.tres" id="2_aknt6"]
 [ext_resource type="Script" uid="uid://ccy1yqjcbg6iq" path="res://scripts/Game/Timers/TimerFunctions.cs" id="3_aknt6"]
 [ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="4_62v4g"]
+[ext_resource type="Script" uid="uid://wrcbyscb3t11" path="res://addons/gdf-godot/GDF/Audio/GdfAudioPlayer.cs" id="5_om4do"]
+[ext_resource type="AudioStream" uid="uid://gi556aw161c6" path="res://assets/audio/SFX/Timer_-1S.wav" id="6_gwbxi"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_om4do"]
+random_pitch = 1.0594631
+random_volume_offset_db = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("6_gwbxi")
 
 [node name="Minus1Sec" type="Node" unique_id=1464103424]
 script = ExtResource("1_fej11")
-Description = "-1 second"
-LogMessage = "-1 second"
-ParticleMessage = "-1s"
-SpawnWeight = 15.0
-Tags = Array[String](["timer", "trivial", "positive", "info"])
 Summary = ExtResource("2_aknt6")
 metadata/_custom_type_script = "uid://8167tjb1cm0a"
 
@@ -24,6 +27,7 @@ Target = NodePath("..")
 Method = &"SubtractTime"
 Args = [1]
 ArgInputTypes = Array[int]([0])
+ArgAbortIfNull = Array[bool]([false])
 ArgReplicate = Array[bool]([false])
 TargetMethodInfo = {
 "args": Array[Dictionary]([{
@@ -48,5 +52,17 @@ TargetMethodInfo = {
 }
 }
 metadata/_custom_type_script = "uid://buqbj5n61xjbu"
+
+[node name="Timer SFX" type="Node" parent="." unique_id=139089066]
+script = ExtResource("5_om4do")
+TriggerMode = 2
+Stream = SubResource("AudioStreamRandomizer_om4do")
+Bus = &"SFX"
+UseGlobalPool = true
+ReleaseAction = 1
+MaxPolyphony = 5
+UseDeduplication = true
+DeduplicationTimeFrameSec = 0.1
+metadata/_custom_type_script = "uid://wrcbyscb3t11"
 
 [connection signal="Triggered" from="." to="Timer Functions/Method Call" method="Trigger"]
