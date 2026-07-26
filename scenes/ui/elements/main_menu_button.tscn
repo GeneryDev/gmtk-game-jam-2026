@@ -105,6 +105,7 @@ metadata/_custom_type_script = "uid://dxkaapm2dks2e"
 [node name="ClickPlayer" type="Node" parent="." unique_id=1686413570]
 script = ExtResource("5_3s0v7")
 Stream = SubResource("AudioStreamRandomizer_vro4l")
+VolumeDb = -15.0
 Bus = &"SFX"
 UseGlobalPool = true
 ReleaseAction = 1

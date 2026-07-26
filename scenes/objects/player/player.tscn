@@ -84,7 +84,6 @@ radius = 20.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lx4tb"]
 random_pitch = 1.1817433
-random_volume_offset_db = 5.26
 streams_count = 1
 stream_0/stream = ExtResource("22_578jl")
 
@@ -190,6 +189,7 @@ AttackScene = ExtResource("16_nqkks")
 [node name="AttackSFX" type="Node" parent="Player Attacks" unique_id=511839591]
 script = ExtResource("21_jx0p0")
 Stream = SubResource("AudioStreamRandomizer_lx4tb")
+VolumeDb = -25.0
 Bus = &"SFX"
 UseGlobalPool = true
 ReleaseAction = 1

@@ -516,6 +516,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-832, -288, -608, -400,
 [node name="TimeUpSound" type="Node" parent="." unique_id=359671624]
 script = ExtResource("4_y6deb")
 Stream = ExtResource("2_vxglm")
+VolumeDb = -10.0
 Bus = &"SFX"
 UseGlobalPool = true
 ReleaseAction = 1

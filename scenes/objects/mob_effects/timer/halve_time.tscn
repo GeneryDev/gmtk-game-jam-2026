@@ -4,6 +4,8 @@
 [ext_resource type="Resource" uid="uid://bimd0oy1hxq6f" path="res://scenes/objects/mob_effects/timer/halve_time.tscn.summary.tres" id="2_18r7q"]
 [ext_resource type="Script" uid="uid://ccy1yqjcbg6iq" path="res://scripts/Game/Timers/TimerFunctions.cs" id="3_wmo2j"]
 [ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="4_gr3iq"]
+[ext_resource type="PackedScene" uid="uid://8ctlixmk3of2" path="res://scenes/objects/timer_effect_sfx.tscn" id="5_4wxmh"]
+[ext_resource type="AudioStream" uid="uid://bep3kmovfbjvr" path="res://assets/audio/SFX/Timer_Div2.wav" id="6_6jm7b"]
 
 [node name="Halve Time" type="Node" unique_id=1558047290]
 script = ExtResource("1_18r7q")
@@ -45,4 +47,8 @@ TargetMethodInfo = {
 }
 metadata/_custom_type_script = "uid://buqbj5n61xjbu"
 
+[node name="Timer SFX" parent="." unique_id=883309933 instance=ExtResource("5_4wxmh")]
+Stream = ExtResource("6_6jm7b")
+
 [connection signal="Triggered" from="." to="Timer Functions/Method Call" method="Trigger"]
+[connection signal="Triggered" from="." to="Timer SFX" method="Trigger"]

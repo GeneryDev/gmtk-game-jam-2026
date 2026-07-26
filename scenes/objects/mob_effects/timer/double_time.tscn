@@ -4,6 +4,8 @@
 [ext_resource type="Resource" uid="uid://dicrli76ibm2j" path="res://scenes/objects/mob_effects/timer/double_time.tscn.summary.tres" id="2_bqxb7"]
 [ext_resource type="Script" uid="uid://ccy1yqjcbg6iq" path="res://scripts/Game/Timers/TimerFunctions.cs" id="3_ouiwx"]
 [ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="4_4ta60"]
+[ext_resource type="PackedScene" uid="uid://8ctlixmk3of2" path="res://scenes/objects/timer_effect_sfx.tscn" id="5_ouiwx"]
+[ext_resource type="AudioStream" uid="uid://y6h4yh8jlb3m" path="res://assets/audio/SFX/Timer_Mult2.wav" id="6_4ta60"]
 
 [node name="DoubleTime" type="Node" unique_id=1558047290]
 script = ExtResource("1_d054s")
@@ -45,4 +47,8 @@ TargetMethodInfo = {
 }
 metadata/_custom_type_script = "uid://buqbj5n61xjbu"
 
+[node name="Timer SFX" parent="." unique_id=883309933 instance=ExtResource("5_ouiwx")]
+Stream = ExtResource("6_4ta60")
+
 [connection signal="Triggered" from="." to="Timer Functions/Method Call" method="Trigger"]
+[connection signal="Triggered" from="." to="Timer SFX" method="Trigger"]
