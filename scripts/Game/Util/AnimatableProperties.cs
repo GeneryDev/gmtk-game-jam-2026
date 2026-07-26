@@ -18,8 +18,9 @@ public partial class AnimatableProperties : Node
     
     private const string GeneratedPropertyPrefix = "properties/";
     
-    private Godot.Collections.Dictionary<string, Variant> _properties = new();
-    private Godot.Collections.Dictionary<string, ModificationOperation> _propertyOperations = new();
+    private Godot.Collections.Dictionary _properties = new();
+    
+    private Godot.Collections.Dictionary _propertyOperations = new();
 
     [Export(PropertyHint.Enum,"Global,Own,Camera")] public int StackSource = 0;
     
@@ -54,7 +55,7 @@ public partial class AnimatableProperties : Node
     }
 
     [Export]
-    public Godot.Collections.Dictionary<string, Variant> Properties
+    public Godot.Collections.Dictionary Properties
     {
         get => _properties;
         set
@@ -66,7 +67,7 @@ public partial class AnimatableProperties : Node
     }
     
     [Export]
-    public Godot.Collections.Dictionary<string, ModificationOperation> PropertyModificationOperations
+    public Godot.Collections.Dictionary PropertyModificationOperations
     {
         get => _propertyOperations;
         set
@@ -84,7 +85,7 @@ public partial class AnimatableProperties : Node
     private bool _active = false;
 
     private Array<Dictionary> _cachedPropertyList;
-    private Dictionary<StringName, StringName> _generatedPropertyToKeyMap;
+    private System.Collections.Generic.Dictionary<StringName, StringName> _generatedPropertyToKeyMap;
 
     private PropertyStack GetStack()
     {
@@ -136,8 +137,9 @@ public partial class AnimatableProperties : Node
     {
         if (frame == null) return;
         if (Properties != null)
-            foreach ((string key, var value) in Properties)
+            foreach ((var vKey, var value) in Properties)
             {
+                string key = vKey.AsString();
                 Variant computedValue;
                 if (value.VariantType == Variant.Type.Object && value.AsGodotObject() is ValueSource valueSource)
                     computedValue = valueSource.GetValue(this);
@@ -148,7 +150,7 @@ public partial class AnimatableProperties : Node
                 {
                     frame.Set(key, new VectorModification<Variant>()
                     {
-                        Operation = operation,
+                        Operation = operation.As<ModificationOperation>(),
                         Value = computedValue
                     });
                 }
@@ -201,25 +203,26 @@ public partial class AnimatableProperties : Node
 
         _cachedPropertyList = new();
         _generatedPropertyToKeyMap ??= new();
-        foreach ((var key, var value) in _properties)
-        {
-            string generatedName = GeneratedPropertyPrefix + key;
-            _cachedPropertyList.Add(new Dictionary()
+        if(_properties != null)
+            foreach ((var key, var value) in _properties)
             {
-                {"name", generatedName},
-                {"type", Variant.From(Variant.Type.Nil)},
-                {"hint", Variant.From(PropertyHint.None)},
-                {"hint_string", ""},
-                {"usage", Variant.From(PropertyUsageFlags.Editor | PropertyUsageFlags.NilIsVariant)}
-            });
-            _generatedPropertyToKeyMap[generatedName] = key;
-        }
+                string generatedName = GeneratedPropertyPrefix + key;
+                _cachedPropertyList.Add(new Dictionary()
+                {
+                    { "name", generatedName },
+                    { "type", Variant.From(Variant.Type.Nil) },
+                    { "hint", Variant.From(PropertyHint.None) },
+                    { "hint_string", "" },
+                    { "usage", Variant.From(PropertyUsageFlags.Editor | PropertyUsageFlags.NilIsVariant) }
+                });
+                _generatedPropertyToKeyMap[generatedName] = key.AsString();
+            }
     }
 
     public override Variant _Get(StringName property)
     {
         EnsurePropertyListReady();
-        if (_generatedPropertyToKeyMap.TryGetValue(property, out var key))
+        if (_generatedPropertyToKeyMap.TryGetValue(property, out var key) && _properties != null)
         {
             return _properties[key];
         }
@@ -229,7 +232,7 @@ public partial class AnimatableProperties : Node
     public override bool _Set(StringName property, Variant value)
     {
         EnsurePropertyListReady();
-        if (_generatedPropertyToKeyMap.TryGetValue(property, out var key))
+        if (_generatedPropertyToKeyMap.TryGetValue(property, out var key) && _properties != null)
         {
             _properties[key] = value;
             return true;

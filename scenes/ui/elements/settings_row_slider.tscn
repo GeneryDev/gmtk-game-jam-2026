@@ -190,6 +190,7 @@ metadata/_custom_type_script = "uid://dxkaapm2dks2e"
 
 [node name="Test Sound" type="Node" parent="." unique_id=1728935444]
 script = ExtResource("8_88huk")
+VolumeDb = -15.0
 Bus = &"SFX"
 UseDeduplication = true
 DeduplicationTimeFrameSec = 0.16
