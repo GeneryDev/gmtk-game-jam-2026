@@ -29,7 +29,7 @@ public partial class GameOverScreenExtras : Node, IDataContext
         {
             <= 2 => "Did I forget the zero?",
             <= 4 => "A bit chilly, innit?",
-            <= 6 => "Perfection.",
+            <= 6 => "Delicious.",
             <= 9 => "HOT HOT HOT!!!",
             <= 12 => "Do I smell smoke?",
             _ => "FIRE!!!"
