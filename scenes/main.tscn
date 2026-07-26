@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://c10onshnx3jmp" path="res://scripts/Game/Util/YSortSystem.cs" id="3_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://bs7ti064ojarj" path="res://scenes/ui/screens/pausable.tscn" id="4_85g3d"]
 [ext_resource type="Script" uid="uid://dux7ids7mjj4q" path="res://scripts/Game/MobSpawner.cs" id="4_tbgi4"]
+[ext_resource type="Script" uid="uid://3dflodhnaj3v" path="res://scripts/Game/Player/WeaponSystem.cs" id="4_vxglm"]
 [ext_resource type="Script" uid="uid://wrcbyscb3t11" path="res://addons/gdf-godot/GDF/Audio/GdfAudioPlayer.cs" id="4_y6deb"]
 [ext_resource type="AudioStream" uid="uid://cwoq2hoowsouw" path="res://assets/audio/music/main_music.part_1.mp3" id="5_og1vs"]
 [ext_resource type="Script" uid="uid://3qnog7e3rmn2" path="res://scripts/Game/Util/CanvasLayerParented.cs" id="5_ya4ey"]
@@ -523,6 +524,9 @@ MaxItems = 8
 
 [node name="YSortSystem" type="Node" parent="." unique_id=1806549303]
 script = ExtResource("3_eb6dy")
+
+[node name="Weapon System" type="Node" parent="." unique_id=1592028148]
+script = ExtResource("4_vxglm")
 
 [node name="Music" type="Node" parent="." unique_id=1483509696]
 script = ExtResource("4_y6deb")

@@ -1,6 +1,8 @@
 [gd_resource type="Resource" script_class="SceneSummary" format=3 uid="uid://b0qonbc7kxf6d"]
 
+[ext_resource type="Texture2D" uid="uid://dim6o3w2jllnk" path="res://assets/textures/ui/weapon_sniper.png" id="1_j26nl"]
 [ext_resource type="Script" uid="uid://dvhbt8l5vjyou" path="res://scripts/Game/Player/PlayerAttack.cs" id="1_pqumn"]
+[ext_resource type="Resource" uid="uid://bwtrqyb8xswe3" path="res://resources/input_actions/equip_2.tres" id="2_74jqi"]
 [ext_resource type="Script" uid="uid://pj67f1pjpit5" path="res://addons/gdf-godot/GDF/Resources/SceneSummary.cs" id="2_wbceh"]
 
 [resource]
@@ -8,5 +10,9 @@ script = ExtResource("2_wbceh")
 RootNodeName = &"Hitscan Attack"
 RootNodeScript = ExtResource("1_pqumn")
 RootNodeProperties = {
-&"AttackInterval": 0.5
+&"AttackInterval": 0.5,
+&"Icon": ExtResource("1_j26nl"),
+&"MaxAmmo": 5,
+&"Order": 0,
+&"TriggerAction": ExtResource("2_74jqi")
 }

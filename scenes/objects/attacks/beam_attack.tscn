@@ -271,6 +271,7 @@ mesh = SubResource("QuadMesh_tqw2u")
 
 [node name="Beam" type="Node2D" parent="Origin/Offset" unique_id=1410307936]
 texture_filter = 1
+scale = Vector2(2, 2)
 
 [node name="Charge" type="Sprite2D" parent="Origin/Offset/Beam" unique_id=1461333246]
 visible = false
@@ -302,7 +303,7 @@ script = ExtResource("6_q3jwq")
 Target = NodePath("..")
 Method = &"Hurt"
 FilterByArgumentCount = 2
-Args = [SubResource("Resource_tqw2u"), 2]
+Args = [SubResource("Resource_tqw2u"), 3]
 ArgInputTypes = Array[int]([1, 0])
 ArgAbortIfNull = Array[bool]([false, false])
 ArgReplicate = Array[bool]([false, false])

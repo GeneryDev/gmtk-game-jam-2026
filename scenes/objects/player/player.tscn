@@ -22,7 +22,6 @@
 [ext_resource type="Resource" uid="uid://bwtrqyb8xswe3" path="res://resources/input_actions/equip_2.tres" id="12_8bans"]
 [ext_resource type="Resource" uid="uid://quegfyyuigyq" path="res://resources/input_actions/equip_3.tres" id="13_vx2qb"]
 [ext_resource type="Script" uid="uid://bhc8xj1hoddjw" path="res://scripts/Game/Player/WalkingEffect.cs" id="15_g65c7"]
-[ext_resource type="PackedScene" uid="uid://c4oxmtqca04k4" path="res://scenes/objects/attacks/bullet_attack.tscn" id="16_nqkks"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_7nx1l"]
 size = Vector2(60, -60)
@@ -176,7 +175,6 @@ ExtResource("13_vx2qb"): &"beam_attack"
 [node name="Player Attacks" type="Node" parent="." unique_id=447543846]
 script = ExtResource("7_ponut")
 AttackAction = ExtResource("6_gmdvr")
-AttackScene = ExtResource("16_nqkks")
 
 [node name="Drag" type="Node" parent="." unique_id=1030416559]
 script = ExtResource("9_ponut")
