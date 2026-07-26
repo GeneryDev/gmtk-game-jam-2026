@@ -15,7 +15,7 @@ config/description="A simple game about using a microwave, except maybe not all 
 config/version="1.0.1"
 run/main_scene="uid://l2i5javvg5r4"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
-config/icon="uid://bet4rjoyy05m8"
+config/icon="uid://bhtgx21hah0r6"
 
 [audio]
 
