@@ -293,7 +293,27 @@ layout_mode = 2
 mouse_filter = 2
 horizontal_alignment = 1
 script = ExtResource("5_tr12m")
-TextFormat = "TODO"
+TextFormat = "Programming:
+Genery
+DiscoInkling
+
+Character Art:
+Hvvpro
+
+Pixel Art:
+Edoardo Venus
+
+SFX:
+KED.ooooz
+CuppaCoaca123
+
+Music:
+Benno Roch Jr.
+
+Game Engine:
+Godot
+
+ "
 metadata/_custom_type_script = "uid://dxkaapm2dks2e"
 
 [node name="Buttons" type="HFlowContainer" parent="Popup/MarginContainer/VBoxContainer" unique_id=1217214009]
