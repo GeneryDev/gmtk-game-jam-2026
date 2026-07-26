@@ -41,6 +41,10 @@ naming/default_signal_callback_name="Trigger"
 
 enabled=PackedStringArray("res://addons/gdf-godot/plugin.cfg")
 
+[gdf_godot]
+
+scene_manager/loading_strategy=0
+
 [global_group]
 
 player_character=""
