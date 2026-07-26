@@ -28,6 +28,7 @@
 [ext_resource type="Script" uid="uid://t054pq8o3tmj" path="res://scripts/Game/Util/YSorted.cs" id="13_trceg"]
 [ext_resource type="PackedScene" uid="uid://dc1mfr47hxoky" path="res://scenes/objects/level/timer_level_effects.tscn" id="17_muem4"]
 [ext_resource type="Script" uid="uid://hxkw1qs5tu7s" path="res://scripts/Game/Util/WallBehindFade.cs" id="21_jscy8"]
+[ext_resource type="AudioStream" uid="uid://bwwj0i8bljj4f" path="res://assets/audio/SFX/Microwave/tone.wav" id="27_vxglm"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_2wyq8"]
 clip_count = 3
@@ -759,6 +760,16 @@ visible = false
 polygon = PackedVector2Array(-352, -208, -128, -64, 384, -64, 432, -320, 432, -544, -368, -608)
 
 [node name="Timer Level Effects" parent="Node2D" unique_id=790727648 instance=ExtResource("17_muem4")]
+
+[node name="MicrowaveHum" type="Node" parent="." unique_id=1213743181]
+script = ExtResource("4_y6deb")
+TriggerMode = 2
+Stream = ExtResource("27_vxglm")
+VolumeDb = -24.448
+Bus = &"SFX"
+UseGlobalPool = true
+ReleaseAction = 2
+metadata/_custom_type_script = "uid://wrcbyscb3t11"
 
 [connection signal="ReachedZero" from="GameTimer" to="TimeUpSound" method="Trigger"]
 [connection signal="ReachedZero" from="GameTimer" to="Music" method="Stop"]
