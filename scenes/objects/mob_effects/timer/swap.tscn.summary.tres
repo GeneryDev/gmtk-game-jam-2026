@@ -10,8 +10,8 @@ RootNodeName = &"Swap Minutes and Seconds"
 RootNodeScript = ExtResource("1_bavht")
 RootNodeProperties = {
 &"Description": "Swaps the minutes and seconds",
-&"LogMessage": "Minutes ⇄ Seconds",
-&"ParticleMessage": "m ⇄ s",
+&"LogMessage": "Minutes <-> Seconds",
+&"ParticleMessage": "m <-> s",
 &"SpawnCondition": ExtResource("1_77kjs"),
 &"SpawnWeight": 2.0,
 &"Tags": Array[String](["timer", "swap", "neutral", "log_error"])

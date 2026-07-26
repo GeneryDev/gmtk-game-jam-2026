@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://ccy1yqjcbg6iq" path="res://scripts/Game/Timers/TimerFunctions.cs" id="3_pc5w6"]
 [ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="4_msjq6"]
 [ext_resource type="PackedScene" uid="uid://8ctlixmk3of2" path="res://scenes/objects/timer_effect_sfx.tscn" id="5_erlch"]
-[ext_resource type="AudioStream" uid="uid://bcyudtmtbm3aj" path="res://assets/audio/SFX/Timer_Swap.wav" id="6_nd1m1"]
+[ext_resource type="AudioStream" uid="uid://bcyudtmtbm3aj" path="res://assets/audio/SFX/Clock/Ticking/Timer_Swap.wav" id="6_nd1m1"]
 
 [node name="Swap Minutes and Seconds" type="Node" unique_id=1558047290]
 script = ExtResource("1_a4nyp")
