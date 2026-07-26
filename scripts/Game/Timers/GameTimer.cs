@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using GDF.Audio;
 using GDF.Data;
 using GDF.Data.Static;
 using GDF.Util;
@@ -53,6 +54,7 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 			EmitSignalUpdated();
 		}
 	}
+	[Export] public GdfAudioPlayer TimeUpAudioPlayer;
 
 	public bool Active { get; private set; } = true;
 
@@ -115,6 +117,7 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 	{
 		_tickRate = 0;
 		Active = false;
+		TimeUpAudioPlayer.playing = true;
 		EmitSignalReachedZero();
 		EmitSignalContextSignalReceived(SignalName.ReachedZero, new());
 	}
@@ -176,7 +179,7 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 [StaticDataContext("game_timer_context")]
 public struct GameTimerContext : ISingletonContext<GameTimer>, ICacheableDataContext<GameTimerContext>
 {
-    public bool EqualsContext(GameTimerContext otherCtx) => true;
+	public bool EqualsContext(GameTimerContext otherCtx) => true;
 
-    public bool CanCache() => true;
+	public bool CanCache() => true;
 }
