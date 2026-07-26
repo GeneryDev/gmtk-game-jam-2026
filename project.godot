@@ -16,6 +16,7 @@ config/version="1.0.2"
 run/main_scene="uid://l2i5javvg5r4"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 config/icon="uid://bhtgx21hah0r6"
+config/windows_native_icon="res://assets/textures/ui/icon_small.ico"
 
 [audio]
 
