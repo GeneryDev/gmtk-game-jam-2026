@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bfppi36isqkgt" path="res://addons/gdf-godot/GDF/UI/UserInterfaceComponent.cs" id="3_cwhfb"]
 [ext_resource type="Resource" uid="uid://b55woujpabosc" path="res://resources/input_actions/ui_cancel.tres" id="4_tr12m"]
 [ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="5_tr12m"]
+[ext_resource type="FontVariation" uid="uid://clc5sx5msx2q4" path="res://assets/fonts/Aldrich Modified Bold.tres" id="6_6k0r1"]
 [ext_resource type="PackedScene" uid="uid://b5njuw4g4wqef" path="res://scenes/ui/elements/popup_button.tscn" id="6_60w8f"]
 [ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="6_empfr"]
 
@@ -292,30 +293,39 @@ theme_override_constants/margin_bottom = 8
 [node name="FormattedLabel" type="RichTextLabel" parent="Popup/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer" unique_id=995801930]
 layout_mode = 2
 mouse_filter = 2
+theme_override_fonts/bold_font = ExtResource("6_6k0r1")
+bbcode_enabled = true
 fit_content = true
 horizontal_alignment = 1
 script = ExtResource("5_tr12m")
-TextFormat = "Programming:
-Genery
+TextFormat = "[b]Programming[/b]
+Daniel Cepeda (Genery)
 DiscoInkling
 
-Character Art:
+[b]Character Art[/b]
 Hvvpro
 
-Pixel Art:
+[b]Pixel Art[/b]
 Edoardo Venus
 
-SFX:
+[b]SFX[/b]
 KED.ooooz
 CuppaCoaca123
 
-Music:
+[b]Music[/b]
 Benno Roch Jr.
 
-Game Engine:
-Godot
+[b]Fonts[/b]
+[b]Aldrich[/b] by MADType
+[b]Digital Numbers[/b] by Stephan Ahlf
 
- "
+Input Icons by Kenney
+
+Made with
+[img height=100]res://assets/textures/branding/godot_logo.svg[/img]
+
+[b]Using Genery's GDF-Godot framework[/b]
+https://github.com/GeneryDev/gdf-godot"
 metadata/_custom_type_script = "uid://dxkaapm2dks2e"
 
 [node name="Buttons" type="HFlowContainer" parent="Popup/MarginContainer/VBoxContainer" unique_id=1217214009]
