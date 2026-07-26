@@ -278,6 +278,7 @@ layout_mode = 2
 [node name="ScrollContainer" type="ScrollContainer" parent="Popup/MarginContainer/VBoxContainer" unique_id=1687779084]
 custom_minimum_size = Vector2(360, 300)
 layout_mode = 2
+mouse_filter = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="Popup/MarginContainer/VBoxContainer/ScrollContainer" unique_id=308154716]
 layout_mode = 2
@@ -291,6 +292,7 @@ theme_override_constants/margin_bottom = 8
 [node name="FormattedLabel" type="RichTextLabel" parent="Popup/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer" unique_id=995801930]
 layout_mode = 2
 mouse_filter = 2
+fit_content = true
 horizontal_alignment = 1
 script = ExtResource("5_tr12m")
 TextFormat = "Programming:
