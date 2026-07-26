@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://mrce2q126702" path="res://scenes/ui/screens/hud.tscn" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://otkyb0o8ega" path="res://scripts/Game/Timers/GameTimer.cs" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://l7vx1ppodn0d" path="res://scenes/objects/player/player.tscn" id="2_0wfyh"]
+[ext_resource type="AudioStream" uid="uid://c7j3wvlig0bol" path="res://assets/audio/SFX/Microwave_Finish.wav" id="2_2f3dj"]
 [ext_resource type="Script" uid="uid://byv3tqb16h6mr" path="res://scripts/Game/Timers/TimerEffectLog.cs" id="2_tbgi4"]
-[ext_resource type="AudioStream" uid="uid://m3re06bojmi7" path="res://assets/audio/SFX/Clock/TimeUp/Timeup_Loop.wav" id="2_vxglm"]
 [ext_resource type="Script" uid="uid://c10onshnx3jmp" path="res://scripts/Game/Util/YSortSystem.cs" id="3_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://bs7ti064ojarj" path="res://scenes/ui/screens/pausable.tscn" id="4_85g3d"]
 [ext_resource type="Script" uid="uid://dux7ids7mjj4q" path="res://scripts/Game/MobSpawner.cs" id="4_tbgi4"]
@@ -550,7 +550,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-832, -288, -608, -400,
 
 [node name="TimeUpSound" type="Node" parent="." unique_id=359671624]
 script = ExtResource("4_y6deb")
-Stream = ExtResource("2_vxglm")
+Stream = ExtResource("2_2f3dj")
 VolumeDb = -10.0
 Bus = &"SFX"
 UseGlobalPool = true
