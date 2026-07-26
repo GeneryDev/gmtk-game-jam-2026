@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b728mtnleibd8"]
 
 [ext_resource type="PackedScene" uid="uid://birvp7rww3wl2" path="res://scenes/objects/mobs/mob_base.tscn" id="1_5u0aj"]
-[ext_resource type="Script" uid="uid://dw511m5bve5pm" path="res://scripts/Game/Entities/MobColor.cs" id="2_8ev6r"]
 [ext_resource type="Texture2D" uid="uid://cc8qonejq4v1r" path="res://assets/textures/sprites/Mob/ExplodeMob/Idle.png" id="2_cno06"]
 [ext_resource type="Script" uid="uid://cy0jt8nc5kr3b" path="res://scripts/Game/Entities/MobRandomStrollGoal.cs" id="3_6xsg7"]
 [ext_resource type="Texture2D" uid="uid://bbsxp40a2278m" path="res://assets/textures/sprites/Mob/green hound/death/houndDeath2.png" id="3_ag1lh"]
@@ -15,7 +14,7 @@
 size = Vector2(80, -80)
 
 [sub_resource type="QuadMesh" id="QuadMesh_8ev6r"]
-size = Vector2(80, -80)
+size = Vector2(110.51, -125.195)
 
 [sub_resource type="Animation" id="Animation_dfnjq"]
 length = 0.001
@@ -326,18 +325,13 @@ libraries/ = SubResource("AnimationLibrary_qbv6s")
 position = Vector2(0, -32)
 shape = SubResource("CircleShape2D_6xsg7")
 
-[node name="Mob Color" type="Node" parent="." index="4" unique_id=841674054 node_paths=PackedStringArray("Visual")]
-script = ExtResource("2_8ev6r")
-Visual = NodePath("../Visuals/MeshInstance2D")
-Random = true
-
 [node name="Random Stroll" type="Node" parent="Goals" parent_id_path=PackedInt32Array(721629563) index="0" unique_id=1365133068]
 script = ExtResource("3_6xsg7")
 
-[node name="Damageable" parent="." index="11" unique_id=893346049]
+[node name="Damageable" parent="." index="10" unique_id=893346049]
 MaxHitPoints = 8
 
-[node name="Timer Effect Host" parent="." index="12" unique_id=967788250]
+[node name="Timer Effect Host" parent="." index="11" unique_id=967788250]
 TriggerWeight = 16.0
 
 [node name="Particle" parent="CanvasLayer" parent_id_path=PackedInt32Array(1854369216) index="0" unique_id=1729297614]
