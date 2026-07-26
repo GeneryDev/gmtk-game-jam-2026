@@ -28,12 +28,10 @@ public partial class GameOverScreenExtras : Node, IDataContext
         return totalTimeMins switch
         {
             <= 2 => "Did I forget the zero?",
-            <= 4 => "Is this thing broken?",
-            <= 6 => "Huh? I swear that was not 10 minutes...",
-            <= 9 => "What? I wasn't ready!",
-            <= 11 => "Right on time!",
-            <= 14 => "It's all sticking to the pan!",
-            <= 17 => "Do I smell smoke?",
+            <= 4 => "A bit chilly, innit?",
+            <= 6 => "Perfection.",
+            <= 9 => "HOT HOT HOT!!!",
+            <= 12 => "Do I smell smoke?",
             _ => "FIRE!!!"
         };
     }
