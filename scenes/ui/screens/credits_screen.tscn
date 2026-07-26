@@ -292,7 +292,23 @@ layout_mode = 2
 mouse_filter = 2
 horizontal_alignment = 1
 script = ExtResource("5_tr12m")
-TextFormat = "TODO"
+TextFormat = "Programming:
+GeneryDev
+DiscoInkling
+
+Character Art:
+Hvvpro
+
+Pixel Art:
+Edoardo Venus
+
+SFX:
+KED.ooooz
+CuppaCoaca
+
+Team Admin:
+GeneryDev
+ "
 metadata/_custom_type_script = "uid://dxkaapm2dks2e"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=145073308]
