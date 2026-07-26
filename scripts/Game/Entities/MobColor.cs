@@ -34,8 +34,8 @@ public partial class MobColor : Node
         {
             // Seed = ???
         };
-        var color = new Color(colorRandom.RandfRange(0.5f, 1), colorRandom.RandfRange(0.5f, 1),
-            colorRandom.RandfRange(0.5f, 1));
+        var color = new Color(colorRandom.RandfRange(0.0f, 1), colorRandom.RandfRange(0.0f, 1),
+            colorRandom.RandfRange(0.0f, 1));
         Color = color;
     }
 
@@ -46,6 +46,8 @@ public partial class MobColor : Node
 
     public void ApplyColor(Color color)
     {
-        Visual?.SetModulate(color);
+        if (Visual == null) return;
+        Visual.SetModulate(color);
+        Visual.Material ??= GD.Load<Material>("res://resources/materials/canvas/mob_color.tres");
     }
 }

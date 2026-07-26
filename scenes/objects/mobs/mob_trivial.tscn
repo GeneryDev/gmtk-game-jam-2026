@@ -6,11 +6,19 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_odhy6"]
 shader = ExtResource("2_wnpua")
+shader_parameter/lightness_curve = 0.61
+shader_parameter/effect = 0.71
 
 [node name="Mob Trivial" unique_id=63413937 instance=ExtResource("1_0shk6")]
 
 [node name="MeshInstance2D" parent="Visuals" parent_id_path=PackedInt32Array(37646152) index="0" unique_id=1784942333]
 material = SubResource("ShaderMaterial_odhy6")
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=508152118]
+visible = false
+
+[node name="CollisionShape2D" parent="Hitbox" parent_id_path=PackedInt32Array(2034485455) index="0" unique_id=247272684]
+visible = false
 
 [node name="Random Stroll" type="Node" parent="Goals" parent_id_path=PackedInt32Array(721629563) index="0" unique_id=1365133068]
 script = ExtResource("2_0ii82")

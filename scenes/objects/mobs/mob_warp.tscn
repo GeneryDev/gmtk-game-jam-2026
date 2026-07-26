@@ -22,7 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://dm1u6euyciq7c" path="res://assets/textures/sprites/Mob/warp_mob/tp_out_9.png" id="20_0f1ho"]
 [ext_resource type="Texture2D" uid="uid://crxdpiw23ohjd" path="res://assets/textures/sprites/Mob/warp_mob/walk_0.png" id="21_jpfn5"]
 [ext_resource type="Texture2D" uid="uid://cjifnaneicf4c" path="res://assets/textures/sprites/Mob/warp_mob/walk_1.png" id="22_g7nov"]
-[ext_resource type="Script" uid="uid://dw511m5bve5pm" path="res://scripts/Game/Entities/MobColor.cs" id="23_ds6p4"]
 [ext_resource type="Script" uid="uid://cy0jt8nc5kr3b" path="res://scripts/Game/Entities/MobRandomStrollGoal.cs" id="24_ardq3"]
 [ext_resource type="Script" uid="uid://cvnbuytcpi10m" path="res://scripts/Game/Entities/MobTeleport.cs" id="25_3ojyl"]
 
@@ -347,16 +346,11 @@ mesh = SubResource("QuadMesh_y8mvv")
 [node name="Sprite Animation" parent="Visuals" parent_id_path=PackedInt32Array(37646152) index="4" unique_id=1208725175]
 libraries/ = SubResource("AnimationLibrary_b4i2o")
 
-[node name="Mob Color" type="Node" parent="." index="4" unique_id=841674054 node_paths=PackedStringArray("Visual")]
-script = ExtResource("23_ds6p4")
-Visual = NodePath("../Visuals/MeshInstance2D")
-Random = true
-
 [node name="Random Stroll" type="Node" parent="Goals" parent_id_path=PackedInt32Array(721629563) index="0" unique_id=1365133068]
 script = ExtResource("24_ardq3")
 
-[node name="Damageable" parent="." index="11" unique_id=893346049]
+[node name="Damageable" parent="." index="10" unique_id=893346049]
 MaxHitPoints = 4
 
-[node name="Teleport" type="Node" parent="." index="16" unique_id=1108502288]
+[node name="Teleport" type="Node" parent="." index="15" unique_id=1108502288]
 script = ExtResource("25_3ojyl")
