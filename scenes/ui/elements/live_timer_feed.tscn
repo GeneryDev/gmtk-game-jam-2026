@@ -5,8 +5,10 @@
 [ext_resource type="Script" uid="uid://k88c5byfcni6" path="res://addons/gdf-godot/GDF/Logical/Signals/SignalStation.cs" id="2_d38f6"]
 [ext_resource type="FontVariation" uid="uid://bhw0i257ab6tc" path="res://assets/fonts/DigitalNumbers Modified.tres" id="2_yrpwf"]
 [ext_resource type="Script" uid="uid://c3hkl8pcy8l32" path="res://addons/gdf-godot/GDF/Logical/Signals/SignalPortInbound.cs" id="3_16vgp"]
+[ext_resource type="Texture2D" uid="uid://bhctg7tb3yf2l" path="res://assets/textures/ui/microwave_off.png" id="4_h8ma7"]
 [ext_resource type="Script" uid="uid://iir4w637gc2k" path="res://addons/gdf-godot/GDF/UI/LabelAutoFontSize.cs" id="4_xwne3"]
 [ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="7_5hehg"]
+[ext_resource type="Texture2D" uid="uid://cve15rq8l3upl" path="res://assets/textures/ui/microwave_on.png" id="8_c3oxe"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_tqw2u"]
 
@@ -90,14 +92,26 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Scene/Sprite2D:texture")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_h8ma7")]
+}
 
 [sub_resource type="Animation" id="Animation_h8ma7"]
-resource_name = "idle"
+resource_name = "finished"
 length = 4.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("Scene/Timer:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -109,7 +123,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("Scene/Timer:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -121,7 +135,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/path = NodePath("Scene/Timer:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
@@ -141,7 +155,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 6)]
+"values": [Vector2(0, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -157,7 +171,7 @@ tracks/4/keys = {
 }
 tracks/5/type = "value"
 tracks/5/imported = false
-tracks/5/enabled = true
+tracks/5/enabled = false
 tracks/5/path = NodePath("Scene:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
@@ -167,13 +181,25 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(0.91, 0.91)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Scene/Sprite2D:texture")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_h8ma7")]
+}
 
 [sub_resource type="Animation" id="Animation_16vgp"]
 resource_name = "reached_zero"
 length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("Scene/Timer:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -185,7 +211,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("Scene/Timer:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -197,7 +223,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/path = NodePath("Scene/Timer:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
@@ -214,10 +240,10 @@ tracks/3/path = NodePath("Scene:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.08408613, 0.2, 0.3273992, 0.44331306, 0.57071227, 0.68662614, 0.80508, 0.92099386, 1.0147302, 1.1306441, 1.2580433, 1.3739572, 1.5013564, 1.6172702, 1.7357241, 1.851638, 1.9601817, 2.0760956, 2.2034948, 2.3194087, 2.4468079, 2.5627217, 2.6811757, 2.7970896, 2.9282591, 3.044173, 3.1715722, 3.287486, 3.4148853, 3.5307992, 3.649253, 3.7651668, 3.825106),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(6.555, 6), Vector2(-6.555, 6), Vector2(0, 6)]
+"values": [Vector2(0, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -233,7 +259,7 @@ tracks/4/keys = {
 }
 tracks/5/type = "value"
 tracks/5/imported = false
-tracks/5/enabled = true
+tracks/5/enabled = false
 tracks/5/path = NodePath("Scene:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
@@ -243,12 +269,66 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0.91, 0.91)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Scene/Sprite2D:texture")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_h8ma7")]
+}
+
+[sub_resource type="Animation" id="Animation_6500v"]
+resource_name = "running"
+length = 0.16666667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scene/Timer/Node2D/Node2D2/Control:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scene/Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_c3oxe")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Scene:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.041666668, 0.083333336, 0.11666667, 0.15833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -1), Vector2(0, 0), Vector2(0, -1), Vector2(0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5hehg"]
 _data = {
 &"RESET": SubResource("Animation_5hehg"),
-&"idle": SubResource("Animation_h8ma7"),
-&"reached_zero": SubResource("Animation_16vgp")
+&"finished": SubResource("Animation_h8ma7"),
+&"reached_zero": SubResource("Animation_16vgp"),
+&"running": SubResource("Animation_6500v")
 }
 
 [node name="Node2D" type="Node2D" unique_id=1364720254]
@@ -274,38 +354,48 @@ mesh = SubResource("QuadMesh_tqw2u")
 
 [node name="Scene" type="Node2D" parent="." unique_id=1652789335]
 
+[node name="Sprite2D" type="Sprite2D" parent="Scene" unique_id=1969336394]
+position = Vector2(15.012704, 3.312502)
+scale = Vector2(0.2979475, 0.2979475)
+texture = ExtResource("4_h8ma7")
+
 [node name="Table" type="Polygon2D" parent="Scene" unique_id=909192473]
+visible = false
 position = Vector2(-100, -60)
-color = Color(0.32, 0.20053333, 0.115200005, 1)
+color = Color(0.7529412, 0.79607844, 0.8627451, 1)
 polygon = PackedVector2Array(-18, 95, 96, -21, 317, 9, 287, 153)
 
 [node name="Polygon2D3" type="Polygon2D" parent="Scene" unique_id=1462482096]
+visible = false
 position = Vector2(-100, -60)
-color = Color(0.22490779, 0.11421894, 0.07049886, 1)
+color = Color(0.54509807, 0.60784316, 0.7058824, 1)
 polygon = PackedVector2Array(-18, 95, 287, 152, 288, 175, -17, 172)
 
 [node name="Timer" type="Node2D" parent="Scene" unique_id=419602687]
 metadata/_edit_group_ = true
 
 [node name="Polygon2D" type="Polygon2D" parent="Scene/Timer" unique_id=18859721]
+visible = false
 position = Vector2(-100, -60)
-color = Color(0.1148968, 0.11489681, 0.1148968, 1)
-polygon = PackedVector2Array(32, 19, 38, 80, 184, 109, 228, 54, 224, -5, 176, 34)
+color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+polygon = PackedVector2Array(32, 19, 38, 80, 184, 109, 228, 54, 224, -5, 176, 33)
 
 [node name="Display Background" type="Polygon2D" parent="Scene/Timer" unique_id=300932700]
+visible = false
 position = Vector2(-100, -60)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(42, 75, 38, 25, 171.69995, 39.19998, 177, 100)
 
 [node name="Polygon2D2" type="Polygon2D" parent="Scene/Timer" unique_id=1750488081]
+visible = false
 position = Vector2(-100, -60)
-color = Color(0.2520276, 0.25202766, 0.25202763, 1)
+color = Color(0.22745098, 0.26666668, 0.4, 1)
 polygon = PackedVector2Array(33, 19, 176, 34, 223, -4, 78, -15)
 
 [node name="Node2D" type="Node2D" parent="Scene/Timer" unique_id=578199136]
-position = Vector2(9, 2.9999962)
+position = Vector2(17, -2.0000002)
 rotation = -1.5707964
-skew = 0.15533435
+skew = 0.12042772
 
 [node name="Node2D2" type="Node2D" parent="Scene/Timer/Node2D" unique_id=1485992150]
 rotation = 1.5707964
@@ -360,11 +450,13 @@ metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1402365887]
 libraries/ = SubResource("AnimationLibrary_5hehg")
+autoplay = &"running"
 next/reached_zero = &"idle"
 
 [node name="Play reached_zero" type="Node" parent="AnimationPlayer" unique_id=1409077835]
 script = ExtResource("7_5hehg")
 AnimationName = &"reached_zero"
+FromAnimationList = []
 metadata/_custom_type_script = "uid://dukfxpmahaflv"
 
 [connection signal="ContextSignalReceived" from="Game Timer Context" to="Game Timer Context/Context Signals" method="Receive"]

@@ -19,7 +19,7 @@ content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-bg_color = Color(0.85159403, 0.65057534, 0.2661205, 1)
+bg_color = Color(0.99607843, 0.68235296, 0.20392157, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -170,7 +170,7 @@ theme_override_colors/default_color = Color(0.033853278, 0.033853278, 0.03385327
 fit_content = true
 horizontal_alignment = 1
 script = ExtResource("4_5pfmv")
-TextFormat = "Live Timer Feed"
+TextFormat = "Live Microwave Feed"
 metadata/_custom_type_script = "uid://dxkaapm2dks2e"
 
 [node name="PanelContainer" type="Panel" parent="Control/PanelContainer/VBoxContainer" unique_id=517161867]
