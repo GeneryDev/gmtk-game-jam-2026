@@ -7,3 +7,6 @@
 script = ExtResource("2_wbceh")
 RootNodeName = &"Hitscan Attack"
 RootNodeScript = ExtResource("1_pqumn")
+RootNodeProperties = {
+&"AttackInterval": 0.5
+}

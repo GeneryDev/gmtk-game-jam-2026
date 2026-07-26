@@ -7,3 +7,6 @@
 script = ExtResource("2_83etw")
 RootNodeName = &"BulletAttack"
 RootNodeScript = ExtResource("1_6iepm")
+RootNodeProperties = {
+&"AttackInterval": 0.2
+}

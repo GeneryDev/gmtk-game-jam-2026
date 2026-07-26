@@ -5,12 +5,44 @@
 [ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="2_3h4tt"]
 [ext_resource type="Resource" uid="uid://2rcv1ni1pp53" path="res://scenes/objects/attacks/beam_attack.tscn.summary.tres" id="2_yyvjp"]
 [ext_resource type="Script" uid="uid://cd3ua188ba80t" path="res://scripts/Game/Player/AttackFunctions.cs" id="3_3h4tt"]
+[ext_resource type="Texture2D" uid="uid://bqwp6ypqh22vg" path="res://assets/textures/sprites/vfx/laser_charge.png" id="5_7dce8"]
+[ext_resource type="Texture2D" uid="uid://dsexjqerjgl6d" path="res://assets/textures/sprites/vfx/laser_lasering.png" id="5_kcgfe"]
+[ext_resource type="ArrayMesh" uid="uid://ckd6ikihc5odr" path="res://assets/models/vfx/beam_vfx.res" id="6_3n2cq"]
 [ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="6_q3jwq"]
+[ext_resource type="Texture2D" uid="uid://0fbnbreh5hpb" path="res://assets/textures/sprites/vfx/laser.png" id="7_7dce8"]
 [ext_resource type="Script" uid="uid://c0yjanqaifkam" path="res://addons/gdf-godot/GDF/Logical/Signals/InboundSignalArgument.cs" id="7_kcgfe"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_tqw2u"]
 size = Vector2(800, 30)
 center_offset = Vector3(400, 0, 0)
+
+[sub_resource type="Shader" id="Shader_g34ij"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.7.1.stable.mono's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_mix;
+
+uniform int frame_count = 8;
+//uniform int frame = 0;
+
+varying flat int frame;
+
+void vertex() {
+	frame = int(round(COLOR.r * float(frame_count)));
+}
+
+void fragment() {
+	vec2 uv = UV;
+	uv.x = mod(uv.x,1);
+	uv.x += float(frame);
+	uv.x /= float(frame_count);
+	
+	COLOR = texture(TEXTURE, uv);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cjccr"]
+shader = SubResource("Shader_g34ij")
+shader_parameter/frame_count = 8
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suoh8"]
 size = Vector2(800, 56)
@@ -24,31 +56,31 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Origin/MeshInstance2D:scale")
+tracks/0/path = NodePath("Origin/Offset/Area2D:monitoring")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
+"update": 1,
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Origin/MeshInstance2D:modulate")
+tracks/1/path = NodePath("Origin/Offset/Beam/MeshInstance2D:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(0, 1, 1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Origin/Area2D:monitoring")
+tracks/2/path = NodePath("Origin/Offset/Beam/Charge:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -57,58 +89,130 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Origin/Offset/Beam/Charge:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Origin/Offset/Beam/MeshInstance2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:CopyPosition")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_byabo"]
 resource_name = "fire"
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Origin/MeshInstance2D:scale")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.032655507, 0.23),
-"transitions": PackedFloat32Array(1, 0.4999999, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 2), Vector2(1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Origin/MeshInstance2D:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.23),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.26666668),
+"times": PackedFloat32Array(0.6666667),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"queue_free"
 }]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Origin/Area2D:monitoring")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.016666668, 0.12503788),
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Origin/Offset/Area2D:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.31666666, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Origin/Offset/Beam/MeshInstance2D:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.23333333, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.4, 0.43333334, 0.46666667, 0.5, 0.5333334, 0.5666667, 0.6, 0.6333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(0, 1, 1, 1), Color(0.12156863, 1, 1, 1), Color(0.24313726, 1, 1, 1), Color(0.3647059, 1, 1, 1), Color(0.24313726, 1, 1, 1), Color(0.3647059, 1, 1, 1), Color(0.24313726, 1, 1, 1), Color(0.3647059, 1, 1, 1), Color(0.4862745, 1, 1, 1), Color(0.60784316, 1, 1, 1), Color(0.7294118, 1, 1, 1), Color(0.8509804, 1, 1, 1), Color(0.972549, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Origin/Offset/Beam/Charge:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.23333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Origin/Offset/Beam/Charge:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.033333335, 0.06666667, 0.1, 0.13333334, 0.16666667, 0.2, 0.23333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 5]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Origin/Offset/Beam/MeshInstance2D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.6335411),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:CopyPosition")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3h4tt"]
@@ -117,8 +221,9 @@ _data = {
 &"fire": SubResource("Animation_byabo")
 }
 
-[node name="BeamAttack" type="Node" unique_id=854267170]
+[node name="BeamAttack" type="Node" unique_id=854267170 node_paths=PackedStringArray("CopyPositionTo")]
 script = ExtResource("1_01oyo")
+CopyPositionTo = NodePath("Origin")
 Summary = ExtResource("2_yyvjp")
 metadata/_custom_type_script = "uid://dvhbt8l5vjyou"
 
@@ -128,6 +233,15 @@ DefaultVariableValues = {}
 DefaultCollections = {}
 EditorPreviewVariables = {}
 metadata/_custom_type_script = "uid://k8suh3w0dagg"
+
+[node name="Copy Position From Binding" type="Node" parent="." unique_id=575068802 node_paths=PackedStringArray("DataContext", "TargetNode")]
+script = ExtResource("2_3h4tt")
+DataContext = NodePath("../Attack Instance Context")
+Query = "{source}"
+TargetNode = NodePath("..")
+TargetPropertyName = "CopyPositionFrom"
+ThrottleUpdate = false
+metadata/_custom_type_script = "uid://wbquqef0rnl5"
 
 [node name="Origin" type="Node2D" parent="." unique_id=1851871738]
 
@@ -140,32 +254,50 @@ TargetPropertyName = "position"
 ThrottleUpdate = false
 metadata/_custom_type_script = "uid://wbquqef0rnl5"
 
-[node name="Rotation Binding" type="Node" parent="Origin" unique_id=2030388206 node_paths=PackedStringArray("DataContext", "TargetNode")]
+[node name="Offset" type="Node2D" parent="Origin" unique_id=1364133036]
+
+[node name="Rotation Binding" type="Node" parent="Origin/Offset" unique_id=2030388206 node_paths=PackedStringArray("DataContext", "TargetNode")]
 script = ExtResource("2_3h4tt")
-DataContext = NodePath("../../Attack Instance Context")
+DataContext = NodePath("../../../Attack Instance Context")
 Query = "{rotation}"
 TargetNode = NodePath("..")
 TargetPropertyName = "rotation"
 ThrottleUpdate = false
 metadata/_custom_type_script = "uid://wbquqef0rnl5"
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Origin" unique_id=1909379833]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Origin/Offset" unique_id=1909379833]
+modulate = Color(1, 1, 1, 0)
 mesh = SubResource("QuadMesh_tqw2u")
 
-[node name="Area2D" type="Area2D" parent="Origin" unique_id=1595996149]
+[node name="Beam" type="Node2D" parent="Origin/Offset" unique_id=1410307936]
+texture_filter = 1
+
+[node name="Charge" type="Sprite2D" parent="Origin/Offset/Beam" unique_id=1461333246]
+visible = false
+texture = ExtResource("5_7dce8")
+hframes = 6
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Origin/Offset/Beam" unique_id=868084774]
+visible = false
+self_modulate = Color(0, 1, 1, 1)
+material = SubResource("ShaderMaterial_cjccr")
+mesh = ExtResource("6_3n2cq")
+texture = ExtResource("7_7dce8")
+
+[node name="Area2D" type="Area2D" parent="Origin/Offset" unique_id=1595996149]
 collision_layer = 0
 collision_mask = 128
 monitoring = false
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Origin/Area2D" unique_id=1900399253]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Origin/Offset/Area2D" unique_id=1900399253]
 position = Vector2(400, 0)
 shape = SubResource("RectangleShape2D_suoh8")
 
-[node name="AttackFunctions" type="Node" parent="Origin/Area2D" unique_id=207897347]
+[node name="AttackFunctions" type="Node" parent="Origin/Offset/Area2D" unique_id=207897347]
 script = ExtResource("3_3h4tt")
 
-[node name="Hurt" type="Node" parent="Origin/Area2D/AttackFunctions" unique_id=580813207 node_paths=PackedStringArray("Target")]
+[node name="Hurt" type="Node" parent="Origin/Offset/Area2D/AttackFunctions" unique_id=580813207 node_paths=PackedStringArray("Target")]
 script = ExtResource("6_q3jwq")
 Target = NodePath("..")
 Method = &"Hurt"
@@ -205,10 +337,24 @@ TargetMethodInfo = {
 }
 metadata/_custom_type_script = "uid://buqbj5n61xjbu"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Origin" unique_id=326168278]
-root_node = NodePath("../..")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Origin/Offset" unique_id=326168278]
+root_node = NodePath("../../..")
 libraries/ = SubResource("AnimationLibrary_3h4tt")
 autoplay = &"fire"
 
-[connection signal="area_entered" from="Origin/Area2D" to="Origin/Area2D/AttackFunctions/Hurt" method="Trigger"]
-[connection signal="body_entered" from="Origin/Area2D" to="Origin/Area2D/AttackFunctions/Hurt" method="Trigger"]
+[node name="Sprite2D" type="Sprite2D" parent="Origin/Offset" unique_id=310350146]
+visible = false
+texture_filter = 1
+texture = ExtResource("5_kcgfe")
+
+[node name="Position Binding2" type="Node" parent="Origin/Offset" unique_id=230487284 node_paths=PackedStringArray("DataContext", "TargetNode")]
+script = ExtResource("2_3h4tt")
+DataContext = NodePath("../../../Attack Instance Context")
+Query = "Vector2(0, -20) + {target_dir} * 60"
+TargetNode = NodePath("..")
+TargetPropertyName = "position"
+ThrottleUpdate = false
+metadata/_custom_type_script = "uid://wbquqef0rnl5"
+
+[connection signal="area_entered" from="Origin/Offset/Area2D" to="Origin/Offset/Area2D/AttackFunctions/Hurt" method="Trigger"]
+[connection signal="body_entered" from="Origin/Offset/Area2D" to="Origin/Offset/Area2D/AttackFunctions/Hurt" method="Trigger"]
