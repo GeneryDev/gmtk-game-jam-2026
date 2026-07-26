@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://d4ar2obfqf56u"]
+
+[ext_resource type="PackedScene" uid="uid://l7vx1ppodn0d" path="res://scenes/objects/player/player.tscn" id="1_v3oyx"]
+[ext_resource type="Shader" uid="uid://0pswp1g2nvit" path="res://assets/shaders/canvas/player_copy.gdshader" id="2_40ay8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v3oyx"]
+shader = ExtResource("2_40ay8")
+
+[node name="Player" unique_id=63413937 instance=ExtResource("1_v3oyx")]
+
+[node name="MeshInstance2D" parent="Visuals" parent_id_path=PackedInt32Array(708970617) index="0" unique_id=1784942333]
+material = SubResource("ShaderMaterial_v3oyx")
+
+[node name="Camera Target" parent="." index="3" unique_id=1510870871]
+script = null

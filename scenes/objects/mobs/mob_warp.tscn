@@ -1,0 +1,362 @@
+[gd_scene format=3 uid="uid://b4qdq3d7vo415"]
+
+[ext_resource type="PackedScene" uid="uid://birvp7rww3wl2" path="res://scenes/objects/mobs/mob_base.tscn" id="1_lo7cd"]
+[ext_resource type="Texture2D" uid="uid://cnhqwcop8toor" path="res://assets/textures/sprites/Mob/warp_mob/idle.png" id="2_lo7cd"]
+[ext_resource type="Texture2D" uid="uid://bbsxp40a2278m" path="res://assets/textures/sprites/Mob/green hound/death/houndDeath2.png" id="3_8re4s"]
+[ext_resource type="Texture2D" uid="uid://3806ragt6vt5" path="res://assets/textures/sprites/Mob/green hound/death/houndDeath3.png" id="4_fvmxr"]
+[ext_resource type="Texture2D" uid="uid://df3h42dftrr40" path="res://assets/textures/sprites/Mob/green hound/death/houndDeath4.png" id="5_e6d1p"]
+[ext_resource type="Texture2D" uid="uid://cu3s0o4djoobx" path="res://assets/textures/sprites/Mob/green hound/death/houndDeath5.png" id="6_w37pl"]
+[ext_resource type="Texture2D" uid="uid://xkb48tyc3hrt" path="res://assets/textures/sprites/Mob/warp_mob/tp_in_0.png" id="7_24ntg"]
+[ext_resource type="Texture2D" uid="uid://lrvo266ukge3" path="res://assets/textures/sprites/Mob/warp_mob/tp_in_1.png" id="8_8re4s"]
+[ext_resource type="Texture2D" uid="uid://dcx05febg5ad7" path="res://assets/textures/sprites/Mob/warp_mob/tp_in_2.png" id="9_fvmxr"]
+[ext_resource type="Texture2D" uid="uid://0v6nx0j0a5gc" path="res://assets/textures/sprites/Mob/warp_mob/tp_in_3.png" id="10_e6d1p"]
+[ext_resource type="Texture2D" uid="uid://cvc1phvupiq8h" path="res://assets/textures/sprites/Mob/warp_mob/tp_in_4.png" id="11_w37pl"]
+[ext_resource type="Texture2D" uid="uid://bk15750x7hdip" path="res://assets/textures/sprites/Mob/warp_mob/tp_out_0.png" id="12_jrju7"]
+[ext_resource type="Texture2D" uid="uid://mvm3gaxosssf" path="res://assets/textures/sprites/Mob/warp_mob/tp_out_1.png" id="13_uy1sl"]
+[ext_resource type="Texture2D" uid="uid://dic0vgrto11mf" path="res://assets/textures/sprites/Mob/warp_mob/tp_out_3.png" id="14_ygah0"]
+[ext_resource type="Texture2D" uid="uid://rewcrqxcveu6" path="res://assets/textures/sprites/Mob/warp_mob/tp_out_4.png" id="15_2w2b3"]
+[ext_resource type="Texture2D" uid="uid://beon5as2x8d70" path="res://assets/textures/sprites/Mob/warp_mob/tp_out_5.png" id="16_7oals"]
+[ext_resource type="Texture2D" uid="uid://np8c5cim063q" path="res://assets/textures/sprites/Mob/warp_mob/tp_out_6.png" id="17_ecljq"]
+[ext_resource type="Texture2D" uid="uid://b0pudwel70ewd" path="res://assets/textures/sprites/Mob/warp_mob/tp_out_7.png" id="18_h6afb"]
+[ext_resource type="Texture2D" uid="uid://csfnmqbys2cuu" path="res://assets/textures/sprites/Mob/warp_mob/tp_out_8.png" id="19_jl8jq"]
+[ext_resource type="Texture2D" uid="uid://dm1u6euyciq7c" path="res://assets/textures/sprites/Mob/warp_mob/tp_out_9.png" id="20_0f1ho"]
+[ext_resource type="Texture2D" uid="uid://crxdpiw23ohjd" path="res://assets/textures/sprites/Mob/warp_mob/walk_0.png" id="21_jpfn5"]
+[ext_resource type="Texture2D" uid="uid://cjifnaneicf4c" path="res://assets/textures/sprites/Mob/warp_mob/walk_1.png" id="22_g7nov"]
+[ext_resource type="Script" uid="uid://dw511m5bve5pm" path="res://scripts/Game/Entities/MobColor.cs" id="23_ds6p4"]
+[ext_resource type="Script" uid="uid://cy0jt8nc5kr3b" path="res://scripts/Game/Entities/MobRandomStrollGoal.cs" id="24_ardq3"]
+[ext_resource type="Script" uid="uid://cvnbuytcpi10m" path="res://scripts/Game/Entities/MobTeleport.cs" id="25_3ojyl"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_lujpt"]
+size = Vector2(80, -80)
+
+[sub_resource type="QuadMesh" id="QuadMesh_y8mvv"]
+size = Vector2(80, -80)
+
+[sub_resource type="Animation" id="Animation_ct3gv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_lo7cd")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshInstance2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -30)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshInstance2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MeshInstance2D:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MeshInstance2D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hurt Flash:self_modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dy3l7"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.21196175, 0.3427432),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_8re4s"), ExtResource("4_fvmxr"), ExtResource("5_e6d1p"), ExtResource("6_w37pl")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.356579, 0.37607652),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2, 2), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshInstance2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -61.54)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshInstance2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.37607652),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.37607652),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_0ri50"]
+resource_name = "effect"
+length = 1.9666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.53333336, 0.6279335, 0.9186434, 1.0139964),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(0.001, 0.001), Vector2(0.001, 0.001), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshInstance2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.4, 0.53333336, 0.9222966, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8000001, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("7_24ntg"), ExtResource("8_8re4s"), ExtResource("9_fvmxr"), ExtResource("10_e6d1p"), ExtResource("11_w37pl"), ExtResource("12_jrju7"), ExtResource("13_uy1sl"), ExtResource("14_ygah0"), ExtResource("15_2w2b3"), ExtResource("16_7oals"), ExtResource("17_ecljq"), ExtResource("18_h6afb"), ExtResource("19_jl8jq"), ExtResource("20_0f1ho"), ExtResource("2_lo7cd")]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Teleport")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.73333335),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"SwapPlacesWithPlayer"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_8mocp"]
+resource_name = "hurt"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.46666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("21_jpfn5"), ExtResource("2_lo7cd")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.07464116, 0.1539474, 0.20992827, 0.32189003),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.15358898, 0.064577185, -0.03141593, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hurt Flash:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_btsec"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_lo7cd")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.13264502315156945, 0.13264502315156945, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_gyecb"]
+resource_name = "run"
+length = 0.53333336
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.13333334, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("21_jpfn5"), ExtResource("22_g7nov")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b4i2o"]
+_data = {
+&"RESET": SubResource("Animation_ct3gv"),
+&"death": SubResource("Animation_dy3l7"),
+&"effect": SubResource("Animation_0ri50"),
+&"hurt": SubResource("Animation_8mocp"),
+&"idle": SubResource("Animation_btsec"),
+&"run": SubResource("Animation_gyecb")
+}
+
+[node name="Mob Warp" unique_id=63413937 instance=ExtResource("1_lo7cd")]
+
+[node name="MeshInstance2D" parent="Visuals" parent_id_path=PackedInt32Array(37646152) index="0" unique_id=1784942333]
+position = Vector2(0, -30)
+mesh = SubResource("QuadMesh_lujpt")
+texture = ExtResource("2_lo7cd")
+
+[node name="Hurt Flash" parent="Visuals" parent_id_path=PackedInt32Array(37646152) index="2" unique_id=1278280188]
+mesh = SubResource("QuadMesh_y8mvv")
+
+[node name="Sprite Animation" parent="Visuals" parent_id_path=PackedInt32Array(37646152) index="4" unique_id=1208725175]
+libraries/ = SubResource("AnimationLibrary_b4i2o")
+
+[node name="Mob Color" type="Node" parent="." index="4" unique_id=841674054 node_paths=PackedStringArray("Visual")]
+script = ExtResource("23_ds6p4")
+Visual = NodePath("../Visuals/MeshInstance2D")
+Random = true
+
+[node name="Random Stroll" type="Node" parent="Goals" parent_id_path=PackedInt32Array(721629563) index="0" unique_id=1365133068]
+script = ExtResource("24_ardq3")
+
+[node name="Damageable" parent="." index="11" unique_id=893346049]
+MaxHitPoints = 4
+
+[node name="Teleport" type="Node" parent="." index="16" unique_id=1108502288]
+script = ExtResource("25_3ojyl")

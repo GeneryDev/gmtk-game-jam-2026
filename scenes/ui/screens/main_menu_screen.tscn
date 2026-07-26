@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bko61fppga1kx" path="res://addons/gdf-godot/GDF/UI/Screen.cs" id="1_t4ulj"]
 [ext_resource type="PackedScene" uid="uid://dfiex6xxhyw40" path="res://scenes/objects/standard_user_interface.tscn" id="2_3cs86"]
+[ext_resource type="Texture2D" uid="uid://qsy6w05tpjkw" path="res://assets/textures/ui/key_art.png" id="3_e7nmi"]
 [ext_resource type="PackedScene" uid="uid://3gj32mdbtodw" path="res://scenes/ui/elements/main_menu_button_hero.tscn" id="7_3cs86"]
-[ext_resource type="Texture2D" uid="uid://dai8nvmlfkuna" path="res://assets/textures/ui/key_art_temp.png" id="7_bd2wy"]
 [ext_resource type="PackedScene" uid="uid://majwuxropqaj" path="res://scenes/ui/elements/main_menu_button.tscn" id="7_pfh6i"]
 [ext_resource type="PackedScene" uid="uid://cevb65mkp8fq5" path="res://scenes/ui/screens/credits_screen.tscn" id="7_pqlu1"]
 [ext_resource type="PackedScene" uid="uid://cxhb2mpwpx1sc" path="res://scenes/ui/screens/options_screen.tscn" id="7_vp6oy"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="12_e7nmi"]
 [ext_resource type="Script" uid="uid://ce2cpgowa1bvu" path="res://addons/gdf-godot/GDF/IO/ResourceReference.cs" id="12_ioxk6"]
 [ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="12_vp6oy"]
+[ext_resource type="Texture2D" uid="uid://dxo5tkyxe76xr" path="res://assets/textures/ui/icon.png" id="14_3u4en"]
 
 [sub_resource type="Resource" id="Resource_tqw2u"]
 resource_name = "main.tscn"
@@ -43,7 +44,7 @@ resource_name = "shadow_end"
 length = 0.16666667
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("Control:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -59,7 +60,7 @@ resource_name = "shadow_start"
 length = 0.16666667
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("Control:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -106,14 +107,14 @@ color = Color(0, 0, 0, 1)
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=191336155]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 218.0
+offset_left = 311.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("7_bd2wy")
+texture = ExtResource("3_e7nmi")
 expand_mode = 1
 stretch_mode = 6
 
@@ -129,14 +130,12 @@ mouse_filter = 2
 [node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=305280910]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.045
-anchor_top = 0.637
-anchor_right = 0.045
-anchor_bottom = 0.637
-offset_left = 0.15999603
-offset_top = -131.776
-offset_right = 228.16
-offset_bottom = 131.224
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 52.0
+offset_top = 1.0
+offset_right = 280.0
+offset_bottom = 264.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -265,12 +264,42 @@ TextFormat = "{version}"
 DataContext = NodePath("../Project Context")
 metadata/_custom_type_script = "uid://dxkaapm2dks2e"
 
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=230515556]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 66.0
+offset_top = -296.0
+offset_right = 264.0
+offset_bottom = -98.0
+texture = ExtResource("14_3u4en")
+expand_mode = 1
+
+[node name="FormattedLabel" type="RichTextLabel" parent="Control/TextureRect" unique_id=1105652392]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_right = 24.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 24
+fit_content = true
+horizontal_alignment = 1
+script = ExtResource("12_e7nmi")
+TextFormat = "Is Your Microwave Running?"
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
 [node name="Shadowing" type="AnimationPlayer" parent="." unique_id=577264285]
 libraries/ = SubResource("AnimationLibrary_vp6oy")
 
 [node name="Play shadow_start" type="Node" parent="Shadowing" unique_id=248045898]
 script = ExtResource("12_vp6oy")
 AnimationName = &"shadow_start"
+FromAnimationList = []
 metadata/_custom_type_script = "uid://dukfxpmahaflv"
 
 [node name="Play shadow_end" type="Node" parent="Shadowing" unique_id=1468520216]

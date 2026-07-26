@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MobType" format=3 uid="uid://coak42d1e8d6q"]
+
+[ext_resource type="PackedScene" uid="uid://b4qdq3d7vo415" path="res://scenes/objects/mobs/mob_warp.tscn" id="1_rd5h5"]
+[ext_resource type="Script" uid="uid://b2ptdu2sn1kv7" path="res://scripts/Game/Entities/MobType.cs" id="2_lx3e3"]
+
+[resource]
+script = ExtResource("2_lx3e3")
+TemplateScene = ExtResource("1_rd5h5")
+ApplicableEffectTags = Array[String](["warp"])
+metadata/_custom_type_script = "uid://b2ptdu2sn1kv7"

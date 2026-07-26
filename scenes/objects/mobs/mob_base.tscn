@@ -818,8 +818,9 @@ RelativeMode = 1
 metadata/_custom_type_script = "uid://b6sb42qs0fsp1"
 
 [connection signal="Died" from="Damageable" to="Visuals/GdfAnimationTree/Event death" method="Trigger"]
-[connection signal="Hurt" from="Damageable" to="Mob Signals/Hurt" method="Emit"]
 [connection signal="Hurt" from="Damageable" to="Visuals/GdfAnimationTree/Event hurt" method="Trigger"]
+[connection signal="Hurt" from="Damageable" to="Mob Signals/Hurt" method="Emit"]
 [connection signal="Triggered" from="Timer Effect Host" to="Visuals/GdfAnimationTree/Event effect" method="Trigger"]
+[connection signal="Triggered" from="Timer Effect Host" to="Action Animations/Play trigger" method="Trigger"]
 [connection signal="EvaluatedFalse" from="CanvasLayer/Control/Hover Sensor/Hover Context/On Hover" to="CanvasLayer/Control/ScreenSpawner" method="CloseAll"]
 [connection signal="EvaluatedTrue" from="CanvasLayer/Control/Hover Sensor/Hover Context/On Hover" to="CanvasLayer/Control/ScreenSpawner" method="Trigger"]
