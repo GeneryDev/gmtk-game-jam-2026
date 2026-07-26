@@ -549,7 +549,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-832, -288, -608, -400,
 
 [node name="GameTimer" type="Node" parent="." unique_id=2057958551]
 script = ExtResource("1_jyhfs")
-RemainingTime = 600
+RemainingTime = 300
 metadata/_custom_type_script = "uid://otkyb0o8ega"
 
 [node name="Timer Effect Log" type="Node" parent="." unique_id=665212683]
