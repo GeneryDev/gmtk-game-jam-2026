@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://btc6h64te5rea"]
+
+[ext_resource type="Script" uid="uid://8167tjb1cm0a" path="res://scripts/Game/Entities/MobEffect.cs" id="1_8gbx0"]
+[ext_resource type="Resource" uid="uid://bgfjxox5bj0b5" path="res://scenes/objects/mob_effects/give_sniper_ammo.tscn.summary.tres" id="2_8gbx0"]
+[ext_resource type="Script" uid="uid://co57m6ofh061p" path="res://scripts/Game/Player/WeaponFunctions.cs" id="3_v3wq2"]
+[ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="5_3f4wt"]
+
+[node name="Give Sniper Ammo" type="Node" unique_id=1558047290]
+script = ExtResource("1_8gbx0")
+Summary = ExtResource("2_8gbx0")
+metadata/_custom_type_script = "uid://8167tjb1cm0a"
+
+[node name="Weapon Functions" type="Node" parent="." unique_id=956264349]
+script = ExtResource("3_v3wq2")
+
+[node name="MethodCaller" type="Node" parent="Weapon Functions" unique_id=2134429941 node_paths=PackedStringArray("Target")]
+script = ExtResource("5_3f4wt")
+Target = NodePath("..")
+Method = &"GiveAmmo"
+Args = [&"hitscan_attack", 1]
+ArgInputTypes = Array[int]([0, 0])
+ArgAbortIfNull = Array[bool]([false, false])
+ArgReplicate = Array[bool]([false, false])
+TargetMethodInfo = {
+"args": Array[Dictionary]([{
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "attackId",
+"type": 21,
+"usage": 6
+}, {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "amount",
+"type": 2,
+"usage": 6
+}]),
+"default_args": [],
+"flags": 1,
+"id": 0,
+"name": "GiveAmmo",
+"return": {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 0,
+"usage": 6
+}
+}
+metadata/_custom_type_script = "uid://buqbj5n61xjbu"
+
+[connection signal="Triggered" from="." to="Weapon Functions/MethodCaller" method="Trigger"]

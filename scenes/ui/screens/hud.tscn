@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://ds35ysiau7nks" path="res://addons/gdf-godot-input-icons/GDF/Input/Icons/GdfInputIconAction.cs" id="2_whwsy"]
 [ext_resource type="Resource" uid="uid://20hjbwrgl572" path="res://resources/input_actions/move.tres" id="3_yed0n"]
 [ext_resource type="Script" uid="uid://dxkaapm2dks2e" path="res://addons/gdf-godot/GDF/UI/FormattedLabel.cs" id="4_5pfmv"]
+[ext_resource type="Resource" uid="uid://cp5h337kot3xw" path="res://resources/input_actions/dash.tres" id="6_ux455"]
 [ext_resource type="Resource" uid="uid://lcriijicejdl" path="res://resources/input_actions/attack.tres" id="6_yed0n"]
 [ext_resource type="Script" uid="uid://bwjl50hav4euk" path="res://addons/gdf-godot/GDF/Resources/ResourceLibraryLookupContext.cs" id="9_ux455"]
 [ext_resource type="PackedScene" uid="uid://ueooctks1neu" path="res://scenes/ui/elements/live_timer_feed.tscn" id="10_7bpd2"]
@@ -91,6 +92,7 @@ custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 script = ExtResource("2_whwsy")
 Action = ExtResource("3_yed0n")
+IconStyle = 1
 metadata/_custom_type_script = "uid://ds35ysiau7nks"
 
 [node name="FormattedLabel" type="RichTextLabel" parent="Control/HBoxContainer/HBoxContainer" unique_id=1335825598]
@@ -110,10 +112,32 @@ layout_mode = 2
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 script = ExtResource("2_whwsy")
-Action = ExtResource("6_yed0n")
+Action = ExtResource("6_ux455")
+IconStyle = 1
 metadata/_custom_type_script = "uid://ds35ysiau7nks"
 
 [node name="FormattedLabel" type="RichTextLabel" parent="Control/HBoxContainer/HBoxContainer2" unique_id=1297002208]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+script = ExtResource("4_5pfmv")
+TextFormat = "Run"
+metadata/_custom_type_script = "uid://dxkaapm2dks2e"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/HBoxContainer" unique_id=1006192468]
+layout_mode = 2
+
+[node name="GdfInputIconAction" type="Control" parent="Control/HBoxContainer/HBoxContainer3" unique_id=2990382]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+script = ExtResource("2_whwsy")
+Action = ExtResource("6_yed0n")
+IconStyle = 1
+metadata/_custom_type_script = "uid://ds35ysiau7nks"
+
+[node name="FormattedLabel" type="RichTextLabel" parent="Control/HBoxContainer/HBoxContainer3" unique_id=622665593]
 layout_mode = 2
 mouse_filter = 2
 fit_content = true

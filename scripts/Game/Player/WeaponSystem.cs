@@ -21,7 +21,9 @@ public partial class WeaponSystem : SingletonNode<WeaponSystem>, IDataContext
         SetEquipped(PlayerAttacks.Fallback);
         foreach (var attack in PlayerAttacks.CollectAll(new()))
         {
-            SetAmmo(attack, attack.Reference.MaxAmmo);
+            int startingAmmo = attack.Reference.MaxAmmo;
+            if (startingAmmo < 0) startingAmmo = 1;
+            SetAmmo(attack, startingAmmo);
         }
     }
 
@@ -54,7 +56,7 @@ public partial class WeaponSystem : SingletonNode<WeaponSystem>, IDataContext
         var ammo = GetAmmo(attack);
         if (ammo != 0)
         {
-            if (ammo > 0)
+            if (attack.Reference.MaxAmmo > 0)
             {
                 SetAmmo(attack, ammo - 1);
             }

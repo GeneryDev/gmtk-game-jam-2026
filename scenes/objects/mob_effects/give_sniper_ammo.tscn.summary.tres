@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="SceneSummary" format=3 uid="uid://bgfjxox5bj0b5"]
+
+[ext_resource type="Script" uid="uid://dr7wpap8ayqnh" path="res://scripts/Game/Timers/TimerCondition.cs" id="1_8k1ja"]
+[ext_resource type="Script" uid="uid://8167tjb1cm0a" path="res://scripts/Game/Entities/MobEffect.cs" id="2_28uhj"]
+[ext_resource type="Script" uid="uid://pj67f1pjpit5" path="res://addons/gdf-godot/GDF/Resources/SceneSummary.cs" id="3_w4d0p"]
+
+[sub_resource type="Resource" id="Resource_oe235"]
+script = ExtResource("1_8k1ja")
+RequireMobCount = true
+RequireMobCountMin = 10
+RequireMobCountMax = null
+RequireElapsedRealTime = true
+RequireElapsedRealTimeUnit = 60
+RequireElapsedRealTimeMin = 1.5
+RequireElapsedRealTimeMax = null
+metadata/_custom_type_script = "uid://dr7wpap8ayqnh"
+
+[resource]
+script = ExtResource("3_w4d0p")
+RootNodeName = &"Give Sniper Ammo"
+RootNodeScript = ExtResource("2_28uhj")
+RootNodeProperties = {
+&"Description": "+1 precision shot",
+&"LogMessage": "",
+&"ParticleMessage": "+1 precision shot",
+&"SpawnCondition": SubResource("Resource_oe235"),
+&"SpawnWeight": 1.0,
+&"Tags": Array[String](["ammo"])
+}

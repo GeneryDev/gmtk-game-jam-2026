@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="SceneSummary" format=3 uid="uid://xnh1nu3m17lw"]
+
+[ext_resource type="Script" uid="uid://dr7wpap8ayqnh" path="res://scripts/Game/Timers/TimerCondition.cs" id="1_0flnf"]
+[ext_resource type="Script" uid="uid://8167tjb1cm0a" path="res://scripts/Game/Entities/MobEffect.cs" id="2_emqjl"]
+[ext_resource type="Script" uid="uid://pj67f1pjpit5" path="res://addons/gdf-godot/GDF/Resources/SceneSummary.cs" id="3_vgg3v"]
+
+[sub_resource type="Resource" id="Resource_oe235"]
+script = ExtResource("1_0flnf")
+RequireMobCount = true
+RequireMobCountMin = 10
+RequireMobCountMax = null
+RequireElapsedRealTime = true
+RequireElapsedRealTimeUnit = 60
+RequireElapsedRealTimeMin = 1.5
+RequireElapsedRealTimeMax = null
+metadata/_custom_type_script = "uid://dr7wpap8ayqnh"
+
+[resource]
+script = ExtResource("3_vgg3v")
+RootNodeName = &"Give Beam Ammo"
+RootNodeScript = ExtResource("2_emqjl")
+RootNodeProperties = {
+&"Description": "+1 laser charge",
+&"LogMessage": "",
+&"ParticleMessage": "+1 laser charge",
+&"SpawnCondition": SubResource("Resource_oe235"),
+&"SpawnWeight": 1.0,
+&"Tags": Array[String](["ammo"])
+}
