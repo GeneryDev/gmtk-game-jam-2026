@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMTK Game Jam 2026", "GMTK Game Jam 2026.csproj", "{120D722A-D2FA-446F-A044-2E99A77168EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Is Your Microwave Running", "Is Your Microwave Running.csproj", "{120D722A-D2FA-446F-A044-2E99A77168EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
