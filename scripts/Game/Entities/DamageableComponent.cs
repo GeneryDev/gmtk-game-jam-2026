@@ -18,10 +18,8 @@ public partial class DamageableComponent : Node, IDataContext
 	[Export]
 	public int MaxHitPoints = 1;
 
-	[Export]
-	public AnimationPlayer deathAnim;
-
 	public int HitPoints = 1;
+	public bool IsAlive => HitPoints > 0;
 
 	public override void _Ready()
 	{
@@ -31,6 +29,7 @@ public partial class DamageableComponent : Node, IDataContext
 
 	public void Damage(int hp = 1)
 	{
+		if (!IsAlive) return;
 		HitPoints -= hp;
 		if (HitPoints < 0) HitPoints = 0;
 		EmitSignalHurt();
@@ -45,10 +44,6 @@ public partial class DamageableComponent : Node, IDataContext
 	{
 		HitPoints = 0;
 		EmitSignalDied();
-	}
-	public void DeathAnimationFinished(StringName anim)
-	{
-		Owner.QueueFree();
 	}
 
 	public StringName UpdatedSignalName => SignalName.Updated;
@@ -65,6 +60,12 @@ public partial class DamageableComponent : Node, IDataContext
 			case "max_health":
 			{
 				output = (float)MaxHitPoints;
+				return true;
+			}
+			case "alive":
+			case "is_alive":
+			{
+				output = IsAlive;
 				return true;
 			}
 		}

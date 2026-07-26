@@ -1,4 +1,6 @@
-﻿using GDF;
+﻿using Game.Player;
+using GDF;
+using GDF.Composition;
 using GDF.Data;
 using Godot;
 
@@ -23,7 +25,13 @@ public partial class EntityFlags : Node, IDataContext
         }
     }
 
+    public bool Moving => !(_mobController.Get(this)?.MoveVector.IsZeroApprox() ?? true) ||
+                          !(_playerController.Get(this)?.MoveVector.IsZeroApprox() ?? true);
+
     public StringName UpdatedSignalName => SignalName.Updated;
+
+    private ComponentCache<MobController> _mobController;
+    private ComponentCache<PlayerController> _playerController;
 
     public bool GetContextVariable(string key, string input, ref Variant output, IDataQueryOptions options)
     {
