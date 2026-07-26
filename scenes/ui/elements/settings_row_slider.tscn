@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://0mjmm7eo3o6v" path="res://addons/gdf-godot/GDF/Data/DataQuery.cs" id="4_88huk"]
 [ext_resource type="Script" uid="uid://wbquqef0rnl5" path="res://addons/gdf-godot/GDF/Data/DataBinding.cs" id="4_qvscs"]
 [ext_resource type="Script" uid="uid://wrcbyscb3t11" path="res://addons/gdf-godot/GDF/Audio/GdfAudioPlayer.cs" id="8_88huk"]
-[ext_resource type="AudioStream" uid="uid://d2m8t8gpsttj0" path="res://assets/audio/sfx/Timer_-1Min.wav" id="9_m38sb"]
+[ext_resource type="AudioStream" uid="uid://d2m8t8gpsttj0" path="res://assets/audio/SFX/Clock/Ticking/Timer_-1Min.wav" id="9_m38sb"]
 [ext_resource type="Script" uid="uid://bfppi36isqkgt" path="res://addons/gdf-godot/GDF/UI/UserInterfaceComponent.cs" id="10_mmfur"]
 [ext_resource type="Script" uid="uid://b2pa2urnvprft" path="res://addons/gdf-godot/GDF/Logical/Values/ObjectCallable.cs" id="11_un46g"]
 [ext_resource type="Script" uid="uid://mx32dultovew" path="res://addons/gdf-godot/GDF/Logical/Values/ValueFromNodePath.cs" id="12_0bkrh"]
