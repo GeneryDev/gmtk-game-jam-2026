@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://3gj32mdbtodw"]
 
 [ext_resource type="PackedScene" uid="uid://majwuxropqaj" path="res://scenes/ui/elements/main_menu_button.tscn" id="1_svv0g"]
+[ext_resource type="AudioStream" uid="uid://okorxrjsx0ah" path="res://assets/audio/SFX/UI/StartGame/UI_04.wav" id="2_pmsx8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svv0g"]
 content_margin_left = 4.0
@@ -37,3 +38,6 @@ theme_override_constants/margin_bottom = 8
 
 [node name="FormattedLabel" parent="Content" index="0" unique_id=427085979]
 theme_override_font_sizes/normal_font_size = 28
+
+[node name="ClickPlayer" parent="." index="3" unique_id=1686413570]
+Stream = ExtResource("2_pmsx8")

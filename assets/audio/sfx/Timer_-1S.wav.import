@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://gi556aw161c6"
-path="res://.godot/imported/Timer_-1S.wav-542c439534cbd61d81c0492ec373e334.sample"
+path="res://.godot/imported/Timer_-1S.wav-f9ed2448c4b32b40fdc7ceff8266ab31.sample"
 
 [deps]
 
-source_file="res://assets/audio/sfx/Timer_-1S.wav"
-dest_files=["res://.godot/imported/Timer_-1S.wav-542c439534cbd61d81c0492ec373e334.sample"]
+source_file="res://assets/audio/SFX/Timer_-1S.wav"
+dest_files=["res://.godot/imported/Timer_-1S.wav-f9ed2448c4b32b40fdc7ceff8266ab31.sample"]
 
 [params]
 

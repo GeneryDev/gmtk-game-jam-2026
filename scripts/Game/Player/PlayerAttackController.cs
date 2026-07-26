@@ -1,4 +1,5 @@
 ﻿using Game.Entities;
+using GDF.Audio;
 using GDF.Composition;
 using GDF.Data;
 using GDF.Input;
@@ -13,6 +14,7 @@ public partial class PlayerAttackController : Node
     public delegate void NoAmmoEventHandler();
     
     [Export] public GdfInputAction AttackAction;
+    [Export] public GdfAudioPlayer AttackSFX;
     
     private ComponentCache<GdfPlayerInput> _playerInput;
     private ComponentCache<PlayerController> _playerController;
@@ -87,6 +89,8 @@ public partial class PlayerAttackController : Node
 
     public void Attack()
     {
+        AttackSFX.playing = true;
+
         var body = _motionComponent.Get(this).Body;
         if (EquippedAttack.IsEmpty) return;
         if (!WeaponSystem.Instance.ConsumeAmmo(EquippedAttack)) return;

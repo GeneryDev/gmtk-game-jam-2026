@@ -22,6 +22,9 @@
 [ext_resource type="Resource" uid="uid://bwtrqyb8xswe3" path="res://resources/input_actions/equip_2.tres" id="12_8bans"]
 [ext_resource type="Resource" uid="uid://quegfyyuigyq" path="res://resources/input_actions/equip_3.tres" id="13_vx2qb"]
 [ext_resource type="Script" uid="uid://bhc8xj1hoddjw" path="res://scripts/Game/Player/WalkingEffect.cs" id="15_g65c7"]
+[ext_resource type="PackedScene" uid="uid://c4oxmtqca04k4" path="res://scenes/objects/attacks/bullet_attack.tscn" id="16_nqkks"]
+[ext_resource type="Script" uid="uid://wrcbyscb3t11" path="res://addons/gdf-godot/GDF/Audio/GdfAudioPlayer.cs" id="21_jx0p0"]
+[ext_resource type="AudioStream" uid="uid://c7lg0qltw8lyk" path="res://assets/audio/SFX/Player/TEMP-AttackSound.wav" id="22_578jl"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_7nx1l"]
 size = Vector2(60, -60)
@@ -78,6 +81,11 @@ size = Vector2(40, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tqw2u"]
 radius = 20.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lx4tb"]
+random_pitch = 1.1817433
+streams_count = 1
+stream_0/stream = ExtResource("22_578jl")
 
 [node name="Player" type="CharacterBody2D" unique_id=63413937 groups=["player_character"]]
 collision_layer = 6
@@ -172,9 +180,19 @@ ExtResource("12_8bans"): &"hitscan_attack",
 ExtResource("13_vx2qb"): &"beam_attack"
 })
 
-[node name="Player Attacks" type="Node" parent="." unique_id=447543846]
+[node name="Player Attacks" type="Node" parent="." unique_id=447543846 node_paths=PackedStringArray("AttackSFX")]
 script = ExtResource("7_ponut")
 AttackAction = ExtResource("6_gmdvr")
+AttackSFX = NodePath("AttackSFX")
+
+[node name="AttackSFX" type="Node" parent="Player Attacks" unique_id=511839591]
+script = ExtResource("21_jx0p0")
+Stream = SubResource("AudioStreamRandomizer_lx4tb")
+VolumeDb = -25.0
+Bus = &"SFX"
+UseGlobalPool = true
+ReleaseAction = 1
+metadata/_custom_type_script = "uid://wrcbyscb3t11"
 
 [node name="Drag" type="Node" parent="." unique_id=1030416559]
 script = ExtResource("9_ponut")

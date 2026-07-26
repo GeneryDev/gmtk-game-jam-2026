@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://otkyb0o8ega" path="res://scripts/Game/Timers/GameTimer.cs" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://l7vx1ppodn0d" path="res://scenes/objects/player/player.tscn" id="2_0wfyh"]
 [ext_resource type="Script" uid="uid://byv3tqb16h6mr" path="res://scripts/Game/Timers/TimerEffectLog.cs" id="2_tbgi4"]
+[ext_resource type="AudioStream" uid="uid://m3re06bojmi7" path="res://assets/audio/SFX/Clock/TimeUp/Timeup_Loop.wav" id="2_vxglm"]
 [ext_resource type="Script" uid="uid://c10onshnx3jmp" path="res://scripts/Game/Util/YSortSystem.cs" id="3_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://bs7ti064ojarj" path="res://scenes/ui/screens/pausable.tscn" id="4_85g3d"]
 [ext_resource type="Script" uid="uid://dux7ids7mjj4q" path="res://scripts/Game/MobSpawner.cs" id="4_tbgi4"]
@@ -547,6 +548,15 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-832, -288, -608, -400,
 
 [node name="Main" type="Node" unique_id=440558421]
 
+[node name="TimeUpSound" type="Node" parent="." unique_id=359671624]
+script = ExtResource("4_y6deb")
+Stream = ExtResource("2_vxglm")
+VolumeDb = -10.0
+Bus = &"SFX"
+UseGlobalPool = true
+ReleaseAction = 1
+metadata/_custom_type_script = "uid://wrcbyscb3t11"
+
 [node name="GameTimer" type="Node" parent="." unique_id=2057958551]
 script = ExtResource("1_jyhfs")
 RemainingTime = 300
@@ -750,6 +760,7 @@ polygon = PackedVector2Array(-352, -208, -128, -64, 384, -64, 432, -320, 432, -5
 
 [node name="Timer Level Effects" parent="Node2D" unique_id=790727648 instance=ExtResource("17_muem4")]
 
+[connection signal="ReachedZero" from="GameTimer" to="TimeUpSound" method="Trigger"]
 [connection signal="ReachedZero" from="GameTimer" to="Music" method="Stop"]
 [connection signal="timeout" from="Node2D/Foreground Layer/Mob Spawner/Spawn Intervals/Trickle Timer" to="Node2D/Foreground Layer/Mob Spawner" method="Spawn"]
 [connection signal="timeout" from="Node2D/Foreground Layer/Mob Spawner/Spawn Intervals/Burst Timer" to="Node2D/Foreground Layer/Mob Spawner/Waves/Play burst_10" method="Trigger"]

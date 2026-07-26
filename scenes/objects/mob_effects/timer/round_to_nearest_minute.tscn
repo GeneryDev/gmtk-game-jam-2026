@@ -5,6 +5,8 @@
 [ext_resource type="Resource" uid="uid://dmwjh1d0qqpsp" path="res://resources/timer_conditions/post_intro_spawn_conditions_negative.tres" id="2_xyqdg"]
 [ext_resource type="Script" uid="uid://ccy1yqjcbg6iq" path="res://scripts/Game/Timers/TimerFunctions.cs" id="3_5nomb"]
 [ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="4_oro35"]
+[ext_resource type="PackedScene" uid="uid://8ctlixmk3of2" path="res://scenes/objects/timer_effect_sfx.tscn" id="5_igllb"]
+[ext_resource type="AudioStream" uid="uid://bc83ubuvtufkj" path="res://assets/audio/SFX/Timer_Round.wav" id="7_vhxvs"]
 
 [node name="Round to Nearest Minute" type="Node" unique_id=1558047290]
 script = ExtResource("1_r3mhm")
@@ -26,6 +28,7 @@ Target = NodePath("..")
 Method = &"RoundTimeToNearest"
 Args = [60.0]
 ArgInputTypes = Array[int]([0])
+ArgAbortIfNull = Array[bool]([false])
 ArgReplicate = Array[bool]([false])
 TargetMethodInfo = {
 "args": Array[Dictionary]([{
@@ -51,4 +54,8 @@ TargetMethodInfo = {
 }
 metadata/_custom_type_script = "uid://buqbj5n61xjbu"
 
+[node name="Timer SFX" parent="." unique_id=883309933 instance=ExtResource("5_igllb")]
+Stream = ExtResource("7_vhxvs")
+
 [connection signal="Triggered" from="." to="Timer Functions/Method Call" method="Trigger"]
+[connection signal="Triggered" from="." to="Timer SFX" method="Trigger"]

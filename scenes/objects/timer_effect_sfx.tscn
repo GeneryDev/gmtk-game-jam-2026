@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://8ctlixmk3of2"]
+
+[ext_resource type="Script" uid="uid://wrcbyscb3t11" path="res://addons/gdf-godot/GDF/Audio/GdfAudioPlayer.cs" id="1_35bu4"]
+
+[node name="Timer SFX" type="Node" unique_id=883309933]
+script = ExtResource("1_35bu4")
+VolumeDb = -15.0
+Bus = &"SFX"
+UseGlobalPool = true
+ReleaseAction = 1
+UseDeduplication = true
+DeduplicationTimeFrameSec = 0.1
+metadata/_custom_type_script = "uid://wrcbyscb3t11"

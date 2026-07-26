@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://bfef4kk1lnlog"
-path="res://.godot/imported/Timer_+1S.wav-0d69f035a6952bfbff44e54f553597c3.sample"
+uid="uid://ni3pt6kn30pi"
+path="res://.godot/imported/UI_05.wav-87e0df50f88f91ede9872bcab3dc7d46.sample"
 
 [deps]
 
-source_file="res://assets/audio/SFX/Timer_+1S.wav"
-dest_files=["res://.godot/imported/Timer_+1S.wav-0d69f035a6952bfbff44e54f553597c3.sample"]
+source_file="res://assets/audio/SFX/UI/Click/UI_05.wav"
+dest_files=["res://.godot/imported/UI_05.wav-87e0df50f88f91ede9872bcab3dc7d46.sample"]
 
 [params]
 
