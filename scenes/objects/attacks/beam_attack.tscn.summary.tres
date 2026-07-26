@@ -7,3 +7,6 @@
 script = ExtResource("2_rryca")
 RootNodeName = &"BeamAttack"
 RootNodeScript = ExtResource("1_fohld")
+RootNodeProperties = {
+&"AttackInterval": 1.0
+}

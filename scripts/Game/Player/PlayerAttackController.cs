@@ -10,7 +10,6 @@ namespace Game.Player;
 public partial class PlayerAttackController : Node
 {
     [Export] public GdfInputAction AttackAction;
-    [Export] public float AttackInterval = 0.2f;
     
     private ComponentCache<GdfPlayerInput> _playerInput;
     private ComponentCache<PlayerController> _playerController;
@@ -24,6 +23,15 @@ public partial class PlayerAttackController : Node
     private Vector2 _targetPosGlobal;
 
     [Export] public PackedScene AttackScene;
+
+    private float GetAttackInterval()
+    {
+        if (PlayerAttacks.From(AttackScene) is { IsEmpty: false } attack)
+        {
+            return attack.Reference.AttackInterval;
+        }
+        return 1;
+    }
     
     public override void _Process(double delta)
     {
@@ -36,8 +44,9 @@ public partial class PlayerAttackController : Node
             if (playerInput.ConsumeActionEvent(AttackAction))
             {
                 _fireIntervalTimer.Reset();
-                _fireIntervalTimer.Add(AttackInterval);
-                _fireStartCooldown = AttackInterval;
+                float attackInterval = GetAttackInterval();
+                _fireIntervalTimer.Add(attackInterval);
+                _fireStartCooldown = attackInterval;
             }
         }
 
@@ -62,7 +71,8 @@ public partial class PlayerAttackController : Node
         if (_attacking)
         {
             _fireIntervalTimer.Add((float)delta);
-            while (_fireIntervalTimer.Consume(AttackInterval))
+            float attackInterval = GetAttackInterval();
+            while (_fireIntervalTimer.Consume(attackInterval))
             {
                 Attack();
             }

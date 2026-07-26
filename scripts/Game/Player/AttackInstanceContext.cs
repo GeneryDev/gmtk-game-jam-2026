@@ -27,6 +27,11 @@ public class AttackInstanceContext : IDataContext
                 output = Source;
                 return true;
             }
+            case "source_path":
+            {
+                output = Source?.GetPath();
+                return true;
+            }
             case "origin_pos":
             case "origin_position":
             {

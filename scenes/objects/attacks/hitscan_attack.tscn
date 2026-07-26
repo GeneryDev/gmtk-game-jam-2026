@@ -54,7 +54,7 @@ tracks/0/path = NodePath("Origin/Line Visual:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.032655507, 0.23),
+"times": PackedFloat32Array(0.016666668, 0.049322173, 0.23),
 "transitions": PackedFloat32Array(1, 0.4999999, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 2), Vector2(1, 0)]
@@ -66,7 +66,7 @@ tracks/1/path = NodePath("Origin/Line Visual:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.23),
+"times": PackedFloat32Array(0.016666666, 0.05, 0.23),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -92,10 +92,13 @@ tracks/3/path = NodePath("Origin/RayCast2D")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.016666668),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.008333334, 0.039228644),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [true],
+"method": &"set_enabled"
+}, {
+"args": [false],
 "method": &"set_enabled"
 }]
 }
@@ -241,7 +244,7 @@ metadata/_custom_type_script = "uid://wbquqef0rnl5"
 
 [node name="RayCast2D" type="RayCast2D" parent="Origin" unique_id=507151751]
 enabled = false
-target_position = Vector2(800, 0)
+target_position = Vector2(1600, 0)
 collision_mask = 129
 collide_with_areas = true
 script = ExtResource("3_dbhkx")

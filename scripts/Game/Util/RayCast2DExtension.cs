@@ -53,7 +53,15 @@ public partial class RayCast2DExtension : RayCast2D, IDataContext
                     output = 0;
                     return true;
                 }
-                output = this.ToLocal(GetCollisionPoint()).Length();
+
+                if (_lastCollided != null)
+                {
+                    output = this.ToLocal(GetCollisionPoint()).Length();
+                }
+                else
+                {
+                    output = this.TargetPosition.Length();
+                }
                 return true;
             }
         }
