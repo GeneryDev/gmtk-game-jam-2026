@@ -12,6 +12,7 @@ public partial class MobController : Node
     private ComponentCache<MobGoal> _goal;
     private ComponentCache<MotionComponent> _motionComponent;
     private ComponentCache<EntityFlags> _entityFlags;
+    private ComponentCache<DamageableComponent> _damageable;
 
     public override void _Process(double delta)
     {
@@ -47,6 +48,7 @@ public partial class MobController : Node
 
     public override void _PhysicsProcess(double delta)
     {
+        if (!(_damageable.Get(this)?.IsAlive ?? true)) return;
         var motion = _motionComponent.Get(this);
 
         var speed = MovementSpeed;

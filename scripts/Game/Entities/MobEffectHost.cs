@@ -24,6 +24,8 @@ public partial class MobEffectHost : Node, IDataContext
 
     private MobEffect _lastTriggeredEffect;
 
+    private ComponentCache<DamageableComponent> _damageable;
+
     public override void _EnterTree()
     {
         base._EnterTree();
@@ -69,6 +71,7 @@ public partial class MobEffectHost : Node, IDataContext
     }
 
     public StringName UpdatedSignalName => SignalName.Updated;
+    public bool ValidTarget => _damageable.Get(this)?.IsAlive ?? true;
 
     public bool GetSubContext(string key, string input, ref IDataContext output, IDataQueryOptions options)
     {

@@ -18,6 +18,7 @@ public partial class GameTimer
         {
             if (node is not MobEffectHost host) continue;
             if (host.TriggerWeight <= 0) continue;
+            if (!host.ValidTarget) continue;
             _tempEffectHosts.Add(host);
         }
 
