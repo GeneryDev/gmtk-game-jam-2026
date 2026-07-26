@@ -298,7 +298,9 @@ bbcode_enabled = true
 fit_content = true
 horizontal_alignment = 1
 script = ExtResource("5_tr12m")
-TextFormat = "[b]Programming[/b]
+TextFormat = "[b]Is Your Microwave Running?[/b]
+
+[b]Programming[/b]
 Daniel Cepeda (Genery)
 DiscoInkling
 
