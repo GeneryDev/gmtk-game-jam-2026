@@ -13,6 +13,6 @@ RootNodeProperties = {
 &"LogMessage": "-60 seconds",
 &"ParticleMessage": "-60s",
 &"SpawnCondition": ExtResource("1_egtd7"),
-&"SpawnWeight": 2.0,
+&"SpawnWeight": 1.0,
 &"Tags": Array[String](["timer", "minutes", "positive", "log_warning"])
 }
