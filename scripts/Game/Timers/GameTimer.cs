@@ -54,7 +54,6 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 			EmitSignalUpdated();
 		}
 	}
-	[Export] public GdfAudioPlayer TimeUpAudioPlayer;
 
 	public bool Active { get; private set; } = true;
 
@@ -117,7 +116,6 @@ public partial class GameTimer : SingletonNode<GameTimer>, IDataContext
 	{
 		_tickRate = 0;
 		Active = false;
-		TimeUpAudioPlayer.playing = true;
 		EmitSignalReachedZero();
 		EmitSignalContextSignalReceived(SignalName.ReachedZero, new());
 	}

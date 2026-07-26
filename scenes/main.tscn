@@ -521,10 +521,9 @@ UseGlobalPool = true
 ReleaseAction = 1
 metadata/_custom_type_script = "uid://wrcbyscb3t11"
 
-[node name="GameTimer" type="Node" parent="." unique_id=2057958551 node_paths=PackedStringArray("TimeUpAudioPlayer")]
+[node name="GameTimer" type="Node" parent="." unique_id=2057958551]
 script = ExtResource("1_jyhfs")
 RemainingTime = 600
-TimeUpAudioPlayer = NodePath("../TimeUpSound")
 metadata/_custom_type_script = "uid://otkyb0o8ega"
 
 [node name="Timer Effect Log" type="Node" parent="." unique_id=665212683]
@@ -722,6 +721,7 @@ polygon = PackedVector2Array(-352, -208, -128, -64, 384, -64, 432, -320, 432, -5
 
 [node name="Timer Level Effects" parent="Node2D" unique_id=790727648 instance=ExtResource("17_muem4")]
 
+[connection signal="ReachedZero" from="GameTimer" to="TimeUpSound" method="Trigger"]
 [connection signal="ReachedZero" from="GameTimer" to="Music" method="Stop"]
 [connection signal="timeout" from="Node2D/Foreground Layer/Mob Spawner/Spawn Intervals/Trickle Timer" to="Node2D/Foreground Layer/Mob Spawner" method="Spawn"]
 [connection signal="timeout" from="Node2D/Foreground Layer/Mob Spawner/Spawn Intervals/Burst Timer" to="Node2D/Foreground Layer/Mob Spawner/Waves/Play burst_10" method="Trigger"]
