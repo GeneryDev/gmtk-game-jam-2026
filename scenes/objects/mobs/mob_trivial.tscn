@@ -6,6 +6,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_odhy6"]
 shader = ExtResource("2_wnpua")
+shader_parameter/lightness_curve = 0.61
+shader_parameter/effect = 0.71
 
 [node name="Mob Trivial" unique_id=63413937 instance=ExtResource("1_0shk6")]
 

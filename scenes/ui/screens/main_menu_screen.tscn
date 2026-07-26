@@ -16,11 +16,11 @@
 [ext_resource type="Script" uid="uid://dukfxpmahaflv" path="res://addons/gdf-godot/GDF/Animations/AnimationTrigger.cs" id="12_vp6oy"]
 [ext_resource type="Texture2D" uid="uid://dxo5tkyxe76xr" path="res://assets/textures/ui/icon.png" id="14_3u4en"]
 
-[sub_resource type="Resource" id="Resource_tqw2u"]
-resource_name = "main.tscn"
+[sub_resource type="Resource" id="Resource_3u4en"]
+resource_name = "intro.tscn"
 script = ExtResource("12_ioxk6")
-StoredResourceId = "uid://di7lv4icyqso4"
-StoredResourcePath = "res://scenes/main.tscn"
+StoredResourceId = "uid://q631rkyiw3h"
+StoredResourcePath = "res://scenes/intro.tscn"
 StoredResourceType = "Godot.PackedScene"
 metadata/_custom_type_script = "uid://ce2cpgowa1bvu"
 
@@ -184,7 +184,7 @@ script = ExtResource("8_7hl0s")
 script = ExtResource("11_vp6oy")
 Target = NodePath("..")
 Method = &"ChangeScene"
-Args = [SubResource("Resource_tqw2u"), null]
+Args = [SubResource("Resource_3u4en"), null]
 ArgInputTypes = Array[int]([0, 0])
 ArgAbortIfNull = Array[bool]([false, false])
 ArgReplicate = Array[bool]([false, false])

@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dkidro8xl4x0p"]
+
+[ext_resource type="Shader" uid="uid://m2t6larbfxsn" path="res://assets/shaders/canvas/hue_rotate.gdshader" id="1_0nnk6"]
+
+[resource]
+shader = ExtResource("1_0nnk6")

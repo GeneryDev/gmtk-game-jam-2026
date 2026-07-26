@@ -1,0 +1,133 @@
+[gd_scene format=3 uid="uid://q631rkyiw3h"]
+
+[ext_resource type="VideoStream" uid="uid://duvjfiv4kkwwc" path="res://assets/video/intro.ogv" id="1_ioskq"]
+[ext_resource type="PackedScene" uid="uid://dfiex6xxhyw40" path="res://scenes/objects/standard_user_interface.tscn" id="1_yjqpq"]
+[ext_resource type="Script" uid="uid://bfppi36isqkgt" path="res://addons/gdf-godot/GDF/UI/UserInterfaceComponent.cs" id="3_i2l1n"]
+[ext_resource type="Resource" uid="uid://cfp18enrjxj36" path="res://resources/input_actions/ui_confirm.tres" id="4_es01l"]
+[ext_resource type="Script" uid="uid://eribg7y4pkkf" path="res://addons/gdf-godot/GDF/Logical/Diode.cs" id="4_wfs7u"]
+[ext_resource type="PackedScene" uid="uid://8ctlixmk3of2" path="res://scenes/objects/timer_effect_sfx.tscn" id="5_272cy"]
+[ext_resource type="AudioStream" uid="uid://demw8grpr8st3" path="res://assets/audio/SFX/UI/Click/UI_01.wav" id="6_37iue"]
+[ext_resource type="Script" uid="uid://cwgjseomfcygb" path="res://scripts/Game/UI/MenuFunctions.cs" id="6_bu1yb"]
+[ext_resource type="Script" uid="uid://buqbj5n61xjbu" path="res://addons/gdf-godot/GDF/Logical/MethodCaller.cs" id="7_t1qkj"]
+[ext_resource type="Script" uid="uid://ce2cpgowa1bvu" path="res://addons/gdf-godot/GDF/IO/ResourceReference.cs" id="8_272cy"]
+[ext_resource type="Script" uid="uid://wrcbyscb3t11" path="res://addons/gdf-godot/GDF/Audio/GdfAudioPlayer.cs" id="11_n6p8m"]
+[ext_resource type="AudioStream" uid="uid://bpxrcbfo3dgg1" path="res://assets/audio/music/main_music.part_2.mp3" id="12_n6p8m"]
+
+[sub_resource type="Resource" id="Resource_tqw2u"]
+resource_name = "main.tscn"
+script = ExtResource("8_272cy")
+StoredResourceId = "uid://di7lv4icyqso4"
+StoredResourcePath = "res://scenes/main.tscn"
+StoredResourceType = "Godot.PackedScene"
+metadata/_custom_type_script = "uid://ce2cpgowa1bvu"
+
+[node name="Intro" type="Control" unique_id=2103767815]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UserInterface" parent="." unique_id=1004258199 instance=ExtResource("1_yjqpq")]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=578537332]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="." unique_id=425112311]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.7792
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="AspectRatioContainer" unique_id=2110578787]
+layout_mode = 2
+stream = ExtResource("1_ioskq")
+autoplay = true
+expand = true
+
+[node name="Skip Shortcut" type="Control" parent="." unique_id=1402472524]
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="UserInterfaceComponent" type="Node" parent="Skip Shortcut" unique_id=356031715]
+script = ExtResource("3_i2l1n")
+Submittable = true
+ShortcutEnabled = true
+ShortcutAction = ExtResource("4_es01l")
+metadata/_custom_type_script = "uid://bfppi36isqkgt"
+
+[node name="Timer SFX" parent="Skip Shortcut" unique_id=883309933 instance=ExtResource("5_272cy")]
+Stream = ExtResource("6_37iue")
+
+[node name="Finished" type="Node" parent="." unique_id=373484441]
+script = ExtResource("4_wfs7u")
+metadata/_custom_type_script = "uid://eribg7y4pkkf"
+
+[node name="Menu Functions" type="Node" parent="Finished" unique_id=603487725]
+script = ExtResource("6_bu1yb")
+
+[node name="Next" type="Node" parent="Finished/Menu Functions" unique_id=941607792 node_paths=PackedStringArray("Target")]
+script = ExtResource("7_t1qkj")
+Target = NodePath("..")
+Method = &"ChangeScene"
+Args = [SubResource("Resource_tqw2u"), null]
+ArgInputTypes = Array[int]([0, 0])
+ArgAbortIfNull = Array[bool]([false, false])
+ArgReplicate = Array[bool]([false, false])
+TargetMethodInfo = {
+"args": Array[Dictionary]([{
+"class_name": &"Resource",
+"hint": 0,
+"hint_string": "",
+"name": "sceneReference",
+"type": 24,
+"usage": 6
+}, {
+"class_name": &"Resource",
+"hint": 0,
+"hint_string": "",
+"name": "screenTransitionReference",
+"type": 24,
+"usage": 6
+}]),
+"default_args": [],
+"flags": 1,
+"id": 0,
+"name": "ChangeScene",
+"return": {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 0,
+"usage": 6
+}
+}
+metadata/_custom_type_script = "uid://buqbj5n61xjbu"
+
+[node name="Music" type="Node" parent="." unique_id=568170471]
+script = ExtResource("11_n6p8m")
+TriggerMode = 2
+Stream = ExtResource("12_n6p8m")
+VolumeDb = -10.0
+Bus = &"Music"
+UseGlobalPool = true
+ReleaseAction = 2
+FadeOutTime = 0.5
+ParameterLooping = true
+metadata/_custom_type_script = "uid://wrcbyscb3t11"
+
+[connection signal="finished" from="AspectRatioContainer/VideoStreamPlayer" to="Finished" method="Trigger"]
+[connection signal="Submitted" from="Skip Shortcut/UserInterfaceComponent" to="Finished" method="Trigger"]
+[connection signal="Submitted" from="Skip Shortcut/UserInterfaceComponent" to="Skip Shortcut/Timer SFX" method="Trigger"]
+[connection signal="Triggered" from="Finished" to="Finished/Menu Functions/Next" method="Trigger"]
